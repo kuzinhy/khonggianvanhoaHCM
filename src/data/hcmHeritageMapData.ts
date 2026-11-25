@@ -853,7 +853,7 @@ export const CLASSIC_REVOLUTIONARY_WORKS: ClassicRevolutionaryWork[] = [
   {
     id: 'work_1942_nguc_trung_nhat_ky',
     title: 'Nhật ký trong tù (Ngục trung nhật ký)',
-    originalTitle: 'Ngục trung nhật ký (獄中日記)',
+    originalTitle: 'Ngục trung nhật ký',
     year: '1942 - 1943',
     location: 'Các nhà tù tỉnh Quảng Tây, Trung Quốc',
     stageNumber: 10,

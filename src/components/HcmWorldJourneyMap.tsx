@@ -1,7 +1,20 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Layers, Compass, Play, Pause, RotateCcw } from 'lucide-react';
+import {
+  Compass,
+  Play,
+  Pause,
+  RotateCcw,
+  Globe,
+  MapPin,
+  Flag,
+  ShieldCheck,
+  ExternalLink,
+  Layers,
+  Sparkles,
+  Info,
+} from 'lucide-react';
 import {
   JOURNEY_10_STAGES,
   HERITAGE_STOP_POINTS,
@@ -10,6 +23,16 @@ import {
   type HeritageStopPoint,
   type UsshPoint,
 } from '../data/hcmHeritageMapData';
+import {
+  OFFICIAL_VIETNAM_ISLANDS,
+  type SovereigntyIsland,
+} from '../data/geo/vietnamIslandsSovereignty';
+import {
+  CONTROLLED_MAP_LABELS,
+  type MapLabelItem,
+} from '../data/geo/worldHeritageLabels';
+import ne110mLand from '../data/geo/ne_110m_land.json';
+import vietnamProvinces from '../data/geo/vietnamProvinces.json';
 
 // Accurate GPS Coordinates for all 26 stops across the globe
 const STOP_GPS_MAP: Record<string, [number, number]> = {
@@ -60,17 +83,21 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const geojsonLandLayerRef = useRef<L.GeoJSON | null>(null);
+  const geojsonVnLayerRef = useRef<L.GeoJSON | null>(null);
   const markersRef = useRef<Record<string, L.Marker>>({});
-  const activeTileLayerRef = useRef<L.TileLayer | null>(null);
   const polylineRef = useRef<L.Polyline | null>(null);
+  const labelsLayerGroupRef = useRef<L.LayerGroup | null>(null);
+  const islandsLayerGroupRef = useRef<L.LayerGroup | null>(null);
 
-  const [mapType, setMapType] = useState<'STREET' | 'SATELLITE'>('STREET');
+  const [mapTheme, setMapTheme] = useState<'HERITAGE' | 'FOCUS'>('HERITAGE');
   const [isPlayingAutoTour, setIsPlayingAutoTour] = useState(false);
+  const [activeIslandModal, setActiveIslandModal] = useState<SovereigntyIsland | null>(null);
 
   // Global Center for the World Map
-  const CENTER_WORLD: [number, number] = [24, 38];
+  const CENTER_WORLD: [number, number] = [22, 45];
 
-  // 1. Initialize World Leaflet Map
+  // 1. Initialize Thematic Heritage Leaflet Map
   useEffect(() => {
     if (!mapContainerRef.current) return;
     if (mapInstanceRef.current) return;
@@ -79,20 +106,47 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
       center: CENTER_WORLD,
       zoom: 2.5,
       minZoom: 2,
-      maxZoom: 16,
+      maxZoom: 10,
       zoomControl: false,
-      worldCopyJump: true,
+      worldCopyJump: false,
+      maxBounds: [
+        [-70, -180],
+        [88, 195],
+      ],
+      maxBoundsViscosity: 0.8,
     });
 
-    const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors',
-    }).addTo(map);
-
-    activeTileLayerRef.current = streetLayer;
-
-    // Custom Zoom control at bottom-left to avoid occluding top toolbar
+    // Custom Zoom control at bottom-left to avoid occluding top toolbars
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+    // Render Natural Earth Physical Land Polygons (Public Domain, offline, zero external API)
+    const landLayer = L.geoJSON(ne110mLand as any, {
+      style: () => ({
+        fillColor: mapTheme === 'FOCUS' ? '#FFFFFF' : '#FAF6F0',
+        fillOpacity: 1,
+        color: '#D1D5DB',
+        weight: 1,
+      }),
+    }).addTo(map);
+    geojsonLandLayerRef.current = landLayer;
+
+    // Render Vietnam Territory with highlighted sacred warm gold tone
+    const vnLayer = L.geoJSON(vietnamProvinces as any, {
+      style: () => ({
+        fillColor: '#FEF08A',
+        fillOpacity: 0.95,
+        color: '#D97706',
+        weight: 1.1,
+      }),
+    }).addTo(map);
+    geojsonVnLayerRef.current = vnLayer;
+
+    // Layer groups for controlled labels & sovereignty islands
+    const labelsGroup = L.layerGroup().addTo(map);
+    labelsLayerGroupRef.current = labelsGroup;
+
+    const islandsGroup = L.layerGroup().addTo(map);
+    islandsLayerGroupRef.current = islandsGroup;
 
     mapInstanceRef.current = map;
 
@@ -102,35 +156,265 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
     };
   }, []);
 
-  // 2. Switch Street / Satellite
+  // 2. Update Theme Styling (Heritage vs Focus)
+  useEffect(() => {
+    if (geojsonLandLayerRef.current) {
+      geojsonLandLayerRef.current.setStyle({
+        fillColor: mapTheme === 'FOCUS' ? '#FFFFFF' : '#FAF6F0',
+        color: mapTheme === 'FOCUS' ? '#94A3B8' : '#D1D5DB',
+      });
+    }
+  }, [mapTheme]);
+
+  // 3. Render Independent Hoàng Sa & Trường Sa Sovereignty Layer (PERMANENT, NEVER DISAPPEARS)
   useEffect(() => {
     const map = mapInstanceRef.current;
-    if (!map) return;
+    const islandsGroup = islandsLayerGroupRef.current;
+    if (!map || !islandsGroup) return;
 
-    if (activeTileLayerRef.current) {
-      map.removeLayer(activeTileLayerRef.current);
-    }
+    islandsGroup.clearLayers();
 
-    if (mapType === 'STREET') {
-      activeTileLayerRef.current = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-          maxZoom: 18,
-          attribution: '&copy; OpenStreetMap contributors',
-        }
-      ).addTo(map);
-    } else {
-      activeTileLayerRef.current = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
-          maxZoom: 18,
-          attribution: 'Tiles &copy; Esri &mdash; World Imagery',
-        }
-      ).addTo(map);
-    }
-  }, [mapType]);
+    OFFICIAL_VIETNAM_ISLANDS.forEach((island) => {
+      const isHoangSa = island.id === 'hoang-sa';
+      const badgeBg = isHoangSa ? '#BE123C' : '#9F1239';
 
-  // 3. Render World Voyage Polyline and Markers
+      const iconHtml = `
+        <div class="hcm-island-sovereignty-node" style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          cursor: pointer;
+          user-select: none;
+          pointer-events: auto;
+        ">
+          <!-- Pulse wave for sovereignty affirmation -->
+          <div style="
+            position: absolute;
+            top: 2px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #E11D48;
+            opacity: 0.35;
+            animation: hcmSovereigntyPulse 2s infinite ease-out;
+            pointer-events: none;
+          "></div>
+
+          <!-- Prominent White Pill with Crimson Red Vietnamese Label -->
+          <div style="
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #FFFFFF;
+            padding: 3px 9px;
+            border-radius: 9999px;
+            border: 2px solid ${badgeBg};
+            box-shadow: 0 4px 14px rgba(190, 18, 60, 0.35), 0 1px 3px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            transition: transform 0.2s ease;
+          ">
+            <span style="
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: #DC2626;
+              color: #FDE047;
+              font-size: 9px;
+              font-weight: 900;
+              box-shadow: 0 0 6px #E11D48;
+            ">★</span>
+            <span style="
+              font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+              font-size: 12.5px;
+              font-weight: 800;
+              color: #751D2C;
+              letter-spacing: -0.01em;
+            ">${island.officialName}</span>
+          </div>
+
+          <!-- Sub-badge: Unit name -->
+          <div style="
+            margin-top: 2px;
+            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: #881337;
+            background: rgba(255, 241, 242, 0.95);
+            padding: 1px 7px;
+            border-radius: 6px;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            white-space: nowrap;
+          ">
+            ${isHoangSa ? 'UBND TP. Đà Nẵng' : 'UBND Tỉnh Khánh Hòa'}
+          </div>
+        </div>
+      `;
+
+      const islandIcon = L.divIcon({
+        className: 'hcm-sovereignty-island-div-icon',
+        html: iconHtml,
+        iconSize: [230, 48],
+        iconAnchor: [115, 22],
+        popupAnchor: [0, -22],
+      });
+
+      const marker = L.marker(island.coords, {
+        icon: islandIcon,
+        zIndexOffset: 3000, // Highest priority, never occluded
+      });
+
+      // Sovereignty Popup compliant with Official Legal Standpoint of Vietnam
+      const popupHtml = `
+        <div style="font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 4px; width: 285px; line-height: 1.45; color: #0F172A;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 1.5px solid #FECDD3;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #BE123C; color: #FEF08A; font-size: 11px; font-weight: 900;">★</span>
+            <div>
+              <h4 style="font-size: 13.5px; font-weight: 900; color: #881337; margin: 0; line-height: 1.2;">
+                ${island.officialName}
+              </h4>
+              <div style="font-size: 10.5px; color: #64748B; font-weight: 600;">
+                ${island.adminUnit}
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 11.5px; color: #334155; margin: 0 0 6px 0; line-height: 1.4;">
+            ${island.summary}
+          </p>
+
+          <div style="background: #FFF1F2; padding: 6px 8px; border-radius: 8px; border-left: 3px solid #BE123C; margin-bottom: 6px;">
+            <div style="font-size: 10.5px; font-weight: 800; color: #9F1239; margin-bottom: 2px;">
+              LẬP TRƯỜNG CHÍNH THỨC CỦA VIỆT NAM
+            </div>
+            <div style="font-size: 11px; color: #4C0519; line-height: 1.38;">
+              ${island.legalBasis}
+            </div>
+          </div>
+
+          <div style="font-size: 10.5px; color: #475569; margin-bottom: 6px; line-height: 1.35;">
+            <strong>Lịch sử &amp; Chứng cứ:</strong> ${island.historyAndEvidence}
+          </div>
+
+          ${
+            island.quoteHcm
+              ? `<blockquote style="font-style: italic; font-size: 11px; color: #881337; border-left: 2px solid #F59E0B; padding-left: 6px; margin: 6px 0;">
+                  “${island.quoteHcm}”
+                </blockquote>`
+              : ''
+          }
+
+          <div style="padding-top: 5px; border-top: 1px dashed #E2E8F0; font-size: 10px; color: #64748B;">
+            <strong style="color: #0F172A;">Nguồn chính thức:</strong> Cổng TTĐT Chính phủ (chinhphu.vn) · Bộ Ngoại giao (mofa.gov.vn) · Luật Biển Việt Nam 2012 · UNCLOS 1982.
+          </div>
+        </div>
+      `;
+
+      marker.bindPopup(popupHtml, {
+        maxWidth: 300,
+        autoPanPaddingTopLeft: L.point(20, 65),
+      });
+
+      marker.on('click', () => {
+        setActiveIslandModal(island);
+      });
+
+      islandsGroup.addLayer(marker);
+    });
+  }, []);
+
+  // 4. Render Controlled Latin/Vietnamese Map Labels (Zero Chinese Characters)
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    const labelsGroup = labelsLayerGroupRef.current;
+    if (!map || !labelsGroup) return;
+
+    labelsGroup.clearLayers();
+
+    CONTROLLED_MAP_LABELS.forEach((lbl) => {
+      let labelHtml = '';
+
+      if (lbl.type === 'OCEAN') {
+        labelHtml = `
+          <div style="
+            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+            font-size: ${lbl.isImportant ? '13px' : '11px'};
+            font-weight: 900;
+            color: #0284C7;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 2px #FFFFFF;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.85;
+          ">
+            ${lbl.nameVi}
+          </div>
+        `;
+      } else if (lbl.type === 'COUNTRY') {
+        labelHtml = `
+          <div style="
+            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+            font-size: ${lbl.isImportant ? '12.5px' : '11px'};
+            font-weight: 800;
+            color: ${lbl.isImportant ? '#881337' : '#334155'};
+            letter-spacing: 0.05em;
+            text-shadow: 0 1px 2px #FFFFFF, 0 0 4px #FFFFFF;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+          ">
+            ${lbl.nameVi}
+          </div>
+        `;
+      } else {
+        // CITY
+        labelHtml = `
+          <div style="
+            display: flex;
+            align-items: center;
+            gap: 3.5px;
+            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+            font-size: ${lbl.isImportant ? '11.5px' : '10.5px'};
+            font-weight: ${lbl.isImportant ? '800' : '600'};
+            color: #0F172A;
+            text-shadow: 0 1px 2px #FFFFFF, 0 0 3px #FFFFFF;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+          ">
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: ${
+              lbl.isImportant ? '#DC2626' : '#475569'
+            }; display: inline-block;"></span>
+            <span>${lbl.nameVi}</span>
+          </div>
+        `;
+      }
+
+      const icon = L.divIcon({
+        className: 'hcm-controlled-label-div-icon',
+        html: labelHtml,
+        iconSize: [120, 20],
+        iconAnchor: [60, 10],
+      });
+
+      const marker = L.marker(lbl.coords, {
+        icon,
+        interactive: false,
+        zIndexOffset: lbl.isImportant ? 800 : 500,
+      });
+
+      labelsGroup.addLayer(marker);
+    });
+  }, []);
+
+  // 5. Render Heritage Milestones & Connecting Voyage Polylines
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map) return;
@@ -146,18 +430,19 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
     markersRef.current = {};
 
     if (pointDataset === 'USSH_61') {
-      // Filter points based on selected stage
       const pointsToRender =
         selectedStageNumber > 0
           ? USSH_61_GPS_POINTS.filter((p) => p.stageNumber === selectedStageNumber)
           : USSH_61_GPS_POINTS;
 
-      // Build polyline coordinates
-      const latLngs: [number, number][] = pointsToRender.map((pt) => [pt.coords.lat, pt.coords.lng]);
+      const latLngs: [number, number][] = pointsToRender.map((pt) => [
+        pt.coords.lat,
+        pt.coords.lng,
+      ]);
 
       if (latLngs.length > 1) {
         polylineRef.current = L.polyline(latLngs, {
-          color: '#F59E0B',
+          color: '#E11D48',
           weight: 3,
           opacity: 0.85,
           dashArray: '6, 5',
@@ -165,7 +450,6 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
         }).addTo(map);
       }
 
-      // Render USSH 61 Markers
       pointsToRender.forEach((pt) => {
         const isSelected = pt.id === activeUsshPointId;
         const coords: [number, number] = [pt.coords.lat, pt.coords.lng];
@@ -179,16 +463,16 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           ">
             ${
               isSelected
-                ? `<div style="position: absolute; width: 42px; height: 42px; border-radius: 50%; background: #EF4444; opacity: 0.45; animation: hcmWorldPulse 1.4s infinite ease-out;"></div>`
+                ? `<div style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: #EF4444; opacity: 0.45; animation: hcmWorldPulse 1.4s infinite ease-out;"></div>`
                 : ''
             }
             <div style="
-              width: ${isSelected ? '28px' : '22px'};
-              height: ${isSelected ? '28px' : '22px'};
-              background: ${isSelected ? '#DC2626' : '#D97706'};
+              width: ${isSelected ? '27px' : '20px'};
+              height: ${isSelected ? '27px' : '20px'};
+              background: ${isSelected ? '#BE123C' : '#D97706'};
               border: 2px solid #FFFFFF;
               border-radius: 50%;
-              box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+              box-shadow: 0 3px 8px rgba(0,0,0,0.35);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -196,7 +480,7 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
               font-size: ${isSelected ? '10px' : '8.5px'};
               font-weight: 900;
               cursor: pointer;
-              transition: all 0.25s ease;
+              transition: all 0.2s ease;
             ">
               #${pt.id}
             </div>
@@ -207,7 +491,7 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
               height: 0;
               border-left: 3px solid transparent;
               border-right: 3px solid transparent;
-              border-top: 4px solid ${isSelected ? '#DC2626' : '#D97706'};
+              border-top: 4px solid ${isSelected ? '#BE123C' : '#D97706'};
             "></div>
           </div>
         `;
@@ -220,11 +504,14 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           popupAnchor: [0, -24],
         });
 
-        const marker = L.marker(coords, { icon: customIcon }).addTo(map);
+        const marker = L.marker(coords, {
+          icon: customIcon,
+          zIndexOffset: isSelected ? 1500 : 700,
+        }).addTo(map);
 
         const popupHtml = `
-          <div style="font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 2px; width: 220px; line-height: 1.4;">
-            <div style="font-size: 10px; font-weight: 800; color: #D97706; text-transform: uppercase; margin-bottom: 2px;">
+          <div style="font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 2px; width: 240px; line-height: 1.4;">
+            <div style="font-size: 9.5px; font-weight: 800; color: #BE123C; text-transform: uppercase; margin-bottom: 2px;">
               ${pt.stage} · Mốc #${pt.id}
             </div>
             <h4 style="font-size: 12.5px; font-weight: 800; color: #1E293B; margin: 0 0 3px 0;">
@@ -233,14 +520,13 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
             <div style="font-size: 10.5px; color: #475569; margin-bottom: 6px;">
               📍 Kinh độ: ${pt.coords.lng.toFixed(3)}, Vĩ độ: ${pt.coords.lat.toFixed(3)}
             </div>
-            <div style="font-size: 10.5px; color: #334155; line-height: 1.35;">
-              ${pt.content.slice(0, 110)}...
+            <div style="font-size: 11px; color: #334155; line-height: 1.4;">
+              ${pt.content.slice(0, 120)}...
             </div>
           </div>
         `;
 
         marker.bindPopup(popupHtml);
-
         marker.on('click', () => {
           if (onSelectUsshPoint) onSelectUsshPoint(pt.id);
         });
@@ -254,7 +540,6 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           ? HERITAGE_STOP_POINTS.filter((p) => p.stageNumber === selectedStageNumber)
           : HERITAGE_STOP_POINTS;
 
-      // Build polyline coordinates
       const latLngs: [number, number][] = [];
       pointsToRender.forEach((pt) => {
         const coords = STOP_GPS_MAP[pt.id];
@@ -263,24 +548,22 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
 
       if (latLngs.length > 1) {
         polylineRef.current = L.polyline(latLngs, {
-          color: '#D97706',
+          color: '#DC2626',
           weight: 3.5,
-          opacity: 0.85,
+          opacity: 0.9,
           dashArray: '8, 6',
           lineCap: 'round',
         }).addTo(map);
       }
 
-      // Render Markers
       HERITAGE_STOP_POINTS.forEach((pt) => {
         const coords = STOP_GPS_MAP[pt.id];
         if (!coords) return;
 
         const isSelected = pt.id === activePointId;
         const stageMatch = selectedStageNumber === 0 || pt.stageNumber === selectedStageNumber;
-
         const stageInfo = JOURNEY_10_STAGES.find((s) => s.stageNumber === pt.stageNumber);
-        const markerColor = stageInfo ? stageInfo.color : '#DC2626';
+        const markerColor = stageInfo ? stageInfo.color : '#BE123C';
 
         const iconHtml = `
           <div class="hcm-world-marker ${isSelected ? 'is-active' : ''}" style="
@@ -298,10 +581,10 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
             <div style="
               width: ${isSelected ? '32px' : '24px'};
               height: ${isSelected ? '32px' : '24px'};
-              background: ${isSelected ? '#DC2626' : markerColor};
+              background: ${isSelected ? '#BE123C' : markerColor};
               border: 2px solid #FFFFFF;
               border-radius: 50%;
-              box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+              box-shadow: 0 4px 10px rgba(0,0,0,0.35);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -320,7 +603,7 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
               height: 0;
               border-left: 4px solid transparent;
               border-right: 4px solid transparent;
-              border-top: 5px solid ${isSelected ? '#DC2626' : markerColor};
+              border-top: 5px solid ${isSelected ? '#BE123C' : markerColor};
             "></div>
           </div>
         `;
@@ -333,10 +616,13 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           popupAnchor: [0, -28],
         });
 
-        const marker = L.marker(coords, { icon: customIcon }).addTo(map);
+        const marker = L.marker(coords, {
+          icon: customIcon,
+          zIndexOffset: isSelected ? 1500 : 700,
+        }).addTo(map);
 
         const popupHtml = `
-          <div style="font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 2px; width: 230px; line-height: 1.4;">
+          <div style="font-family: 'Be Vietnam Pro', system-ui, sans-serif; padding: 3px; width: 235px; line-height: 1.4;">
             <div style="font-size: 10px; font-weight: 800; color: ${markerColor}; text-transform: uppercase; margin-bottom: 2px;">
               Chặng ${pt.stageNumber} · Mốc #${pt.order} (${pt.year})
             </div>
@@ -346,17 +632,16 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
             <p style="font-size: 11px; color: #475569; margin: 0 0 5px 0;">
               📍 ${pt.location} (${pt.country})
             </p>
-            <div style="font-size: 10.5px; color: #751D2C; font-weight: 700; margin-bottom: 4px;">
+            <div style="font-size: 10.5px; color: #881337; font-weight: 700; margin-bottom: 4px;">
               Bí danh: ${pt.alias}
             </div>
-            <div style="font-size: 11px; color: #334155; margin-bottom: 8px; font-style: italic;">
-              ${pt.events.slice(0, 95)}...
+            <div style="font-size: 11px; color: #334155; line-height: 1.35;">
+              ${pt.events.slice(0, 110)}...
             </div>
           </div>
         `;
 
         marker.bindPopup(popupHtml);
-
         marker.on('click', () => {
           onSelectPoint(pt.id);
         });
@@ -364,150 +649,246 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
         markersRef.current[pt.id] = marker;
       });
     }
-  }, [selectedStageNumber, activePointId, activeUsshPointId, pointDataset, onSelectPoint, onSelectUsshPoint]);
+  }, [selectedStageNumber, pointDataset, activePointId, activeUsshPointId]);
 
-  // 4. Smooth FlyTo Active Point
+  // 6. Fly to active milestone when changed
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map) return;
 
     if (pointDataset === 'USSH_61') {
-      const pt = USSH_61_GPS_POINTS.find((p) => p.id === activeUsshPointId);
-      if (pt) {
-        map.flyTo([pt.coords.lat, pt.coords.lng], 5.5, {
-          duration: 1.1,
-          easeLinearity: 0.25,
+      const activePt = USSH_61_GPS_POINTS.find((p) => p.id === activeUsshPointId);
+      if (activePt) {
+        map.flyTo([activePt.coords.lat, activePt.coords.lng], Math.max(map.getZoom(), 4.5), {
+          duration: 1.2,
         });
-
-        setTimeout(() => {
-          const marker = markersRef.current[String(activeUsshPointId)];
-          if (marker) marker.openPopup();
-        }, 600);
+        const marker = markersRef.current[String(activePt.id)];
+        if (marker) marker.openPopup();
       }
     } else {
-      if (!activePointId) return;
       const coords = STOP_GPS_MAP[activePointId];
       if (coords) {
-        map.flyTo(coords, 5.5, {
-          duration: 1.1,
-          easeLinearity: 0.25,
+        map.flyTo(coords, Math.max(map.getZoom(), 4.5), {
+          duration: 1.2,
         });
-
-        setTimeout(() => {
-          const marker = markersRef.current[activePointId];
-          if (marker) marker.openPopup();
-        }, 600);
+        const marker = markersRef.current[activePointId];
+        if (marker) marker.openPopup();
       }
     }
   }, [activePointId, activeUsshPointId, pointDataset]);
 
-  // 5. Auto Tour
+  // 7. Auto-play Tour Simulation
   useEffect(() => {
     if (!isPlayingAutoTour) return;
 
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       if (pointDataset === 'USSH_61') {
-        const currentIdx = USSH_61_GPS_POINTS.findIndex((p) => p.id === activeUsshPointId);
-        const nextIdx = (currentIdx + 1) % USSH_61_GPS_POINTS.length;
-        if (onSelectUsshPoint) {
-          onSelectUsshPoint(USSH_61_GPS_POINTS[nextIdx].id);
-        }
+        const curIdx = USSH_61_GPS_POINTS.findIndex((p) => p.id === activeUsshPointId);
+        const nextIdx = (curIdx + 1) % USSH_61_GPS_POINTS.length;
+        if (onSelectUsshPoint) onSelectUsshPoint(USSH_61_GPS_POINTS[nextIdx].id);
       } else {
-        const currentIdx = HERITAGE_STOP_POINTS.findIndex((p) => p.id === activePointId);
-        const nextIdx = (currentIdx + 1) % HERITAGE_STOP_POINTS.length;
+        const curIdx = HERITAGE_STOP_POINTS.findIndex((p) => p.id === activePointId);
+        const nextIdx = (curIdx + 1) % HERITAGE_STOP_POINTS.length;
         onSelectPoint(HERITAGE_STOP_POINTS[nextIdx].id);
       }
     }, 4500);
 
-    return () => clearInterval(interval);
-  }, [isPlayingAutoTour, activePointId, activeUsshPointId, pointDataset, onSelectPoint, onSelectUsshPoint]);
+    return () => clearInterval(timer);
+  }, [isPlayingAutoTour, activePointId, activeUsshPointId, pointDataset]);
 
-  // Reset to full world view
-  const handleResetWorld = () => {
+  // --- 8. VIEWPORT NAVIGATION PRESETS ---
+  const handleViewWorld = () => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      map.flyTo(CENTER_WORLD, 2.5, { duration: 1.2 });
+    }
+  };
+
+  const handleViewVietnamAndIslands = () => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      // Bounds covering S-shaped mainland, Gulf of Tonkin, Gulf of Thailand, Hoang Sa and Truong Sa
+      const bounds = L.latLngBounds([
+        [6.2, 101.8], // Southernmost point covering Truong Sa and sea border
+        [24.2, 118.8], // Northernmost / Easternmost covering Hoang Sa & coastal zone
+      ]);
+      map.fitBounds(bounds, { padding: [25, 25] });
+    }
+  };
+
+  const handleViewHoangSa = () => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      map.flyTo([16.5, 112.0], 6.5, { duration: 1.2 });
+    }
+  };
+
+  const handleViewTruongSa = () => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      map.flyTo([9.8, 114.5], 6.5, { duration: 1.2 });
+    }
+  };
+
+  const handleViewHeritageJourney = () => {
     const map = mapInstanceRef.current;
     if (map) {
       if (pointDataset === 'USSH_61') {
-        const allCoords: [number, number][] = USSH_61_GPS_POINTS.map((p) => [p.coords.lat, p.coords.lng]);
-        map.fitBounds(L.latLngBounds(allCoords), { padding: [35, 35], maxZoom: 3 });
+        const allCoords: [number, number][] = USSH_61_GPS_POINTS.map((p) => [
+          p.coords.lat,
+          p.coords.lng,
+        ]);
+        map.fitBounds(L.latLngBounds(allCoords), { padding: [35, 35], maxZoom: 3.5 });
       } else {
         const allCoords: [number, number][] = Object.values(STOP_GPS_MAP);
-        map.fitBounds(L.latLngBounds(allCoords), { padding: [35, 35], maxZoom: 3 });
+        map.fitBounds(L.latLngBounds(allCoords), { padding: [35, 35], maxZoom: 3.5 });
       }
     }
   };
 
   return (
-    <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#E5D3B2] shadow-inner bg-slate-900 flex flex-col">
+    <div
+      className="relative w-full h-full rounded-2xl overflow-hidden border border-rose-200/80 shadow-inner flex flex-col"
+      style={{ background: '#DCEEFB' }} // Ocean water color: Natural Soft Heritage Sea
+    >
       {/* Map DOM Container */}
-      <div ref={mapContainerRef} className="w-full h-full z-0" />
+      <div ref={mapContainerRef} className="w-full h-full z-0" style={{ background: '#DCEEFB' }} />
 
-      {/* Floating Toolbar Top-Left: Tinh gọn, mỏng nhẹ, không che khuất popup */}
-      <div className="absolute top-2.5 left-2.5 z-[400] flex flex-wrap items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-xl border border-slate-200 shadow-lg text-[10.5px]">
-        <button
-          type="button"
-          onClick={() => setMapType('STREET')}
-          className={`px-2 py-0.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 ${
-            mapType === 'STREET'
-              ? 'bg-[#751D2C] text-white shadow-2xs'
-              : 'text-slate-700 hover:bg-slate-100'
-          }`}
-          title="Bản đồ đường phố toàn cầu OpenStreetMap"
-        >
-          <Layers className="w-3 h-3" />
-          <span>Bản Đồ Thế Giới (OSM)</span>
-        </button>
+      {/* Responsive Unified Top Bar: Auto wrap, zero overlap on any screen width */}
+      <div className="absolute top-2 left-2 right-2 z-[400] flex flex-wrap items-center justify-between gap-1.5 pointer-events-none">
+        {/* Left: Viewport Navigation Buttons */}
+        <div className="flex flex-wrap items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-xl border border-rose-200/80 shadow-md text-[10.5px] pointer-events-auto">
+          {/* Nút 1: Toàn thế giới */}
+          <button
+            type="button"
+            onClick={handleViewWorld}
+            className="px-2 py-1 rounded-lg font-bold text-slate-700 hover:bg-rose-50 hover:text-rose-800 transition-colors cursor-pointer flex items-center gap-1"
+            title="Xem toàn cảnh thế giới"
+          >
+            <Globe className="w-3 h-3 text-sky-600" />
+            <span>Toàn thế giới</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setMapType('SATELLITE')}
-          className={`px-2 py-0.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 ${
-            mapType === 'SATELLITE'
-              ? 'bg-[#751D2C] text-white shadow-2xs'
-              : 'text-slate-700 hover:bg-slate-100'
-          }`}
-          title="Ảnh vệ tinh Trái Đất Esri World Imagery"
-        >
-          <Compass className="w-3 h-3 text-blue-500" />
-          <span>Ảnh Vệ Tinh</span>
-        </button>
+          {/* Nút 2: Việt Nam & biển đảo */}
+          <button
+            type="button"
+            onClick={handleViewVietnamAndIslands}
+            className="px-2.5 py-1 rounded-lg font-black bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-2xs hover:brightness-110 transition-all cursor-pointer flex items-center gap-1"
+            title="Bao quát toàn vẹn lãnh thổ Việt Nam và 2 quần đảo Hoàng Sa - Trường Sa"
+          >
+            <Flag className="w-3 h-3 text-amber-300" />
+            <span>Việt Nam &amp; Biển Đảo</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={handleResetWorld}
-          className="px-2 py-0.5 rounded-lg font-bold text-slate-700 hover:bg-slate-100 border-l border-slate-200 flex items-center gap-1 cursor-pointer transition-colors"
-          title="Toàn cảnh thế giới"
-        >
-          <RotateCcw className="w-3 h-3 text-amber-700" />
-          <span className="hidden sm:inline">Toàn Cảnh</span>
-        </button>
+          {/* Nút 3: Hoàng Sa */}
+          <button
+            type="button"
+            onClick={handleViewHoangSa}
+            className="px-2 py-1 rounded-lg font-bold text-rose-800 bg-rose-50/80 hover:bg-rose-100 border border-rose-200 transition-colors cursor-pointer flex items-center gap-1"
+            title="Phóng đến Quần đảo Hoàng Sa (Đà Nẵng)"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-600"></span>
+            <span>Hoàng Sa</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setIsPlayingAutoTour(!isPlayingAutoTour)}
-          className={`px-2 py-0.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 border-l border-slate-200 ${
-            isPlayingAutoTour
-              ? 'bg-rose-700 text-white animate-pulse shadow-2xs'
-              : 'bg-rose-50 text-rose-800 hover:bg-rose-100'
-          }`}
-          title="Tự động du khảo qua các tọa độ toàn cầu"
-        >
-          {isPlayingAutoTour ? <Pause className="w-3 h-3 fill-current" /> : <Play className="w-3 h-3 fill-current" />}
-          <span>{isPlayingAutoTour ? 'Dừng' : 'Tự động chạy'}</span>
-        </button>
+          {/* Nút 4: Trường Sa */}
+          <button
+            type="button"
+            onClick={handleViewTruongSa}
+            className="px-2 py-1 rounded-lg font-bold text-rose-800 bg-rose-50/80 hover:bg-rose-100 border border-rose-200 transition-colors cursor-pointer flex items-center gap-1"
+            title="Phóng đến Quần đảo Trường Sa (Khánh Hòa)"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-600"></span>
+            <span>Trường Sa</span>
+          </button>
+
+          {/* Nút 5: Hành trình di sản */}
+          <button
+            type="button"
+            onClick={handleViewHeritageJourney}
+            className="px-2 py-1 rounded-lg font-bold text-slate-700 hover:bg-rose-50 hover:text-rose-800 transition-colors cursor-pointer flex items-center gap-1 border-l border-slate-200"
+            title="Xem trọn vẹn tuyến hải trình bôn ba cứu nước 1911 - 1941"
+          >
+            <Compass className="w-3 h-3 text-amber-600" />
+            <span>Hành trình di sản</span>
+          </button>
+
+          {/* Nút 6: Tự động chạy */}
+          <button
+            type="button"
+            onClick={() => setIsPlayingAutoTour(!isPlayingAutoTour)}
+            className={`px-2 py-1 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 border-l border-slate-200 ${
+              isPlayingAutoTour
+                ? 'bg-rose-700 text-white animate-pulse shadow-2xs'
+                : 'bg-white text-rose-800 hover:bg-rose-50'
+            }`}
+            title="Tự động du khảo qua các tọa độ toàn cầu"
+          >
+            {isPlayingAutoTour ? (
+              <Pause className="w-3 h-3 fill-current" />
+            ) : (
+              <Play className="w-3 h-3 fill-current" />
+            )}
+            <span>{isPlayingAutoTour ? 'Dừng' : 'Tự động chạy'}</span>
+          </button>
+        </div>
+
+        {/* Right: Theme Switcher */}
+        <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-xl border border-rose-200/80 shadow-md text-[10.5px] pointer-events-auto">
+          <button
+            type="button"
+            onClick={() => setMapTheme('HERITAGE')}
+            className={`px-2 py-0.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 ${
+              mapTheme === 'HERITAGE'
+                ? 'bg-rose-700 text-white shadow-2xs'
+                : 'text-slate-700 hover:bg-rose-50'
+            }`}
+            title="Bản đồ chuyên đề di sản tự nhiên (Natural Earth GeoJSON)"
+          >
+            <Layers className="w-3 h-3" />
+            <span>Bản Đồ Di Sản</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMapTheme('FOCUS')}
+            className={`px-2 py-0.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-1 ${
+              mapTheme === 'FOCUS'
+                ? 'bg-rose-700 text-white shadow-2xs'
+                : 'text-slate-700 hover:bg-rose-50'
+            }`}
+            title="Tập trung đường hải trình và điểm di sản với độ tương phản cao"
+          >
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span>Tập Trung Hành Trình</span>
+          </button>
+        </div>
       </div>
 
-      {/* Floating Badge Bottom-Right */}
-      <div className="absolute bottom-3 right-3 z-[400] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 shadow-md flex items-center gap-2 text-xs text-slate-700">
-        <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-        <span className="font-bold text-[#751D2C] text-[11px]">
-          1911 – 1941 · 3 Đại dương, 4 Châu lục, Gần 30 Quốc gia
+      {/* Floating Badge Bottom-Right: Chủ quyền & Di sản */}
+      <div className="absolute bottom-2.5 right-2.5 z-[400] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-rose-200/80 shadow-md flex items-center gap-2 text-xs text-slate-700">
+        <span className="flex h-2 w-2 relative">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
         </span>
+        <span className="font-bold text-rose-900 text-[11px]">
+          Biển Đông, Hoàng Sa &amp; Trường Sa là của Việt Nam
+        </span>
+      </div>
+
+      {/* Floating Source Tag Bottom-Left */}
+      <div className="hidden sm:flex absolute bottom-2.5 left-12 z-[400] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-lg border border-slate-200/80 text-[10px] text-slate-600 items-center gap-1.5 select-none">
+        <ShieldCheck className="w-3 h-3 text-rose-600" />
+        <span>Bản đồ chuyên đề di sản · Dữ liệu tự nhiên Natural Earth (Public Domain) · UNCLOS 1982</span>
       </div>
 
       <style>{`
         @keyframes hcmWorldPulse {
           0% { transform: scale(0.6); opacity: 0.8; }
           100% { transform: scale(1.6); opacity: 0; }
+        }
+        @keyframes hcmSovereigntyPulse {
+          0% { transform: scale(0.7); opacity: 0.6; }
+          100% { transform: scale(2.2); opacity: 0; }
         }
       `}</style>
     </div>
