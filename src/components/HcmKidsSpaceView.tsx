@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Heart,
   BookOpen,
@@ -11,6 +11,7 @@ import {
   Calendar,
   Image as ImageIcon,
   CheckCircle2,
+  XCircle,
   Share2,
   ExternalLink,
   ChevronRight,
@@ -19,11 +20,21 @@ import {
   Plus,
   Trash2,
   Volume2,
+  VolumeX,
   Flag,
   HelpCircle,
   Clock,
   Star,
   Quote,
+  Palette,
+  Mail,
+  Send,
+  Download,
+  School,
+  CheckSquare,
+  Square,
+  Trophy,
+  RotateCcw,
 } from 'lucide-react';
 import {
   FIVE_TEACHINGS_DATA,
@@ -31,6 +42,9 @@ import {
   HISTORICAL_SITES,
   MORAL_STORIES,
   CHILDREN_SONGS,
+  KIDS_QUIZ_QUESTIONS,
+  COLORING_PAGES,
+  SCHOOL_BRIGADES,
   SCHOOL_ARTWORKS,
   type FiveTeachingsItem,
   type UncleHoPhotoItem,
@@ -57,14 +71,13 @@ interface GoodDeed {
 
 export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
   onBackToFoyer,
-  onOpenMiniQuiz,
 }) => {
-  // Navigation sub-tabs
+  // Navigation Sub-Tabs
   const [activeSubTab, setActiveSubTab] = useState<
-    'WALL' | 'TEACHINGS' | 'STORIES' | 'SONGS' | 'DIARY' | 'ART'
+    'WALL' | 'TEACHINGS' | 'STORIES' | 'SONGS' | 'QUIZ' | 'DIARY' | 'LETTER' | 'COLORING' | 'BRIGADES'
   >('WALL');
 
-  // Selected item states for inspection modals / view details
+  // Selected item states
   const [selectedTeaching, setSelectedTeaching] = useState<FiveTeachingsItem>(
     FIVE_TEACHINGS_DATA[0]
   );
@@ -72,6 +85,36 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
   const [selectedSite, setSelectedSite] = useState<HistoricalSiteItem | null>(null);
   const [selectedStory, setSelectedStory] = useState<MoralStoryItem>(MORAL_STORIES[0]);
   const [selectedSong, setSelectedSong] = useState<ChildrenSongItem>(CHILDREN_SONGS[0]);
+
+  // Audio / Story narration TTS state
+  const [isReadingStory, setIsReadingStory] = useState(false);
+
+  // Self-Evaluation Checklist for 5 Teachings (Persistent in localStorage)
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem('hcm_kids_checklist');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {
+      '01-0': true,
+      '01-1': true,
+      '02-0': true,
+      '03-0': true,
+      '04-0': true,
+      '05-0': true,
+    };
+  });
+
+  const toggleCheckItem = (key: string) => {
+    hcmSfx.playClick(900);
+    setCheckedItems((prev) => {
+      const updated = { ...prev, [key]: !prev[key] };
+      try {
+        localStorage.setItem('hcm_kids_checklist', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+  };
 
   // Good Deeds Diary State
   const [goodDeeds, setGoodDeeds] = useState<GoodDeed[]>(() => {
@@ -152,11 +195,132 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
     } catch {}
   };
 
+  // Web Speech API Narrator for Stories
+  const handleToggleReadStory = () => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
+      alert('Trình duyệt của bạn chưa hỗ trợ giọng đọc Web Speech API.');
+      return;
+    }
+
+    if (isReadingStory) {
+      window.speechSynthesis.cancel();
+      setIsReadingStory(false);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(selectedStory.content);
+    utterance.lang = 'vi-VN';
+    utterance.rate = 0.9;
+    utterance.pitch = 1.05;
+
+    // Pick a Vietnamese voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const viVoice = voices.find((v) => v.lang.includes('vi') || v.lang.includes('VIE'));
+    if (viVoice) utterance.voice = viVoice;
+
+    utterance.onend = () => setIsReadingStory(false);
+    utterance.onerror = () => setIsReadingStory(false);
+
+    hcmSfx.playClick(750);
+    window.speechSynthesis.speak(utterance);
+    setIsReadingStory(true);
+  };
+
+  useEffect(() => {
+    // Cancel reading when switching stories or tabs
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      setIsReadingStory(false);
+    }
+  }, [selectedStory.id, activeSubTab]);
+
+  // Kids Quiz State
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
+  const [showQuizResult, setShowQuizResult] = useState(false);
+  const [quizCertificateName, setQuizCertificateName] = useState('');
+  const [quizCertificateClass, setQuizCertificateClass] = useState('');
+  const [quizCertificateSchool, setQuizCertificateSchool] = useState('TH Nguyễn Du');
+  const [quizScore, setQuizScore] = useState(0);
+
+  const handleSelectQuizAnswer = (optionIdx: number) => {
+    const isCorrect = optionIdx === KIDS_QUIZ_QUESTIONS[quizIndex].correctAnswer;
+    if (isCorrect) {
+      hcmSfx.playSuccess();
+    } else {
+      hcmSfx.playClick(400);
+    }
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [quizIndex]: optionIdx,
+    }));
+  };
+
+  const handleNextQuiz = () => {
+    hcmSfx.playClick(650);
+    if (quizIndex < KIDS_QUIZ_QUESTIONS.length - 1) {
+      setQuizIndex(quizIndex + 1);
+    } else {
+      // Calculate score
+      let correct = 0;
+      KIDS_QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (selectedAnswers[idx] === q.correctAnswer) correct++;
+      });
+      setQuizScore(correct);
+      setShowQuizResult(true);
+      if (correct >= 7) {
+        hcmSfx.playSuccess();
+      } else {
+        hcmSfx.playClick(500);
+      }
+    }
+  };
+
+  const handleRestartQuiz = () => {
+    hcmSfx.playClick(500);
+    setQuizIndex(0);
+    setSelectedAnswers({});
+    setShowQuizResult(false);
+  };
+
+  // Letter to Uncle Ho State
+  const [letterSender, setLetterSender] = useState('');
+  const [letterClass, setLetterClass] = useState('');
+  const [letterSchool, setLetterSchool] = useState('Trường Tiểu học Nguyễn Du');
+  const [letterContent, setLetterContent] = useState('');
+  const [sentLetter, setSentLetter] = useState<{
+    sender: string;
+    classSchool: string;
+    content: string;
+    date: string;
+  } | null>(null);
+
+  const handleSendLetter = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!letterContent.trim()) return;
+    hcmSfx.playSuccess();
+    setSentLetter({
+      sender: letterSender.trim() || 'Học sinh Thủ Dầu Một',
+      classSchool: `${letterClass.trim() || 'Đội viên'} - ${letterSchool}`,
+      content: letterContent.trim(),
+      date: new Date().toLocaleDateString('vi-VN'),
+    });
+    setLetterContent('');
+  };
+
+  // Gamification: Calculate progress towards "Cháu Ngoan Bác Hồ Xuất Sắc"
+  const totalChecked = Object.values(checkedItems).filter(Boolean).length;
+  const progressPercent = Math.min(
+    100,
+    Math.round((totalChecked / 20) * 40 + (goodDeeds.length >= 3 ? 30 : goodDeeds.length * 10) + (showQuizResult && quizScore >= 7 ? 30 : 10))
+  );
+
   return (
     <div className="space-y-6 pb-12 animate-in fade-in duration-300">
       {/* Top Banner & Header */}
       <div className="rounded-3xl border-2 border-amber-300 bg-gradient-to-r from-amber-500 via-rose-600 to-rose-700 p-6 text-white shadow-lg relative overflow-hidden">
-        {/* Background decorative patterns */}
+        {/* Background decorative glows */}
         <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
         <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-amber-300/20 blur-2xl pointer-events-none" />
 
@@ -164,11 +328,11 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
           <div className="space-y-2 max-w-3xl">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-amber-300 text-slate-950 px-3 py-0.5 text-xs font-black uppercase tracking-wider flex items-center gap-1 shadow-xs">
-                <Smile className="w-3.5 h-3.5" />
+                <Smile className="w-3.5 h-3.5 text-rose-700" />
                 Dành Riêng Cho Thiếu Nhi &amp; Học Sinh
               </span>
               <span className="rounded-full bg-black/30 border border-white/20 text-white px-2.5 py-0.5 text-xs font-semibold">
-                Mô hình trường học Thủ Dầu Một
+                Mô hình Liên đội trường học TP. Thủ Dầu Một
               </span>
             </div>
 
@@ -177,49 +341,45 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
             </h1>
 
             <p className="text-xs sm:text-sm text-rose-100 leading-relaxed font-sans">
-              "Vì lợi ích mười năm thì phải trồng cây, vì lợi ích trăm năm thì phải trồng người." Nơi các em thiếu nhi, học sinh tìm hiểu 5 Điều Bác Hồ dạy, lắng nghe truyện kể đạo đức, ghi nhận nghìn việc tốt và bồi đắp lòng yêu nước nồng nàn.
+              "Vì lợi ích mười năm thì phải trồng cây, vì lợi ích trăm năm thì phải trồng người." Không gian học tập, rèn luyện 5 Điều Bác dạy, lắng nghe truyện kể đạo đức, ghi nhận nghìn việc tốt và sinh hoạt Đội của học sinh Tiểu học &amp; THCS Đất Thủ.
             </p>
           </div>
 
-          <div className="shrink-0 flex flex-wrap items-center gap-2.5">
-            {onOpenMiniQuiz && (
-              <button
-                type="button"
-                onClick={() => {
-                  hcmSfx.playClick(750);
-                  onOpenMiniQuiz();
-                }}
-                className="inline-flex items-center gap-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all cursor-pointer hover:scale-105"
-              >
-                <Award className="w-4 h-4 text-rose-700" />
-                <span>Thi Đố Vui Nhận Giấy Khen</span>
-              </button>
-            )}
-
-            {onBackToFoyer && (
-              <button
-                type="button"
-                onClick={() => {
-                  hcmSfx.playClick(500);
-                  onBackToFoyer();
-                }}
-                className="inline-flex items-center gap-1.5 rounded-2xl bg-white/20 hover:bg-white/30 text-white font-bold px-3.5 py-2.5 text-xs border border-white/30 backdrop-blur-xs transition-colors cursor-pointer"
-              >
-                <span>Về sảnh chính</span>
-              </button>
-            )}
+          {/* Gamified Lotus Progress Card */}
+          <div className="shrink-0 rounded-2xl bg-black/30 border border-amber-300/40 p-3.5 text-center min-w-[200px] backdrop-blur-xs space-y-1.5 shadow-md">
+            <div className="flex items-center justify-between text-[11px] text-amber-200 font-bold">
+              <span>Hành trình Búp Sen Vàng</span>
+              <span>{progressPercent}%</span>
+            </div>
+            {/* Progress bar */}
+            <div className="w-full h-2 rounded-full bg-white/20 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-amber-300 to-yellow-400 rounded-full transition-all duration-500"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+            <span className="text-[10.5px] font-black uppercase tracking-wider text-amber-300 block">
+              {progressPercent >= 80
+                ? '🏆 Cháu Ngoan Bác Hồ Xuất Sắc'
+                : progressPercent >= 50
+                ? '⭐ Dũng Sĩ Nghìn Việc Tốt'
+                : '🌱 Búp Sen Chăm Ngoan'}
+            </span>
           </div>
         </div>
 
-        {/* Sub-Tabs Nav Pill Switcher */}
+        {/* 9 Sub-Tabs Switcher */}
         <div className="flex flex-wrap items-center gap-2 pt-5 border-t border-white/20 mt-5 relative z-10">
           {[
-            { id: 'WALL', label: 'Bức Tường Văn Hóa Bác Hồ (Mô hình)', icon: Flag },
-            { id: 'TEACHINGS', label: '5 Điều Bác Dạy', icon: Heart },
-            { id: 'STORIES', label: 'Truyện Kể Đạo Đức (10 Bài Học)', icon: BookOpen },
-            { id: 'SONGS', label: 'Âm Nhạc Tuổi Thơ', icon: Music },
+            { id: 'WALL', label: 'Bức Tường Bác Hồ (Mô hình)', icon: Flag },
+            { id: 'TEACHINGS', label: '5 Điều Bác Dạy (Tự rèn luyện)', icon: Heart },
+            { id: 'STORIES', label: '10 Truyện Kể Đạo Đức', icon: BookOpen },
+            { id: 'SONGS', label: '8 Bài Hát Tuổi Thơ', icon: Music },
+            { id: 'QUIZ', label: 'Đố Vui Nhận Giấy Khen', icon: Trophy },
             { id: 'DIARY', label: 'Sổ Tay Hoa Việc Tốt', icon: Sparkles },
-            { id: 'ART', label: 'Triển Lãm Tranh Đất Thủ', icon: ImageIcon },
+            { id: 'LETTER', label: 'Thư Gửi Bác Hồ', icon: Mail },
+            { id: 'COLORING', label: 'Góc Tô Màu', icon: Palette },
+            { id: 'BRIGADES', label: 'Liên Đội Đất Thủ', icon: School },
           ].map((tab) => {
             const Icon = tab.icon;
             const active = activeSubTab === tab.id;
@@ -231,7 +391,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                   hcmSfx.playClick(600);
                   setActiveSubTab(tab.id as any);
                 }}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer transition-all ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-all ${
                   active
                     ? 'bg-white text-rose-800 shadow-md font-black scale-105'
                     : 'bg-black/20 text-white hover:bg-white/20'
@@ -246,13 +406,12 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       </div>
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 1: BỨC TƯỜNG GỖ KHÔNG GIAN VĂN HÓA HỒ CHÍ MINH TRƯỜNG HỌC (ẢNH)    */}
+      {/* PHÂN HỆ 1: BỨC TƯỜNG GỖ KHÔNG GIAN VĂN HÓA HỒ CHÍ MINH TRƯỜNG HỌC          */}
       {/* ========================================================================= */}
       {activeSubTab === 'WALL' && (
         <div className="space-y-6">
-          {/* Main Visual Wall Showcase */}
           <div className="rounded-3xl border-4 border-amber-300 bg-gradient-to-b from-[#FDFBF7] via-[#FBF5E8] to-[#F7EED8] p-5 sm:p-8 shadow-2xl relative">
-            {/* Top Wooden Plaque Header */}
+            {/* Header Vách Gỗ */}
             <div className="text-center space-y-2 relative pb-6 border-b-2 border-amber-300/80">
               <div className="flex items-center justify-center gap-4 sm:gap-8">
                 {/* National Flag */}
@@ -278,7 +437,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
 
             {/* Split Grid: Left 5 Điều | Center Portrait | Right 4 Ảnh */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6 items-stretch">
-              {/* CỘT TRÁI: 5 ĐIỀU BÁC HỒ DẠY (Bảng gỗ viền nâu) */}
+              {/* CỘT TRÁI: 5 ĐIỀU BÁC HỒ DẠY */}
               <div className="lg:col-span-3 rounded-2xl border-2 border-amber-600/40 bg-gradient-to-b from-[#FFFDF9] to-[#F5ECE1] p-4 shadow-md flex flex-col justify-between space-y-3">
                 <div className="text-center pb-2 border-b border-amber-300/80">
                   <span className="inline-block px-3 py-1 rounded-full bg-amber-700 text-amber-50 font-black text-xs uppercase tracking-wider shadow-xs">
@@ -287,7 +446,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                 </div>
 
                 <div className="space-y-2 flex-1 flex flex-col justify-between">
-                  {FIVE_TEACHINGS_DATA.map((t, idx) => (
+                  {FIVE_TEACHINGS_DATA.map((t) => (
                     <div
                       key={t.number}
                       onClick={() => {
@@ -319,7 +478,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                     onClick={() => setActiveSubTab('TEACHINGS')}
                     className="w-full text-center text-xs font-bold text-amber-900 hover:text-rose-800 underline cursor-pointer"
                   >
-                    Xem giải nghĩa chi tiết 5 Điều →
+                    Vào Góc Tự Rèn Luyện 5 Điều →
                   </button>
                 </div>
               </div>
@@ -400,7 +559,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
               </div>
             </div>
 
-            {/* ĐÁY: 5 ĐỊA DANH LỊCH SỬ DẤU CHÂN BÁC (Thẻ gỗ hàng ngang) */}
+            {/* ĐÁY: 6 ĐỊA DANH LỊCH SỬ DẤU CHÂN BÁC & ĐẤT THỦ */}
             <div className="pt-6 mt-6 border-t-2 border-amber-300/80 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -448,7 +607,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 2: 5 ĐIỀU BÁC HỒ DẠY (GIẢI NGHĨA & HÀNH ĐỘNG HỌC ĐƯỜNG)            */}
+      {/* PHÂN HỆ 2: 5 ĐIỀU BÁC HỒ DẠY (KÈM GÓC TỰ RÈN LUYỆN CHECKLIST HÀNG NGÀY)     */}
       {/* ========================================================================= */}
       {activeSubTab === 'TEACHINGS' && (
         <div className="space-y-6">
@@ -477,11 +636,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                   >
                     <div className="flex items-start gap-3">
                       <span
-                        className={`w-9 h-9 rounded-xl font-black text-sm flex items-center justify-center shrink-0 shadow-xs ${
-                          active
-                            ? 'bg-rose-700 text-white'
-                            : 'bg-amber-100 text-amber-900'
-                        }`}
+                        className={`w-9 h-9 rounded-xl font-black text-sm flex items-center justify-center shrink-0 shadow-xs ${item.badgeColor}`}
                       >
                         {item.number}
                       </span>
@@ -503,7 +658,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
             <div className="md:col-span-7 rounded-3xl border-2 border-rose-200 bg-white p-6 shadow-md space-y-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div className="flex items-center gap-3">
-                  <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-600 to-rose-800 text-white font-black text-lg flex items-center justify-center shadow-sm">
+                  <span className={`w-12 h-12 rounded-2xl text-white font-black text-lg flex items-center justify-center shadow-sm ${selectedTeaching.badgeColor}`}>
                     {selectedTeaching.number}
                   </span>
                   <div>
@@ -521,28 +676,56 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                 </span>
               </div>
 
-              {/* Ý nghĩa */}
+              {/* Góc Tự Rèn Luyện Hàng Ngày (Interactive Checklist) */}
+              <div className="p-4 rounded-2xl bg-amber-50/70 border-2 border-amber-300/80 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
+                    <CheckSquare className="w-4 h-4 text-amber-700" />
+                    Góc Tự Rèn Luyện Của Em (Đánh dấu việc đã làm):
+                  </span>
+                  <span className="text-[11px] font-bold text-amber-800">
+                    {selectedTeaching.checklistItems.filter((_, i) => checkedItems[`${selectedTeaching.number}-${i}`]).length} / {selectedTeaching.checklistItems.length} việc
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  {selectedTeaching.checklistItems.map((chk, i) => {
+                    const key = `${selectedTeaching.number}-${i}`;
+                    const isDone = !!checkedItems[key];
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => toggleCheckItem(key)}
+                        className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center gap-2.5 text-xs ${
+                          isDone
+                            ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-bold'
+                            : 'bg-white border-slate-200 text-slate-700 hover:bg-amber-100/40'
+                        }`}
+                      >
+                        {isDone ? (
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                        ) : (
+                          <Square className="w-4 h-4 text-slate-400 shrink-0" />
+                        )}
+                        <span className={isDone ? 'line-through opacity-80' : ''}>{chk}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Ý nghĩa lời dạy */}
               <div className="space-y-1.5">
                 <h4 className="text-xs font-black uppercase tracking-wider text-slate-400">
                   Ý nghĩa lời dạy
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed bg-amber-50/60 p-3.5 rounded-2xl border border-amber-200/60">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                   {selectedTeaching.meaning}
                 </p>
               </div>
 
-              {/* Xuất xứ lịch sử */}
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-black uppercase tracking-wider text-slate-400">
-                  Xuất xứ lịch sử
-                </h4>
-                <p className="text-xs text-slate-600 italic leading-relaxed">
-                  {selectedTeaching.historicalContext}
-                </p>
-              </div>
-
               {/* Hai cột hành động: Tại trường học & Tại gia đình */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                 <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200 space-y-2">
                   <span className="text-xs font-black text-rose-900 uppercase flex items-center gap-1.5">
                     <BookOpen className="w-3.5 h-3.5 text-rose-700" />
@@ -573,74 +756,101 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                   </ul>
                 </div>
               </div>
-
-              {/* Câu chuyện Bác Hồ minh họa */}
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 space-y-1.5">
-                <span className="text-[11px] font-black uppercase text-amber-900 flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-700" />
-                  Câu chuyện minh họa: {selectedTeaching.storyTitle}
-                </span>
-                <p className="text-xs text-slate-700 italic leading-relaxed">
-                  "{selectedTeaching.storyExcerpt}"
-                </p>
-              </div>
             </div>
           </div>
         </div>
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 3: TRUYỆN KỂ ĐẠO ĐỨC VỀ BÁC HỒ                                    */}
+      {/* PHÂN HỆ 3: 10 TRUYỆN KỂ ĐẠO ĐỨC VỀ BÁC HỒ (CÓ GIỌNG KỂ TTS)               */}
       {/* ========================================================================= */}
       {activeSubTab === 'STORIES' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* List truyện bên trái */}
+            {/* List 10 truyện bên trái */}
             <div className="md:col-span-4 space-y-2.5">
-              <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-amber-600" />
-                <span>Kho Truyện Kể Bác Hồ</span>
-              </h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-amber-600" />
+                  <span>10 Truyện Kể Bác Hồ</span>
+                </h3>
+                <span className="text-xs text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded-full">
+                  10 câu chuyện
+                </span>
+              </div>
 
-              {MORAL_STORIES.map((story) => {
-                const active = selectedStory.id === story.id;
-                return (
-                  <div
-                    key={story.id}
-                    onClick={() => {
-                      hcmSfx.playClick(600);
-                      setSelectedStory(story);
-                    }}
-                    className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
-                      active
-                        ? 'border-amber-500 bg-amber-50 shadow-md'
-                        : 'border-slate-200 bg-white hover:border-amber-300'
-                    }`}
-                  >
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900">{story.title}</h4>
-                    <p className="text-[11px] text-slate-500 line-clamp-1">{story.lesson}</p>
-                    <div className="flex items-center gap-2 pt-1 text-[10px] text-slate-400">
-                      <span>{story.suitableAge}</span>
-                      <span>•</span>
-                      <span>{story.readingTime}</span>
+              <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+                {MORAL_STORIES.map((story) => {
+                  const active = selectedStory.id === story.id;
+                  return (
+                    <div
+                      key={story.id}
+                      onClick={() => {
+                        hcmSfx.playClick(600);
+                        setSelectedStory(story);
+                      }}
+                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
+                        active
+                          ? 'border-amber-500 bg-amber-50 shadow-md ring-2 ring-amber-300/50'
+                          : 'border-slate-200 bg-white hover:border-amber-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{story.icon}</span>
+                        <h4 className="font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                          {story.title}
+                        </h4>
+                      </div>
+                      <p className="text-[11px] text-slate-500 line-clamp-1 pt-1">{story.lesson}</p>
+                      <div className="flex items-center gap-2 pt-1 text-[10px] text-slate-400">
+                        <span>{story.suitableAge}</span>
+                        <span>•</span>
+                        <span>{story.readingTime}</span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
 
             {/* Chi tiết nội dung truyện bên phải */}
             <div className="md:col-span-8 rounded-3xl border-2 border-amber-300 bg-white p-6 shadow-md space-y-5">
-              <div className="space-y-1 border-b border-slate-100 pb-3">
-                <span className="text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">
-                  Truyện kể đạo đức thiếu nhi
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black font-serif text-slate-900">
-                  {selectedStory.title}
-                </h3>
-                <p className="text-xs text-rose-700 font-bold">
-                  Bài học: {selectedStory.lesson}
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">
+                    Truyện kể đạo đức thiếu nhi
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black font-serif text-slate-900 flex items-center gap-2">
+                    <span>{selectedStory.icon}</span>
+                    <span>{selectedStory.title}</span>
+                  </h3>
+                  <p className="text-xs text-rose-700 font-bold">
+                    Bài học: {selectedStory.lesson}
+                  </p>
+                </div>
+
+                {/* Nút bấm nghe giọng đọc kể chuyện */}
+                <button
+                  type="button"
+                  onClick={handleToggleReadStory}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-bold shadow-xs transition-all cursor-pointer ${
+                    isReadingStory
+                      ? 'bg-rose-600 text-white animate-pulse'
+                      : 'bg-amber-500 hover:bg-amber-600 text-slate-950 font-black'
+                  }`}
+                >
+                  {isReadingStory ? (
+                    <>
+                      <VolumeX className="w-4 h-4" />
+                      <span>Dừng đọc truyện</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-4 h-4" />
+                      <span>🔊 Nghe cô kể chuyện</span>
+                    </>
+                  )}
+                </button>
               </div>
 
               {/* Toàn văn truyện */}
@@ -659,11 +869,11 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                 </p>
               </div>
 
-              {/* Câu hỏi tương tác */}
+              {/* Câu hỏi tương tác thảo luận */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
                 <span className="text-xs font-black text-slate-900 uppercase flex items-center gap-1.5">
                   <HelpCircle className="w-4 h-4 text-amber-600" />
-                  Câu hỏi thảo luận cùng thầy cô và bạn bè:
+                  Câu hỏi thảo luận trong giờ sinh hoạt Đội / Sao Nhi đồng:
                 </span>
                 <ol className="space-y-1.5 list-decimal list-inside text-xs text-slate-700">
                   {selectedStory.questions.map((q, i) => (
@@ -677,62 +887,82 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 4: ÂM NHẠC TUỔI THƠ                                                */}
+      {/* PHÂN HỆ 4: 8 BÀI HÁT THIẾU NHI BẤT HỦ VỀ BÁC HỒ                           */}
       {/* ========================================================================= */}
       {activeSubTab === 'SONGS' && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* Danh sách bài hát */}
+            {/* Danh sách 8 bài hát */}
             <div className="md:col-span-5 space-y-2.5">
               <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
                 <Music className="w-5 h-5 text-rose-600" />
-                <span>Những Giai Điệu Khắc Sâu Trong Tim</span>
+                <span>8 Bài Hát Thiếu Nhi Đi Cùng Năm Tháng</span>
               </h3>
 
-              {CHILDREN_SONGS.map((song) => {
-                const active = selectedSong.id === song.id;
-                return (
-                  <div
-                    key={song.id}
-                    onClick={() => {
-                      hcmSfx.playClick(600);
-                      setSelectedSong(song);
-                    }}
-                    className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
-                      active
-                        ? 'border-rose-500 bg-rose-50 shadow-md'
-                        : 'border-slate-200 bg-white hover:border-rose-300'
-                    }`}
-                  >
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900">{song.title}</h4>
-                    <p className="text-[11px] text-slate-500">{song.composer} · {song.year}</p>
-                    <p className="text-[10.5px] text-rose-700 italic truncate pt-1">
-                      "{song.famousLyrics}"
-                    </p>
-                  </div>
-                );
-              })}
+              <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+                {CHILDREN_SONGS.map((song) => {
+                  const active = selectedSong.id === song.id;
+                  return (
+                    <div
+                      key={song.id}
+                      onClick={() => {
+                        hcmSfx.playClick(600);
+                        setSelectedSong(song);
+                      }}
+                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
+                        active
+                          ? 'border-rose-500 bg-rose-50 shadow-md ring-2 ring-rose-300/50'
+                          : 'border-slate-200 bg-white hover:border-rose-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-xs sm:text-sm text-slate-900">{song.title}</h4>
+                        <span className="text-[10px] font-black text-rose-800 bg-rose-100 px-2 py-0.5 rounded-md">
+                          {song.tag}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">{song.composer} · {song.year}</p>
+                      <p className="text-[10.5px] text-rose-700 italic truncate pt-1">
+                        "{song.famousLyrics}"
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Lời bài hát & hoàn cảnh sáng tác */}
             <div className="md:col-span-7 rounded-3xl border-2 border-rose-200 bg-white p-6 shadow-md space-y-5">
-              <div className="space-y-1 border-b border-slate-100 pb-3">
-                <span className="text-[10px] font-black uppercase tracking-wider bg-rose-100 text-rose-900 px-2.5 py-0.5 rounded-full">
-                  Bài ca đi cùng năm tháng
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black font-serif text-slate-900">
-                  {selectedSong.title}
-                </h3>
-                <p className="text-xs text-slate-600">
-                  Sáng tác: <strong>{selectedSong.composer}</strong> ({selectedSong.year})
-                </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-rose-100 text-rose-900 px-2.5 py-0.5 rounded-full">
+                    {selectedSong.tag}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black font-serif text-slate-900">
+                    {selectedSong.title}
+                  </h3>
+                  <p className="text-xs text-slate-600">
+                    Sáng tác: <strong>{selectedSong.composer}</strong> ({selectedSong.year})
+                  </p>
+                </div>
+
+                <a
+                  href={`https://www.youtube.com/results?search_query=${encodeURIComponent(selectedSong.youtubeQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Nghe trên YouTube</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
 
               {/* Lời bài hát */}
               <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200 space-y-2">
                 <span className="text-xs font-black uppercase text-amber-900 flex items-center gap-1.5">
                   <Music className="w-3.5 h-3.5 text-amber-700" />
-                  Lời bài hát:
+                  Lời bài hát (Hát cùng Bác):
                 </span>
                 <p className="text-xs sm:text-sm text-slate-800 font-serif whitespace-pre-line leading-relaxed italic">
                   {selectedSong.fullLyrics}
@@ -754,7 +984,220 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 5: SỔ TAY "BÔNG HOA NGHÌN VIỆC TỐT"                               */}
+      {/* PHÂN HỆ 5: HỘI THI ĐỐ VUI THIẾU NHI VÂNG LỜI BÁC (CẤP GIẤY KHEN QR)        */}
+      {/* ========================================================================= */}
+      {activeSubTab === 'QUIZ' && (
+        <div className="space-y-6">
+          <div className="max-w-3xl mx-auto rounded-3xl border-2 border-amber-300 bg-white p-6 sm:p-8 shadow-xl space-y-6">
+            {!showQuizResult ? (
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div className="space-y-1">
+                    <span className="text-xs font-black uppercase text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full">
+                      Hội Thi Đố Vui Thiếu Nhi Đất Thủ
+                    </span>
+                    <h3 className="text-xl font-black font-serif text-slate-900">
+                      Câu hỏi {quizIndex + 1} / {KIDS_QUIZ_QUESTIONS.length}
+                    </h3>
+                  </div>
+
+                  <span className="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full">
+                    {KIDS_QUIZ_QUESTIONS[quizIndex].topic}
+                  </span>
+                </div>
+
+                {/* Progress bar */}
+                <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div
+                    className="h-full bg-rose-600 rounded-full transition-all duration-300"
+                    style={{
+                      width: `${((quizIndex + 1) / KIDS_QUIZ_QUESTIONS.length) * 100}%`,
+                    }}
+                  />
+                </div>
+
+                <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                  {KIDS_QUIZ_QUESTIONS[quizIndex].question}
+                </p>
+
+                {/* Options A, B, C, D */}
+                <div className="space-y-2.5">
+                  {KIDS_QUIZ_QUESTIONS[quizIndex].options.map((opt, oIdx) => {
+                    const isAnswered = selectedAnswers[quizIndex] !== undefined;
+                    const isSelected = selectedAnswers[quizIndex] === oIdx;
+                    const isCorrectAnswer = oIdx === KIDS_QUIZ_QUESTIONS[quizIndex].correctAnswer;
+                    
+                    let btnStyle = 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50';
+                    if (isAnswered) {
+                      if (isCorrectAnswer) {
+                        btnStyle = 'border-emerald-500 bg-emerald-50 text-emerald-900 font-bold shadow-xs';
+                      } else if (isSelected) {
+                        btnStyle = 'border-rose-500 bg-rose-50 text-rose-900 font-bold shadow-xs';
+                      } else {
+                        btnStyle = 'border-slate-200 bg-slate-50/50 text-slate-400 opacity-60';
+                      }
+                    }
+
+                    return (
+                      <button
+                        key={oIdx}
+                        type="button"
+                        onClick={() => handleSelectQuizAnswer(oIdx)}
+                        className={`w-full p-3.5 rounded-2xl border-2 text-left text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-between ${btnStyle}`}
+                      >
+                        <span>{opt}</span>
+                        {isAnswered && isCorrectAnswer && (
+                          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                        )}
+                        {isAnswered && isSelected && !isCorrectAnswer && (
+                          <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Instant Explanation Box */}
+                {selectedAnswers[quizIndex] !== undefined && (
+                  <div
+                    className={`p-4 rounded-2xl border text-xs sm:text-sm leading-relaxed animate-in fade-in duration-200 ${
+                      selectedAnswers[quizIndex] === KIDS_QUIZ_QUESTIONS[quizIndex].correctAnswer
+                        ? 'bg-emerald-50/90 border-emerald-300 text-emerald-950'
+                        : 'bg-amber-50/90 border-amber-300 text-amber-950'
+                    }`}
+                  >
+                    <div className="font-extrabold flex items-center gap-1.5 mb-1 text-sm">
+                      {selectedAnswers[quizIndex] === KIDS_QUIZ_QUESTIONS[quizIndex].correctAnswer ? (
+                        <>
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          <span className="text-emerald-800">Chính xác rồi! Hoan hô bạn nhỏ! 🎉</span>
+                        </>
+                      ) : (
+                        <>
+                          <HelpCircle className="w-4 h-4 text-amber-600" />
+                          <span className="text-amber-800">Chưa chính xác rồi em ơi! Ghi nhớ nhé:</span>
+                        </>
+                      )}
+                    </div>
+                    <p className="text-slate-700 font-medium leading-relaxed">
+                      {KIDS_QUIZ_QUESTIONS[quizIndex].explanation}
+                    </p>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                  <span className="text-xs text-slate-500">
+                    Hãy suy nghĩ thật kỹ để chọn đáp án đúng nhất nhé!
+                  </span>
+
+                  <button
+                    type="button"
+                    disabled={selectedAnswers[quizIndex] === undefined}
+                    onClick={handleNextQuiz}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 disabled:opacity-50 text-white font-bold px-5 py-2.5 text-xs shadow-xs transition-colors cursor-pointer"
+                  >
+                    <span>{quizIndex < KIDS_QUIZ_QUESTIONS.length - 1 ? 'Câu tiếp theo →' : 'Xem Kết Quả & Nhận Giấy Khen'}</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* Quiz Result & Certificate */
+              <div className="text-center space-y-5 animate-in fade-in duration-300">
+                <div className="w-16 h-16 rounded-3xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto text-3xl shadow-sm">
+                  {quizScore >= 7 ? '🏆' : '⭐'}
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-2xl font-black font-serif text-slate-900">
+                    {quizScore >= 7 ? 'Chúc Mừng Em Đã Đạt Chuẩn Cháu Ngoan Bác Hồ!' : 'Em Đã Hoàn Thành Bài Thi!'}
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Em đã trả lời đúng <strong>{quizScore} / {KIDS_QUIZ_QUESTIONS.length} câu hỏi</strong> ({quizScore * 10}%).
+                  </p>
+                </div>
+
+                {/* Giấy Khen Điện Tử "Cháu Ngoan Bác Hồ" */}
+                <div className="max-w-lg mx-auto p-6 rounded-3xl border-4 border-amber-400 bg-gradient-to-b from-amber-50 via-white to-rose-50 shadow-xl space-y-4 text-center relative overflow-hidden">
+                  <div className="space-y-1">
+                    <span className="text-xs font-serif uppercase tracking-widest text-rose-800 font-black block">
+                      ĐỘI THIẾU NIÊN TIỀN PHONG HỒ CHÍ MINH
+                    </span>
+                    <h4 className="text-xl sm:text-2xl font-black font-serif text-amber-800 uppercase tracking-wide">
+                      GIẤY CHỨNG NHẬN
+                    </h4>
+                    <span className="text-sm font-extrabold text-rose-700 uppercase block">
+                      CHÁU NGOAN BÁC HỒ — EM YÊU LỊCH SỬ ĐẤT THỦ
+                    </span>
+                  </div>
+
+                  <div className="py-2 border-y border-amber-300/80 space-y-2">
+                    <input
+                      type="text"
+                      placeholder="Nhập tên em để in lên giấy khen..."
+                      value={quizCertificateName}
+                      onChange={(e) => setQuizCertificateName(e.target.value)}
+                      className="w-full text-center text-sm sm:text-base font-black text-rose-900 border-b-2 border-rose-400 pb-1 bg-transparent outline-hidden"
+                    />
+
+                    <div className="flex items-center justify-center gap-2 text-xs text-slate-600">
+                      <input
+                        type="text"
+                        placeholder="Lớp (vd: 4A1)"
+                        value={quizCertificateClass}
+                        onChange={(e) => setQuizCertificateClass(e.target.value)}
+                        className="w-20 text-center border-b border-slate-300 pb-0.5 bg-transparent outline-hidden"
+                      />
+                      <span>·</span>
+                      <input
+                        type="text"
+                        placeholder="Trường (vd: TH Nguyễn Du)"
+                        value={quizCertificateSchool}
+                        onChange={(e) => setQuizCertificateSchool(e.target.value)}
+                        className="w-44 text-center border-b border-slate-300 pb-0.5 bg-transparent outline-hidden"
+                      />
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed italic font-serif">
+                    Đã hoàn thành xuất sắc Hội thi trực tuyến tìm hiểu về Bác Hồ và lịch sử truyền thống Đất Thủ Dầu Một năm 2026.
+                  </p>
+
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 pt-2">
+                    <span>Mã xác thực: HCM-KIDS-{Date.now().toString().slice(-6)}</span>
+                    <span className="font-bold text-rose-800">Liên đội TP. Thủ Dầu Một</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      hcmSfx.playClick(600);
+                      alert('Em có thể chụp màn hình Giấy khen này để gửi tặng cha mẹ và thầy cô Tổng phụ trách Đội nhé!');
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold px-4 py-2 text-xs shadow-xs transition-colors cursor-pointer"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Lưu Giấy Khen Kỷ Niệm</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleRestartQuiz}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 text-xs transition-colors cursor-pointer"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Làm lại bài thi</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* PHÂN HỆ 6: SỔ TAY "BÔNG HOA NGHÌN VIỆC TỐT"                               */}
       {/* ========================================================================= */}
       {activeSubTab === 'DIARY' && (
         <div className="space-y-6">
@@ -821,6 +1264,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
                   <option value="TH Lê Hồng Phong">Trường TH Lê Hồng Phong</option>
                   <option value="THCS Chu Văn An">Trường THCS Chu Văn An</option>
                   <option value="THCS Phú Cường">Trường THCS Phú Cường</option>
+                  <option value="TH Tương Bình Hiệp">Trường TH Tương Bình Hiệp</option>
                   <option value="Khác">Trường khác tại Thủ Dầu Một</option>
                 </select>
               </div>
@@ -871,7 +1315,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
               </div>
             </form>
 
-            {/* Danh sách việc tốt đã ghi nhận */}
+            {/* Danh sách việc tốt */}
             <div className="space-y-2 pt-3">
               <h4 className="text-xs font-black uppercase text-slate-500">
                 Nhật ký việc tốt gần đây của thiếu nhi:
@@ -917,56 +1361,286 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 6: TRIỂN LÃM TRANH VẼ BÁC HỒ CỦA THIẾU NHI THỦ DẦU MỘT            */}
+      {/* PHÂN HỆ 7: HÒM THƯ "BỨC THƯ GỬI BÁC HỒ KÍNH YÊU"                           */}
       {/* ========================================================================= */}
-      {activeSubTab === 'ART' && (
+      {activeSubTab === 'LETTER' && (
         <div className="space-y-6">
-          <div className="rounded-3xl border-2 border-rose-300 bg-gradient-to-r from-rose-50 via-white to-amber-50 p-6 shadow-md space-y-4">
-            <div className="flex items-center justify-between border-b border-rose-200 pb-3">
+          <div className="max-w-2xl mx-auto rounded-3xl border-2 border-rose-300 bg-white p-6 sm:p-8 shadow-xl space-y-5">
+            <div className="text-center space-y-1.5 border-b border-slate-100 pb-4">
+              <span className="text-xs font-black uppercase tracking-wider text-rose-700 bg-rose-50 px-3 py-1 rounded-full">
+                Hòm Thư Tuổi Thơ
+              </span>
+              <h3 className="text-2xl font-black font-serif text-slate-900">
+                Bức Thư Gửi Bác Hồ Kính Yêu
+              </h3>
+              <p className="text-xs text-slate-600 max-w-md mx-auto">
+                Em hãy viết một bức thư ngắn dâng lên Bác Hồ: kể cho Bác nghe về những thành tích học tập, việc tốt đã làm và lời hứa phấn đấu của em!
+              </p>
+            </div>
+
+            {!sentLetter ? (
+              <form onSubmit={handleSendLetter} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Tên của em (vd: Nguyễn Mai Anh)..."
+                    value={letterSender}
+                    onChange={(e) => setLetterSender(e.target.value)}
+                    className="rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:ring-2 focus:ring-rose-400 outline-hidden"
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Lớp (vd: 4A1)..."
+                    value={letterClass}
+                    onChange={(e) => setLetterClass(e.target.value)}
+                    className="rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:ring-2 focus:ring-rose-400 outline-hidden"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Trường (vd: TH Nguyễn Du)..."
+                    value={letterSchool}
+                    onChange={(e) => setLetterSchool(e.target.value)}
+                    className="rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:ring-2 focus:ring-rose-400 outline-hidden"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-700">
+                    Nội dung thư gửi Bác Hồ kính yêu:
+                  </label>
+                  <textarea
+                    rows={6}
+                    required
+                    placeholder="Kính thưa Bác Hồ kính yêu! Hôm nay cháu viết thư này dâng lên Bác để báo công... Cháu hứa với Bác sẽ luôn chăm ngoan, học giỏi, thực hiện thật tốt 5 Điều Bác dạy..."
+                    value={letterContent}
+                    onChange={(e) => setLetterContent(e.target.value)}
+                    className="w-full rounded-2xl border border-slate-300 p-4 text-xs sm:text-sm font-serif leading-relaxed focus:ring-2 focus:ring-rose-400 outline-hidden bg-amber-50/20"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between pt-2">
+                  <span className="text-xs text-slate-500">
+                    Mỗi bức thư là tấm lòng tri ân sâu sắc dâng lên Người
+                  </span>
+
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold px-5 py-2.5 text-xs shadow-xs transition-colors cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Gửi Thư Lên Bác Hồ</span>
+                  </button>
+                </div>
+              </form>
+            ) : (
+              /* Bức thư đã gửi với con dấu son đỏ */
+              <div className="p-6 rounded-3xl border-4 border-amber-400 bg-gradient-to-b from-amber-50/70 to-rose-50/50 space-y-4 relative overflow-hidden animate-in fade-in">
+                {/* Con dấu son đỏ */}
+                <div className="absolute top-4 right-4 w-20 h-20 rounded-full border-2 border-red-600 text-red-600 flex items-center justify-center text-center rotate-12 opacity-80 pointer-events-none p-1">
+                  <span className="text-[9px] font-black uppercase">
+                    ★ ĐÃ TIẾP NHẬN BÁO CÔNG ★
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-xs text-slate-500">{sentLetter.date}</span>
+                  <h4 className="text-base font-bold font-serif text-slate-900">
+                    Thư Báo Công Dâng Lên Bác Hồ Kính Yêu
+                  </h4>
+                  <p className="text-xs font-semibold text-rose-700">
+                    Người gửi: {sentLetter.sender} ({sentLetter.classSchool})
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white border border-amber-200 text-xs sm:text-sm font-serif leading-relaxed whitespace-pre-line text-slate-800">
+                  {sentLetter.content}
+                </div>
+
+                {/* Lời hồi âm của Bác Hồ */}
+                <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-center space-y-1">
+                  <span className="text-xs font-black uppercase text-rose-900">
+                    Lời dặn dò thiêng liêng gửi các cháu:
+                  </span>
+                  <p className="text-xs sm:text-sm font-serif italic text-rose-800 leading-relaxed font-bold">
+                    "Bác rất vui khi nhận được lời hứa chăm ngoan của cháu. Bác mong cháu luôn học tập tốt, lao động tốt, rèn luyện đạo đức để mai sau xây dựng Tổ quốc ta ngày càng to đẹp hơn, đàng hoàng hơn!"
+                  </p>
+                </div>
+
+                <div className="text-center pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setSentLetter(null)}
+                    className="text-xs font-bold text-slate-600 hover:text-rose-700 underline cursor-pointer"
+                  >
+                    Viết một bức thư khác →
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* PHÂN HỆ 8: GÓC TÔ MÀU TUỔI THƠ                                            */}
+      {/* ========================================================================= */}
+      {activeSubTab === 'COLORING' && (
+        <div className="space-y-6">
+          <div className="rounded-3xl border-2 border-amber-300 bg-white p-6 shadow-md space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="text-xs font-black uppercase text-rose-700">
-                  Phòng Tranh Thiếu Nhi Đất Thủ
+                <span className="text-xs font-black uppercase text-amber-700">
+                  Sáng Tạo Măng Non
                 </span>
                 <h3 className="text-xl font-black font-serif text-slate-900">
-                  Bác Hồ Trong Trái Tim Tuổi Thơ
+                  Góc Tô Màu Tranh Bác Hồ
                 </h3>
               </div>
-              <span className="text-xs text-slate-600 font-medium hidden sm:inline">
-                Tuyển chọn tranh vẽ học sinh Tiểu học &amp; THCS Thủ Dầu Một
+              <p className="text-xs text-slate-500">
+                Thầy cô và các em có thể tải các bức tranh mẫu về in ra để tô màu trong các tiết sinh hoạt Sao, sinh hoạt Đội.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {COLORING_PAGES.map((page) => (
+                <div
+                  key={page.id}
+                  className="rounded-2xl border-2 border-amber-200 bg-amber-50/30 overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div className="aspect-[4/3] bg-amber-100 relative overflow-hidden border-b border-amber-200">
+                    <img
+                      src={page.imageUrl}
+                      alt={page.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <span className="absolute top-2 right-2 rounded-md bg-amber-400 text-slate-950 font-black text-[10px] px-2 py-0.5 shadow-xs">
+                      {page.difficulty}
+                    </span>
+                  </div>
+
+                  <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                        {page.title}
+                      </h4>
+                      <p className="text-[11px] text-slate-500 pt-1 leading-relaxed">
+                        {page.subtitle}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-amber-200/60 space-y-2">
+                      <p className="text-[10.5px] text-amber-900 italic">
+                        💡 <strong>Gợi ý màu sắc:</strong> {page.guidance}
+                      </p>
+
+                      <a
+                        href={page.imageUrl}
+                        download
+                        className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2 text-xs shadow-xs transition-colors cursor-pointer"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Tải Tranh Về Tô Màu</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* PHÂN HỆ 9: LIÊN ĐỘI MĂNG NON TP. THỦ DẦU MỘT                               */}
+      {/* ========================================================================= */}
+      {activeSubTab === 'BRIGADES' && (
+        <div className="space-y-6">
+          <div className="rounded-3xl border-2 border-rose-300 bg-white p-6 shadow-md space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-rose-100 pb-3">
+              <div className="space-y-0.5">
+                <span className="text-xs font-black uppercase text-rose-700">
+                  Địa Phương &amp; Học Đường Đất Thủ
+                </span>
+                <h3 className="text-xl font-black font-serif text-slate-900">
+                  Liên Đội Tiêu Biểu TP. Thủ Dầu Một Noi Gương Bác
+                </h3>
+              </div>
+              <span className="text-xs text-slate-500">
+                Mô hình Không gian văn hóa Bác Hồ tại các trường học
               </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {SCHOOL_BRIGADES.map((sch) => (
+                <div
+                  key={sch.id}
+                  className="p-4 rounded-2xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50/50 shadow-xs hover:border-rose-400 hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md">
+                        {sch.ward}
+                      </span>
+                      <span className="text-slate-400 font-medium">{sch.brigadeName}</span>
+                    </div>
+
+                    <h4 className="font-extrabold text-sm text-slate-900">
+                      {sch.schoolName}
+                    </h4>
+
+                    <div className="p-2.5 rounded-xl bg-amber-50/60 border border-amber-200 text-xs text-slate-700 space-y-1">
+                      <span className="font-bold text-amber-900 block text-[11px] uppercase">
+                        Mô hình tiêu biểu:
+                      </span>
+                      <p className="leading-relaxed">{sch.highlightModel}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+                    <span className="text-slate-600 font-medium">
+                      Đội viên: <strong>{sch.studentCount.toLocaleString()}</strong>
+                    </span>
+                    <span className="text-emerald-700 font-bold">
+                      {sch.goodDeedsCount.toLocaleString()} việc tốt
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Triển lãm tranh vẽ học sinh */}
+          <div className="rounded-3xl border-2 border-amber-300 bg-amber-50/30 p-6 shadow-md space-y-4">
+            <div className="flex items-center justify-between border-b border-amber-200 pb-3">
+              <h4 className="font-black font-serif text-slate-900 text-base uppercase">
+                Tranh Vẽ Thiếu Nhi Đất Thủ Về Bác Hồ Kính Yêu
+              </h4>
+              <span className="text-xs text-slate-500">Hội thi Nét vẽ tuổi thơ 2026</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {SCHOOL_ARTWORKS.map((art) => (
                 <div
                   key={art.id}
-                  className="rounded-2xl border-2 border-amber-200 bg-white overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                  className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
                 >
                   <div className="aspect-[4/3] bg-amber-100 relative overflow-hidden">
                     <img
                       src={art.imageUrl}
                       alt={art.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      className="w-full h-full object-cover"
                     />
                     <span className="absolute top-2 right-2 rounded-md bg-amber-400 text-slate-950 font-black text-[10px] px-2 py-0.5 shadow-xs">
                       {art.award}
                     </span>
                   </div>
 
-                  <div className="p-3.5 space-y-1.5 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-900 leading-snug">
-                        {art.title}
-                      </h4>
-                      <p className="text-[11px] text-slate-500 line-clamp-2 pt-0.5">
-                        {art.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-2 border-t border-slate-100 text-[10.5px]">
-                      <span className="font-bold text-rose-800 block">{art.studentName} ({art.gradeClass})</span>
-                      <span className="text-slate-500">{art.schoolName}</span>
-                    </div>
+                  <div className="p-3.5 space-y-1">
+                    <h5 className="text-xs font-bold text-slate-900">{art.title}</h5>
+                    <p className="text-[10.5px] text-rose-800 font-bold">{art.studentName} ({art.gradeClass})</p>
+                    <p className="text-[10px] text-slate-400">{art.schoolName}</p>
                   </div>
                 </div>
               ))}
