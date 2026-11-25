@@ -239,24 +239,24 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     stoneTexture.repeat.set(4, 2);
 
     // 5. MATERIALS
-    // Màu vàng mật ong ấm / kem di sản Pháp - Đông Dương
+    // Màu vàng hoàng yến / kem di sản Pháp - Đông Dương tươi sáng
     const wallOchreMat = new THREE.MeshStandardMaterial({
-      color: 0xF3CD84,
-      roughness: 0.72,
+      color: 0xFDE68A, // Vàng kem tươi sáng, rực rỡ dưới nắng
+      roughness: 0.65,
       metalness: 0.04,
     });
 
     const wallTrimMat = new THREE.MeshStandardMaterial({
-      color: 0xE8BE6A, // Phào chỉ đắp nổi hơi đậm hơn
-      roughness: 0.7,
-      metalness: 0.05,
+      color: 0xF59E0B, // Phào chỉ đắp nổi vàng đồng ấm
+      roughness: 0.62,
+      metalness: 0.08,
     });
 
     const roofMat = new THREE.MeshStandardMaterial({
       map: roofTexture,
-      color: 0xB9381E,
-      roughness: 0.48,
-      metalness: 0.08,
+      color: 0xC94024, // Ngói đỏ tươi sáng ấm áp
+      roughness: 0.42,
+      metalness: 0.06,
     });
 
     const corbelWoodMat = new THREE.MeshStandardMaterial({
@@ -328,17 +328,17 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     const groundGeo = new THREE.CylinderGeometry(7.0, 7.2, 0.3, 40);
     const ground = new THREE.Mesh(
       groundGeo,
-      new THREE.MeshStandardMaterial({ color: 0x1F2937, roughness: 0.95 })
+      new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.9 })
     );
     ground.position.y = -0.15;
     ground.receiveShadow = true;
     modelGroup.add(ground);
 
-    // Bồn cây & hàng rào hoa quanh chân móng
+    // Bồn cây & hàng rào hoa quanh chân móng (Xanh lá tươi sáng)
     const lawnGeo = new THREE.RingGeometry(5.4, 6.9, 36);
     const lawn = new THREE.Mesh(
       lawnGeo,
-      new THREE.MeshStandardMaterial({ color: 0x14532D, roughness: 0.9, side: THREE.DoubleSide })
+      new THREE.MeshStandardMaterial({ color: 0x16A34A, roughness: 0.85, side: THREE.DoubleSide })
     );
     lawn.rotation.x = -Math.PI / 2;
     lawn.position.y = 0.01;
@@ -704,11 +704,11 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
 
     scene.add(modelGroup);
 
-    // 7. LIGHTING SETUP (CHIẾU SÁNG NGOẠI CẢNH & ĐÈN KIẾN TRÚC BAN ĐÊM)
-    const ambientLight = new THREE.AmbientLight(0xFFF7ED, 0.85);
+    // 7. LIGHTING SETUP (CHIẾU SÁNG NGOẠI CẢNH NẮNG ẤM & ĐÈN KIẾN TRÚC BAN ĐÊM)
+    const ambientLight = new THREE.AmbientLight(0xFFFBF2, 1.35);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xFFFBEB, 1.75);
+    const dirLight = new THREE.DirectionalLight(0xFFFEF5, 2.2);
     dirLight.position.set(9, 15, 11);
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 1024;
@@ -716,11 +716,11 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     dirLight.shadow.bias = -0.0005;
     scene.add(dirLight);
 
-    const fillLight = new THREE.DirectionalLight(0x93C5FD, 0.5);
-    fillLight.position.set(-8, 6, -8);
+    const fillLight = new THREE.DirectionalLight(0xBAE6FD, 0.95);
+    fillLight.position.set(-8, 7, -8);
     scene.add(fillLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xFEF3C7, 0x1E293B, 0.65);
+    const hemiLight = new THREE.HemisphereLight(0xE0F2FE, 0xFEF3C7, 0.95);
     scene.add(hemiLight);
 
     // Dàn đèn chiếu hắt kiến trúc ban đêm (Architectural Uplights)
@@ -825,7 +825,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden select-none bg-gradient-to-b from-[#0B132B] via-[#1C0D17] to-[#070B14] border border-amber-400/40 shadow-2xl group ${className}`}
+      className={`relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden select-none bg-gradient-to-b from-[#E0F2FE] via-[#F0F9FF] to-[#FEF3C7] border-2 border-[#E5C992] shadow-xl group ${className}`}
     >
       {/* 3D Canvas */}
       <canvas
@@ -847,11 +847,11 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
 
       {/* Top Floating Badge */}
       <div className="absolute top-3 left-3 flex flex-col gap-1 pointer-events-none z-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-400/60 text-amber-300 text-xs font-bold shadow-lg">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-amber-300/80 text-[#881337] text-xs font-bold shadow-md">
           <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '10s' }} />
           <span>Mô Hình 3D Nhà Truyền Thống Đất Thủ</span>
         </div>
-        <span className="text-[10px] text-slate-300 font-medium px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm self-start">
+        <span className="text-[10px] text-slate-700 font-semibold px-2 py-0.5 rounded-md bg-white/90 border border-amber-200/60 backdrop-blur-sm self-start shadow-2xs">
           Tốc độ xoay chậm êm · Kéo chuột để xoay 360°
         </span>
       </div>
@@ -866,8 +866,8 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
           }}
           className={`p-2 rounded-xl backdrop-blur-md border text-xs font-bold transition-all cursor-pointer shadow-md ${
             isAutoRotating
-              ? 'bg-amber-400 text-slate-950 border-amber-300'
-              : 'bg-slate-900/80 text-slate-200 border-white/20 hover:bg-slate-800'
+              ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-sm'
+              : 'bg-white/90 text-slate-700 border-amber-200 hover:bg-white'
           }`}
           title={isAutoRotating ? 'Tạm dừng xoay tròn' : 'Bật tự xoay tròn 360°'}
         >
@@ -883,7 +883,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
           className={`p-2 rounded-xl backdrop-blur-md border text-xs font-bold transition-all cursor-pointer shadow-md ${
             isNightMode
               ? 'bg-indigo-600 text-amber-200 border-indigo-400'
-              : 'bg-slate-900/80 text-amber-300 border-white/20 hover:bg-slate-800'
+              : 'bg-white/90 text-amber-700 border-amber-200 hover:bg-white'
           }`}
           title={isNightMode ? 'Chuyển sang ánh sáng ban ngày' : 'Bật đèn kiến trúc ban đêm'}
         >
@@ -897,7 +897,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
               hcmSfx.playClick(900);
               onOpenHeritage3D();
             }}
-            className="p-2 rounded-xl bg-gradient-to-r from-rose-700 to-amber-600 text-white border border-rose-400/60 text-xs font-bold hover:brightness-110 transition-all cursor-pointer shadow-md flex items-center gap-1"
+            className="p-2 rounded-xl bg-gradient-to-r from-[#881337] to-[#C59A55] text-white border border-amber-300/60 text-xs font-bold hover:brightness-110 transition-all cursor-pointer shadow-md flex items-center gap-1"
             title="Mở toàn màn hình tham quan 3D VR"
           >
             <Maximize2 className="w-3.5 h-3.5" />
@@ -921,8 +921,8 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
             }}
             className={`px-2.5 py-1 rounded-lg text-[11px] font-bold backdrop-blur-md border transition-all cursor-pointer ${
               cameraView === view.key
-                ? 'bg-rose-600 text-white border-rose-400 shadow-md'
-                : 'bg-slate-950/70 text-slate-300 border-white/15 hover:bg-slate-800'
+                ? 'bg-[#881337] text-white border-[#881337] shadow-sm'
+                : 'bg-white/90 text-slate-700 border-amber-200/80 hover:bg-white shadow-2xs'
             }`}
           >
             {view.label}
@@ -931,14 +931,14 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       </div>
 
       {/* Bottom Bar: Chi tiết kiến trúc & Nút Khám Phá */}
-      <div className="absolute bottom-2.5 left-3 right-3 p-2.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white flex items-center justify-between gap-2 z-10">
+      <div className="absolute bottom-2.5 left-3 right-3 p-2.5 rounded-xl bg-white/95 backdrop-blur-md border border-amber-200 text-slate-800 flex items-center justify-between gap-2 z-10 shadow-md">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
           <div className="min-w-0">
-            <span className="text-xs font-bold text-amber-300 block truncate">
+            <span className="text-xs font-extrabold text-[#881337] block truncate">
               Nhà Truyền Thống Thành Phố Thủ Dầu Một
             </span>
-            <span className="text-[10px] text-slate-300 block truncate">
+            <span className="text-[10px] text-slate-600 block truncate font-medium">
               Biển hiệu chuẩn · Con sơn gỗ đỡ mái · Vòm cuốn Đông Dương &amp; Gốm xanh Đất Thủ
             </span>
           </div>
@@ -951,7 +951,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
               hcmSfx.playClick(900);
               onOpenHeritage3D();
             }}
-            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-rose-600 hover:brightness-110 text-white font-bold text-xs shrink-0 flex items-center gap-1 cursor-pointer transition-all shadow-md"
+            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#881337] via-[#9F1239] to-[#C59A55] hover:brightness-110 text-white font-bold text-xs shrink-0 flex items-center gap-1 cursor-pointer transition-all shadow-md"
           >
             <span>Vào 3D VR</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -960,9 +960,9 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       </div>
 
       {!isLoaded && (
-        <div className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center gap-3 text-white z-20">
-          <RotateCw className="w-6 h-6 text-amber-400 animate-spin" />
-          <span className="text-xs font-bold text-amber-200">Đang khởi tạo không gian 3D chi tiết...</span>
+        <div className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center gap-3 text-slate-800 z-20">
+          <RotateCw className="w-6 h-6 text-amber-600 animate-spin" />
+          <span className="text-xs font-bold text-amber-900">Đang khởi tạo không gian 3D chi tiết...</span>
         </div>
       )}
     </div>
