@@ -48,7 +48,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Tuyên ngôn Độc lập — Khai sinh nước Việt Nam Dân chủ Cộng hòa',
     year: '1945',
     date: '02/09/1945',
-    duration: '04:35',
+    duration: '06:56',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV) & Trung tâm Lưu trữ Quốc gia III',
     location: 'Quảng trường Ba Đình, Hà Nội',
     significance: 'Văn kiện lập quốc thiêng liêng, chấm dứt chế độ thực dân phong kiến, mở ra kỷ nguyên độc lập tự do cho dân tộc Việt Nam.',
@@ -70,11 +70,12 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Lời kêu gọi Toàn quốc kháng chiến — Thà hy sinh tất cả chứ nhất định không chịu mất nước',
     year: '1946',
     date: '19/12/1946',
-    duration: '03:12',
+    duration: '01:37',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
     location: 'Làng Vạn Phúc, Hà Đông',
     significance: 'Lời hịch cứu nước hào hùng của non sông, hiệu triệu toàn thể 20 triệu đồng bào đứng lên quyết tử cho Tổ quốc quyết sinh.',
-    youtubeId: 'wzJbUfNfG4E',
+    youtubeId: 'RzTxaGZ4bTw',
+    audioUrl: '/assets/audio/speech_02_toan_quoc_khang_chien.webm',
     transcript:
       'Hỡi đồng bào toàn quốc! Chúng ta muốn hòa bình, chúng ta phải nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta lần nữa! Không! Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ. Hỡi đồng bào! Chúng ta phải đứng lên! Bất kỳ đàn ông, đàn bà, bất kỳ người già, người trẻ, không chia tôn giáo, đảng phái, dân tộc. Hễ là người Việt Nam thì phải đứng lên đánh thực dân Pháp để cứu Tổ quốc!',
     keyQuotes: [
@@ -91,11 +92,12 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Lời kêu gọi chống Mỹ cứu nước — Không có gì quý hơn độc lập, tự do!',
     year: '1966',
     date: '17/07/1966',
-    duration: '05:20',
+    duration: '01:13',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
     location: 'Thủ đô Hà Nội',
     significance: 'Khẳng định chân lý thời đại, đúc kết ý chí sắt đá của toàn dân tộc Việt Nam quyết tâm đánh thắng giặc Mỹ xâm lược.',
-    youtubeId: 'bB532b2gPzs',
+    youtubeId: 'sloE3zmHDDc',
+    audioUrl: '/assets/audio/speech_03_khong_co_gi_quy_hon.webm',
     transcript:
       'Chiến tranh có thể kéo dài 5 năm, 10 năm, 20 năm hoặc lâu hơn nữa. Hà Nội, Hải Phòng và một số thành phố, xí nghiệp có thể bị tàn phá, song nhân dân Việt Nam quyết không sợ! Không có gì quý hơn độc lập, tự do! Đến ngày thắng lợi, nhân dân ta sẽ xây dựng lại đất nước ta đàng hoàng hơn, to đẹp hơn!',
     keyQuotes: [
@@ -112,11 +114,12 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Thơ chúc Tết Kỷ Dậu 1969 — Lời căn dặn thiêng liêng cuối cùng',
     year: '1969',
     date: 'Giao thừa Tết Kỷ Dậu (01/01/1969)',
-    duration: '01:45',
+    duration: '02:33',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
     location: 'Nhà sàn Bác Hồ, Phủ Chủ tịch, Hà Nội',
     significance: 'Bản ghi âm bài thơ chúc Tết cuối cùng của Bác Hồ gửi đồng bào và chiến sĩ cả nước trước lúc Người đi xa.',
-    youtubeId: 'X6YvN9Y7rW8',
+    youtubeId: 'PF9M5F7nWtI',
+    audioUrl: '/assets/audio/speech_04_chuc_tet_ky_dau_1969.webm',
     transcript:
       'Năm qua thắng lợi vẻ vang / Năm nay tiền tuyến chắc càng thắng to / Vì độc lập, vì tự do / Đánh cho Mỹ cút, đánh cho ngụy nhào / Tiến lên! Chiến sĩ, đồng bào / Bắc – Nam sum họp, Xuân nào vui hơn!',
     keyQuotes: [
@@ -132,11 +135,12 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Bác Hồ nói chuyện với Đại hội Thanh niên — Cần, Kiệm, Liêm, Chính',
     year: '1956',
     date: '15/10/1956',
-    duration: '03:40',
+    duration: '09:02',
     source: 'Tư liệu Âm thanh Trung ương Đoàn & Đài TNVN',
     location: 'Hà Nội',
     significance: 'Lời căn dặn ân cần đối với thanh niên: Rường cột của nước nhà, xung kích trên mọi mặt trận kiến thiết đất nước.',
-    youtubeId: 'Pjpt7aGiY8E',
+    youtubeId: '2wWpvV_wXQg',
+    audioUrl: '/assets/audio/speech_05_bac_ho_voi_thanh_nien.m4a',
     transcript:
       'Thanh niên là người chủ tương lai của nước nhà. Nước nhà thịnh hay suy, yếu hay mạnh một phần lớn là do các thanh niên. Thanh niên muốn làm người chủ tương lai cho xứng đáng thì ngay hiện tại phải rèn luyện tinh thần và lực lượng của mình, phải ra sức làm việc để chuẩn bị cái tương lai đó. Đâu cần thanh niên có, việc gì khó thanh niên đi đầu!',
     keyQuotes: [
@@ -153,11 +157,12 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     title: 'Di chúc của Chủ tịch Hồ Chí Minh — Lời dặn muôn vàn tình thương yêu',
     year: '1969',
     date: 'Công bố 09/1969',
-    duration: '06:15',
+    duration: '08:03',
     source: 'Trung tâm Lưu trữ Quốc gia III & Viện Hồ Chí Minh',
     location: 'Nhà sàn Phủ Chủ tịch',
     significance: 'Bảo vật Quốc gia vô giá, kết tinh toàn bộ tư tưởng, đạo đức, tâm hồn và tình yêu bao la của Người đối với Đảng, Tổ quốc và nhân loại.',
-    youtubeId: 'bB532b2gPzs',
+    youtubeId: 'k32GOQDPWj0',
+    audioUrl: '/assets/audio/speech_06_di_chuc_bac_ho.webm',
     transcript:
       'Trước hết nói về Đảng: Nhờ đoàn kết chặt chẽ, một lòng một dạ phục vụ giai cấp, phục vụ nhân dân... Đoàn kết là một truyền thống cực kỳ quý báu của Đảng và của dân ta. Các đồng chí từ Trung ương đến các chi bộ cần phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình... Cuối cùng, tôi để lại muôn vàn tình thân yêu cho toàn dân, toàn Đảng, cho toàn thể bộ đội, cho các cháu thanh niên và nhi đồng.',
     keyQuotes: [

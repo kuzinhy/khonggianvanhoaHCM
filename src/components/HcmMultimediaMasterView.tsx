@@ -61,6 +61,7 @@ export const HcmMultimediaMasterView: React.FC = () => {
 
   const handleSelectSpeech = (speech: HistoricalSpeechAudio) => {
     setSelectedSpeech(speech);
+    setIsVinylPlaying(true);
   };
 
   const handleToggleShortLike = (id: string) => {

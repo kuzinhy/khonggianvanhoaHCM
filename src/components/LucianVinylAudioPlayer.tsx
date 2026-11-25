@@ -20,12 +20,12 @@ const VINYL_THEMES: Array<{
   a2: string;
   durationSec: number;
 }> = [
-  { sleeveText: 'TUYÊN NGÔN<br>1945', a1: '#DC2626', a2: '#D97706', durationSec: 275 },
-  { sleeveText: 'TOÀN QUỐC<br>1946', a1: '#B91C1C', a2: '#EA580C', durationSec: 192 },
-  { sleeveText: 'ĐỘC LẬP<br>TỰ DO', a1: '#C2410C', a2: '#B45309', durationSec: 320 },
-  { sleeveText: 'XUÂN KỶ DẬU<br>1969', a1: '#BE123C', a2: '#E11D48', durationSec: 105 },
-  { sleeveText: 'THANH NIÊN<br>1956', a1: '#0F766E', a2: '#0284C7', durationSec: 220 },
-  { sleeveText: 'DI CHÚC<br>1969', a1: '#7C3AED', a2: '#9333EA', durationSec: 375 },
+  { sleeveText: 'TUYÊN NGÔN<br>1945', a1: '#DC2626', a2: '#D97706', durationSec: 416 },
+  { sleeveText: 'TOÀN QUỐC<br>1946', a1: '#B91C1C', a2: '#EA580C', durationSec: 97 },
+  { sleeveText: 'ĐỘC LẬP<br>TỰ DO', a1: '#C2410C', a2: '#B45309', durationSec: 73 },
+  { sleeveText: 'XUÂN KỶ DẬU<br>1969', a1: '#BE123C', a2: '#E11D48', durationSec: 153 },
+  { sleeveText: 'THANH NIÊN<br>1956', a1: '#0F766E', a2: '#0284C7', durationSec: 542 },
+  { sleeveText: 'DI CHÚC<br>1969', a1: '#7C3AED', a2: '#9333EA', durationSec: 483 },
 ];
 
 function formatTime(s: number): string {
