@@ -53,6 +53,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Quảng trường Ba Đình, Hà Nội',
     significance: 'Văn kiện lập quốc thiêng liêng, chấm dứt chế độ thực dân phong kiến, mở ra kỷ nguyên độc lập tự do cho dân tộc Việt Nam.',
     youtubeId: 'Pjpt7aGiY8E',
+    audioUrl: '/assets/audio/tuyen_ngon_1945.wav',
     transcript:
       'Hỡi đồng bào cả nước! Tất cả mọi người đều sinh ra có quyền bình đẳng. Tạo hóa cho họ những quyền không ai có thể xâm phạm được; trong những quyền ấy, có quyền được sống, quyền tự do và quyền mưu cầu hạnh phúc... Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập. Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy!',
     keyQuotes: [

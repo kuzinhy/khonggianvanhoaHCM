@@ -48,17 +48,19 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const progRef = useRef<HTMLDivElement>(null);
   const sleeveRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [internalIsPlaying, setInternalIsPlaying] = useState<boolean>(false);
   const isPlaying = externalIsPlaying !== undefined ? externalIsPlaying : internalIsPlaying;
 
   const [pos, setPos] = useState<number>(0);
+  const [actualDuration, setActualDuration] = useState<number>(0);
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   const currentSpeech = speeches[currentIndex] || speeches[0];
   const currentTheme = VINYL_THEMES[currentIndex % VINYL_THEMES.length] || VINYL_THEMES[0];
-  const totalDuration = currentTheme.durationSec;
+  const totalDuration = actualDuration > 0 ? actualDuration : currentTheme.durationSec;
 
   // Handle play/pause toggle
   const togglePlay = () => {
@@ -99,8 +101,51 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
     }
   };
 
-  // Playback timer with playbackRate scaling
+  // Real HTML5 Audio playback synchronization
   useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      if (currentSpeech.audioUrl) {
+        if (!audio.src || (!audio.src.endsWith(currentSpeech.audioUrl) && !audio.src.includes(currentSpeech.audioUrl))) {
+          audio.src = currentSpeech.audioUrl;
+          audio.load();
+        }
+        audio.playbackRate = playbackRate || 1;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn('Audio play request failed or was interrupted:', err);
+          });
+        }
+      }
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying, currentSpeech.audioUrl, playbackRate]);
+
+  // Track change synchronization
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    setPos(0);
+    setActualDuration(0);
+    if (currentSpeech.audioUrl) {
+      audio.src = currentSpeech.audioUrl;
+      audio.load();
+      if (isPlaying) {
+        audio.play().catch(() => {});
+      }
+    } else {
+      audio.pause();
+      audio.removeAttribute('src');
+    }
+  }, [currentIndex, currentSpeech.audioUrl]);
+
+  // Fallback timer when track has no direct audio file
+  useEffect(() => {
+    if (currentSpeech.audioUrl) return; // Managed by audio onTimeUpdate
     if (!isPlaying || isDragging) return;
     const intervalTime = Math.max(200, Math.round(1000 / (playbackRate || 1)));
     const interval = setInterval(() => {
@@ -113,7 +158,25 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
       });
     }, intervalTime);
     return () => clearInterval(interval);
-  }, [isPlaying, isDragging, totalDuration, currentIndex, playbackRate]);
+  }, [isPlaying, isDragging, totalDuration, currentIndex, playbackRate, currentSpeech.audioUrl]);
+
+  const handleTimeUpdate = () => {
+    const audio = audioRef.current;
+    if (!audio || isDragging || !currentSpeech.audioUrl) return;
+    setPos(audio.currentTime);
+  };
+
+  const handleLoadedMetadata = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+      setActualDuration(Math.round(audio.duration));
+    }
+  };
+
+  const handleAudioEnded = () => {
+    skip(1);
+  };
 
   // Update progress percentage
   const progressPercent = useMemo(() => {
@@ -125,7 +188,11 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
     if (!progRef.current) return;
     const rect = progRef.current.getBoundingClientRect();
     const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    setPos(ratio * totalDuration);
+    const newPos = ratio * totalDuration;
+    setPos(newPos);
+    if (audioRef.current && currentSpeech.audioUrl) {
+      audioRef.current.currentTime = newPos;
+    }
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
@@ -144,19 +211,39 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
     setIsDragging(false);
   };
 
+  const handleRewind10 = () => {
+    setPos((p) => {
+      const target = Math.max(0, p - 10);
+      if (audioRef.current && currentSpeech.audioUrl) {
+        audioRef.current.currentTime = target;
+      }
+      return target;
+    });
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
       e.preventDefault();
-      setPos((p) => Math.min(totalDuration, p + 5));
+      setPos((p) => {
+        const target = Math.min(totalDuration, p + 5);
+        if (audioRef.current && currentSpeech.audioUrl) audioRef.current.currentTime = target;
+        return target;
+      });
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
       e.preventDefault();
-      setPos((p) => Math.max(0, p - 5));
+      setPos((p) => {
+        const target = Math.max(0, p - 5);
+        if (audioRef.current && currentSpeech.audioUrl) audioRef.current.currentTime = target;
+        return target;
+      });
     } else if (e.key === 'Home') {
       e.preventDefault();
       setPos(0);
+      if (audioRef.current && currentSpeech.audioUrl) audioRef.current.currentTime = 0;
     } else if (e.key === 'End') {
       e.preventDefault();
       setPos(totalDuration);
+      if (audioRef.current && currentSpeech.audioUrl) audioRef.current.currentTime = totalDuration;
     } else if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       togglePlay();
@@ -262,7 +349,7 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
           className="u055-c u055-rw cursor-pointer"
           type="button"
           aria-label="Tua lại 10 giây"
-          onClick={() => setPos((p) => Math.max(0, p - 10))}
+          onClick={handleRewind10}
           title="Tua lại 10 giây"
         >
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -330,6 +417,16 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
           </button>
         ))}
       </div>
+
+      {/* Real HTML5 Audio Element for authentic sound */}
+      <audio
+        ref={audioRef}
+        src={currentSpeech.audioUrl}
+        preload="auto"
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleAudioEnded}
+      />
 
       {/* Scoped CSS based on Lucian UX/UI Prompt #055 */}
       <style>{`

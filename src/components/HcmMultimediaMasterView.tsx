@@ -298,28 +298,54 @@ export const HcmMultimediaMasterView: React.FC = () => {
                       />
                     </div>
                   ) : (
-                    <div className="rounded-2xl border border-amber-400/30 bg-gradient-to-r from-amber-950/40 via-slate-900/60 to-slate-950/80 p-4 shadow-inner flex items-center justify-between gap-3">
+                    <div className="rounded-2xl border border-amber-400/40 bg-gradient-to-r from-amber-950/60 via-slate-900/80 to-slate-950 p-4 shadow-inner flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="h-11 w-11 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0">
-                          <Radio className={`h-6 w-6 ${isVinylPlaying ? 'animate-pulse text-amber-300' : ''}`} />
+                        <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 border ${
+                          isVinylPlaying
+                            ? 'bg-rose-500/20 border-rose-400/50 text-rose-400 animate-pulse'
+                            : 'bg-amber-500/20 border-amber-400/40 text-amber-400'
+                        }`}>
+                          <Radio className={`h-6 w-6 ${isVinylPlaying ? 'animate-bounce text-rose-400' : ''}`} />
                         </div>
-                        <div className="space-y-0.5">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-black uppercase tracking-wider bg-rose-700 text-white px-1.5 py-0.5 rounded-sm">
-                              Ghi Âm Gốc 100%
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[10px] font-black uppercase tracking-wider bg-rose-700 text-white px-2 py-0.5 rounded-md flex items-center gap-1 shadow-2xs">
+                              <span>●</span> GHI ÂM GỐC 100%
                             </span>
-                            <span className="text-xs text-amber-200/90 font-medium">
-                              Tốc độ hiện tại: {playbackRate}x
+                            <span className="text-xs text-amber-200 font-bold">
+                              Tốc độ: {playbackRate}x
                             </span>
+                            {isVinylPlaying && (
+                              <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                                Đang phát âm thanh gốc VOV
+                              </span>
+                            )}
                           </div>
-                          <p className="text-xs text-slate-300 leading-snug">
-                            {isVinylPlaying ? 'Đang hạ kim phát trên máy đĩa than...' : 'Nhấn nút phát trên máy đĩa than để nghe giọng đọc của Bác'}
+                          <p className="text-xs text-slate-200 leading-snug">
+                            {isVinylPlaying
+                              ? 'Đang phát âm bản gốc nguyên văn giọng đọc của Bác Hồ (VOV & Lưu trữ QG III)'
+                              : 'Nhấn nút phát (Play) trên máy hát đĩa than để nghe giọng đọc của Bác'}
                           </p>
                         </div>
                       </div>
-                      <div className="hidden sm:flex items-center gap-1.5">
-                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping" />
-                        <span className="text-[11px] font-bold text-emerald-400 font-mono">Bảo vật quốc gia</span>
+
+                      {/* Equalizer Wave Bars when playing */}
+                      <div className="flex items-center gap-2 self-end sm:self-center">
+                        {isVinylPlaying ? (
+                          <div className="flex items-end gap-1 h-6 px-3 py-1 bg-black/40 rounded-lg border border-amber-400/30">
+                            <span className="w-1 bg-amber-400 rounded-full animate-pulse h-3" />
+                            <span className="w-1 bg-amber-400 rounded-full animate-pulse h-5" />
+                            <span className="w-1 bg-amber-400 rounded-full animate-pulse h-2" />
+                            <span className="w-1 bg-amber-400 rounded-full animate-pulse h-6" />
+                            <span className="w-1 bg-amber-400 rounded-full animate-pulse h-4" />
+                          </div>
+                        ) : (
+                          <div className="hidden sm:flex items-center gap-1.5">
+                            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping" />
+                            <span className="text-[11px] font-bold text-emerald-400 font-mono">Bảo vật quốc gia</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
