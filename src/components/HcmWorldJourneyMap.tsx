@@ -95,7 +95,7 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
   const [activeIslandModal, setActiveIslandModal] = useState<SovereigntyIsland | null>(null);
 
   // Global Center for the World Map (optimally balanced across Europe, Africa, Asia & Vietnam islands)
-  const CENTER_WORLD: [number, number] = [20, 52];
+  const CENTER_WORLD: [number, number] = [20, 56];
 
   // 1. Initialize Thematic Heritage Leaflet Map
   useEffect(() => {
@@ -206,9 +206,9 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             background: #FFFFFF;
-            padding: 3px 9px;
+            padding: 2.5px 8px;
             border-radius: 9999px;
             border: 2px solid ${badgeBg};
             box-shadow: 0 4px 14px rgba(190, 18, 60, 0.35), 0 1px 3px rgba(0,0,0,0.15);
@@ -219,18 +219,18 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              width: 14px;
-              height: 14px;
+              width: 13px;
+              height: 13px;
               border-radius: 50%;
               background: #DC2626;
               color: #FDE047;
-              font-size: 9px;
+              font-size: 8.5px;
               font-weight: 900;
               box-shadow: 0 0 6px #E11D48;
             ">★</span>
             <span style="
               font-family: 'Be Vietnam Pro', system-ui, sans-serif;
-              font-size: 12.5px;
+              font-size: 11.5px;
               font-weight: 800;
               color: #751D2C;
               letter-spacing: -0.01em;
@@ -241,11 +241,11 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           <div style="
             margin-top: 2px;
             font-family: 'Be Vietnam Pro', system-ui, sans-serif;
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 700;
             color: #881337;
             background: rgba(255, 241, 242, 0.95);
-            padding: 1px 7px;
+            padding: 1px 6px;
             border-radius: 6px;
             border: 1px solid rgba(244, 63, 94, 0.35);
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
@@ -259,9 +259,9 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
       const islandIcon = L.divIcon({
         className: 'hcm-sovereignty-island-div-icon',
         html: iconHtml,
-        iconSize: [230, 48],
-        iconAnchor: [115, 22],
-        popupAnchor: [0, -22],
+        iconSize: [200, 44],
+        iconAnchor: [isHoangSa ? 100 : 110, 20],
+        popupAnchor: [0, -20],
       });
 
       const marker = L.marker(island.coords, {
@@ -717,10 +717,10 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
     if (map) {
       // Bounds covering S-shaped mainland, Gulf of Tonkin, Gulf of Thailand, Hoang Sa and Truong Sa
       const bounds = L.latLngBounds([
-        [6.2, 101.8], // Southernmost point covering Truong Sa and sea border
-        [24.2, 118.8], // Northernmost / Easternmost covering Hoang Sa & coastal zone
+        [6.0, 101.5], // Southernmost point covering Truong Sa and sea border
+        [24.5, 119.5], // Northernmost / Easternmost covering Hoang Sa & coastal zone
       ]);
-      map.fitBounds(bounds, { padding: [25, 25] });
+      map.fitBounds(bounds, { padding: [15, 35] });
     }
   };
 

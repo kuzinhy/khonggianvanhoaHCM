@@ -14,15 +14,16 @@ import {
   Sparkles,
   MapPin,
   Maximize2,
+  Heart,
 } from 'lucide-react';
 import { type ThuDauMotMapPoint } from '../data/hcmDynamicMapData';
 
 export type TdmMapLayerKey =
-  | 'carto-voyager'
-  | 'carto-light'
+  | 'esri-street'
   | 'osm'
   | 'esri-imagery'
-  | 'esri-topo';
+  | 'esri-topo'
+  | 'osm-hot';
 
 export interface TdmMapLayerConfig {
   key: TdmMapLayerKey;
@@ -35,23 +36,14 @@ export interface TdmMapLayerConfig {
 }
 
 export const TDM_MAP_LAYERS: Record<TdmMapLayerKey, TdmMapLayerConfig> = {
-  'carto-voyager': {
-    key: 'carto-voyager',
-    label: 'Bản Đồ Đường Phố (Voyager)',
+  'esri-street': {
+    key: 'esri-street',
+    label: 'Bản Đồ Đường Phố GIS (Esri)',
     shortLabel: 'Đường phố',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    subdomains: ['a', 'b', 'c', 'd'],
-    maxZoom: 20,
-    attribution: '&copy; CartoDB &copy; OpenStreetMap contributors',
-  },
-  'carto-light': {
-    key: 'carto-light',
-    label: 'Nền Sáng Tối Giản (Positron)',
-    shortLabel: 'Nền sáng',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    subdomains: ['a', 'b', 'c', 'd'],
-    maxZoom: 20,
-    attribution: '&copy; CartoDB &copy; OpenStreetMap contributors',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+    subdomains: [],
+    maxZoom: 19,
+    attribution: '&copy; Esri &copy; OpenStreetMap contributors',
   },
   'osm': {
     key: 'osm',
@@ -64,7 +56,7 @@ export const TDM_MAP_LAYERS: Record<TdmMapLayerKey, TdmMapLayerConfig> = {
   },
   'esri-imagery': {
     key: 'esri-imagery',
-    label: 'Ảnh Vệ Tinh GIS (Esri)',
+    label: 'Ảnh Vệ Tinh Độ Nét Cao (Esri)',
     shortLabel: 'Vệ tinh',
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     subdomains: [],
@@ -73,12 +65,21 @@ export const TDM_MAP_LAYERS: Record<TdmMapLayerKey, TdmMapLayerConfig> = {
   },
   'esri-topo': {
     key: 'esri-topo',
-    label: 'Bản Đồ Địa Hình GIS (Esri)',
+    label: 'Bản Đồ Địa Hình Tự Nhiên (Esri)',
     shortLabel: 'Địa hình',
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
     subdomains: [],
     maxZoom: 19,
     attribution: '&copy; Esri Topo',
+  },
+  'osm-hot': {
+    key: 'osm-hot',
+    label: 'Bản Đồ Nhân Đạo (OSM HOT)',
+    shortLabel: 'Nhân đạo',
+    url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    subdomains: ['a', 'b', 'c'],
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors, Humanitarian OpenStreetMap Team',
   },
 };
 
@@ -101,7 +102,7 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
   const activeTileLayerRef = useRef<L.TileLayer | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
 
-  const [activeLayerKey, setActiveLayerKey] = useState<TdmMapLayerKey>('carto-voyager');
+  const [activeLayerKey, setActiveLayerKey] = useState<TdmMapLayerKey>('esri-street');
   const [isLocating, setIsLocating] = useState<boolean>(false);
 
   // Tọa độ trung tâm Phường Thủ Dầu Một
@@ -401,8 +402,8 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
 
       marker.bindPopup(popupHtml, {
         maxWidth: 280,
-        autoPanPaddingTopLeft: L.point(15, 65),
-        autoPanPaddingBottomRight: L.point(15, 45),
+        autoPanPaddingTopLeft: L.point(20, 95),
+        autoPanPaddingBottomRight: L.point(20, 50),
       });
 
       marker.on('click', () => {
@@ -422,7 +423,8 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
 
     const currentPt = points.find((p) => p.id === activePointId);
     if (currentPt && currentPt.lat && currentPt.lng) {
-      map.flyTo([currentPt.lat, currentPt.lng], 16.5, {
+      // Offset tâm nhẹ lên trên để chừa không gian hiển thị Popup dưới thanh công cụ
+      map.flyTo([currentPt.lat + 0.0016, currentPt.lng], 16.5, {
         duration: 0.9,
         easeLinearity: 0.25,
       });
@@ -514,11 +516,11 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
                 }`}
                 title={`Chuyển lớp: ${layer.label}`}
               >
-                {layer.key === 'carto-voyager' && <Map className="w-3.5 h-3.5 text-rose-600" />}
-                {layer.key === 'carto-light' && <Sparkles className="w-3.5 h-3.5 text-amber-500" />}
+                {layer.key === 'esri-street' && <Map className="w-3.5 h-3.5 text-rose-600" />}
                 {layer.key === 'osm' && <Globe className="w-3.5 h-3.5 text-indigo-500" />}
                 {layer.key === 'esri-imagery' && <Satellite className="w-3.5 h-3.5 text-blue-500" />}
                 {layer.key === 'esri-topo' && <Mountain className="w-3.5 h-3.5 text-emerald-500" />}
+                {layer.key === 'osm-hot' && <Heart className="w-3.5 h-3.5 text-rose-500" />}
                 <span>{layer.shortLabel}</span>
               </button>
             );
