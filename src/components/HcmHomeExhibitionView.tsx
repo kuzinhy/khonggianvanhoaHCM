@@ -40,6 +40,11 @@ import {
   ThumbsUp,
   RotateCw,
   Smile,
+  Flag,
+  Landmark,
+  Building2,
+  History,
+  BookMarked,
 } from 'lucide-react';
 import type { SpaceTab } from './ProfessionalNavbar';
 import { hcmVoiceService } from '../services/hcmVoiceService';
@@ -107,6 +112,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
 }) => {
   const { currentUser, setCurrentUser, logout, visitorStats } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openNavCluster, setOpenNavCluster] = useState<string | null>(null);
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [isPlayingQuote, setIsPlayingQuote] = useState(false);
   const [fanpageSyncStatus, setFanpageSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle');
@@ -412,155 +418,370 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>          </div>
-          <nav className="heritage-desktop-nav" aria-label="Điều hướng chính">
+          <nav className="heritage-desktop-nav flex items-center gap-1.5" aria-label="Điều hướng chính">
+            {/* 1. Sảnh Trung Tâm */}
             <a
               href="/gioi-thieu"
               onClick={(e) => {
                 e.preventDefault();
+                hcmSfx.playClick(600);
                 onSelectTab('FOYER');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+              className={`nav-hover-item relative px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === 'FOYER'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
+                  ? 'text-[#881337] bg-rose-50 shadow-2xs font-extrabold border border-rose-200'
+                  : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
               }`}
             >
-              <span>Giới thiệu</span>
+              <Landmark className="w-3.5 h-3.5 text-rose-700" />
+              <span>Sảnh Trung Tâm</span>
             </a>
 
-            <a
-              href="/kham-pha-di-san"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('EXHIBIT');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'EXHIBIT'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
+            {/* 2. Cụm Đất Thủ Anh Hùng */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenNavCluster('TDM')}
+              onMouseLeave={() => setOpenNavCluster(null)}
             >
-              <span>Khám phá di sản</span>
-            </a>
-
-            <a
-              href="/thu-vien-so"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('BOOKS');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'BOOKS'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Thư viện số</span>
-            </a>
-
-            <a
-              href="/tin-tuc"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('NEWS');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'NEWS'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Tin tức</span>
-            </a>
-
-            <a
-              href="/lich-su-dang-bo"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('PARTY_HISTORY');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'PARTY_HISTORY'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Lịch sử Đảng bộ</span>
-            </a>
-
-            <a
-              href="/di-tich-dat-thu"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('TDM_HOUSE');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'TDM_HOUSE'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Di tích Đất Thủ</span>
-            </a>
-
-            <a
-              href="/bien-nien-su-phuong"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('TDM_CHRONOLOGY');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'TDM_CHRONOLOGY'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Biên niên sử phường</span>
-            </a>
-
-            <a
-              href="/guong-sang-tieu-bieu"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('EXEMPLARY_PEOPLE');
-              }}
-              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                activeTab === 'EXEMPLARY_PEOPLE'
-                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
-                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
-              }`}
-            >
-              <span>Gương sáng tiêu biểu</span>
-            </a>
-
-            {onOpenGoldenBook && (
-              <a
-                href="/so-vang"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenGoldenBook();
-                }}
-                className="nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5"
+              <button
+                type="button"
+                onClick={() => setOpenNavCluster(openNavCluster === 'TDM' ? null : 'TDM')}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  ['PARTY_HISTORY', 'TDM_HOUSE', 'TDM_CHRONOLOGY', 'FOOTPRINTS'].includes(activeTab) || openNavCluster === 'TDM'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
+                }`}
               >
-                <span>Sổ vàng</span>
-              </a>
-            )}
+                <Flag className="w-3.5 h-3.5 text-rose-700" />
+                <span>Đất Thủ Anh Hùng</span>
+                <span className="text-[9.5px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black">
+                  600 Trang
+                </span>
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${openNavCluster === 'TDM' ? 'rotate-180 text-rose-700' : ''}`} />
+              </button>
 
-            {onOpenRedMap && (
-              <a
-                href="/dia-chi-do"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenRedMap();
-                }}
-                className="nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5"
+              {openNavCluster === 'TDM' && (
+                <div className="absolute top-full left-0 mt-1 w-72 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2 space-y-1 z-50 animate-in fade-in duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                    Lịch Sử &amp; Địa Phương Đất Thủ
+                  </div>
+                  <a
+                    href="/lich-su-dang-bo"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(650);
+                      onSelectTab('PARTY_HISTORY');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Flag className="w-4 h-4 text-rose-700" />
+                      <span>Lịch Sử Đảng Bộ TP (600 Trang)</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">600Tr</span>
+                  </a>
+                  <a
+                    href="/di-tich-dat-thu"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(750);
+                      onSelectTab('TDM_HOUSE');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Building2 className="w-4 h-4 text-rose-700" />
+                      <span>Di Tích &amp; Nhà Truyền Thống Số 3D</span>
+                    </div>
+                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">3D VR</span>
+                  </a>
+                  <a
+                    href="/bien-nien-su-phuong"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(600);
+                      onSelectTab('TDM_CHRONOLOGY');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <History className="w-4 h-4 text-rose-700" />
+                      <span>Biên Niên Sử Phường (Từ 1/7/2025)</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mới</span>
+                  </a>
+                  {onOpenRedMap && (
+                    <a
+                      href="/dia-chi-do"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onOpenRedMap();
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-rose-700" />
+                        <span>Bản Đồ Di Tích &amp; Địa Chỉ Đỏ</span>
+                      </div>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">10 Chặng</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* 3. Cụm Di Sản Hồ Chí Minh */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenNavCluster('HERITAGE')}
+              onMouseLeave={() => setOpenNavCluster(null)}
+            >
+              <button
+                type="button"
+                onClick={() => setOpenNavCluster(openNavCluster === 'HERITAGE' ? null : 'HERITAGE')}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  ['BIO', 'TIMELINE', 'BOOKS', 'QUOTES', 'MEDIA', 'EXHIBIT'].includes(activeTab) || openNavCluster === 'HERITAGE'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
+                }`}
               >
-                <MapPin className="w-3.5 h-3.5 text-[#881337] group-hover:scale-110 transition-transform" />
-                <span>Địa chỉ đỏ</span>
-              </a>
-            )}
+                <BookOpen className="w-3.5 h-3.5 text-rose-700" />
+                <span>Di Sản Hồ Chí Minh</span>
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${openNavCluster === 'HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
+              </button>
 
+              {openNavCluster === 'HERITAGE' && (
+                <div className="absolute top-full left-0 mt-1 w-72 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2 space-y-1 z-50 animate-in fade-in duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                    Kho Tàng Tư Liệu Bác Hồ
+                  </div>
+                  <a
+                    href="/kham-pha-di-san"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(650);
+                      onSelectTab('EXHIBIT');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Box className="w-4 h-4 text-rose-700" />
+                      <span>Bảo Tàng Số &amp; Triển Lãm 3D</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">3D</span>
+                  </a>
+                  <a
+                    href="/thu-vien-so"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(650);
+                      onSelectTab('BOOKS');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <BookMarked className="w-4 h-4 text-rose-700" />
+                      <span>Tủ Sách Toàn Tập &amp; Kinh Điển</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">15+ Tập</span>
+                  </a>
+                  <a
+                    href="/tieu-su"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(600);
+                      onSelectTab('BIO');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-rose-700" />
+                      <span>Cuộc Đời &amp; Sự Nghiệp (6 Chương)</span>
+                    </div>
+                  </a>
+                  <a
+                    href="/bien-nien-su"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(600);
+                      onSelectTab('TIMELINE');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-rose-700" />
+                      <span>08 Thời Kỳ &amp; Timeline Lịch Sử</span>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* 4. Cụm Rèn Luyện & Thiếu Nhi */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenNavCluster('COMMUNITY')}
+              onMouseLeave={() => setOpenNavCluster(null)}
+            >
+              <button
+                type="button"
+                onClick={() => setOpenNavCluster(openNavCluster === 'COMMUNITY' ? null : 'COMMUNITY')}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  ['KIDS', 'EXEMPLARY_PEOPLE', 'MODELS', 'EVALUATION'].includes(activeTab) || openNavCluster === 'COMMUNITY'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
+                }`}
+              >
+                <Heart className="w-3.5 h-3.5 text-rose-700 fill-current" />
+                <span>Rèn Luyện &amp; Thiếu Nhi</span>
+                <span className="text-[9.5px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black">
+                  Thiếu Nhi ★
+                </span>
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${openNavCluster === 'COMMUNITY' ? 'rotate-180 text-rose-700' : ''}`} />
+              </button>
+
+              {openNavCluster === 'COMMUNITY' && (
+                <div className="absolute top-full left-0 mt-1 w-76 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2 space-y-1 z-50 animate-in fade-in duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                    Thiếu Nhi &amp; Phong Trào Học Bác
+                  </div>
+                  <a
+                    href="/thieu-nhi"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(750);
+                      onSelectTab('KIDS');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2.5 rounded-xl text-xs font-black flex items-center justify-between bg-gradient-to-r from-amber-50 to-rose-50 text-rose-900 border border-amber-300 shadow-2xs cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Smile className="w-4 h-4 text-amber-700 fill-current" />
+                      <span>Không Gian Thiếu Nhi (5 Điều Bác Dạy)</span>
+                    </div>
+                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">ĐẶC BIỆT</span>
+                  </a>
+                  <a
+                    href="/guong-sang-tieu-bieu"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(600);
+                      onSelectTab('EXEMPLARY_PEOPLE');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-rose-700" />
+                      <span>Gương Sáng Tiêu Biểu Đất Thủ</span>
+                    </div>
+                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Người Tốt</span>
+                  </a>
+                  {onOpenGoldenBook && (
+                    <a
+                      href="/so-vang"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onOpenGoldenBook();
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-amber-600" />
+                        <span>Sổ Vàng Truyền Thống Số</span>
+                      </div>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* 5. Cụm Truyền Thông & Tiện Ích */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenNavCluster('UTILITIES')}
+              onMouseLeave={() => setOpenNavCluster(null)}
+            >
+              <button
+                type="button"
+                onClick={() => setOpenNavCluster(openNavCluster === 'UTILITIES' ? null : 'UTILITIES')}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  activeTab === 'NEWS' || openNavCluster === 'UTILITIES'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
+                }`}
+              >
+                <FileText className="w-3.5 h-3.5 text-rose-700" />
+                <span>Tin Tức &amp; Tiện Ích</span>
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${openNavCluster === 'UTILITIES' ? 'rotate-180 text-rose-700' : ''}`} />
+              </button>
+
+              {openNavCluster === 'UTILITIES' && (
+                <div className="absolute top-full right-0 mt-1 w-64 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2 space-y-1 z-50 animate-in fade-in duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                    Báo Chí &amp; Tiện Ích Số
+                  </div>
+                  <a
+                    href="/tin-tuc"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      hcmSfx.playClick(600);
+                      onSelectTab('NEWS');
+                      setOpenNavCluster(null);
+                    }}
+                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-rose-700" />
+                      <span>Tin Tức 4 Nguồn Báo Chí</span>
+                    </div>
+                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">4 Nguồn</span>
+                  </a>
+                  {onOpenToanTap && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        hcmSfx.playClick(600);
+                        onOpenToanTap();
+                        setOpenNavCluster(null);
+                      }}
+                      className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-4 h-4 text-amber-700" />
+                        <span>Hồ Chí Minh Toàn Tập</span>
+                      </div>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Nút Bật Nhanh: Góc Thiếu Nhi */}
+            <a
+              href="/thieu-nhi"
+              onClick={(e) => {
+                e.preventDefault();
+                hcmSfx.playClick(750);
+                onSelectTab('KIDS');
+              }}
+              className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-rose-500 hover:from-amber-500 hover:to-rose-600 text-slate-950 font-black text-xs shadow-xs transition-transform hover:scale-105 cursor-pointer"
+            >
+              <Smile className="w-4 h-4 fill-current text-slate-950" />
+              <span>Góc Thiếu Nhi</span>
+            </a>
           </nav>
         </div>
         {/* Mobile Navigation Drawer */}
@@ -983,6 +1204,106 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               <span className="heritage-portrait-years">1890 — 1969</span>
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3 CỬA NGÕ CHIẾN LƯỢC: 3 ĐIỂM NHẤN CỐT LÕI (TIÊU ĐIỂM TRANG CHỦ)
+          ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 my-6 select-none scroll-reveal" aria-label="3 Cửa ngõ chiến lược">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          {/* Cửa ngõ 1: Nhà Truyền Thống Số 3D & Di Tích Đất Thủ */}
+          <div
+            onClick={() => {
+              hcmSfx.playClick(750);
+              onSelectTab('TDM_HOUSE');
+            }}
+            className="group relative rounded-3xl p-6 bg-gradient-to-br from-slate-900 via-rose-950 to-slate-950 text-white border-2 border-amber-400/50 hover:border-amber-400 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-rose-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-rose-500/20 transition-all" />
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center justify-between">
+                <span className="w-11 h-11 rounded-2xl bg-amber-400/20 border border-amber-300/40 text-amber-300 flex items-center justify-center font-black">
+                  <Box className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-wider bg-rose-600/80 text-rose-100 px-2.5 py-1 rounded-full border border-rose-400/40">
+                  Công Trình 3D VR
+                </span>
+              </div>
+              <h3 className="font-serif text-lg sm:text-xl font-black text-white group-hover:text-amber-300 transition-colors">
+                Nhà Truyền Thống Số &amp; Di Tích 3D
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans line-clamp-3">
+                Phục dựng số hóa 3D Di tích Nhà việc Phú Cường ven sông Bạch Đằng, tham quan 360°, sa bàn giải phóng và hiện vật quý.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-white/10 flex items-center justify-between text-xs font-bold text-amber-300 group-hover:text-amber-200">
+              <span>Trải nghiệm không gian 3D</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+            </div>
+          </div>
+
+          {/* Cửa ngõ 2: Không Gian Thiếu Nhi Vâng Lời Bác */}
+          <div
+            onClick={() => {
+              hcmSfx.playClick(700);
+              onSelectTab('KIDS');
+            }}
+            className="group relative rounded-3xl p-6 bg-gradient-to-br from-amber-600 via-rose-700 to-rose-900 text-white border-2 border-amber-300/60 hover:border-amber-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-400/30 transition-all" />
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center justify-between">
+                <span className="w-11 h-11 rounded-2xl bg-white/20 border border-white/30 text-amber-200 flex items-center justify-center font-black">
+                  <Smile className="w-6 h-6 fill-current text-amber-300 group-hover:scale-110 transition-transform" />
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full shadow-xs">
+                  Thiếu Nhi &amp; Học Sinh
+                </span>
+              </div>
+              <h3 className="font-serif text-lg sm:text-xl font-black text-white group-hover:text-amber-200 transition-colors">
+                Không Gian Thiếu Nhi Đất Thủ
+              </h3>
+              <p className="text-xs sm:text-sm text-rose-100 leading-relaxed font-sans line-clamp-3">
+                Vách gỗ học đường 5 Điều Bác dạy, 10 truyện kể có giọng đọc, hội thi đố vui cấp Giấy chứng nhận và hòm thư báo công.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-white/20 flex items-center justify-between text-xs font-bold text-amber-200 group-hover:text-white">
+              <span>Vào góc học tập &amp; rèn luyện</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+            </div>
+          </div>
+
+          {/* Cửa ngõ 3: Lịch Sử Đảng Bộ TP. Thủ Dầu Một (600 Trang) */}
+          <div
+            onClick={() => {
+              hcmSfx.playClick(650);
+              onSelectTab('PARTY_HISTORY');
+            }}
+            className="group relative rounded-3xl p-6 bg-gradient-to-br from-rose-950 via-[#751D2C] to-slate-950 text-white border-2 border-rose-300/40 hover:border-amber-400/70 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-rose-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-rose-500/20 transition-all" />
+            <div className="space-y-3 relative z-10">
+              <div className="flex items-center justify-between">
+                <span className="w-11 h-11 rounded-2xl bg-rose-800/60 border border-rose-400/40 text-amber-300 flex items-center justify-center font-black">
+                  <Flag className="w-5 h-5 group-hover:rotate-6 transition-transform" />
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full font-mono">
+                  600 Trang Số Hóa
+                </span>
+              </div>
+              <h3 className="font-serif text-lg sm:text-xl font-black text-white group-hover:text-amber-300 transition-colors">
+                Lịch Sử Đảng Bộ TP. Thủ Dầu Một
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans line-clamp-3">
+                Pho sử vàng cách mạng của Đảng bộ qua các thời kỳ, lật giở đọc sách điện tử tương tác và tra cứu các mốc son lịch sử hào hùng.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-white/10 flex items-center justify-between text-xs font-bold text-amber-300 group-hover:text-amber-200">
+              <span>Đọc toàn văn pho sử</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+            </div>
+          </div>
         </div>
       </section>
 

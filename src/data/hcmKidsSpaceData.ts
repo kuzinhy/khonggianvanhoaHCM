@@ -268,10 +268,10 @@ export const FIVE_TEACHINGS_DATA: FiveTeachingsItem[] = [
 export const UNCLE_HO_PHOTOS: UncleHoPhotoItem[] = [
   {
     id: 'photo_01',
-    title: 'Bác Hồ với thiếu nhi',
+    title: 'Bác với thiếu nhi',
     subtitle: 'Ân cần quàng khăn đỏ và múa hát cùng các cháu thiếu niên, nhi đồng',
     year: '1961',
-    imageUrl: '/assets/hcm-space/anh-bac.png',
+    imageUrl: '/assets/hcm-space/bac-voi-thieu-nhi-card.jpg',
     description:
       'Chủ tịch Hồ Chí Minh luôn dành cho các cháu thiếu nhi tình yêu thương bao la như người ông hiền từ. Bác thường đón các cháu vào thăm Phủ Chủ tịch, tặng kẹo, tự tay chỉnh từng chiếc khăn quàng đỏ và căn dặn các cháu chăm ngoan học giỏi.',
     quote: 'Ai yêu các nhi đồng bằng Bác Hồ Chí Minh / Tính các cháu ngoan ngoãn, mặt các cháu xinh xinh.',
@@ -282,7 +282,7 @@ export const UNCLE_HO_PHOTOS: UncleHoPhotoItem[] = [
     title: 'Bác trồng cây',
     subtitle: 'Khởi xướng phong trào "Tết trồng cây" mùa xuân 1960 vì thế hệ mai sau',
     year: '1960',
-    imageUrl: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+    imageUrl: '/assets/hcm-space/bac-trong-cay-card.jpg',
     description:
       'Mùa xuân năm 1960, Bác Hồ phát động phong trào Tết trồng cây với mong muốn đất nước ngày càng xanh tươi. Bác dạy: "Vì lợi ích mười năm thì phải trồng cây, vì lợi ích trăm năm thì phải trồng người."',
     quote: 'Mùa xuân là Tết trồng cây / Làm cho đất nước càng ngày càng xuân.',
@@ -293,7 +293,7 @@ export const UNCLE_HO_PHOTOS: UncleHoPhotoItem[] = [
     title: 'Bác đọc sách',
     subtitle: 'Tấm gương sáng ngời về tinh thần tự học, đọc sách báo và nghiên cứu',
     year: '1954',
-    imageUrl: '/assets/hcm-space/tieusu2-1919.png',
+    imageUrl: '/assets/hcm-space/bac-doc-sach-card.jpg',
     description:
       'Dù bận trăm công nghìn việc lãnh đạo kháng chiến và kiến thiết nước nhà, Bác Hồ vẫn giữ thói quen đọc sách báo mỗi ngày. Bác biết nhiều thứ tiếng nước ngoài hoàn toàn nhờ tinh thần tự học kiên trì, không ngừng nghỉ.',
     quote: 'Học hỏi là một việc phải tiếp tục suốt đời. Suốt đời phải học, lý luận phải liên hệ với thực tế.',
@@ -301,10 +301,10 @@ export const UNCLE_HO_PHOTOS: UncleHoPhotoItem[] = [
   },
   {
     id: 'photo_04',
-    title: 'Bác phát kẹo cho các cháu',
+    title: 'Bác phát kẹo',
     subtitle: 'Niềm vui ấm áp ngày Tết Trung thu và ngày Quốc tế Thiếu nhi',
     year: '1959',
-    imageUrl: '/assets/hcm-space/tieusu3-1920.png',
+    imageUrl: '/assets/hcm-space/bac-phat-keo-card.jpg',
     description:
       'Mỗi dịp Trung thu hay ngày lễ, Bác Hồ lại gửi thư và chuẩn bị kẹo bánh chia cho các cháu thiếu nhi. Những chiếc kẹo ngọt ngào của Bác là phần thưởng vô giá khích lệ tinh thần thi đua "Học tập tốt, lao động tốt".',
     quote: 'Bác mong các cháu chăm ngoan / Mai sau kiến thiết giang san đẹp giàu.',
@@ -316,12 +316,12 @@ export const UNCLE_HO_PHOTOS: UncleHoPhotoItem[] = [
 export const HISTORICAL_SITES: HistoricalSiteItem[] = [
   {
     id: 'site_lang_sen',
-    name: 'Làng Sen (Kim Liên)',
+    name: 'Làng Sen (Nghệ An)',
     location: 'Xã Kim Liên, huyện Nam Đàn',
     province: 'Tỉnh Nghệ An',
     role: 'Quê hương tuổi thơ của Bác Hồ',
     yearPeriod: '1890 – 1901',
-    imageUrl: '/assets/hcm-space/tieusu1-1911.png',
+    imageUrl: '/assets/hcm-space/relic_lang_sen.jpg',
     summary:
       'Làng Sen là quê nội của Chủ tịch Hồ Chí Minh. Ngôi nhà lá 5 gian mộc mạc bên rặng tre xanh ngát là nơi gắn liền với những năm tháng ấu thơ ấm áp tình thương của người mẹ Hoàng Thị Loan và người cha Nguyễn Sinh Sắc.',
     childhoodConnection:
@@ -330,12 +330,12 @@ export const HISTORICAL_SITES: HistoricalSiteItem[] = [
   },
   {
     id: 'site_hang_pac_bo',
-    name: 'Hang Pác Bó',
+    name: 'Hang Pác Bó (Cao Bằng)',
     location: 'Xã Trường Hà, huyện Hà Quảng',
     province: 'Tỉnh Cao Bằng',
     role: 'Nơi Bác trở về Tổ quốc lãnh đạo cách mạng',
     yearPeriod: 'Từ 28/01/1941',
-    imageUrl: '/assets/hcm-space/card-cuoc-doi.jpg',
+    imageUrl: '/assets/hcm-space/relic_hang_pac_bo.jpg',
     summary:
       'Sau 30 năm bôn ba qua 4 châu lục, ngày 28/01/1941, Bác Hồ đã cúi mình hôn lên nắm đất thiêng liêng của Tổ quốc tại cột mốc 108 và chọn Hang Pác Bó làm căn cứ địa cách mạng đầu tiên.',
     childhoodConnection:
@@ -344,12 +344,12 @@ export const HISTORICAL_SITES: HistoricalSiteItem[] = [
   },
   {
     id: 'site_thac_lenin',
-    name: 'Suối Lê-nin (Thác Lê-nin)',
+    name: 'Thác Lê-nin (Cao Bằng)',
     location: 'Xã Trường Hà, huyện Hà Quảng',
     province: 'Tỉnh Cao Bằng',
     role: 'Danh thắng lịch sử bên chân núi Các Mác',
     yearPeriod: '1941 – 1945',
-    imageUrl: '/assets/hcm-space/quoc-te.jpg',
+    imageUrl: '/assets/hcm-space/relic_thac_lenin.jpg',
     summary:
       'Dòng suối trong vắt như ngọc bích uốn lượn quanh chân núi Các Mác hùng vĩ. Bác Hồ đã tự tay đặt tên cho dòng suối là Suối Lê-nin và ngọn núi là Núi Các Mác để khẳng định con đường cách mạng vô sản chân chính.',
     childhoodConnection:
@@ -358,12 +358,12 @@ export const HISTORICAL_SITES: HistoricalSiteItem[] = [
   },
   {
     id: 'site_nha_san',
-    name: 'Nhà sàn Bác Hồ',
+    name: 'Nhà sàn Bác Hồ (Phủ Chủ tịch)',
     location: 'Khu Phủ Chủ tịch, Ba Đình',
     province: 'Thủ đô Hà Nội',
     role: 'Nơi Bác sống và làm việc lâu nhất (15 năm)',
     yearPeriod: '1954 – 1969',
-    imageUrl: '/assets/hcm-space/bac-ho-wicker-chair.jpg',
+    imageUrl: '/assets/hcm-space/relic_nha_san.jpg',
     summary:
       'Ngôi nhà sàn gỗ giản dị theo kiểu nhà đồng bào dân tộc thiểu số Việt Bắc, nép mình dưới rặng xoài râm mát và nhìn ra ao cá biếc. Đây là biểu tượng mẫu mực của lối sống thanh bạch, cần kiệm liêm chính.',
     childhoodConnection:
@@ -372,12 +372,12 @@ export const HISTORICAL_SITES: HistoricalSiteItem[] = [
   },
   {
     id: 'site_ben_nha_rong',
-    name: 'Bến Nhà Rồng',
+    name: 'Bến Nhà Rồng (TP. Hồ Chí Minh)',
     location: 'Số 1 Nguyễn Tất Thành, Phường 12, Quận 4',
     province: 'TP. Hồ Chí Minh',
     role: 'Nơi Bác ra đi tìm đường cứu nước ngày 05/6/1911',
     yearPeriod: '05/06/1911',
-    imageUrl: '/assets/hcm-space/ben-nha-rong-06.jpg',
+    imageUrl: '/assets/hcm-space/relic_ben_nha_rong.jpg',
     summary:
       'Ngày 05/6/1911, từ thương cảng Sài Gòn, người thanh niên yêu nước Nguyễn Tất Thành với tên gọi Văn Ba đã lên con tàu buôn Đô đốc Latouche-Tréville ra đi tìm đường cứu nước, mở đầu hành trình 30 năm bôn ba vĩ đại.',
     childhoodConnection:
