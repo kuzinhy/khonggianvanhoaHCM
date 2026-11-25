@@ -265,6 +265,138 @@ const SEED_FANPAGE_ARTICLES: Omit<DatThuExemplaryItem, 'createdAt' | 'updatedAt'
     isSyncedFromFanpage: true,
     syncedAt: '2026-02-28T10:00:00.000Z',
   },
+  {
+    id: 'exp_manual_01_dang_huu_tai',
+    title: 'Gương sáng Cựu chiến binh Đặng Hữu Tài trích lương hưu đỡ đầu học sinh mồ côi',
+    fullName: 'Đặng Hữu Tài',
+    birthYear: 1952,
+    gender: 'NAM',
+    khuPho: 'Khu phố 4',
+    role: 'Chi hội trưởng Chi hội Cựu chiến binh',
+    unit: 'Hội Cựu chiến binh Phường Thủ Dầu Một',
+    theme: 'AN_SINH_XA_HOI',
+    themeLabel: 'Mô hình an sinh xã hội',
+    category: 'CUU_CHIEN_BINH',
+    categoryLabel: 'Cựu chiến binh gương mẫu',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
+    sourceUrl: 'https://hochiminhcity.gov.vn/guong-sang-cuu-chien-binh',
+    postDate: '2025-11-18',
+    periodLabel: 'Tháng 11/2025',
+    honorTitle: 'Cựu chiến binh gương mẫu học tập và làm theo Bác năm 2025',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-dang-huu-tai.jpg',
+    goodDeedSummary:
+      'Trích lương hưu đỡ đầu thường xuyên 3 học sinh mồ côi nghèo vượt khó đến trường, đồng thời vận động xây dựng Tủ sách Bác Hồ tại văn phòng khu phố.',
+    storyContent:
+      'Là thương binh 3/4 từng vào sinh ra tử trong chiến tranh bảo vệ Tổ quốc, trở về đời thường, ông Đặng Hữu Tài luôn giữ vững phẩm chất cao đẹp của “Bộ đội Cụ Hồ”. Sau ngày thành lập phường 01/7/2025, chứng kiến trên địa bàn khu phố còn nhiều cháu nhỏ mồ côi cha mẹ do dịch bệnh, ông bàn với gia đình trích 2 triệu đồng/tháng từ lương hưu hỗ trợ học phí, sách vở cho 3 em. Không chỉ giúp đỡ vật chất, ông còn là người thầy, người ông tận tụy dạy dỗ các em nên người.',
+    communityImpact:
+      'Lan tỏa phong trào “Cựu chiến binh gương mẫu nâng bước em đến trường” trên toàn phường, giúp các em học sinh có điểm tựa vươn lên đạt danh hiệu học sinh giỏi.',
+    quoteOrMotto:
+      'Học Bác lòng nhân ái, sự sẻ chia. Còn sức khỏe, còn hơi thở thì còn cống hiến cho thế hệ mai sau.',
+    hcmLessonApplied: 'Học tập tấm lòng yêu thương thế hệ trẻ và tinh thần “thương người như thể thương thân” của Bác.',
+    likesCount: 389,
+    tags: ['Đỡ đầu học sinh nghèo', 'Cựu chiến binh', 'Tủ sách Bác Hồ', 'Khu phố 4'],
+    isSyncedFromFanpage: false,
+  },
+  {
+    id: 'exp_manual_02_phan_quynh_nhu',
+    title: 'Nữ thủ lĩnh thanh niên Phan Quỳnh Như sáng lập Đội hình Áo xanh hỗ trợ dịch vụ công số',
+    fullName: 'Phan Quỳnh Như',
+    birthYear: 2004,
+    gender: 'NU',
+    khuPho: 'Khu phố 2',
+    role: 'Bí thư Đoàn trường, Trưởng nhóm Chuyển đổi số thanh niên',
+    unit: 'Đoàn Thanh niên Cộng sản Hồ Chí Minh Phường Thủ Dầu Một',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
+    category: 'THANH_NIEN',
+    categoryLabel: 'Đoàn viên — Thanh niên',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
+    sourceUrl: 'https://hochiminhcity.gov.vn/thanh-nien-chuyen-doi-so',
+    postDate: '2025-12-05',
+    periodLabel: 'Tháng 12/2025',
+    honorTitle: 'Thanh niên tiên tiến làm theo lời Bác năm 2025',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-phan-quynh-nhu.jpg',
+    goodDeedSummary:
+      'Sáng lập Đội hình “Áo xanh số hóa dịch vụ công”, trực tiếp hướng dẫn hơn 2.800 lượt công dân thực hiện nộp thủ tục hành chính trực tuyến tại Trung tâm Hành chính công phường mới.',
+    storyContent:
+      'Khi phường Thủ Dầu Một mới thành lập ngày 01/7/2025, lượng người dân đến thực hiện các thủ tục hành chính, chuyển đổi giấy tờ sau sáp nhập tăng đột biến. Nắm bắt thực tế, bạn trẻ Phan Quỳnh Như đã nhanh chóng thành lập đội hình gồm 25 tình nguyện viên túc trực tại bộ phận một cửa. Không chỉ tận tình hướng dẫn người cao tuổi sử dụng điện thoại thông minh, Như còn xây dựng các video clip ngắn, infographic trực quan hướng dẫn quy trình giải quyết thủ tục đăng ký cư trú, hộ tịch trực tuyến được đăng tải rộng rãi trên Zalo cộng đồng.',
+    communityImpact:
+      'Góp phần đưa tỷ lệ nộp hồ sơ trực tuyến của Phường đạt trên 94%, rút ngắn 40% thời gian chờ đợi của người dân, được Đảng ủy - UBND phường tuyên dương thanh niên tiêu biểu xuất sắc.',
+    quoteOrMotto:
+      'Tuổi trẻ Thủ Dầu Một không ngại khó, ngại khổ. Học Bác tinh thần tiên phong, “Đâu cần thanh niên có, việc gì khó có thanh niên”.',
+    hcmLessonApplied: 'Học tập tinh thần xung kích, sáng tạo, ứng dụng công nghệ phụng sự nhân dân.',
+    likesCount: 467,
+    tags: ['Chuyển đổi số', 'Áo xanh tình nguyện', 'Thanh niên tiên tiến', 'Dịch vụ công'],
+    isSyncedFromFanpage: false,
+  },
+  {
+    id: 'exp_manual_03_nguyen_van_thuan',
+    title: 'Nghệ nhân Nguyễn Văn Thuận 40 năm gìn giữ lò gốm Đại Hưng và truyền dạy di sản miễn phí',
+    fullName: 'Nguyễn Văn Thuận',
+    birthYear: 1958,
+    gender: 'NAM',
+    khuPho: 'Khu phố 5',
+    role: 'Nghệ nhân gốm truyền thống',
+    unit: 'Lò gốm cổ Đại Hưng, Khu phố 5',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
+    category: 'QUAN_CHUNG_NHAN_DAN',
+    categoryLabel: 'Quần chúng nhân dân',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
+    sourceUrl: 'https://hochiminhcity.gov.vn/nghe-nhan-gom-dai-hung',
+    postDate: '2026-01-12',
+    periodLabel: 'Tháng 1/2026',
+    honorTitle: 'Nghệ nhân giữ hồn di sản văn hóa Đất Thủ năm 2026',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-nguyen-van-thuan.jpg',
+    goodDeedSummary:
+      'Gìn giữ và trao truyền kỹ thuật gốm thủ công cổ 160 năm; mở các lớp trải nghiệm di sản miễn phí cho hơn 1.200 học sinh và chế tác hàng trăm tác phẩm gốm Bác Hồ tặng các thiết chế văn hóa.',
+    storyContent:
+      'Gắn bó hơn 40 năm bên lò nung Đại Hưng, nghệ nhân Nguyễn Văn Thuận luôn đau đáu với việc bảo tồn vốn quý di sản văn hóa phi vật thể của Thủ Dầu Một. Từ tháng 7/2025, ông đã phối hợp với các trường học trên địa bàn phường tổ chức tour du khảo trải nghiệm “Một ngày làm thợ gốm nhí” hoàn toàn miễn phí. Đích thân ông hướng dẫn các cháu vuốt gốm, nặn đất và khắc họa hình tượng hoa sen, chân dung Bác Hồ. Toàn bộ tiền thù lao ông đều đóng góp vào Quỹ Khuyến học của khu phố 5.',
+    communityImpact:
+      'Tạo sân chơi di sản hấp dẫn, bồi đắp tình yêu văn hóa dân tộc cho thế hệ trẻ; tặng 150 bức phù điêu gốm chân dung Bác Hồ trang trí tại các Nhà văn hóa khu phố và trường học.',
+    quoteOrMotto:
+      'Văn hóa là hồn cốt dân tộc. Bác dặn “Văn hóa soi đường cho quốc dân đi”, giữ lấy nghề gốm cha ông chính là giữ lấy cội nguồn văn hóa Đất Thủ yêu thương.',
+    hcmLessonApplied: 'Học tập Bác ý thức trân trọng, gìn giữ và phát huy bản sắc văn hóa truyền thống.',
+    likesCount: 376,
+    tags: ['Gốm Đại Hưng', 'Nghệ nhân di sản', 'Khuyến học', 'Khu phố 5'],
+    isSyncedFromFanpage: false,
+  },
+  {
+    id: 'exp_manual_04_tran_thi_anh_tuyet',
+    title: 'Cô giáo Ánh Tuyết sáng tạo tiết học kể chuyện Bác Hồ dưới cờ và số hóa 3D VR lịch sử',
+    fullName: 'Trần Thị Ánh Tuyết',
+    birthYear: 1985,
+    gender: 'NU',
+    khuPho: 'Khu phố 4',
+    role: 'Giáo viên Tổng phụ trách Đội',
+    unit: 'Trường Tiểu học Nguyễn Du, Phường Thủ Dầu Một',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
+    category: 'GIAO_DUC_Y_TE',
+    categoryLabel: 'Giáo dục & Y tế',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
+    sourceUrl: 'https://hochiminhcity.gov.vn/giao-vien-anh-tuyet',
+    postDate: '2026-02-27',
+    periodLabel: 'Tháng 2/2026',
+    honorTitle: 'Gương giáo viên tiêu biểu “Viên phấn vàng Thủ Dầu Một”',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-tran-thi-anh-tuyet.jpg',
+    goodDeedSummary:
+      'Sáng tạo mô hình “Tiết học kể chuyện Bác Hồ dưới cờ” và số hóa bài giảng lịch sử địa phương 3D VR, truyền cảm hứng sống đẹp, sống có lý tưởng cho hơn 1.500 đội viên thiếu nhi.',
+    storyContent:
+      'Với lòng yêu nghề và tâm huyết với công tác Đội, cô giáo Ánh Tuyết đã biến các buổi chào cờ đầu tuần thành không gian sinh hoạt văn hóa sinh động. Không chỉ cho học sinh kể lại những mẩu chuyện xúc động về Bác, cô còn ứng dụng công nghệ thực tế ảo đưa các em “tham quan” Bến Nhà Rồng, Khu di tích Pác Bó và Nhà truyền thống Thủ Dầu Một ngay trong lớp học. Nhờ sự dẫn dắt tận tâm của cô, phong trào “Nghìn việc tốt” và “Đôi bạn cùng tiến” của trường luôn dẫn đầu toàn thành phố.',
+    communityImpact:
+      'Nhiều năm liền đạt Giáo viên Tổng phụ trách Đội giỏi cấp Thành phố; sáng kiến giáo dục đạo đức học sinh được nhân rộng toàn ngành giáo dục địa phương.',
+    quoteOrMotto:
+      'Gieo mầm nhân cách cho các em hôm nay là gieo mùa vàng cho Tổ quốc ngày mai. Lời Bác “Vì lợi ích mười năm thì phải trồng cây, vì lợi ích trăm năm thì phải trồng người” luôn soi rọi đường tôi đi.',
+    hcmLessonApplied: 'Học tập tấm lòng yêu thương thiếu niên, nhi đồng và tâm huyết trồng người của Bác.',
+    likesCount: 395,
+    tags: ['Giáo viên giỏi', 'Trồng người', 'Kể chuyện Bác Hồ', 'Thiếu nhi'],
+    isSyncedFromFanpage: false,
+  },
 ];
 
 // Khởi tạo bảng cơ sở dữ liệu SQLite
@@ -313,76 +445,60 @@ export function ensureDatThuTable(db: DatabaseSync): void {
     );
   `);
 
-  // Seed các bài viết mẫu nếu bảng còn trống
-  const countRow: any = db.prepare('SELECT count(*) as cnt FROM dat_thu_exemplary_items').get();
-  if (!countRow || countRow.cnt === 0) {
-    const now = new Date().toISOString();
-    const insertStmt = db.prepare(`
-      INSERT INTO dat_thu_exemplary_items (
-        id, title, full_name, birth_year, gender, khu_pho, role, unit,
-        theme, theme_label, category, category_label, source, source_label, source_url,
-        post_date, period_label, honor_title, avatar_url, good_deed_summary, story_content,
-        community_impact, quote_or_motto, hcm_lesson_applied, likes_count, tags_json,
-        is_synced_from_fanpage, synced_at, created_at, updated_at
-      ) VALUES (
-        ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?,
-        ?, ?, ?, ?
-      )
-    `);
+  // Đảm bảo tất cả các bài viết mẫu (cả Fanpage và thủ công) luôn có trong cơ sở dữ liệu
+  const now = new Date().toISOString();
+  const insertStmt = db.prepare(`
+    INSERT OR IGNORE INTO dat_thu_exemplary_items (
+      id, title, full_name, birth_year, gender, khu_pho, role, unit,
+      theme, theme_label, category, category_label, source, source_label, source_url,
+      post_date, period_label, honor_title, avatar_url, good_deed_summary, story_content,
+      community_impact, quote_or_motto, hcm_lesson_applied, likes_count, tags_json,
+      is_synced_from_fanpage, synced_at, created_at, updated_at
+    ) VALUES (
+      ?, ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?, ?,
+      ?, ?, ?, ?, ?,
+      ?, ?, ?, ?
+    )
+  `);
 
-    withSqliteTransaction(db, () => {
-      for (const item of SEED_FANPAGE_ARTICLES) {
-        insertStmt.run(
-          item.id,
-          item.title,
-          item.fullName,
-          item.birthYear ?? null,
-          item.gender ?? null,
-          item.khuPho,
-          item.role,
-          item.unit,
-          item.theme,
-          item.themeLabel,
-          item.category,
-          item.categoryLabel,
-          item.source,
-          item.sourceLabel,
-          item.sourceUrl ?? null,
-          item.postDate,
-          item.periodLabel,
-          item.honorTitle,
-          item.avatarUrl ?? null,
-          item.goodDeedSummary,
-          item.storyContent,
-          item.communityImpact,
-          item.quoteOrMotto,
-          item.hcmLessonApplied,
-          item.likesCount,
-          JSON.stringify(item.tags),
-          item.isSyncedFromFanpage ? 1 : 0,
-          item.syncedAt ?? null,
-          now,
-          now
-        );
-      }
-    });
-
-    // Ghi log lần đồng bộ đầu tiên
-    db.prepare(`
-      INSERT INTO dat_thu_sync_logs (id, source_name, synced_count, status, synced_at, details)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).run(
-      'sync_init',
-      FANPAGE_CONFIG.name,
-      SEED_FANPAGE_ARTICLES.length,
-      'SUCCESS',
-      now,
-      'Khởi tạo đồng bộ trích xuất dữ liệu từ Fanpage Đất Thủ Quê Hương Tôi (giai đoạn từ 01/7/2025)'
-    );
-  }
+  withSqliteTransaction(db, () => {
+    for (const item of SEED_FANPAGE_ARTICLES) {
+      insertStmt.run(
+        item.id,
+        item.title,
+        item.fullName,
+        item.birthYear ?? null,
+        item.gender ?? null,
+        item.khuPho,
+        item.role,
+        item.unit,
+        item.theme,
+        item.themeLabel,
+        item.category,
+        item.categoryLabel,
+        item.source,
+        item.sourceLabel,
+        item.sourceUrl ?? null,
+        item.postDate,
+        item.periodLabel,
+        item.honorTitle,
+        item.avatarUrl ?? null,
+        item.goodDeedSummary,
+        item.storyContent,
+        item.communityImpact,
+        item.quoteOrMotto,
+        item.hcmLessonApplied,
+        item.likesCount,
+        JSON.stringify(item.tags),
+        item.isSyncedFromFanpage ? 1 : 0,
+        item.syncedAt ?? null,
+        now,
+        now
+      );
+    }
+  });
 }
 
 function mapRowToItem(row: any): DatThuExemplaryItem {
