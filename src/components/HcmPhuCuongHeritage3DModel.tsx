@@ -467,48 +467,50 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     floor2.receiveShadow = true;
     modelGroup.add(floor2);
 
+    // Helper tạo cửa sổ vòm cuốn bán nguyệt chuẩn xác (Indochina Arched Window)
+    const createArchedWindowGeo = (w: number, h: number, d: number) => {
+      const shape = new THREE.Shape();
+      const r = w / 2;
+      const rectH = Math.max(0.1, h - r);
+      shape.moveTo(-r, 0);
+      shape.lineTo(-r, rectH);
+      shape.absarc(0, rectH, r, Math.PI, 0, true);
+      shape.lineTo(r, 0);
+      shape.lineTo(-r, 0);
+
+      const geo = new THREE.ExtrudeGeometry(shape, {
+        steps: 1,
+        depth: d,
+        bevelEnabled: false,
+      });
+      geo.center();
+      return geo;
+    };
+
     // 03 Cửa sổ vòm lớn mặt trước tầng 2 (Nhà Việc Phú Cường)
-    // Cửa vòm trung tâm (Center Grand Window)
-    const centerWinGroup = new THREE.Group();
-    const centerWinBase = new THREE.Mesh(
-      new THREE.BoxGeometry(1.0, 0.75, 0.06),
-      windowGlassMat
-    );
-    centerWinBase.position.set(0, 3.15, 1.72);
-    centerWinGroup.add(centerWinBase);
+    // Cửa vòm trung tâm (Center Grand Arched Window)
+    const centerWinGeo = createArchedWindowGeo(1.0, 1.25, 0.08);
+    const centerWin = new THREE.Mesh(centerWinGeo, windowGlassMat);
+    centerWin.position.set(0, 3.25, 1.72);
+    modelGroup.add(centerWin);
 
-    // Vòm cong nửa hình tròn trên cửa sổ giữa
-    const archTopGeo = new THREE.CylinderGeometry(0.5, 0.5, 0.06, 20, 1, false, 0, Math.PI);
-    const archTop = new THREE.Mesh(archTopGeo, windowGlassMat);
-    archTop.rotation.z = Math.PI;
-    archTop.rotation.x = Math.PI / 2;
-    archTop.position.set(0, 3.52, 1.72);
-    centerWinGroup.add(archTop);
+    // Phào chỉ vòm đắp nổi quanh cửa sổ giữa (Molded Architrave)
+    const centerMouldingGeo = createArchedWindowGeo(1.14, 1.34, 0.05);
+    const centerMoulding = new THREE.Mesh(centerMouldingGeo, darkWallMaterial);
+    centerMoulding.position.set(0, 3.25, 1.71);
+    modelGroup.add(centerMoulding);
 
-    // Viền vòm màu vàng son
-    const archRimGeo = new THREE.TorusGeometry(0.52, 0.04, 8, 20, Math.PI);
-    const archRim = new THREE.Mesh(archRimGeo, darkWallMaterial);
-    archRim.position.set(0, 3.52, 1.73);
-    centerWinGroup.add(archRim);
-    modelGroup.add(centerWinGroup);
-
-    // 2 Cửa sổ vòm hai bên
+    // 2 Cửa sổ vòm hai bên (Side Arched Windows)
     [-1.4, 1.4].forEach((xPos) => {
-      const sideWin = new THREE.Mesh(
-        new THREE.BoxGeometry(0.7, 0.85, 0.06),
-        windowGlassMat
-      );
-      sideWin.position.set(xPos, 3.2, 1.72);
+      const sideWinGeo = createArchedWindowGeo(0.72, 1.05, 0.08);
+      const sideWin = new THREE.Mesh(sideWinGeo, windowGlassMat);
+      sideWin.position.set(xPos, 3.25, 1.72);
       modelGroup.add(sideWin);
 
-      const sideArch = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.35, 0.35, 0.06, 16, 1, false, 0, Math.PI),
-        windowGlassMat
-      );
-      sideArch.rotation.z = Math.PI;
-      sideArch.rotation.x = Math.PI / 2;
-      sideArch.position.set(xPos, 3.62, 1.72);
-      modelGroup.add(sideArch);
+      const sideMouldingGeo = createArchedWindowGeo(0.84, 1.13, 0.05);
+      const sideMoulding = new THREE.Mesh(sideMouldingGeo, darkWallMaterial);
+      sideMoulding.position.set(xPos, 3.25, 1.71);
+      modelGroup.add(sideMoulding);
     });
 
     // Cửa sổ các mặt bên tầng 2
