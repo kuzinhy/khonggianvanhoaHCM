@@ -38,6 +38,7 @@ import {
   Radio,
   CheckCircle2,
   ThumbsUp,
+  RotateCw,
 } from 'lucide-react';
 import type { SpaceTab } from './ProfessionalNavbar';
 import { hcmVoiceService } from '../services/hcmVoiceService';
@@ -52,6 +53,7 @@ import { ChevronRight } from 'lucide-react';
 import { HcmCitizenResumeBanner } from './HcmCitizenResumeBanner';
 import { GoogleIcon } from './GoogleIcon';
 import { HcmTraditionalQuoteCard } from './HcmTraditionalQuoteCard';
+import { hcmSfx } from '../services/hcmSoundEffects';
 
 interface HcmHomeExhibitionViewProps {
   activeTab?: SpaceTab;
@@ -74,6 +76,7 @@ interface HcmHomeExhibitionViewProps {
   onOpenHeritageAnalytics?: () => void;
   onOpenCitizenAuth?: (mode: 'login' | 'register') => void;
   onOpenGuidedJourney?: () => void;
+  onOpenHeritage3D?: () => void;
 }
 
 export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
@@ -97,6 +100,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
   onOpenHeritageAnalytics,
   onOpenCitizenAuth,
   onOpenGuidedJourney,
+  onOpenHeritage3D,
 }) => {
   const { currentUser, setCurrentUser, logout, visitorStats } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -976,6 +980,131 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
           </figure>
         </div>
       </section>
+
+      {/* =========================================================================
+          CÔNG TRÌNH TRỌNG ĐIỂM: NHÀ TRUYỀN THỐNG SỐ 3D VR (SẮP TRIỂN KHAI)
+          ========================================================================= */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 my-6 select-none scroll-reveal" aria-label="Công trình trọng điểm Nhà truyền thống số 3D">
+        <div className="relative rounded-3xl overflow-hidden border-2 border-[#BE123C]/40 bg-gradient-to-br from-slate-950 via-[#1C060E] to-slate-900 text-white shadow-2xl p-6 sm:p-8">
+          {/* Background Ambient Decorative Lights */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-rose-600/15 rounded-full blur-3xl pointer-events-none -z-0" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-0" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+            {/* Cột trái: Thông tin công trình */}
+            <div className="space-y-3.5 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-950 border border-rose-500/60 text-rose-300 text-xs font-bold uppercase tracking-wider shadow-inner">
+                  <span className="w-2 h-2 rounded-full bg-rose-400 animate-ping" />
+                  CÔNG TRÌNH SỐ HÓA TRỌNG ĐIỂM 2026
+                </span>
+                <span className="px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-200 text-xs font-bold">
+                  ✨ Sắp Triển Khai · Đã Có Bản Thử Nghiệm 3D VR
+                </span>
+              </div>
+
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                Nhà Truyền Thống Số <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-amber-200">Phường Thủ Dầu Một</span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+                Công trình phục dựng số hóa 3D toàn diện không gian <strong className="text-amber-200">Di tích Nhà việc Phú Cường lịch sử</strong> ven bờ sông Bạch Đằng. Trải nghiệm tham quan thực tế ảo 360°, chạm tương tác khám phá các hiện vật quý, sa bàn chiến dịch và hệ thống thuyết minh di sản thông minh.
+              </p>
+
+              {/* 5 Gian Trưng Bày 3D */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pt-1 text-xs">
+                {[
+                  { id: '1', title: 'Gian 1: Khuôn viên & Bia Chứng Tích' },
+                  { id: '2', title: 'Gian 2: Khởi Nghĩa Tháng Tám 1945' },
+                  { id: '3', title: 'Gian 3: Sa Bàn Giải Phóng 1975' },
+                  { id: '4', title: 'Gian 4: Bác Hồ & Cụ Phó Bảng' },
+                  { id: '5', title: 'Gian 5: Làng Nghề Gốm Sứ - Mộc' },
+                ].map((g) => (
+                  <div key={g.id} className="p-2 rounded-xl bg-white/5 border border-white/10 hover:border-amber-400/50 transition-colors">
+                    <span className="text-[10px] font-mono text-amber-400 font-bold block">0{g.id}</span>
+                    <span className="text-[11px] font-medium text-slate-200 line-clamp-2 leading-tight">{g.title.split(': ')[1]}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Cụm nút hành động */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    hcmSfx.playClick(900);
+                    if (onOpenHeritage3D) {
+                      onOpenHeritage3D();
+                    } else {
+                      onSelectTab('TDM_HOUSE');
+                    }
+                  }}
+                  className="hcm-btn-flat px-6 py-3 rounded-xl bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 hover:from-rose-800 hover:to-amber-700 text-white font-bold text-sm shadow-lg flex items-center gap-2 cursor-pointer ring-1 ring-white/20"
+                >
+                  <Box className="w-4 h-4 text-amber-200 animate-spin-slow" />
+                  <span>Vào Tham Quan Bản 3D VR Ngay</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    hcmSfx.playClick(600);
+                    onSelectTab('TDM_HOUSE');
+                  }}
+                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-slate-200 hover:text-white font-semibold text-sm transition-all cursor-pointer flex items-center gap-2"
+                >
+                  <Compass className="w-4 h-4 text-rose-300" />
+                  <span>Xem Bản Đồ 8 Điểm Di Tích Đất Thủ</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Cột phải: Hình ảnh minh họa 3D VR nổi bật với khung kính viền đồng */}
+            <div
+              onClick={() => {
+                hcmSfx.playClick(900);
+                if (onOpenHeritage3D) {
+                  onOpenHeritage3D();
+                } else {
+                  onSelectTab('TDM_HOUSE');
+                }
+              }}
+              className="relative w-full lg:w-[420px] aspect-[4/3] rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl group cursor-pointer shrink-0"
+              title="Nhấp để vào chế độ Tham Quan Thực Tế Ảo 3D"
+            >
+              <img
+                src="/assets/hcm-space/ueh-3d.jpg"
+                alt="Phục dựng mô hình 3D Nhà truyền thống Thủ Dầu Một"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/hcm-space/ben-nha-rong-06.jpg';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+
+              <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/60 text-amber-300 text-xs font-bold flex items-center gap-1.5 shadow-md">
+                <RotateCw className="w-3.5 h-3.5 animate-spin" />
+                <span>360° VR Interactive</span>
+              </div>
+
+              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-amber-300 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Bản Thử Nghiệm Số Hóa 3D
+                  </span>
+                  <span className="text-[11px] text-rose-300 font-bold group-hover:underline">Bấm để khám phá →</span>
+                </div>
+                <p className="text-[11px] text-slate-300 mt-0.5 line-clamp-1">
+                  Nhà việc Phú Cường • 5 gian trưng bày hiện vật 3D
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="heritage-directory" aria-labelledby="heritage-directory-heading">
         <div className="heritage-section-heading">
           <div><p className="heritage-eyebrow">KẾT NỐI VỚI DI SẢN</p><h2 id="heritage-directory-heading">Mỗi tư liệu, một hành trình khám phá</h2></div>

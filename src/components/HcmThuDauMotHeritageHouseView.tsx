@@ -39,6 +39,7 @@ import {
 } from 'lucide-react';
 import { DongSonDrumIcon, HoaSenIcon } from './TraditionalMotifs';
 import { hcmVoiceService } from '../services/hcmVoiceService';
+import { hcmSfx } from '../services/hcmSoundEffects';
 import { HcmDynamicHeritageMapModal } from './HcmDynamicHeritageMapModal';
 import {
   THU_DAU_MOT_HERITAGE_SITES,
@@ -150,6 +151,18 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
   initialSubTab = 'HERITAGE_MAP',
 }) => {
   const [activeSubTab, setActiveSubTab] = useState<SubTabKey>(initialSubTab);
+
+  // Đồng bộ khi prop initialSubTab thay đổi từ bên ngoài (ví dụ nhấp nút Tham quan 3D từ trang chủ)
+  React.useEffect(() => {
+    if (initialSubTab) {
+      setActiveSubTab(initialSubTab);
+    }
+  }, [initialSubTab]);
+
+  const handleSwitchSubTab = (subTab: SubTabKey) => {
+    hcmSfx.playClick(subTab === '3D_TOUR' ? 900 : 600);
+    setActiveSubTab(subTab);
+  };
 
   // States for 3D Tour
   const [activeZone, setActiveZone] = useState<HeritageZone>(HERITAGE_ZONES[0]);
@@ -334,7 +347,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
           {/* Sub-tab 1: Bản đồ di tích */}
           <button
             type="button"
-            onClick={() => setActiveSubTab('HERITAGE_MAP')}
+            onClick={() => handleSwitchSubTab('HERITAGE_MAP')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
               activeSubTab === 'HERITAGE_MAP'
                 ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-sm ring-2 ring-[#751D2C]/20'
@@ -357,7 +370,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
           {/* Sub-tab 2: Lịch sử Đảng bộ & Biên niên sử */}
           <button
             type="button"
-            onClick={() => setActiveSubTab('PARTY_HISTORY')}
+            onClick={() => handleSwitchSubTab('PARTY_HISTORY')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
               activeSubTab === 'PARTY_HISTORY'
                 ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-sm ring-2 ring-[#751D2C]/20'
@@ -377,24 +390,33 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
             </span>
           </button>
 
-          {/* Sub-tab 3: Thực tế ảo 3D */}
+          {/* Sub-tab 3: Thực tế ảo 3D - Công trình trọng điểm */}
           <button
             type="button"
-            onClick={() => setActiveSubTab('3D_TOUR')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            onClick={() => handleSwitchSubTab('3D_TOUR')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 relative ${
               activeSubTab === '3D_TOUR'
-                ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-sm ring-2 ring-[#751D2C]/20'
-                : 'bg-white border border-rose-200/80 text-slate-900 hover:border-rose-500'
+                ? 'bg-gradient-to-r from-rose-700 via-rose-800 to-[#881337] text-white shadow-md ring-2 ring-amber-400/80 scale-102'
+                : 'bg-gradient-to-r from-amber-50 to-rose-50/60 border border-amber-300 text-[#881337] hover:border-rose-500 shadow-2xs'
             }`}
           >
-            <Box className="w-4 h-4 text-rose-600" />
-            <span>Nhà Truyền Thống Thực Tế Ảo 360°</span>
+            <Box className="w-4 h-4 text-amber-500 animate-spin-slow" />
+            <span>Nhà Truyền Thống Số 3D VR</span>
+            <span
+              className={`px-2 py-0.5 text-[9.5px] font-black rounded-md ${
+                activeSubTab === '3D_TOUR'
+                  ? 'bg-amber-400 text-slate-950'
+                  : 'bg-rose-700 text-white animate-pulse'
+              }`}
+            >
+              Sắp Triển Khai
+            </span>
           </button>
 
           {/* Sub-tab 4: Hướng dẫn kỹ thuật */}
           <button
             type="button"
-            onClick={() => setActiveSubTab('TECH_GUIDE')}
+            onClick={() => handleSwitchSubTab('TECH_GUIDE')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
               activeSubTab === 'TECH_GUIDE'
                 ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-sm'
@@ -1012,6 +1034,32 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
           ========================================================================= */}
       {activeSubTab === '3D_TOUR' && (
         <div className="space-y-6">
+          {/* Banner Nổi Bật Công Trình Trọng Điểm */}
+          <div className="rounded-2xl bg-gradient-to-r from-amber-50 via-rose-50 to-amber-50/80 border-2 border-amber-300 p-4 shadow-xs flex flex-wrap items-center justify-between gap-3 select-none">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-700 to-rose-900 text-white flex items-center justify-center shadow-md">
+                <Box className="w-5 h-5 text-amber-200 animate-spin-slow" />
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-100 px-2 py-0.5 rounded border border-rose-200">
+                    CÔNG TRÌNH SỐ HÓA TRỌNG ĐIỂM
+                  </span>
+                  <span className="text-xs font-bold text-amber-900">
+                    Sắp Triển Khai · Bản Thử Nghiệm 3D VR 360°
+                  </span>
+                </div>
+                <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5">
+                  Nhà Truyền Thống Phường Thủ Dầu Một — Trực Quan 360 Độ
+                </h3>
+              </div>
+            </div>
+
+            <div className="text-xs text-slate-600 italic">
+              Nhấp vào các gian bên dưới để chuyển đổi phòng trưng bày • Bấm các điểm nhấp nháy trên ảnh để xem hiện vật
+            </div>
+          </div>
+
           {/* Lưới chọn 5 phân khu tham quan */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
             {HERITAGE_ZONES.map((zone, idx) => (
@@ -1019,18 +1067,19 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
                 key={zone.id}
                 type="button"
                 onClick={() => {
+                  hcmSfx.playClick(800);
                   setActiveZone(zone);
                   setActiveHotspot(null);
                 }}
                 className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                   activeZone.id === zone.id
-                    ? 'border-rose-500 bg-white shadow-md ring-2 ring-[#751D2C]/20'
+                    ? 'border-rose-500 bg-white shadow-md ring-2 ring-[#751D2C]/20 -translate-y-0.5'
                     : 'border-rose-200/80/70 bg-white/60 hover:bg-white hover:border-rose-300'
                 }`}
               >
                 <div className="space-y-1">
                   <div className="flex items-center justify-between text-[10.5px] font-bold">
-                    <span className="text-rose-600">Gian 0{idx + 1}</span>
+                    <span className="text-rose-600 font-bold">Gian 0{idx + 1}</span>
                     <span className="text-slate-600">{zone.historicalPeriod}</span>
                   </div>
                   <h4 className="font-serif font-bold text-xs text-slate-900 line-clamp-2 leading-snug">
@@ -1059,7 +1108,10 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setIsAutoTour(!isAutoTour)}
+                  onClick={() => {
+                    hcmSfx.playClick(650);
+                    setIsAutoTour(!isAutoTour);
+                  }}
                   className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
                     isAutoTour ? 'bg-rose-700 text-white' : 'bg-white/10 hover:bg-white/20 text-rose-100'
                   }`}
@@ -1070,7 +1122,10 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
 
                 <button
                   type="button"
-                  onClick={handleToggleAudio}
+                  onClick={() => {
+                    hcmSfx.playClick(500);
+                    handleToggleAudio();
+                  }}
                   className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-rose-100 transition-colors cursor-pointer"
                   title="Thuyết minh âm thanh"
                 >
@@ -1100,7 +1155,10 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
                 >
                   <button
                     type="button"
-                    onClick={() => setActiveHotspot(activeHotspot?.title === hotspot.title ? null : hotspot)}
+                    onClick={() => {
+                      hcmSfx.playClick(1000);
+                      setActiveHotspot(activeHotspot?.title === hotspot.title ? null : hotspot);
+                    }}
                     className="group relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-rose-700 to-[#881337]/90 border-2 border-rose-300 text-white hover:scale-125 transition-all shadow-lg cursor-pointer"
                   >
                     <Eye className="w-4 h-4 text-rose-100" />

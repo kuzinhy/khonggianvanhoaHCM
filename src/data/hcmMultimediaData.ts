@@ -12,6 +12,7 @@ export interface HistoricalSpeechAudio {
   date: string;
   duration: string;
   source: string;
+  academicCitation?: string; // Trích dẫn chuẩn chỉ học thuật: Hồ Chí Minh Toàn tập, NXB CTQG Sự thật
   location: string;
   significance: string;
   youtubeId: string;
@@ -50,6 +51,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: '02/09/1945',
     duration: '06:56',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV) & Trung tâm Lưu trữ Quốc gia III',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 4, tr. 1–3, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Quảng trường Ba Đình, Hà Nội',
     significance: 'Văn kiện lập quốc thiêng liêng, chấm dứt chế độ thực dân phong kiến, mở ra kỷ nguyên độc lập tự do cho dân tộc Việt Nam.',
     youtubeId: 'Pjpt7aGiY8E',
@@ -72,6 +74,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: '19/12/1946',
     duration: '01:37',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 4, tr. 534, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Làng Vạn Phúc, Hà Đông',
     significance: 'Lời hịch cứu nước hào hùng của non sông, hiệu triệu toàn thể 20 triệu đồng bào đứng lên quyết tử cho Tổ quốc quyết sinh.',
     youtubeId: 'RzTxaGZ4bTw',
@@ -94,6 +97,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: '17/07/1966',
     duration: '01:13',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 15, tr. 130–131, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Thủ đô Hà Nội',
     significance: 'Khẳng định chân lý thời đại, đúc kết ý chí sắt đá của toàn dân tộc Việt Nam quyết tâm đánh thắng giặc Mỹ xâm lược.',
     youtubeId: 'sloE3zmHDDc',
@@ -116,6 +120,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: 'Giao thừa Tết Kỷ Dậu (01/01/1969)',
     duration: '02:33',
     source: 'Bản ghi âm gốc: Đài Tiếng nói Việt Nam (VOV)',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 15, tr. 529, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Nhà sàn Bác Hồ, Phủ Chủ tịch, Hà Nội',
     significance: 'Bản ghi âm bài thơ chúc Tết cuối cùng của Bác Hồ gửi đồng bào và chiến sĩ cả nước trước lúc Người đi xa.',
     youtubeId: 'PF9M5F7nWtI',
@@ -137,6 +142,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: '15/10/1956',
     duration: '09:02',
     source: 'Tư liệu Âm thanh Trung ương Đoàn & Đài TNVN',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 10, tr. 437–442, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Hà Nội',
     significance: 'Lời căn dặn ân cần đối với thanh niên: Rường cột của nước nhà, xung kích trên mọi mặt trận kiến thiết đất nước.',
     youtubeId: '2wWpvV_wXQg',
@@ -159,6 +165,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     date: 'Công bố 09/1969',
     duration: '08:03',
     source: 'Trung tâm Lưu trữ Quốc gia III & Viện Hồ Chí Minh',
+    academicCitation: 'Hồ Chí Minh Toàn tập, Tập 15, tr. 611–618, NXB Chính trị quốc gia Sự thật, Hà Nội, 2011.',
     location: 'Nhà sàn Phủ Chủ tịch',
     significance: 'Bảo vật Quốc gia vô giá, kết tinh toàn bộ tư tưởng, đạo đức, tâm hồn và tình yêu bao la của Người đối với Đảng, Tổ quốc và nhân loại.',
     youtubeId: 'k32GOQDPWj0',

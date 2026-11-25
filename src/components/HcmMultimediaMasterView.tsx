@@ -421,6 +421,12 @@ export const HcmMultimediaMasterView: React.FC = () => {
                         <strong className="text-amber-300">Ý nghĩa lịch sử:</strong> {selectedSpeech.significance}
                       </div>
                     )}
+
+                    {selectedSpeech.academicCitation && (
+                      <div className="pt-2 border-t border-white/10 text-[10.5px] text-amber-100/80 leading-relaxed font-sans">
+                        <strong className="text-amber-300">Trích dẫn chuẩn:</strong> {selectedSpeech.academicCitation}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -224,6 +224,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
   const [isRedTourOpen, setIsRedTourOpen] = useState(false);
   const [isHeritageAnalyticsOpen, setIsHeritageAnalyticsOpen] = useState(false);
   const [isPageNavigating, setIsPageNavigating] = useState(false);
+  const [heritageHouseSubTab, setHeritageHouseSubTab] = useState<'HERITAGE_MAP' | 'PARTY_HISTORY' | '3D_TOUR' | 'TECH_GUIDE'>('HERITAGE_MAP');
 
   const handleSelectTab = (tab: SpaceTab) => {
     hcmSfx.playClick();
@@ -232,6 +233,13 @@ export const HcmCulturalSpacePage: React.FC = () => {
     setTimeout(() => {
       setIsPageNavigating(false);
     }, 380);
+  };
+
+  const handleOpenHeritage3D = () => {
+    hcmSfx.playClick(900);
+    setHeritageHouseSubTab('3D_TOUR');
+    handleSelectTab('TDM_HOUSE');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const isFirstMountRef = useRef(true);
@@ -663,6 +671,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
             setCitizenAuthOpen(true);
           }}
           onOpenGuidedJourney={() => setGuidedJourneyOpen(true)}
+          onOpenHeritage3D={handleOpenHeritage3D}
         />
       ) : (
         <>
@@ -1219,7 +1228,10 @@ export const HcmCulturalSpacePage: React.FC = () => {
       )}
 
       {activeTab === 'TDM_HOUSE' && (
-        <HcmThuDauMotHeritageHouseView onBackToFoyer={() => setActiveTab('FOYER')} />
+        <HcmThuDauMotHeritageHouseView
+          initialSubTab={heritageHouseSubTab}
+          onBackToFoyer={() => handleSelectTab('FOYER')}
+        />
       )}
 
       {activeTab === 'TDM_CHRONOLOGY' && (
