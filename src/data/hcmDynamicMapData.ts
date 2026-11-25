@@ -1,0 +1,741 @@
+// Dữ liệu Hệ thống Bản đồ số sinh động:
+// 1. Dấu chân hành trình của Bác trên Bản đồ Việt Nam (Có đầy đủ Quần đảo Hoàng Sa và Trường Sa)
+// 2. Bản đồ số di sản, địa chỉ đỏ và Không gian Văn hóa Hồ Chí Minh Phường Thủ Dầu Một (5 Khu phố)
+
+export interface VietnamJourneyPoint {
+  id: string;
+  order: number;
+  year: string;
+  name: string;
+  location: string;
+  coords: { x: number; y: number }; // Coordinates on 1000x1000 Vietnam real map
+  category: 'QUE_HUONG' | 'CUU_NUOC' | 'KHANG_CHIEN' | 'XAY_DUNG' | 'GAN_KET_MIEN_NAM';
+  significance: string;
+  quote?: string;
+  actionLesson: string;
+  imageUrl: string;
+  historicalContext: string; // Bối cảnh lịch sử chuyên sâu
+  keyMilestones: { time: string; event: string }[]; // Dòng mốc sự kiện tiêu biểu
+  heritageSites: string[]; // Di tích & hiện vật lưu giữ hôm nay
+  coreValue: string; // Giá trị tư tưởng cốt lõi
+  audioNarrative?: string; // Lời thuyết minh truyền cảm
+}
+
+export interface IslandSovereigntyPoint {
+  id: string;
+  name: string;
+  jurisdiction: string;
+  coords: { x: number; y: number };
+  description: string;
+  significance: string;
+  islandsCount?: string;
+}
+
+export interface ThuDauMotMapPoint {
+  id: string;
+  code: string;
+  name: string;
+  khuPho: string;
+  category: 'DI_TICH_LICH_SU' | 'KHONG_GIAN_HCM' | 'DIA_CHI_DO' | 'TUYEN_DO';
+  address: string;
+  coords: { x: number; y: number }; // Percentage (0 - 100) on TDM map canvas
+  lat: number; // Real GPS Latitude
+  lng: number; // Real GPS Longitude
+  summary: string;
+  significance: string;
+  establishedYear: string;
+  rank?: string;
+  visitDuration: string;
+  googleMapsQuery: string;
+  imageUrl: string;
+}
+
+export interface ThuDauMotZone {
+  id: string;
+  khuPho: string;
+  name: string;
+  description: string;
+  color: string;
+  borderColor: string;
+  path: string; // SVG path
+  centerCoords: { x: number; y: number };
+}
+
+// =========================================================================
+// 1. TỌA ĐỘ CHỦ QUYỀN BIỂN ĐẢO VIỆT NAM (BẮT BUỘC CÓ HOÀNG SA & TRƯỜNG SA)
+// =========================================================================
+export const VIETNAM_ISLANDS_SOVEREIGNTY: IslandSovereigntyPoint[] = [
+  {
+    id: 'hoang-sa',
+    name: 'Quần đảo Hoàng Sa',
+    jurisdiction: 'Huyện đảo Hoàng Sa, Thành phố Đà Nẵng',
+    coords: { x: 74, y: 44 },
+    description: 'Quần đảo san hô gồm hơn 30 đảo, bãi đá, cồn cát ở phía Bắc Biển Đông.',
+    significance: 'Khẳng định chủ quyền lịch sử và pháp lý thiêng liêng, bất khả xâm phạm của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam trên Biển Đông theo Công ước UNCLOS 1982.',
+    islandsCount: 'Hơn 30 đảo, bãi đá ngầm',
+  },
+  {
+    id: 'truong-sa',
+    name: 'Quần đảo Trường Sa',
+    jurisdiction: 'Huyện đảo Trường Sa, Tỉnh Khánh Hòa',
+    coords: { x: 80, y: 76 },
+    description: 'Quần đảo gồm hơn 100 hòn đảo, bãi ngầm trải dài phía Nam Biển Đông, phên dậu bảo vệ Tổ quốc.',
+    significance: 'Vùng biển đảo thiêng liêng nơi các thế hệ cán bộ, chiến sĩ Hải quân nhân dân Việt Nam kiên cường gìn giữ từng tấc đất, sải sóng quê hương theo lời căn dặn của Bác Hồ: “Ngày trước ta chỉ có đêm và rừng. Ngày nay ta có ngày, có trời, có biển. Bờ biển ta dài, tươi đẹp, ta phải biết giữ gìn lấy nó”.',
+    islandsCount: 'Hơn 100 đảo, đá, cồn san hô',
+  },
+  {
+    id: 'bach-long-vi',
+    name: 'Đảo Bạch Long Vĩ',
+    jurisdiction: 'Thành phố Hải Phòng',
+    coords: { x: 67, y: 22 },
+    description: 'Tiền đồn kiểm soát vịnh Bắc Bộ kiên trung.',
+    significance: 'Vị trí chiến lược an ninh quốc phòng và ngư trường truyền thống của nhân dân Việt Nam.',
+  },
+  {
+    id: 'con-dao',
+    name: 'Côn Đảo',
+    jurisdiction: 'Tỉnh Bà Rịa – Vũng Tàu',
+    coords: { x: 55, y: 92 },
+    description: 'Địa ngục trần gian xưa, trường học cách mạng của hàng vạn chiến sĩ cộng sản kiên trung.',
+    significance: 'Nơi ngút ngàn khí phách anh hùng của các liệt sĩ và đồng chí Võ Thị Sáu.',
+  },
+  {
+    id: 'phu-quoc',
+    name: 'Thành phố Đảo Phú Quốc & Thổ Chu',
+    jurisdiction: 'Tỉnh Kiên Giang',
+    coords: { x: 26, y: 90 },
+    description: 'Đảo ngọc Tây Nam của Tổ quốc trên Vịnh Thái Lan.',
+    significance: 'Khẳng định chủ quyền lãnh hải vùng biển Tây Nam của non sông Việt Nam.',
+  },
+];
+
+// =========================================================================
+// 2. DẤU CHÂN HÀNH TRÌNH BÁC HỒ TRÊN BẢN ĐỒ VIỆT NAM (1890 – 1969 & NAY)
+// =========================================================================
+export const HO_CHI_MINH_VIETNAM_JOURNEY: VietnamJourneyPoint[] = [
+  {
+    id: 'vn-step-1',
+    order: 1,
+    year: '1890 – 1895',
+    name: 'Làng Sen & Hoàng Trù (Kim Liên, Nam Đàn, Nghệ An) — Nôi Ấu Thơ Của Người Lãnh Tụ',
+    location: 'Nam Đàn, Nghệ An',
+    coords: { x: 252, y: 314 },
+    category: 'QUE_HUONG',
+    significance: 'Nơi cất tiếng khóc chào đời ngày 19/5/1890. Quê mẹ Hoàng Trù và quê cha Làng Sen giàu truyền thống văn hóa ví giặm, hiếu học và tinh thần bất khuất chống ngoại xâm của xứ Nghệ đã hun đúc lòng nhân ái, chí kiên cường và lòng yêu nước thương nòi từ thuở nằm nôi của Chủ tịch Hồ Chí Minh.',
+    historicalContext: 'Cuối thế kỷ XIX, đất nước chìm trong bóng đêm nô lệ sau khi phong trào Cần Vương bị thực dân Pháp đàn áp đẫm máu. Tại vùng đất Nam Đàn địa linh nhân kiệt, gia đình nhà Nho nghèo thanh bạch của Cụ Phó bảng Nguyễn Sinh Sắc và thân mẫu Hoàng Thị Loan đã nuôi dưỡng tâm hồn cậu bé Nguyễn Sinh Cung bằng đạo lý làm người nhân nghĩa và tình thương bao la.',
+    keyMilestones: [
+      { time: '19/05/1890', event: 'Cậu bé Nguyễn Sinh Cung cất tiếng khóc chào đời tại mái nhà tranh ba gian quê ngoại Hoàng Trù.' },
+      { time: '1890 – 1895', event: 'Tuổi thơ ấm áp bên khung cửi của mẹ, nghe những câu hò ví giặm và chuyện kể về các nghĩa sĩ cứu nước.' },
+      { time: '1901 – 1906', event: 'Thân phụ đỗ Phó bảng, Người trở về sống tại Làng Sen, mang tên mới Nguyễn Tất Thành, tiếp thu tư tưởng yêu nước của các sĩ phu Nghệ An.' },
+    ],
+    heritageSites: [
+      'Khu di tích Quốc gia đặc biệt Kim Liên',
+      'Nhà tranh 3 gian cụ Hoàng Xuân Đường (quê ngoại)',
+      'Ngôi nhà lá 5 gian do dân làng Sen dựng tặng Cụ Phó bảng (quê nội)',
+      'Khu mộ thân mẫu Hoàng Thị Loan tại núi Động Tranh',
+    ],
+    coreValue: 'Cội nguồn gia đình, đạo lý hiếu kính, truyền thống hiếu học và lòng nhân ái vì nhân dân.',
+    quote: 'Tôi sinh ra ở Nghệ An, một nơi có truyền thống cách mạng kiên cường... Quê hương nghĩa trọng tình thâm.',
+    actionLesson: 'Gìn giữ và bồi đắp truyền thống uống nước nhớ nguồn; giáo dục con cháu ý chí vượt khó vươn lên, rèn luyện chí hướng phụng sự Tổ quốc.',
+    audioNarrative: 'Về với Kim Liên, Nam Đàn, Nghệ An là về với chiếc nôi ấu thơ của Bác Hồ kính yêu. Dưới mái tranh đơn sơ ở quê ngoại Hoàng Trù và quê nội Làng Sen, tình yêu thương bao la của mẹ cha cùng truyền thống quật cường của quê hương xứ Nghệ đã gieo những hạt mầm đầu tiên cho nhân cách lớn lao của Người.',
+    imageUrl: '/assets/hcm-space/card-cuoc-doi.jpg',
+  },
+  {
+    id: 'vn-step-2',
+    order: 2,
+    year: '1895 – 1909',
+    name: 'Kinh thành Huế & Trường Quốc học Huế — Hun Đúc Ý Chí Cứu Nước',
+    location: 'Thừa Thiên Huế',
+    coords: { x: 381, y: 450 },
+    category: 'QUE_HUONG',
+    significance: 'Kinh đô Huế là nơi Người sống gần 10 năm trong hai thời kỳ (1895–1901 và 1906–1909). Tại đây, Nguyễn Tất Thành chứng kiến nỗi đau mất mẹ, tận mắt thấy cảnh lầm than cùng cực của nhân dân dưới chế độ thực dân - phong kiến, sớm giác ngộ tinh thần chống áp bức bất công.',
+    historicalContext: 'Huế bấy giờ là trung tâm đầu não của chế độ phong kiến nhà Nguyễn dưới ách đô hộ của Tòa Khâm sứ Pháp. Nhân dân chịu sưu cao thuế nặng, mâu thuẫn giai cấp và dân tộc ngày càng gay gắt. Đồng thời, trường Quốc học Huế cũng là nơi tiếp nhận những luồng tư tưởng tân học phương Tây tiến bộ.',
+    keyMilestones: [
+      { time: '1895 – 1901', event: 'Theo cha vào Huế lần thứ nhất. Thân mẫu Hoàng Thị Loan đột ngột qua đời năm 1901, cậu bé Tất Thành vừa 11 tuổi phải bế em thơ lo liệu việc tang.' },
+      { time: '1906 – 1908', event: 'Học tại Trường Quốc học Huế, học giỏi chữ Hán và tiếng Pháp, tiếp thu các tư tưởng Tự do - Bình đẳng - Bác ái.' },
+      { time: '04/1908', event: 'Tham gia phong trào chống thuế Trung Kỳ của đồng bào Thừa Thiên; đứng ra làm thông ngôn cho nhân dân lao động đòi công lý.' },
+    ],
+    heritageSites: [
+      'Trường Quốc học Huế (bên dòng sông Hương)',
+      'Nhà lưu niệm Bác Hồ tại số 112 Mai Thúc Loan',
+      'Nhà lưu niệm Dương Nỗ (huyện Phú Vang)',
+      'Tượng đài Nguyễn Tất Thành trong khuôn viên Quốc học Huế',
+    ],
+    coreValue: 'Bản lĩnh kiên cường trước nghịch cảnh, tinh thần dấn thân vì quyền sống của dân nghèo.',
+    quote: 'Đồng bào ta không chịu nổi cảnh áp bức, sưu cao thuế nặng. Thấy đồng bào bị đàn áp, lương tâm tôi không thể ngồi yên.',
+    actionLesson: 'Dũng cảm đứng lên bảo vệ lẽ phải, thấu hiểu nỗi vất vả của quần chúng lao động, rèn luyện tri thức để phụng sự xã hội.',
+    audioNarrative: 'Kinh thành Huế lưu giữ những ký ức sâu sắc trong cuộc đời Bác. Nơi Người đã trải qua nỗi đau mất mẹ thuở thiếu thời, kiên cường vượt qua gian khó để học tập và dấn thân cùng phong trào chống sưu thuế của đồng bào, định hình nên ý chí đấu tranh giải phóng dân tộc.',
+    imageUrl: '/assets/hcm-space/tieusu1-1911.png',
+  },
+  {
+    id: 'vn-step-3',
+    order: 3,
+    year: '1909 – 1910',
+    name: 'Quy Nhơn (Bình Định) — Cuộc Chia Tay Lịch Sử & Chí Lớn Phương Nam',
+    location: 'Quy Nhơn & Tây Sơn, Bình Định',
+    coords: { x: 482, y: 615 },
+    category: 'QUE_HUONG',
+    significance: 'Cột mốc ngã rẽ quyết định cuộc đời Nguyễn Tất Thành: Cuộc gặp gỡ chia tay lịch sử giữa hai cha con tại Bình Khê. Lời căn dặn của Cụ Phó bảng đã khắc sâu vào tâm khảm, thôi thúc người thanh niên yêu nước dứt bỏ mọi ràng buộc cá nhân để dấn thân tìm con đường mới cứu muôn dân.',
+    historicalContext: 'Sau biến cố phong trào chống thuế ở Huế, Nguyễn Tất Thành bị mật thám Pháp theo dõi. Cụ Nguyễn Sinh Sắc được triều đình cử vào làm Tri huyện Bình Khê (Bình Định). Nguyễn Tất Thành vào Quy Nhơn trọ học tại nhà thầy giáo Phạm Ngọc Thọ (thân phụ Bác sĩ Phạm Ngọc Thạch) để nâng cao vốn tiếng Pháp chuẩn bị cho đại cuộc.',
+    keyMilestones: [
+      { time: '05/1909', event: 'Nguyễn Tất Thành vào Bình Định, theo học tiếng Pháp tại Trường tiểu học Quy Nhơn.' },
+      { time: 'Cuối năm 1909', event: 'Lên Bình Khê (nay là Tây Sơn) thăm cha, trao đổi tâm sự về vận mệnh giang sơn xã tắc.' },
+      { time: 'Đầu năm 1910', event: 'Cuộc chia tay cảm động giữa hai cha con. Cụ Phó bảng căn dặn: “Nước mất không lo cứu, đi tìm cha làm gì!”. Đó cũng là lần cuối cùng hai cha con gặp mặt.' },
+    ],
+    heritageSites: [
+      'Khu tưởng niệm Cụ Nguyễn Sinh Sắc tại Bình Khê (Tây Sơn)',
+      'Tượng đài Nguyễn Sinh Sắc - Nguyễn Tất Thành tại Quảng trường Nguyễn Tất Thành, TP. Quy Nhơn',
+      'Di tích Trường tiểu học Pháp - Việt Quy Nhơn',
+    ],
+    coreValue: 'Đại nghĩa cứu nước cao hơn tình nhà; sự tự lập và dứt khoát vì lý tưởng giải phóng dân tộc.',
+    quote: 'Nước mất không lo cứu, đi tìm cha làm gì! Lời dạy nghiêm khắc của thân phụ đã trở thành ngọn lửa soi đường cho hành trình của tôi.',
+    actionLesson: 'Biết đặt lợi ích tối cao của Tổ quốc và đồng bào lên trên hạnh phúc riêng tư; kiên định với lý tưởng sống cao đẹp.',
+    audioNarrative: 'Tại mảnh đất Bình Định nghĩa khí, cuộc chia tay giữa Cụ Phó bảng Nguyễn Sinh Sắc và người con trai Nguyễn Tất Thành đã đi vào lịch sử. Câu nói nghiêm khắc nhưng chứa chan niềm tin cậy của người cha đã tiếp thêm sức mạnh vô biên để người thanh niên yêu nước tiếp tục cuộc trường chinh.',
+    imageUrl: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+  },
+  {
+    id: 'vn-step-4',
+    order: 4,
+    year: '1910 – 1911',
+    name: 'Trường Dục Thanh (Phan Thiết) — Gieo Hạt Mầm Yêu Nước Trong Thế Hệ Trẻ',
+    location: 'Phan Thiết, Bình Thuận',
+    coords: { x: 413, y: 790 },
+    category: 'CUU_NUOC',
+    significance: 'Nơi lưu dấu hình ảnh Thầy giáo Nguyễn Tất Thành - người thầy mẫu mực, tận tụy, truyền thụ tinh thần khai phóng, tình yêu giang sơn gấm vóc và ý chí tự cường cho học sinh qua phong trào Duy Tân tiến bộ của các sĩ phu Bình Thuận.',
+    historicalContext: 'Trường Dục Thanh (Dục Thanh Học Hiệu - Giáo dục thanh niên) do các sĩ phu yêu nước như Nguyễn Trọng Lội, Nguyễn Quý Anh lập nên theo tôn chỉ Khai dân trí - Chấn dân khí - Hậu dân sinh. Đây là trường tư thục tiến bộ bậc nhất Trung Kỳ bấy giờ.',
+    keyMilestones: [
+      { time: '09/1910', event: 'Nguyễn Tất Thành được giới thiệu về trường Dục Thanh dạy học, phụ trách dạy chữ Quốc ngữ, chữ Hán và môn thể dục.' },
+      { time: '1910 – 1911', event: 'Áp dụng phương pháp dạy học sinh động: Đưa học sinh dã ngoại ven sông Cà Ty, ngắm biển Phan Thiết, kể gương anh hùng dân tộc, rèn luyện thân thể khỏe mạnh.' },
+      { time: '02/1911', event: 'Rời Phan Thiết lên đường vào Sài Gòn mang theo hoài bão lớn lao vượt đại dương, để lại sự kính trọng và luyến lưu sâu sắc trong lòng học trò.' },
+    ],
+    heritageSites: [
+      'Khu di tích Trường Dục Thanh (Phan Thiết)',
+      'Nhà Ngư và Gian gác Ngoạ Triều Lục',
+      'Cây khế cổ thụ và Giếng nước Bác dùng sinh hoạt',
+      'Bảo tàng Hồ Chí Minh - Chi nhánh Bình Thuận',
+    ],
+    coreValue: 'Đạo làm thầy, tư tưởng giáo dục toàn diện cả đức - trí - thể - mỹ, tinh thần tự học mẫu mực.',
+    quote: 'Muốn cứu nước, phải khai dân trí, chấn dân khí, hậu dân sinh. Giáo dục là nền tảng để xây dựng tương lai dân tộc.',
+    actionLesson: 'Nâng cao vai trò giáo dục và tự giáo dục; truyền cảm hứng yêu nước và đạo đức sống tích cực cho thế hệ trẻ hôm nay.',
+    audioNarrative: 'Bên dòng sông Cà Ty hiền hòa, Trường Dục Thanh ghi dấu những ngày tháng Bác làm người thầy giáo trẻ mang tâm huyết rèn đức luyện tài cho học trò. Tấm lòng vì dân, vì nước và phương pháp sư phạm tiến bộ của Người mãi là ngọn hải đăng cho nền giáo dục nước nhà.',
+    imageUrl: '/assets/hcm-space/tieusu2-1919.png',
+  },
+  {
+    id: 'vn-step-5',
+    order: 5,
+    year: '1911 (05/06/1911)',
+    name: 'Bến Nhà Rồng (Sài Gòn) — Bước Ngoặt Lịch Sử Ra Đi Tìm Đường Cứu Nước',
+    location: 'TP. Hồ Chí Minh (Sài Gòn)',
+    coords: { x: 325, y: 800 },
+    category: 'CUU_NUOC',
+    significance: 'Cột mốc vĩ đại mở ra kỷ nguyên mới cho dân tộc Việt Nam. Người thanh niên Nguyễn Tất Thành bước chân xuống con tàu Amiral Latouche-Tréville mang theo đôi bàn tay lao động và trái tim yêu nước nồng nàn, bắt đầu cuộc bôn ba 30 năm tìm chân lý cứu nước.',
+    historicalContext: 'Đầu thế kỷ XX, các phong trào cứu nước từ Cần Vương đến Đông Du, Đông Kinh Nghĩa Thục đều bị dập tắt. Bế tắc về đường lối, Người nhận ra muốn đánh đổ thực dân Pháp thì phải đến tận sào huyệt của chủ nghĩa thực dân để tìm hiểu nguồn cội của tự do, bác ái chân chính.',
+    keyMilestones: [
+      { time: '02/1911 – 06/1911', event: 'Đến Sài Gòn, tạm trú tại xóm thợ thuyền Khánh Hội, hòa mình vào đời sống công nhân nghèo, lấy tên gọi Văn Ba.' },
+      { time: '03/06/1911', event: 'Được nhận làm phụ bếp trên tàu buôn Amiral Latouche-Tréville của hãng vận tải Hợp Thành (Năm Sao).' },
+      { time: '05/06/1911', event: 'Tàu nhổ neo rời Bến cảng Sài Gòn xuôi ra Biển Đông, bắt đầu hành trình vĩ đại qua 3 đại dương, 4 châu lục, gần 30 quốc gia.' },
+    ],
+    heritageSites: [
+      'Di tích Bến Nhà Rồng (Bảo tàng Hồ Chí Minh - Chi nhánh TP. Hồ Chí Minh)',
+      'Cột cờ Thủ Ngữ bên bờ sông Sài Gòn',
+      'Căn nhà số 5 đường Châu Văn Liêm (Quận 5)',
+      'Mô hình con tàu Amiral Latouche-Tréville',
+    ],
+    coreValue: 'Tinh thần tự lực tự cường, bản lĩnh dấn thân bằng chính đôi bàn tay lao động vì đại cuộc độc lập dân tộc.',
+    quote: 'Tôi muốn đi ra nước ngoài, xem nước Pháp và các nước khác. Sau khi xem xét họ làm như thế nào, tôi sẽ trở về giúp đồng bào ta.',
+    actionLesson: 'Dám nghĩ, dám làm, dám đương đầu với thử thách; không ngại khó khăn gian khổ để cống hiến cho sự phát triển của quê hương, đất nước.',
+    audioNarrative: 'Ngày 5 tháng 6 năm 1911, từ dòng sông Sài Gòn lịch sử, người thanh niên yêu nước Nguyễn Tất Thành bước lên tàu ra đi tìm đường cứu nước với hai bàn tay trắng nhưng ắp đầy tình yêu Tổ quốc. Bước ngoặt ấy đã làm thay đổi hoàn toàn vận mệnh của toàn dân tộc Việt Nam.',
+    imageUrl: '/assets/hcm-space/ben-nha-rong-06.jpg',
+  },
+  {
+    id: 'vn-step-6',
+    order: 6,
+    year: '1941 (28/01/1941)',
+    name: 'Hang Pác Bó & Mốc 108 (Cao Bằng) — Ngày Về Lịch Sử Sau 30 Năm Bôn Ba',
+    location: 'Hà Quảng, Cao Bằng',
+    coords: { x: 284, y: 50 },
+    category: 'KHANG_CHIEN',
+    significance: 'Sau đúng ba thập kỷ bôn ba khắp năm châu bốn biển, lãnh tụ Nguyễn Ái Quốc vượt qua mốc 108 biên giới trở về Tổ quốc thân yêu, trực tiếp lãnh đạo phong trào giải phóng dân tộc đi từ thắng lợi này đến thắng lợi khác.',
+    historicalContext: 'Thế chiến II bùng nổ, Pháp bại trận trước phát xít Đức, Nhật tiến vào Đông Dương. Nhận định thời cơ cách mạng đang chín muồi, Bác quyết định về nước, chọn Cao Bằng làm căn cứ địa vì "nơi đây có phong trào tốt từ trước, lại kề sát biên giới, tiến có thể công, thoái có thể thủ".',
+    keyMilestones: [
+      { time: '28/01/1941', event: 'Bác Hồ cùng các đồng chí vượt mốc 108 biên giới Việt - Trung về đến Pác Bó (Mùng 2 Tết Tân Tỵ), cúi hôn lên nắm đất quê hương.' },
+      { time: '10 – 19/05/1941', event: 'Chủ trì Hội nghị Trung ương Đảng lần thứ 8 tại Lán Khuổi Nặm, quyết định thành lập Việt Nam Độc lập Đồng minh (Mặt trận Việt Minh).' },
+      { time: '1941 – 1944', event: 'Sống thanh bạch bên hang Cốc Bó, dịch Lịch sử Đảng Cộng sản Liên Xô, sáng tác ca dao cách mạng và huấn luyện cán bộ nòng cốt.' },
+    ],
+    heritageSites: [
+      'Khu di tích Quốc gia đặc biệt Pác Bó',
+      'Hang Cốc Bó & Suối Lê-nin, Núi Các Mác',
+      'Chiếc bàn đá Bác ngồi làm việc',
+      'Cột mốc biên giới 108 lịch sử',
+      'Lán Khuổi Nặm',
+    ],
+    coreValue: 'Lòng trung thành tuyệt đối với Tổ quốc, tinh thần tự chủ, nghệ thuật xây dựng căn cứ địa cách mạng.',
+    quote: 'Bác về cúi lạy mẹ cha / Hôn lên nắm đất đậm đà nước non... Sáng ra bờ suối, tối vào hang / Cháo bẹ rau măng vẫn sẵn sàng / Bàn đá chông chênh dịch sử Đảng / Cuộc đời cách mạng thật là sang.',
+    actionLesson: 'Ý chí sắt son vượt qua mọi thiếu thốn vật chất; lạc quan cách mạng, gắn bó máu thịt với đồng bào các dân tộc.',
+    audioNarrative: 'Ngày 28 tháng 1 năm 1941 mãi là mốc son chói lọi khi Bác Hồ trở về đất mẹ sau 30 năm xa cách. Tại Pác Bó non xanh nước biếc, Người đã thắp lên ngọn lửa Việt Minh, dẫn đường cho toàn dân tộc vùng lên rũ bùn đứng dậy sáng lòa.',
+    imageUrl: '/assets/hcm-space/tieusu3-1920.png',
+  },
+  {
+    id: 'vn-step-7',
+    order: 7,
+    year: '1945 (05/1945 – 08/1945)',
+    name: 'Căn Cứ Tân Trào (Tuyên Quang) — Thủ Đô Khu Giải Phóng & Lệnh Tổng Khởi Nghĩa',
+    location: 'Sơn Dương, Tuyên Quang',
+    coords: { x: 247, y: 125 },
+    category: 'KHANG_CHIEN',
+    significance: 'Tân Trào là trung tâm đầu não của Cách mạng Tháng Tám năm 1945, nơi Bác Hồ triệu tập Quốc dân Đại hội, ban bố Lệnh Tổng khởi nghĩa giành chính quyền về tay nhân dân trong cả nước trước khi quân Đồng minh kéo vào Đông Dương.',
+    historicalContext: 'Tháng 5/1945, tình hình thế giới biến chuyển mau lẹ, phát xít Đức sụp đổ, Hồng quân Liên Xô tấn công đạo quân Quan Đông của Nhật. Bác chỉ đạo chuyển căn cứ từ Cao Bằng về Tân Trào để thuận tiện lãnh đạo phong trào khởi nghĩa toàn quốc.',
+    keyMilestones: [
+      { time: '04/05/1945', event: 'Bác rời Pác Bó về Tân Trào (Tuyên Quang), chọn làm trung tâm chỉ đạo của 6 tỉnh Khu giải phóng.' },
+      { time: 'Đầu tháng 8/1945', event: 'Bác ốm nặng sốt rét rừng tại lán Nà Nưa, căn dặn đồng chí Võ Nguyên Giáp: “Dù phải đốt cháy cả dãy Trường Sơn cũng phải kiên quyết giành cho được độc lập”.' },
+      { time: '16 – 17/08/1945', event: 'Đại hội Quốc dân họp tại Đình Tân Trào thông qua 10 chính sách lớn của Việt Minh, bầu ra Ủy ban Dân tộc Giải phóng và phát động Tổng khởi nghĩa.' },
+    ],
+    heritageSites: [
+      'Khu di tích Quốc gia đặc biệt Tân Trào',
+      'Cây đa Tân Trào (nơi Đội Việt Nam Tuyên truyền Giải phóng quân làm lễ xuất quân)',
+      'Lán Nà Nưa đơn sơ giữa đại ngàn',
+      'Đình Tân Trào & Đình Hồng Thái',
+    ],
+    coreValue: 'Nghệ thuật chớp thời cơ cách mạng, ý chí quyết tử cho nền độc lập và sức mạnh đại đoàn kết toàn dân.',
+    quote: 'Lúc này thời cơ thuận lợi đã tới, dù hy sinh tới đâu, dù phải đốt cháy cả dãy Trường Sơn cũng phải kiên quyết giành cho được độc lập!',
+    actionLesson: 'Quyết đoán nắm bắt cơ hội, chủ động thích ứng với biến chuyển của thời cuộc; luôn tin tưởng và dựa vào sức mạnh quần chúng nhân dân.',
+    audioNarrative: 'Dưới bóng mát Cây đa Tân Trào và mái lán Nà Nưa gió lộng, Chủ tịch Hồ Chí Minh đã chỉ huy cuộc Tổng khởi nghĩa Tháng Tám thần tốc. Ý chí sắt đá và tầm nhìn chiến lược của Người đã chuyển hóa thời cơ ngàn năm có một thành thắng lợi vĩ đại.',
+    imageUrl: '/assets/hcm-space/card-khong-gian-3d.jpg',
+  },
+  {
+    id: 'vn-step-8',
+    order: 8,
+    year: '1945 (02/09/1945)',
+    name: 'Quảng Trường Ba Đình (Hà Nội) — Khai Sinh Nước Việt Nam Dân Chủ Cộng Hòa',
+    location: 'Ba Đình, Hà Nội',
+    coords: { x: 271, y: 170 },
+    category: 'KHANG_CHIEN',
+    significance: 'Ngày Quốc khánh 2/9/1945 — Chủ tịch Hồ Chí Minh long trọng đọc bản Tuyên ngôn Độc lập, khai sinh nước Việt Nam Dân chủ Cộng hòa (nay là CHXHCN Việt Nam), nhà nước công nông đầu tiên ở Đông Nam Á, chấm dứt vĩnh viễn chế độ thực dân và phong kiến.',
+    historicalContext: 'Cách mạng Tháng Tám thành công vang dội trên khắp ba miền Bắc - Trung - Nam chỉ trong 15 ngày. Tại căn gác số 48 Hàng Ngang, Bác thức trắng nhiều đêm khởi thảo bản Tuyên ngôn Độc lập bất hủ, kết tinh trí tuệ và khát vọng ngàn đời của dân tộc Việt Nam.',
+    keyMilestones: [
+      { time: '28/08/1945', event: 'Chủ tịch Hồ Chí Minh hoàn thành dự thảo bản Tuyên ngôn Độc lập tại ngôi nhà 48 Hàng Ngang.' },
+      { time: '14h00 02/09/1945', event: 'Trước hơn 50 vạn đồng bào tại Quảng trường Ba Đình rợp cờ đỏ sao vàng, Người đọc bản Tuyên ngôn Độc lập.' },
+      { time: 'Khoảnh khắc xúc động', event: 'Bác dừng lại ân cần hỏi: “Tôi nói đồng bào nghe rõ không?” — Hàng vạn tiếng “Rõ!” vang dội xé toang khoảng cách giữa lãnh tụ và nhân dân.' },
+    ],
+    heritageSites: [
+      'Quảng trường Ba Đình lịch sử',
+      'Ngôi nhà 48 Hàng Ngang (Hoàn Kiếm, Hà Nội)',
+      'Lăng Chủ tịch Hồ Chí Minh',
+      'Bảo tàng Lịch sử Quốc gia & Bảo tàng Hồ Chí Minh',
+    ],
+    coreValue: 'Khẳng định quyền con người, quyền độc lập dân tộc và phẩm giá quốc gia trước trường quốc tế.',
+    quote: 'Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do độc lập. Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy!',
+    actionLesson: 'Kiên quyết bảo vệ vững chắc độc lập chủ quyền, thống nhất và toàn vẹn lãnh thổ; phụng sự Tổ quốc và hạnh phúc của nhân dân.',
+    audioNarrative: 'Mùa thu năm 1945, giọng nói ấm áp của Bác Hồ vang vọng khắp Quảng trường Ba Đình lịch sử. Tuyên ngôn Độc lập không chỉ mở ra trang sử tự do chói lọi cho dân tộc Việt Nam mà còn là bản anh hùng ca bất diệt cổ vũ các dân tộc bị áp bức trên toàn thế giới.',
+    imageUrl: '/assets/hcm-space/tuyen-ngon-doc-lap.jpg',
+  },
+  {
+    id: 'vn-step-9',
+    order: 9,
+    year: '1946 – 1954',
+    name: 'Chiến Khu Việt Bắc (ATK Định Hóa, Thái Nguyên) — Thủ Đô Gió Ngàn Của Cuộc Kháng Chiến',
+    location: 'Thái Nguyên, Tuyên Quang, Bắc Kạn',
+    coords: { x: 259, y: 116 },
+    category: 'KHANG_CHIEN',
+    significance: 'Trung tâm đầu não chỉ huy cuộc kháng chiến toàn dân, toàn diện, trường kỳ chống thực dân Pháp tái xâm lược. Nơi Bác sống giản dị cùng đồng bào, đưa ra những quyết sách chiến lược làm nên Chiến thắng Việt Bắc (1947), Biên giới (1950) và Chiến dịch Đông Xuân 1953-1954.',
+    historicalContext: 'Đêm 19/12/1946, Chủ tịch Hồ Chí Minh ra Lời kêu gọi Toàn quốc kháng chiến. Bác cùng Trung ương Đảng, Chính phủ rút lên An Toàn Khu (ATK) Định Hóa (Thái Nguyên) - Tân Trào (Tuyên Quang) - Chợ Đồn (Bắc Kạn) xây dựng căn cứ địa vững chắc trong lòng nhân dân.',
+    keyMilestones: [
+      { time: '19/12/1946', event: 'Phát động Lời kêu gọi Toàn quốc kháng chiến: “Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ”.' },
+      { time: 'Thu - Đông 1950', event: 'Bác trực tiếp lên mặt trận Đông Khê chỉ đạo Chiến dịch Biên giới; bức ảnh Bác ngồi quan sát mặt trận trở thành biểu tượng bất hủ.' },
+      { time: '06/12/1953', event: 'Tại lán Tỉn Keo (Định Hóa), Chủ tịch Hồ Chí Minh chủ trì cuộc họp Bộ Chính trị thông qua kế hoạch tác chiến mở Chiến dịch Điện Biên Phủ.' },
+    ],
+    heritageSites: [
+      'Khu di tích Quốc gia đặc biệt ATK Định Hóa (Thái Nguyên)',
+      'Di tích Tỉn Keo & Đồi Khau Tý',
+      'Nhà tưởng niệm Chủ tịch Hồ Chí Minh trên đỉnh đèo De',
+      'Căn cứ Chợ Đồn (Bắc Kạn)',
+    ],
+    coreValue: 'Tinh thần tự lực cánh sinh, nghệ thuật chiến tranh nhân dân, phong cách lãnh tụ hòa mình giữa thiên nhiên và lòng dân.',
+    quote: 'Kháng chiến tất thắng, kiến quốc tất thành. Ta thà hy sinh tất cả chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ!',
+    actionLesson: 'Ý chí vượt qua muôn vàn gian khổ, phát huy nội lực và tinh thần tự cường; xây dựng thế trận lòng dân vững chắc trong thời bình.',
+    audioNarrative: 'Giữa núi rừng Việt Bắc ngút ngàn gió lộng, bóng hình Người cha già dân tộc trong bộ áo nâu giản dị soi đường chỉ lối cho toàn quân toàn dân ta. Nơi đây đã nuôi dưỡng ý chí kiên cường và những chiến lược thiên tài để đưa dân tộc đến ngày toàn thắng.',
+    imageUrl: '/assets/hcm-space/tieusu4-1930.png',
+  },
+  {
+    id: 'vn-step-10',
+    order: 10,
+    year: '1954 (07/05/1954)',
+    name: 'Chiến Trường Điện Biên Phủ — “Lừng Lẫy Năm Châu, Chấn Động Địa Cầu”',
+    location: 'TP. Điện Biên Phủ, Điện Biên',
+    coords: { x: 95, y: 148 },
+    category: 'KHANG_CHIEN',
+    significance: 'Đỉnh cao chói lọi của cuộc kháng chiến chống Pháp. Dưới sự chỉ đạo tối cao của Chủ tịch Hồ Chí Minh và tài thao lược của Đại tướng Võ Nguyên Giáp, quân và dân ta đã đập tan tập đoàn cứ điểm quân sự hùng mạnh nhất của thực dân Pháp tại Đông Dương, kết thúc 9 năm kháng chiến trường kỳ.',
+    historicalContext: 'Thực dân Pháp xây dựng thung lũng Mường Thanh thành tập đoàn cứ điểm gồm 49 cứ điểm kiên cố, tự tin là pháo đài bất khả xâm phạm. Bác chỉ đạo: "Trận này rất quan trọng, phải đánh cho thắng. Chắc thắng mới đánh, không chắc thắng không đánh".',
+    keyMilestones: [
+      { time: '01/1954', event: 'Bác trao cờ “Quyết chiến Quyết thắng” và căn dặn Đại tướng Võ Nguyên Giáp trước ngày lên đường ra mặt trận.' },
+      { time: '13/03 – 07/05/1954', event: '56 ngày đêm khoét núi, ngủ hầm, mưa dầm, cơm vắt, máu trộn bùn non; đập tan toàn bộ cứ điểm của địch.' },
+      { time: '17h30 07/05/1954', event: 'Cờ Quyết chiến Quyết thắng tung bay trên nóc hầm tướng Đờ Cát, toàn bộ tập đoàn cứ điểm Điện Biên Phủ đầu hàng.' },
+    ],
+    heritageSites: [
+      'Quần thể Di tích Chiến trường Điện Biên Phủ',
+      'Sở chỉ huy Chiến dịch Mường Phăng',
+      'Đồi A1, C1, D1 và Hầm chỉ huy De Castries',
+      'Nghĩa trang Liệt sĩ Quốc gia A1',
+      'Tượng đài Chiến thắng Điện Biên Phủ',
+    ],
+    coreValue: 'Tư duy quân sự khoa học, niềm tin sắt đá vào sức mạnh nhân dân, tinh thần quyết chiến quyết thắng.',
+    quote: 'Chiến thắng Điện Biên Phủ như là một cái mốc chói lọi bằng vàng của lịch sử. Nó ghi rõ nơi chủ nghĩa thực dân lăn xuống dốc và tan rã.',
+    actionLesson: 'Nêu cao tinh thần đoàn kết, ý chí quyết tâm vượt khó; tính cẩn trọng, kỷ luật và niềm tin tất thắng vào chính nghĩa.',
+    audioNarrative: 'Chiến thắng Điện Biên Phủ ngày 7 tháng 5 năm 1954 là bản hùng ca bất hủ của thế kỷ XX. Lời căn dặn của Bác Hồ và ý chí quật cường của các chiến sĩ Điện Biên đã biến điều tưởng như không thể thành kỳ tích lừng lẫy năm châu, chấn động địa cầu.',
+    imageUrl: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+  },
+  {
+    id: 'vn-step-11',
+    order: 11,
+    year: '1954 – 1969',
+    name: 'Nhà Sàn Bác Hồ & Khu Phủ Chủ Tịch (Hà Nội) — Di Sản Đạo Đức Thanh Cao',
+    location: 'Ba Đình, Hà Nội',
+    coords: { x: 271, y: 169 },
+    category: 'XAY_DUNG',
+    significance: 'Nơi Người sống, làm việc suốt 15 năm cuối đời trên cương vị Chủ tịch nước. Ngôi nhà sàn bằng gỗ đơn sơ bên bờ ao cá đã trở thành biểu tượng ngời sáng của nếp sống Cần, Kiệm, Liêm, Chính, nơi Người viết bản Di chúc thiêng liêng để lại muôn vàn tình thương yêu cho toàn Đảng, toàn dân và toàn quân.',
+    historicalContext: 'Trở về Thủ đô sau giải phóng, Bác từ chối ở trong Tòa Toàn quyền nguy nga của chế độ cũ, chỉ ở ngôi nhà nhỏ của người thợ điện (nhà 54) và sau đó là Nhà sàn gỗ theo phong cách đồng bào Việt Bắc. Đây là giai đoạn Bác cùng Trung ương lãnh đạo xây dựng CNXH ở miền Bắc và đấu tranh giải phóng miền Nam thống nhất đất nước.',
+    keyMilestones: [
+      { time: '17/05/1958', event: 'Khánh thành Ngôi nhà sàn gỗ đơn sơ nhân dịp sinh nhật lần thứ 68 của Bác.' },
+      { time: '10 – 20/05 (1965 – 1969)', event: 'Hàng năm, từ 9h đến 10h sáng, Bác dành thời gian tĩnh lặng để khởi thảo và sửa chữa bản Di chúc lịch sử.' },
+      { time: '02/09/1969', event: 'Trái tim vĩ đại của Chủ tịch Hồ Chí Minh ngừng đập trong niềm tiếc thương vô hạn của triệu triệu đồng bào và bè bạn quốc tế.' },
+    ],
+    heritageSites: [
+      'Khu di tích Phủ Chủ tịch (Ba Đình, Hà Nội)',
+      'Nhà sàn Bác Hồ & Ao cá Bác Hồ',
+      'Ngôi nhà 54 và Nhà 67 (nơi Bác chữa bệnh và qua đời)',
+      'Vườn hoa, Rặng dâm bụt và Đường Xoài lịch sử',
+    ],
+    coreValue: 'Đỉnh cao của đạo đức cách mạng: Cần, Kiệm, Liêm, Chính, Chí công vô tư; suốt đời hy sinh vì hạnh phúc của nhân dân.',
+    quote: 'Tôi chỉ có một sự ham muốn, ham muốn tột bậc, là làm sao cho nước ta được hoàn toàn độc lập, dân ta được hoàn toàn tự do, đồng bào ai cũng có cơm ăn áo mặc, ai cũng được học hành... Miền Nam luôn luôn ở trong trái tim tôi!',
+    actionLesson: 'Học tập phong cách sống giản dị, liêm khiết; thực hành tiết kiệm, chống lãng phí và tiêu cực; tận tụy hết lòng phục vụ nhân dân.',
+    audioNarrative: 'Nhà sàn Bác Hồ bên ao cá rợp bóng mát là biểu tượng tuyệt đẹp cho nhân cách cao cả của vị lãnh tụ kính yêu. Cả cuộc đời Người không màng danh lợi, chỉ lo cho dân, cho nước, để lại bản Di chúc thiêng liêng sáng mãi cùng non sông đất nước.',
+    imageUrl: '/assets/hcm-space/card-tac-pham.jpg',
+  },
+  {
+    id: 'vn-step-12',
+    order: 12,
+    year: '1923 – Nay',
+    name: 'Điểm Hẹn Di Sản: Phường Thủ Dầu Một & Tỉnh Bình Dương — Nối Dài Khát Vọng',
+    location: 'Phường Thủ Dầu Một, Bình Dương',
+    coords: { x: 322, y: 787 },
+    category: 'GAN_KET_MIEN_NAM',
+    significance: 'Nơi gắn liền với hoạt động cách mạng của thân phụ Bác Hồ - Cụ Phó bảng Nguyễn Sinh Sắc tại Chùa Hội Khánh (1923–1926). Hôm nay, Đảng bộ và nhân dân Phường Thủ Dầu Một vinh dự phát huy di sản của Bác qua việc xây dựng 05 Không gian Văn hóa Hồ Chí Minh sinh động tại các khu phố và tuyến phố văn minh.',
+    historicalContext: 'Đất Thủ - Bình Dương là vùng đất có bề dày lịch sử, truyền thống cách mạng kiên trung ở miền Đông Nam Bộ. Từ thập niên 1920, tư tưởng yêu nước của Cụ Phó bảng đã hòa cùng khí phách anh hùng của người dân nơi đây. Trong kháng chiến cũng như trong xây dựng đô thị hiện đại, tinh thần Bác Hồ luôn là điểm tựa tinh thần vững chắc.',
+    keyMilestones: [
+      { time: '1923 – 1926', event: 'Cụ Phó bảng Nguyễn Sinh Sắc cùng chí sĩ yêu nước và Hòa thượng Từ Văn lập Hội Danh Dự yêu nước tại Chùa Hội Khánh (Thủ Dầu Một), truyền bá tư tưởng giải phóng dân tộc.' },
+      { time: '1945 – 1975', event: 'Đảng bộ và nhân dân Thủ Dầu Một lập nhiều chiến công oanh liệt tại Chiến khu Đ, Tam giác sắt, góp phần vào Đại thắng Mùa Xuân 1975 giải phóng miền Nam.' },
+      { time: 'Giai đoạn hiện nay', event: 'Phường Thủ Dầu Một triển khai sâu rộng Chỉ thị 05 và Kết luận 01 của Bộ Chính trị: Xây dựng 05 Không gian Văn hóa Hồ Chí Minh tại 05 Khu phố, số hóa di sản và xây dựng nếp sống văn minh đô thị.' },
+    ],
+    heritageSites: [
+      'Chùa Hội Khánh (Di tích Lịch sử - Văn hóa Quốc gia)',
+      'Nhà Truyền thống TP. Thủ Dầu Một',
+      'Tượng đài Chủ tịch Hồ Chí Minh tại Hoa viên Bạch Đằng',
+      '05 Không gian Văn hóa Hồ Chí Minh tại 05 Khu phố của Phường',
+    ],
+    coreValue: 'Nghĩa tình son sắt của đồng bào miền Nam với Bác Hồ; hiện thực hóa tư tưởng của Người vào đời sống văn minh đô thị hôm nay.',
+    quote: 'Đảng bộ và nhân dân Phường Thủ Dầu Một quyết tâm biến tình cảm kính yêu Bác thành những công trình hành động thiết thực, xây dựng khu phố văn minh, nghĩa tình, giàu đẹp.',
+    actionLesson: 'Học tập và làm theo tấm gương đạo đức, phong cách Hồ Chí Minh bằng việc làm cụ thể mỗi ngày: giữ gìn vệ sinh môi trường, tương thân tương ái, nâng cao ý thức văn minh công dân.',
+    audioNarrative: 'Đất Thủ Dầu Một tự hào là nơi lưu dấu ấn lịch sử của Cụ Phó bảng Nguyễn Sinh Sắc, thân phụ Bác Hồ. Tiếp nối mạch nguồn truyền thống vẻ vang, Đảng bộ và nhân dân Phường Thủ Dầu Một hôm nay đang dựng xây Không gian Văn hóa Hồ Chí Minh sâu rộng, biến di sản của Người thành sức mạnh sống động trong lòng nhân dân.',
+    imageUrl: '/assets/hcm-space/banner-hoctap.png',
+  },
+];
+
+// =========================================================================
+// 3. DỮ LIỆU ĐỊA BÀN PHƯỜNG THỦ DẦU MỘT (CẬP NHẬT ĐỊA GIỚI HÀNH CHÍNH MỚI NHẤT)
+// =========================================================================
+
+export const THU_DAU_MOT_ADMIN_INFO = {
+  wardName: 'Phường Thủ Dầu Một',
+  status: 'Đơn vị hành chính đô thị trung tâm mới sau sắp xếp sáp nhập',
+  headquarters: 'Số 01 đường Quang Trung, Phường Thủ Dầu Một (Khu vực Phú Cường)',
+  totalArea: 'Khoảng 12.8 km²',
+  population: 'Trên 85.000 người',
+  administrativeUnits: 'Gồm 5 phân khu địa bàn trọng điểm hợp nhất (Phú Cường, Chánh Nghĩa, Phú Thọ, Hiệp Thành, Chánh Mỹ)',
+  boundaries: {
+    west: 'Giáp Sông Sài Gòn (kết nối Huyện Củ Chi, TP. Hồ Chí Minh qua Cầu Phú Cường)',
+    east: 'Giáp trục Đại lộ Bình Dương / Quốc lộ 13 (Phường Hiệp Thành, Phú Hòa, Phú Lợi)',
+    north: 'Giáp Phường Tương Bình Hiệp và Chánh Mỹ sinh thái',
+    south: 'Giáp Thành phố Thuận An (qua Rạch Vĩnh Bình và khu vực Phú Thọ)',
+  },
+  mainStreets: [
+    'Đường Bạch Đằng (Phố đi bộ, công viên hoa ven sông Sài Gòn)',
+    'Đại lộ Bình Dương (Quốc lộ 13 - Trục xương sống kết nối vùng)',
+    'Đường Cách Mạng Tháng Tám (ĐT745 - Trục thương mại dịch vụ lịch sử)',
+    'Đường Yersin (Trục văn hóa Chùa Hội Khánh)',
+    'Đường Quang Trung (Trung tâm hành chính công số 1)',
+    'Đường Huỳnh Văn Cù & Cầu Phú Cường (Cửa ngõ kết nối Tây Bắc TP.HCM)',
+    'Đường 30 Tháng 4 (Trục giao lưu phía Nam ra Cảng Bà Lụa)',
+  ],
+};
+
+export const THU_DAU_MOT_ZONES_5: ThuDauMotZone[] = [
+  {
+    id: 'zone-phu-cuong',
+    khuPho: 'Khu vực Phú Cường',
+    name: 'Khu vực Phú Cường (Trung tâm Hành chính, Lịch sử & Bến Bạch Đằng)',
+    description: 'Trái tim của Phường Thủ Dầu Một. Nơi đặt Trụ sở Đảng ủy – UBND Phường (Số 1 Quang Trung), Chợ Thủ Dầu Một, Nhà việc Phú Cường, Hoa viên Bạch Đằng và Bến tàu du lịch ven sông Sài Gòn.',
+    color: '#FEF3C7',
+    borderColor: '#D97706',
+    path: 'M 260,280 C 330,260 480,270 560,330 C 540,480 460,540 320,530 C 230,520 220,380 260,280 Z',
+    centerCoords: { x: 38, y: 40 },
+  },
+  {
+    id: 'zone-chanh-nghia',
+    khuPho: 'Khu vực Chánh Nghĩa',
+    name: 'Khu vực Chánh Nghĩa (Đô thị Ven Sông & Làng Nghề Truyền Thống)',
+    description: 'Địa bàn đô thị sinh thái hiện đại ven sông Sài Gòn, phố đi bộ Bạch Đằng nối dài, kết hợp các làng nghề sơn mài và gốm sứ truyền thống nức tiếng của Đất Thủ.',
+    color: '#FEE2E2',
+    borderColor: '#DC2626',
+    path: 'M 320,530 C 460,540 540,580 570,720 C 480,780 340,790 240,730 C 210,640 240,550 320,530 Z',
+    centerCoords: { x: 38, y: 65 },
+  },
+  {
+    id: 'zone-phu-tho',
+    khuPho: 'Khu vực Phú Thọ',
+    name: 'Khu vực Phú Thọ (Cảng Bà Lụa Lịch Sử & Cửa Ngõ Phía Nam)',
+    description: 'Khu vực ven sông Sài Gòn phía Nam gắn liền với Di tích Cảng Bà Lụa, đầu mối giao thương đường sông thời kháng chiến, tiếp giáp Thành phố Thuận An.',
+    color: '#E0E7FF',
+    borderColor: '#4F46E5',
+    path: 'M 240,730 C 340,790 480,780 550,860 C 510,950 350,970 230,950 C 180,880 200,780 240,730 Z',
+    centerCoords: { x: 36, y: 86 },
+  },
+  {
+    id: 'zone-hiep-thanh',
+    khuPho: 'Khu vực Hiệp Thành',
+    name: 'Khu vực Hiệp Thành (Trục Văn Hóa Chùa Hội Khánh & Y Tế Giáo Dục)',
+    description: 'Phía Đông phường, ôm trọn Di tích Lịch sử Quốc gia Chùa Hội Khánh - nơi Cụ Phó bảng Nguyễn Sinh Sắc cùng các chí sĩ lập Hội Danh Dự yêu nước (1923–1926).',
+    color: '#D1FAE5',
+    borderColor: '#059669',
+    path: 'M 560,330 C 660,310 740,360 760,520 C 740,680 620,720 570,720 C 540,580 520,440 560,330 Z',
+    centerCoords: { x: 65, y: 52 },
+  },
+  {
+    id: 'zone-chanh-my',
+    khuPho: 'Khu vực Chánh Mỹ',
+    name: 'Khu vực Chánh Mỹ (Cửa Ngõ Cầu Phú Cường & Vùng Sinh Thái Tây Bắc)',
+    description: 'Cửa ngõ giao thông kết nối sang TP. Hồ Chí Minh qua Cầu Phú Cường (ĐT744), không gian xanh ven sông ngắm hoàng hôn và vùng đệm nông nghiệp đô thị sinh thái.',
+    color: '#F3E8FF',
+    borderColor: '#7C3AED',
+    path: 'M 280,110 C 380,80 520,100 620,180 C 600,280 510,320 380,310 C 260,280 250,180 280,110 Z',
+    centerCoords: { x: 42, y: 20 },
+  },
+];
+
+export const THU_DAU_MOT_POINTS_12: ThuDauMotMapPoint[] = [
+  {
+    id: 'tdm-p6',
+    code: 'HC-01',
+    name: 'Trụ Sở Đảng Ủy – HĐND – UBND Phường Thủ Dầu Một',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Số 01 đường Quang Trung, Phường Thủ Dầu Một',
+    coords: { x: 38, y: 38 },
+    lat: 10.9805,
+    lng: 106.6515,
+    rank: 'Trung Tâm Hành Chính & Không Gian Văn Hóa HCM Kiểu Mẫu',
+    establishedYear: '2024',
+    visitDuration: '45 phút',
+    summary: 'Cơ quan trung tâm của Phường Thủ Dầu Một sau sáp nhập. Không gian trang bị Tủ sách Bác Hồ điện tử, màn hình tra cứu tương tác số và phòng sinh hoạt chuyên đề chuẩn mực đạo đức 144-QĐ/TW.',
+    significance: 'Cơ quan đầu não lãnh đạo thực hiện thắng lợi các nhiệm vụ chính trị, xây dựng đô thị văn minh, phục vụ nhân dân.',
+    googleMapsQuery: 'UBND Phường Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/banner-hoctap.png',
+  },
+  {
+    id: 'tdm-p5',
+    code: 'KG-01',
+    name: 'Hoa Viên Bạch Đằng & Tượng Đài Chủ Tịch Hồ Chí Minh',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Tuyến đường hoa Bạch Đằng ven sông Sài Gòn, Phường Thủ Dầu Một',
+    coords: { x: 28, y: 40 },
+    lat: 10.9789,
+    lng: 106.6508,
+    rank: 'Không Gian Văn Hóa Hồ Chí Minh Ngoài Trời',
+    establishedYear: '2023',
+    visitDuration: '30 – 60 phút',
+    summary: 'Công viên hoa ven sông Sài Gòn, nơi đặt Tượng đài Bác Hồ trang trọng, là điểm sinh hoạt chính trị, dâng hoa báo công của Đảng bộ và nhân dân Đất Thủ.',
+    significance: 'Biểu tượng thiêng liêng thể hiện tấm lòng sắt son của đồng bào miền Nam và nhân dân Thủ Dầu Một với Bác Hồ kính yêu.',
+    googleMapsQuery: 'Hoa viên Bạch Đằng Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/ben-nha-rong-06.jpg',
+  },
+  {
+    id: 'tdm-p4',
+    code: 'DT-01',
+    name: 'Chợ Thủ Dầu Một & Nhà Truyền Thống Đất Thủ (Nhà Việc Phú Cường)',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'DI_TICH_LICH_SU',
+    address: 'Đường Trần Hưng Đạo & Đường Bạch Đằng, Phường Thủ Dầu Một',
+    coords: { x: 36, y: 46 },
+    lat: 10.9818,
+    lng: 106.6528,
+    rank: 'Di Tích Lịch Sử & Công Trình Di Sản Đô Thị',
+    establishedYear: '1938',
+    visitDuration: '45 phút',
+    summary: 'Tháp đồng hồ Chợ Thủ kiến trúc Pháp – Á Đông và Nhà việc Phú Cường xưa, nơi sáng 25/8/1945 quần chúng nhân dân vùng lên khởi nghĩa giành chính quyền.',
+    significance: 'Chứng tích hào hùng của phong tràu cách mạng giải phóng dân tộc trên quê hương Đất Thủ kiên trung.',
+    googleMapsQuery: 'Chợ Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-tac-pham.jpg',
+  },
+  {
+    id: 'tdm-p3',
+    code: 'DT-02',
+    name: 'Đình Phú Cường & Nhà Cổ Đốc Phủ Sử',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'DI_TICH_LICH_SU',
+    address: 'Đường Nguyễn Du, Phường Thủ Dầu Một',
+    coords: { x: 44, y: 34 },
+    lat: 10.9835,
+    lng: 106.6542,
+    rank: 'Di Tích Kiến Trúc Nghệ Thuật & Lịch Sử Đất Thủ',
+    establishedYear: '1868',
+    visitDuration: '30 – 45 phút',
+    summary: 'Quần thể đình cổ và nhà cổ đặc trưng Nam Bộ, nơi lưu giữ nghệ thuật điêu khắc gỗ tinh xảo của nghệ nhân Đất Thủ xưa.',
+    significance: 'Bảo tồn cội nguồn văn hóa, tri ân tiền nhân khai hoang mở đất, hun đúc lòng tự hào dân tộc.',
+    googleMapsQuery: 'Đình Phú Cường Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-khong-gian-3d.jpg',
+  },
+  {
+    id: 'tdm-p2',
+    code: 'DT-03',
+    name: 'Chùa Hội Khánh — Dấu Ấn Cụ Phó Bảng Nguyễn Sinh Sắc',
+    khuPho: 'Khu vực Hiệp Thành',
+    category: 'DI_TICH_LICH_SU',
+    address: 'Số 35 đường Yersin, Phường Thủ Dầu Một',
+    coords: { x: 65, y: 52 },
+    lat: 10.9812,
+    lng: 106.6668,
+    rank: 'Di Tích Lịch Sử – Văn Hóa Quốc Gia',
+    establishedYear: '1741',
+    visitDuration: '45 – 60 phút',
+    summary: 'Ngôi cổ tự gần 300 năm tuổi. Giai đoạn 1923–1926, Cụ Phó bảng Nguyễn Sinh Sắc (thân phụ Bác Hồ) cùng Hòa thượng Từ Văn lập Hội Danh Dự yêu nước tại đây.',
+    significance: 'Sợi dây lịch sử thiêng liêng kết nối gia đình Chủ tịch Hồ Chí Minh với đồng bào, chiến sĩ và nhân dân Thủ Dầu Một.',
+    googleMapsQuery: 'Chùa Hội Khánh Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-cuoc-doi.jpg',
+  },
+  {
+    id: 'tdm-p1',
+    code: 'DT-04',
+    name: 'Cầu Phú Cường & Cửa Ngõ Giao Thương Sông Sài Gòn',
+    khuPho: 'Khu vực Chánh Mỹ',
+    category: 'DI_TICH_LICH_SU',
+    address: 'Đường Huỳnh Văn Cù, Phường Thủ Dầu Một (bắc qua Sông Sài Gòn)',
+    coords: { x: 26, y: 18 },
+    lat: 10.9870,
+    lng: 106.6432,
+    rank: 'Cửa Ngõ Giao Thông Huyết Mạch & Địa Danh Lịch Sử',
+    establishedYear: '1960',
+    visitDuration: '30 phút',
+    summary: 'Cây cầu huyết mạch kết nối Thủ Dầu Một với huyện Củ Chi, TP. Hồ Chí Minh và tỉnh Tây Ninh. Bến phà Phú Cường xưa là tuyến đường vận chuyển vũ khí, tài liệu cách mạng qua sông.',
+    significance: 'Đầu mối giao thương và huyết mạch giao thông gắn liền với truyền thống kiên cường bảo vệ căn cứ cách mạng miền Đông Nam Bộ.',
+    googleMapsQuery: 'Cầu Phú Cường Bình Dương',
+    imageUrl: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+  },
+  {
+    id: 'tdm-p7',
+    code: 'KG-02',
+    name: 'Không Gian Văn Hóa Hồ Chí Minh — Phân Khu Phú Cường',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Nhà Văn hóa Khu phố Phú Cường, đường Bạch Đằng',
+    coords: { x: 42, y: 46 },
+    lat: 10.9798,
+    lng: 106.6519,
+    rank: 'Không Gian Văn Hóa HCM Cơ Sở Tiêu Biểu',
+    establishedYear: '2024',
+    visitDuration: '30 phút',
+    summary: 'Mô hình thư viện mở, số hóa tư liệu 15 tập Toàn tập, gắn liền với phong trào “Thương nhân văn minh, trung thực theo gương Bác”.',
+    significance: 'Xây dựng văn hóa ứng xử văn minh thương nghiệp tại trung tâm chợ truyền thống Đất Thủ.',
+    googleMapsQuery: 'Phú Cường Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/duong-sach.jpg',
+  },
+  {
+    id: 'tdm-p8',
+    code: 'KG-03',
+    name: 'Không Gian Văn Hóa Hồ Chí Minh — Phân Khu Chánh Nghĩa',
+    khuPho: 'Khu vực Chánh Nghĩa',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Văn phòng Ban Điều hành Chánh Nghĩa, đường CMT8, Phường Thủ Dầu Một',
+    coords: { x: 36, y: 64 },
+    lat: 10.9725,
+    lng: 106.6558,
+    rank: 'Không Gian Văn Hóa HCM Cơ Sở',
+    establishedYear: '2024',
+    visitDuration: '30 phút',
+    summary: 'Gắn liền với phong trào bảo tồn làng nghề truyền thống sơn mài, gốm sứ; triển khai học tập tư luận “Cần, Kiệm, Liêm, Chính” trong sản xuất kinh doanh.',
+    significance: 'Đưa việc học tập làm theo Bác vào phát triển kinh tế gia đình và làng nghề thủ công mỹ nghệ.',
+    googleMapsQuery: 'Chánh Nghĩa Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-tac-pham.jpg',
+  },
+  {
+    id: 'tdm-p9',
+    code: 'KG-04',
+    name: 'Không Gian Văn Hóa Hồ Chí Minh & Di Tích Cảng Bà Lụa — Phân Khu Phú Thọ',
+    khuPho: 'Khu vực Phú Thọ',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Khu di tích Bến Cảng Bà Lụa, đường 30 Tháng 4 nối dài, Phường Thủ Dầu Một',
+    coords: { x: 32, y: 86 },
+    lat: 10.9620,
+    lng: 106.6590,
+    rank: 'Không Gian Văn Hóa HCM & Địa Chỉ Đỏ Lịch Sử',
+    establishedYear: '2025',
+    visitDuration: '40 phút',
+    summary: 'Cảng Bà Lụa là bến cảng sông lịch sử thời kháng chiến. Không gian trưng bày hình ảnh Bác Hồ với bộ đội hải quân và công nhân lao động đường thủy.',
+    significance: 'Tuyên truyền tình yêu biển đảo, quê hương sông nước và giáo dục truyền thống kiên cường cho thế hệ trẻ.',
+    googleMapsQuery: 'Cảng Bà Lụa Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-cuoc-doi.jpg',
+  },
+  {
+    id: 'tdm-p10',
+    code: 'KG-05',
+    name: 'Không Gian Văn Hóa Hồ Chí Minh — Phân Khu Hiệp Thành',
+    khuPho: 'Khu vực Hiệp Thành',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Nhà Văn hóa Khu vực Hiệp Thành, đường Yersin, Phường Thủ Dầu Một',
+    coords: { x: 62, y: 64 },
+    lat: 10.9820,
+    lng: 106.6695,
+    rank: 'Không Gian Văn Hóa HCM Cơ Sở',
+    establishedYear: '2025',
+    visitDuration: '30 phút',
+    summary: 'Điểm sinh hoạt chuyên đề “Học tập đức tính giản dị, gần dân của Bác Hồ”; liên kết hoạt động với Hội Khuyến học và Hội Người cao tuổi.',
+    significance: 'Lan tỏa tình làng nghĩa xóm, phong trào học tập suốt đời theo gương Bác.',
+    googleMapsQuery: 'Hiệp Thành Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+  },
+  {
+    id: 'tdm-p11',
+    code: 'KG-06',
+    name: 'Không Gian Văn Hóa Hồ Chí Minh — Phân Khu Chánh Mỹ',
+    khuPho: 'Khu vực Chánh Mỹ',
+    category: 'KHONG_GIAN_HCM',
+    address: 'Văn phòng Sinh hoạt Cộng đồng Chánh Mỹ, Phường Thủ Dầu Một',
+    coords: { x: 38, y: 22 },
+    lat: 10.9910,
+    lng: 106.6480,
+    rank: 'Không Gian Văn Hóa HCM Cơ Sở Ven Sông',
+    establishedYear: '2025',
+    visitDuration: '30 phút',
+    summary: 'Không gian văn hóa sinh thái xanh ven sông Sài Gòn, nơi tổ chức các buổi tọa đàm “Bác Hồ với thiên nhiên và môi trường sinh thái”.',
+    significance: 'Bảo vệ dòng sông quê hương, xây dựng nếp sống văn minh đô thị xanh – sạch – đẹp.',
+    googleMapsQuery: 'Chánh Mỹ Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/card-khong-gian-3d.jpg',
+  },
+  {
+    id: 'tdm-p12',
+    code: 'TD-01',
+    name: 'Trạm Trung Tâm: Tuyến Du Khảo Đỏ Về Nguồn Thủ Dầu Một',
+    khuPho: 'Khu vực Phú Cường',
+    category: 'TUYEN_DO',
+    address: 'Khởi hành từ Bến tàu Bạch Đằng qua 5 phân khu di sản Phường Thủ Dầu Một',
+    coords: { x: 30, y: 50 },
+    lat: 10.9782,
+    lng: 106.6502,
+    rank: 'Tuyến Tham Quan Về Nguồn Liên Hoàn 5 Phân Khu',
+    establishedYear: '2026',
+    visitDuration: '120 – 180 phút',
+    summary: 'Kết nối liên hoàn 5 trạm: Bến Bạch Đằng & Tượng đài Bác Hồ $\\rightarrow$ Chợ Thủ & Nhà việc Phú Cường $\\rightarrow$ Chùa Hội Khánh $\\rightarrow$ Cảng Bà Lụa $\\rightarrow$ Trụ sở UBND Phường.',
+    significance: 'Tuyến trải nghiệm toàn diện lịch sử, văn hóa và đạo đức cách mạng Hồ Chí Minh trên quê hương Đất Thủ anh hùng.',
+    googleMapsQuery: 'Bến Bạch Đằng Thủ Dầu Một',
+    imageUrl: '/assets/hcm-space/ben-nha-rong-06.jpg',
+  },
+];

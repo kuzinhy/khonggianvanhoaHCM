@@ -1,0 +1,21 @@
+BỘ DỮ LIỆU DÀNH CHO ANTIGRAVITY — MỖI FILE DƯỚI 20 MB
+
+Đưa file 00_DU_LIEU_WEB_NHE.zip vào Antigravity để làm việc với nội dung.
+Gói này gồm đủ dữ liệu 600 trang, 36 đề mục, 48 bảng, dữ liệu tìm kiếm và hàm đọc.
+File chính sau giải nén: data/lich-su-dang-bo-thu-dau-mot.json.
+
+Gói nhẹ KHÔNG chứa ảnh và PDF nguồn. Các đường dẫn assets/ được giữ để bổ sung.
+Khi cần hiển thị ảnh và xem bản nguồn trong website, giải nén thêm tất cả các file
+TAI_NGUYEN_*.zip vào cùng thư mục đã giải nén gói 00. Đây là các ZIP độc lập,
+không phải các mảnh của một file ZIP. Sau giải nén sẽ có assets/pages/ và assets/sources/.
+Hai PDF nguồn đã tách theo tập, giữ đủ 354 + 246 trang và đúng chiều đọc.
+
+Nếu chỉ cần Antigravity đọc nội dung, dùng gói 00 hoặc file JSON riêng, không cần
+tải toàn bộ ảnh vào cuộc trò chuyện. Khi tích hợp web, chép các tài nguyên vào dự án.
+
+354 trang tập 1 là bản OCR chưa hiệu đính thủ công toàn bộ. Xem trạng thái tại
+pages[].extraction và báo cáo đối chiếu; đối chiếu ảnh/PDF khi trích dẫn chính thức.
+pages[].sourcePdfPage là trang trong từng tập; mergedPdfPage là thứ tự trong bộ 600 trang.
+Ví dụ tải: import {loadHistory, searchHistory} from './history-data.mjs';
+const history = await loadHistory('./');
+const results = searchHistory(history, 'Thủ Dầu Một');

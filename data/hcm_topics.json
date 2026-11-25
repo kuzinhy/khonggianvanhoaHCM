@@ -1,0 +1,112 @@
+[
+  {
+    "id": "top_niên_thieu",
+    "category_id": "cat_bio",
+    "title": "Thời niên thiếu & Khởi đầu cứu nước (1890–1920)",
+    "audience_tag": "Học sinh & Đoàn viên",
+    "era_range": "1890–1920",
+    "description": "Quê hương Hoàng Trù – Làng Sen, Huế, Dục Thanh và Bến Nhà Rồng 1911.",
+    "sort_order": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_lap_dang",
+    "category_id": "cat_bio",
+    "title": "Sáng lập Đảng & Cách mạng Tháng Tám (1920–1945)",
+    "audience_tag": "Cán bộ & Đảng viên",
+    "era_range": "1920–1945",
+    "description": "Quảng Châu, Hương Cảng 1930, Pác Bó 1941 và Tuyên ngôn Độc lập 1945.",
+    "sort_order": 2,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_khang_chien",
+    "category_id": "cat_bio",
+    "title": "Kháng chiến Kiến quốc & Di chúc 1969 (1945–1969)",
+    "audience_tag": "Toàn dân",
+    "era_range": "1945–1969",
+    "description": "Điện Biên Phủ, Nhà sàn Phủ Chủ tịch và Di chúc thiêng liêng.",
+    "sort_order": 3,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_toan_tap",
+    "category_id": "cat_works",
+    "title": "Tủ sách Hồ Chí Minh Toàn tập (NXB CTQG Sự thật)",
+    "audience_tag": "Nghiên cứu",
+    "era_range": "1912–1969",
+    "description": "Bộ 15 tập tác phẩm, thư từ, bài nói và bài viết gốc.",
+    "sort_order": 4,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_di_tich",
+    "category_id": "cat_exhibit",
+    "title": "Bảo tàng Hồ Chí Minh & Di tích Cách mạng",
+    "audience_tag": "Tham quan phổ thông",
+    "era_range": "1911–Nay",
+    "description": "Bến Nhà Rồng, Nhà sàn, Bảo tàng HCM và Di tích Nhà tù Phú Lợi.",
+    "sort_order": 5,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_quoc_te",
+    "category_id": "cat_world",
+    "title": "Hành trình 5 Châu & UNESCO Tôn vinh",
+    "audience_tag": "Đoàn viên & Nghiên cứu",
+    "era_range": "1911–1987",
+    "description": "20 tọa độ toàn cầu và Nghị quyết UNESCO 24C/18.65.",
+    "sort_order": 6,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_phim_audio",
+    "category_id": "cat_media",
+    "title": "Kho Tư liệu Nghe – Nhìn Lịch sử",
+    "audience_tag": "Tham quan phổ thông",
+    "era_range": "1945–Nay",
+    "description": "Clip VTV24 xác thực, bản ghi âm Đài Tiếng nói Việt Nam.",
+    "sort_order": 7,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_tdm_news",
+    "category_id": "cat_local",
+    "title": "Hoạt động Đảng bộ & Khu phố Thủ Dầu Một",
+    "audience_tag": "Cán bộ & Nhân dân",
+    "era_range": "2024–Nay",
+    "description": "Tin tức sinh hoạt 26 chi bộ, Hoa viên Bạch Đằng và mô hình cơ sở.",
+    "sort_order": 8,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_144",
+    "category_id": "cat_ideology",
+    "title": "Chỉ thị 07-CT/TW & Quy định 144-QĐ/TW",
+    "audience_tag": "Cán bộ & Đảng viên",
+    "era_range": "2024–Nay",
+    "description": "5 chuẩn mực đạo đức cách mạng trong giai đoạn mới.",
+    "sort_order": 9,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "top_nhan_vat",
+    "category_id": "cat_bio",
+    "title": "Nhân vật Lịch sử & Đồng chí Gắn bó với Bác",
+    "audience_tag": "Nghiên cứu",
+    "era_range": "1911–1969",
+    "description": "Chủ tịch Tôn Đức Thắng, các bậc tiền bối và đồng bào Nam Bộ.",
+    "sort_order": 10,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  }
+]

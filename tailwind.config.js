@@ -1,0 +1,83 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['"Be Vietnam Pro"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Noto Serif"', '"Merriweather"', '"Playfair Display"', 'Georgia', 'serif'],
+      },
+      colors: {
+        hcm: {
+          red: '#751D2C',
+          'red-dark': '#5B1522',
+          'red-light': '#922D3E',
+          gold: '#C59A55',
+          'gold-border': '#E5D3B2',
+          'ivory-bg': '#FAF7F0',
+          white: '#FFFFFF',
+          'text-main': '#262321',
+          'text-sub': '#67615B',
+        },
+        crimson: {
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#e11d48',
+          700: '#be123c',
+          800: '#9f1239',
+          900: '#881337',
+          950: '#4c0519',
+          deep: '#780B0F',
+          flag: '#DA251D',
+          royal: '#991B1E',
+        },
+        gold: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          star: '#FFCD00',
+          sacred: '#D4AF37',
+          bronze: '#8C6239',
+        },
+        parchment: {
+          50: '#FDFBF7',
+          100: '#FAF4E8',
+          200: '#F4E7CE',
+          300: '#EBD8B2',
+          400: '#DEC391',
+        },
+        brand: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+        },
+      },
+      boxShadow: {
+        'gold-glow': '0 0 25px -4px rgba(212, 175, 55, 0.35)',
+        'crimson-glow': '0 0 25px -4px rgba(180, 40, 45, 0.3)',
+        'soft-lift': '0 12px 30px -8px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+      },
+      animation: {
+        'spin-slow': 'spin 30s linear infinite',
+        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+    },
+  },
+  plugins: [],
+}

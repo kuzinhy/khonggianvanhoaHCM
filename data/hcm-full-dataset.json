@@ -1,0 +1,2762 @@
+{
+  "metadata": {
+    "title": "Cơ sở Dữ liệu Không gian Văn hóa Hồ Chí Minh",
+    "framework": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị & Quy định 144-QĐ/TW",
+    "exportedAt": "2026-11-23T23:00:35.039Z",
+    "version": "2.0.0",
+    "description": "Bộ dữ liệu chuẩn hóa phục vụ phát triển ứng dụng web, app Không gian Văn hóa Hồ Chí Minh độc lập."
+  },
+  "datasets": {
+    "officialAttributionSources": [
+      {
+        "label": "Cổng TTĐT TP.HCM — Cuộc đời, Sự nghiệp Hồ Chí Minh",
+        "url": "https://hochiminhcity.gov.vn/cuoc-doi-su-nghiep"
+      },
+      {
+        "label": "Cổng TTĐT TP.HCM — Không gian Văn hóa HCM",
+        "url": "https://hochiminhcity.gov.vn/trang-chu-khong-gian-van-hoa"
+      },
+      {
+        "label": "Ban Tuyên giáo TW — Trang Tư liệu Hồ Chí Minh",
+        "url": "https://hochiminh.vn"
+      },
+      {
+        "label": "Hồ Chí Minh Toàn tập (NXB CTQG Sự thật, 2011)",
+        "url": "https://tulieuvankien.dangcongsan.vn"
+      }
+    ],
+    "bioChapters": [
+      {
+        "id": "ch1",
+        "code": "Chương 01",
+        "period": "1890 – 1911",
+        "title": "Quê hương, gia đình và thời niên thiếu",
+        "imageUrl": "/assets/hcm-space/hoasen.png",
+        "imageCaption": "Làng Sen – Hoàng Trù, nơi nuôi dưỡng tâm hồn yêu nước thuở thiếu thời.",
+        "summary": "Hình thành nhân cách yêu nước thương dân từ truyền thống gia đình nhà nho xứ Nghệ, qua những năm tháng học tập và dạy học ở Huế, Phan Thiết trước khi vào Sài Gòn.",
+        "keyPoints": [
+          "19/05/1890: Sinh ra tại làng Hoàng Trù, xã Chung Cự, huyện Nam Đàn, Nghệ An.",
+          "1895–1909: Theo cha vào Huế học tập, chứng kiến phong trào chống sưu thuế Trung Kỳ.",
+          "1910–1911: Dạy học tại Trường Dục Thanh (Phan Thiết) rồi vào Sài Gòn chuẩn bị ra đi cứu nước."
+        ],
+        "fullProse": "Sinh trưởng trong một gia đình nhà nho yêu nước tại Nam Đàn (Nghệ An), Nguyễn Sinh Cung sớm thấm nhuần tinh thần thương dân, trọng nghĩa và ý chí tự cường. Những năm tháng ở kinh đô Huế, tiếp xúc với phong trào Duy Tân, Đông Du và trực tiếp giảng dạy tại Trường Dục Thanh (Phan Thiết) đã hun đúc quyết tâm tìm con đường cứu nước mới, vượt ra khỏi giới hạn của các bậc tiền bối."
+      },
+      {
+        "id": "ch2",
+        "code": "Chương 02",
+        "period": "1911 – 1920",
+        "title": "Ra đi tìm đường cứu nước, giải phóng dân tộc",
+        "imageUrl": "/assets/hcm-space/tieusu1-1911.png",
+        "imageCaption": "Từ Bến Nhà Rồng (05/6/1911) đến Đại hội Tours (12/1920) — Tư liệu hochiminhcity.gov.vn.",
+        "summary": "Hành trình 10 năm bôn ba qua các châu lục, lao động hòa mình vào giai cấp công nhân quốc tế và tìm thấy ánh sáng chủ nghĩa Mác – Lênin.",
+        "keyPoints": [
+          "05/6/1911: Rời bến Nhà Rồng trên tàu Amiral Latouche-Tréville với tên Văn Ba.",
+          "1912–1917: Làm nhiều nghề tại Hoa Kỳ (Boston, New York) và Anh (London).",
+          "18/6/1919: Gửi Yêu sách 8 điểm của nhân dân An Nam tới Hội nghị Versailles với tên Nguyễn Ái Quốc.",
+          "07/1920 – 12/1920: Đọc Sơ thảo Luận cương của Lênin; tham gia sáng lập Đảng Cộng sản Pháp tại Đại hội Tours."
+        ],
+        "fullProse": "Từ người thanh niên yêu nước Nguyễn Tất Thành trên con tàu viễn dương năm 1911, Người đã lao động, học tập tại Pháp, Anh, Hoa Kỳ và nhiều thuộc địa để thấu hiểu bản chất chủ nghĩa thực dân. Bước ngoặt năm 1920 tại Đại hội Tours đã chuyển Người từ chủ nghĩa yêu nước chân chính đến với chủ nghĩa cộng sản, khẳng định con đường cách mạng vô sản để giải phóng dân tộc."
+      },
+      {
+        "id": "ch3",
+        "code": "Chương 03",
+        "period": "1921 – 1930",
+        "title": "Hoạt động quốc tế và chuẩn bị thành lập Đảng",
+        "imageUrl": "/assets/hcm-space/tieusu4-1928.png",
+        "imageCaption": "Hoạt động báo chí cách mạng, truyền bá lý luận và hợp nhất thành lập Đảng 1930.",
+        "summary": "Truyền bá lý luận cách mạng qua báo chí (Người cùng khổ, Thanh niên), đào tạo cán bộ tại Quảng Châu và chủ trì hợp nhất thành lập Đảng Cộng sản Việt Nam.",
+        "keyPoints": [
+          "1921–1923: Sáng lập Hội Liên hiệp thuộc địa và ra báo Le Paria (Người cùng khổ) tại Paris.",
+          "1923–1924: Hoạt động tại Moskva, dự Đại hội V Quốc tế Cộng sản.",
+          "1925–1927: Thành lập Hội Việt Nam Cách mạng Thanh niên tại Quảng Châu, viết Bản án chế độ thực dân Pháp & Đường Kách mệnh.",
+          "03/02/1930: Chủ trì Hội nghị hợp nhất thành lập Đảng Cộng sản Việt Nam tại Hương Cảng."
+        ],
+        "fullProse": "Giai đoạn 1921–1930 đánh dấu sự chuẩn bị toàn diện về chính trị, tư tưởng và tổ chức cho sự ra đời của chính Đảng vô sản ở Việt Nam. Tác phẩm Đường Kách mệnh (1927) cùng Cương lĩnh chính trị đầu tiên (02/1930) đã vạch rõ đường lối độc lập dân tộc gắn liền với chủ nghĩa xã hội."
+      },
+      {
+        "id": "ch4",
+        "code": "Chương 04",
+        "period": "1930 – 1945",
+        "title": "Trở về Tổ quốc và Lãnh đạo Cách mạng Tháng Tám",
+        "imageUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+        "imageCaption": "Từ Pác Bó (1941) đến thắng lợi Tổng khởi nghĩa Tháng Tám và Độc lập 02/9/1945.",
+        "summary": "Vượt qua thử thách ngục tù, trở về Pác Bó trực tiếp lãnh đạo phong trào Việt Minh, thành lập Quân đội và giành chính quyền tháng 8/1945.",
+        "keyPoints": [
+          "1931–1933: Bị bắt tại Hương Cảng (vụ án Tống Văn Sơ) và thoát hiểm nhờ luật sư Loseby.",
+          "28/01/1941: Trở về Tổ quốc tại mốc 108 Pác Bó, chủ trì Hội nghị Trung ương 8 lập Mặt trận Việt Minh.",
+          "1942–1943: Viết tập thơ Nhật ký trong tù tại Quảng Tây.",
+          "22/12/1944 – 02/9/1945: Lập Đội VNTTGPQ, Tổng khởi nghĩa Tháng Tám và đọc Tuyên ngôn Độc lập."
+        ],
+        "fullProse": "Ngày 28/01/1941, sau 30 năm xa Tổ quốc, Người trở về Cao Bằng trực tiếp lãnh đạo cách mạng trong nước. Với tầm nhìn chiến lược nhạy bén khi Chiến tranh thế giới thứ hai kết thúc, Người phát động toàn dân Tổng khởi nghĩa Tháng Tám 1945 thắng lợi nhanh gọn, khai sinh nước Việt Nam Dân chủ Cộng hòa."
+      },
+      {
+        "id": "ch5",
+        "code": "Chương 05",
+        "period": "1945 – 1954",
+        "title": "Kháng chiến chống thực dân Pháp thắng lợi",
+        "imageUrl": "/assets/hcm-space/quoc-te.jpg",
+        "imageCaption": "Tư tưởng ngoại giao, kháng chiến toàn dân và đại thắng Điện Biên Phủ 1954.",
+        "summary": "Chèo lái con thuyền cách mạng qua tình thế \"ngàn cân treo sợi tóc\", tổ chức Tổng tuyển cử 1946 và lãnh đạo 9 năm kháng chiến toàn dân thắng lợi.",
+        "keyPoints": [
+          "06/01/1946: Tổng tuyển cử đầu tiên bầu Quốc hội khóa I.",
+          "19/12/1946: Ra Lời kêu gọi toàn quốc kháng chiến: \"Thà hy sinh tất cả chứ nhất định không chịu mất nước\".",
+          "1947–1949: Viết Sửa đổi lối làm việc (1947), phát động Thi đua ái quốc (11/6/1948), viết bài Dân vận (15/10/1949).",
+          "07/5/1954: Chiến thắng lịch sử Điện Biên Phủ kết thúc ách thống trị thực dân."
+        ],
+        "fullProse": "Đối mặt với thù trong giặc ngoài ngay sau Cách mạng Tháng Tám, Chủ tịch Hồ Chí Minh đã vận dụng sách lược ngoại giao mềm dẻo \"Dĩ bất biến, ứng vạn biến\" để tranh thủ thời gian hòa bình quý báu, sau đó phát động cuộc kháng chiến toàn dân, toàn diện, đưa dân tộc tới đỉnh cao chiến thắng Điện Biên Phủ."
+      },
+      {
+        "id": "ch6",
+        "code": "Chương 06",
+        "period": "1954 – 1969",
+        "title": "Xây dựng CNXH ở miền Bắc, đấu tranh thống nhất & Di chúc",
+        "imageUrl": "/assets/hcm-space/anh-bac.png",
+        "imageCaption": "Chân dung Chủ tịch Hồ Chí Minh — Ngọn đuốc soi đường tư tưởng, đạo đức, phong cách.",
+        "summary": "Lãnh đạo cách mạng hai miền Nam – Bắc, nêu gương đạo đức cần kiệm liêm chính tại Nhà sàn và để lại bản Di chúc thiêng liêng.",
+        "keyPoints": [
+          "05/1958: Chuyển về sống và làm việc giản dị tại Nhà sàn trong Phủ Chủ tịch.",
+          "17/7/1966: Ra Lời kêu gọi \"Không có gì quý hơn độc lập, tự do\".",
+          "03/02/1969: Viết bài \"Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân\".",
+          "02/9/1969: Từ trần tại Nhà số 67, để lại Di chúc lịch sử cho toàn Đảng, toàn dân."
+        ],
+        "fullProse": "Trong 15 năm cuối đời, dù bận trăm công nghìn việc của hai chiến lược cách mạng, Bác Hồ luôn hướng về đồng bào miền Nam ruột thịt (\"Miền Nam ở trong trái tim tôi\") và đặc biệt quan tâm tới công tác xây dựng, chỉnh đốn Đảng, bồi dưỡng đạo đức cách mạng cho cán bộ, đảng viên và thế hệ trẻ."
+      }
+    ],
+    "historicalEras": [
+      {
+        "id": 1,
+        "code": "TK 1",
+        "label": "1890 – 1911",
+        "period": "1890–1911",
+        "description": "Thời niên thiếu và tinh thần yêu nước"
+      },
+      {
+        "id": 2,
+        "code": "TK 2",
+        "label": "1911 – 1920",
+        "period": "1911–1920",
+        "description": "Tìm thấy con đường cứu nước theo chủ nghĩa Mác – Lênin"
+      },
+      {
+        "id": 3,
+        "code": "TK 3",
+        "label": "1921 – 1930",
+        "period": "1921–1930",
+        "description": "Truyền bá lý luận và sáng lập Đảng Cộng sản Việt Nam"
+      },
+      {
+        "id": 4,
+        "code": "TK 4",
+        "label": "1930 – 1941",
+        "period": "1930–1941",
+        "description": "Vượt qua thử thách quốc tế và chuẩn bị trở về Tổ quốc"
+      },
+      {
+        "id": 5,
+        "code": "TK 5",
+        "label": "1941 – 1945",
+        "period": "1941–1945",
+        "description": "Lãnh đạo Việt Minh và Cách mạng Tháng Tám thành công"
+      },
+      {
+        "id": 6,
+        "code": "TK 6",
+        "label": "1945 – 1954",
+        "period": "1945–1954",
+        "description": "Xây dựng chính quyền non trẻ và kháng chiến chống Pháp"
+      },
+      {
+        "id": 7,
+        "code": "TK 7",
+        "label": "1954 – 1969",
+        "period": "1954–1969",
+        "description": "Xây dựng miền Bắc, hướng về miền Nam và Di chúc 1969"
+      },
+      {
+        "id": 8,
+        "code": "TK 8",
+        "label": "Di sản Bất hủ",
+        "period": "1969–Nay",
+        "description": "UNESCO tôn vinh Anh hùng giải phóng dân tộc (Nghị quyết 24C/18.65 năm 1987) & Tư tưởng soi đường"
+      }
+    ],
+    "historicalEvents30": [
+      {
+        "id": "ev01",
+        "eraId": 1,
+        "date": "19/05/1890",
+        "title": "Chủ tịch Hồ Chí Minh ra đời tại Hoàng Trù",
+        "location": "Nam Đàn, Nghệ An",
+        "summary": "Nguyễn Sinh Cung cất tiếng khóc chào đời tại quê ngoại Hoàng Trù, xã Chung Cự.",
+        "context": "Gia đình cụ Phó bảng Nguyễn Sinh Sắc và bà Hoàng Thị Loan.",
+        "significance": "Khởi nguồn cuộc đời cống hiến trọn vẹn cho độc lập dân tộc và tự do của Nhân dân."
+      },
+      {
+        "id": "ev02",
+        "eraId": 1,
+        "date": "1895–1908",
+        "title": "Thời niên thiếu học tập tại Kinh đô Huế",
+        "location": "Thừa Thiên Huế",
+        "summary": "Học tại Trường Pháp – Việt Đông Ba, Trường Quốc học Huế và tham gia phiên dịch cho đồng bào chống thuế năm 1908.",
+        "context": "Chứng kiến cảnh áp bức thực dân và tinh thần bất khuất của sĩ phu, nông dân.",
+        "significance": "Hình thành khát vọng canh tân và giải phóng đồng bào."
+      },
+      {
+        "id": "ev03",
+        "eraId": 1,
+        "date": "1910–1911",
+        "title": "Dạy học tại Trường Dục Thanh (Phan Thiết)",
+        "location": "Phan Thiết, Bình Thuận",
+        "summary": "Thầy giáo Nguyễn Tất Thành giảng dạy chữ Quốc ngữ, Hán văn và tinh thần yêu nước cho học trò.",
+        "context": "Trên hành trình xuôi Nam chuẩn bị xuất dương.",
+        "significance": "Truyền lửa yêu nước trước khi vào Sài Gòn tìm đường ra nước ngoài."
+      },
+      {
+        "id": "ev04",
+        "eraId": 2,
+        "date": "05/06/1911",
+        "title": "Rời Bến Nhà Rồng ra đi tìm đường cứu nước",
+        "location": "Sài Gòn",
+        "imageUrl": "/assets/hcm-space/tieusu1-1911.png",
+        "summary": "Làm phụ bếp trên tàu Amiral Latouche-Tréville với tên Văn Ba, bắt đầu 30 năm bôn ba.",
+        "context": "Các phong trào yêu nước đầu thế kỷ XX lâm vào bế tắc đường lối.",
+        "significance": "Mở đầu hành trình tiếp cận phong trào công nhân và lý luận cách mạng tiên tiến."
+      },
+      {
+        "id": "ev05",
+        "eraId": 2,
+        "date": "1912–1917",
+        "title": "Lao động tại Hoa Kỳ và Vương quốc Anh",
+        "location": "Boston, New York, London",
+        "summary": "Vừa làm việc cật lực kiếm sống vừa nghiên cứu chế độ dân chủ tư sản và đấu tranh của giai cấp lao động.",
+        "context": "Chiến tranh thế giới thứ nhất bùng nổ.",
+        "significance": "Nhận rõ bản chất bóc lột của chủ nghĩa đế quốc và tình hữu ái giai cấp."
+      },
+      {
+        "id": "ev06",
+        "eraId": 2,
+        "date": "18/06/1919",
+        "title": "Gửi Bản Yêu sách của nhân dân An Nam tới Hội nghị Versailles",
+        "location": "Paris, Pháp",
+        "imageUrl": "/assets/hcm-space/tieusu2-1919.png",
+        "summary": "Ký tên Nguyễn Ái Quốc, đòi các quyền tự do, dân chủ tối thiểu cho dân tộc Việt Nam.",
+        "context": "Hội nghị hòa bình Versailles hậu Thế chiến I.",
+        "significance": "Tiếng nói đấu tranh công khai đầu tiên gây tiếng vang quốc tế."
+      },
+      {
+        "id": "ev07",
+        "eraId": 2,
+        "date": "07/1920",
+        "title": "Đọc Sơ thảo Luận cương của V.I. Lênin về vấn đề dân tộc và thuộc địa",
+        "location": "Paris, Pháp",
+        "summary": "Tìm thấy con đường giải phóng dân tộc gắn liền với cách mạng vô sản.",
+        "context": "Đăng trên báo L’Humanité số ngày 16–17/7/1920.",
+        "significance": "Bước ngoặt quyết định chuyển từ chủ nghĩa yêu nước sang chủ nghĩa Mác – Lênin."
+      },
+      {
+        "id": "ev08",
+        "eraId": 2,
+        "date": "12/1920",
+        "title": "Tham dự Đại hội Tours, sáng lập Đảng Cộng sản Pháp",
+        "location": "Tours, Pháp",
+        "imageUrl": "/assets/hcm-space/tieusu3-1920.png",
+        "summary": "Bỏ phiếu tán thành gia nhập Quốc tế III, trở thành người cộng sản Việt Nam đầu tiên.",
+        "context": "Đại hội lần thứ XVIII Đảng Xã hội Pháp.",
+        "significance": "Đánh dấu sự kết hợp giữa phong trào giải phóng dân tộc và cách mạng quốc tế."
+      },
+      {
+        "id": "ev09",
+        "eraId": 3,
+        "date": "04/1922",
+        "title": "Xuất bản báo Le Paria (Người cùng khổ)",
+        "location": "Paris, Pháp",
+        "summary": "Làm chủ bút kiêm quản lý tờ báo chiến đấu vạch trần tội ác thực dân tại các thuộc địa.",
+        "context": "Hội Liên hiệp thuộc địa vừa thành lập năm 1921.",
+        "significance": "Vũ khí tư tưởng sắc bén thức tỉnh các dân tộc bị áp bức."
+      },
+      {
+        "id": "ev10",
+        "eraId": 3,
+        "date": "1923–1924",
+        "title": "Hoạt động tại Liên Xô, dự Đại hội V Quốc tế Cộng sản",
+        "location": "Moskva, Liên Xô",
+        "summary": "Nghiên cứu lý luận, viết báo quốc tế và tham gia nhiều tham luận bảo vệ quyền của các dân tộc thuộc địa.",
+        "context": "Trường Đại học Phương Đông Moskva.",
+        "significance": "Chuẩn bị nền tảng lý luận cách mạng thuộc địa."
+      },
+      {
+        "id": "ev11",
+        "eraId": 3,
+        "date": "1925",
+        "title": "Thành lập Hội Việt Nam Cách mạng Thanh niên & ra báo Thanh niên",
+        "location": "Quảng Châu, Trung Quốc",
+        "summary": "Tổ chức các lớp huấn luyện chính trị đào tạo lớp cán bộ cách mạng đầu tiên và xuất bản Bản án chế độ thực dân Pháp.",
+        "context": "Cao trào cách mạng trong nước đòi hỏi tổ chức thống nhất.",
+        "significance": "Đặt nền móng trực tiếp về tổ chức và cán bộ cho Đảng."
+      },
+      {
+        "id": "ev12",
+        "eraId": 3,
+        "date": "1927",
+        "title": "Xuất bản tác phẩm Đường Kách mệnh",
+        "location": "Quảng Châu, Trung Quốc",
+        "summary": "Cẩm nang lý luận và rèn luyện tư cách người cách mạng Việt Nam.",
+        "context": "Tổng hợp bài giảng các lớp huấn luyện chính trị tại Quảng Châu.",
+        "significance": "Xác định 23 điều tư cách người cách mạng và phương pháp vận động quần chúng."
+      },
+      {
+        "id": "ev13",
+        "eraId": 3,
+        "date": "03/02/1930",
+        "title": "Chủ trì Hội nghị thành lập Đảng Cộng sản Việt Nam",
+        "location": "Cửu Long, Hương Cảng",
+        "imageUrl": "/assets/hcm-space/tieusu4-1928.png",
+        "summary": "Hợp nhất 3 tổ chức cộng sản, thông qua Chánh cương vắn tắt và Sách lược vắn tắt.",
+        "context": "Khủng hoảng phân tán tổ chức cộng sản cuối năm 1929.",
+        "significance": "Chấm dứt khủng hoảng về đường lối cứu nước từ cuối thế kỷ XIX."
+      },
+      {
+        "id": "ev14",
+        "eraId": 4,
+        "date": "06/1931–1933",
+        "title": "Vượt qua vụ án chính trị tại nhà lao Victoria (Hồng Kông)",
+        "location": "Hương Cảng",
+        "summary": "Kiên cường đấu tranh pháp lý với sự bảo vệ của luật sư F.H. Loseby, bảo toàn khí tiết người cộng sản.",
+        "context": "Thực dân Pháp truy nã gắt gao sau Xô viết Nghệ Tĩnh.",
+        "significance": "Bảo toàn lãnh tụ tiếp tục sự nghiệp cách mạng."
+      },
+      {
+        "id": "ev15",
+        "eraId": 5,
+        "date": "28/01/1941",
+        "title": "Trở về Tổ quốc tại cột mốc 108 (Pác Bó)",
+        "location": "Hà Quảng, Cao Bằng",
+        "summary": "Đặt chân về quê hương sau 30 năm tìm đường cứu nước, sống và làm việc tại hang Cốc Bó.",
+        "context": "Chiến tranh thế giới thứ hai bước vào giai đoạn quyết định.",
+        "significance": "Trực tiếp lãnh đạo chuẩn bị khởi nghĩa giành chính quyền."
+      },
+      {
+        "id": "ev16",
+        "eraId": 5,
+        "date": "19/05/1941",
+        "title": "Thành lập Mặt trận Việt Minh",
+        "location": "Pác Bó, Cao Bằng",
+        "summary": "Tại Hội nghị Trung ương 8, đặt nhiệm vụ giải phóng dân tộc lên hàng đầu, lập Mặt trận Việt Nam Độc lập Đồng minh.",
+        "context": "Đất nước dưới ách hai tầng thực dân Pháp – phát xít Nhật.",
+        "significance": "Quy tụ khối đại đoàn kết toàn dân tộc chuẩn bị Tổng khởi nghĩa."
+      },
+      {
+        "id": "ev17",
+        "eraId": 5,
+        "date": "1942–1943",
+        "title": "Sáng tác tập thơ Nhật ký trong tù",
+        "location": "Quảng Tây, Trung Quốc",
+        "summary": "Sáng tác 133 bài thơ chữ Hán trong hơn 1 năm bị chính quyền Tưởng Giới Thạch giam giữ.",
+        "context": "Khi sang Trung Quốc liên lạc với lực lượng Đồng minh chống phát xít.",
+        "significance": "Kiệt tác nhân văn, kết tinh bản lĩnh và tinh thần lạc quan cách mạng."
+      },
+      {
+        "id": "ev18",
+        "eraId": 5,
+        "date": "22/12/1944",
+        "title": "Chỉ thị thành lập Đội Việt Nam Tuyên truyền Giải phóng quân",
+        "location": "Cao Bằng",
+        "summary": "Xác định nguyên tắc quân đội của dân, do dân, vì dân; chính trị trọng hơn quân sự.",
+        "context": "Thời cơ khởi nghĩa từng phần đang tới gần.",
+        "significance": "Ngày truyền thống Quân đội nhân dân Việt Nam."
+      },
+      {
+        "id": "ev19",
+        "eraId": 5,
+        "date": "08/1945",
+        "title": "Quốc dân Đại hội Tân Trào — Phát động Tổng khởi nghĩa",
+        "location": "Tân Trào, Tuyên Quang",
+        "summary": "Quyết định Tổng khởi nghĩa giành chính quyền trong cả nước trước khi quân Đồng minh vào Đông Dương.",
+        "context": "Phát xít Nhật đầu hàng Đồng minh (15/8/1945).",
+        "significance": "Lời hịch lịch sử \"Dù phải đốt cháy cả dãy Trường Sơn cũng phải kiên quyết giành cho được độc lập\"."
+      },
+      {
+        "id": "ev20",
+        "eraId": 6,
+        "date": "02/09/1945",
+        "title": "Đọc Tuyên ngôn Độc lập tại Quảng trường Ba Đình",
+        "location": "Hà Nội",
+        "imageUrl": "/assets/hcm-space/nha-rong.jpg",
+        "summary": "Trịnh trọng tuyên bố khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+        "context": "Tổng khởi nghĩa Tháng Tám thắng lợi trên toàn quốc.",
+        "significance": "Mở ra kỷ nguyên độc lập, tự do và làm chủ của Nhân dân Việt Nam."
+      },
+      {
+        "id": "ev21",
+        "eraId": 6,
+        "date": "06/01/1946",
+        "title": "Tổng tuyển cử bầu Quốc hội khóa I",
+        "location": "Toàn quốc",
+        "summary": "Cuộc bầu cử dân chủ đầu tiên theo nguyên tắc phổ thông đầu phiếu.",
+        "context": "Chính quyền cách mạng non trẻ đối mặt muôn vàn khó khăn.",
+        "significance": "Khẳng định tính hợp hiến, hợp pháp của Nhà nước Việt Nam mới."
+      },
+      {
+        "id": "ev22",
+        "eraId": 6,
+        "date": "19/12/1946",
+        "title": "Ra Lời kêu gọi toàn quốc kháng chiến",
+        "location": "Vạn Phúc, Hà Đông",
+        "summary": "Hiệu triệu toàn dân đứng lên bảo vệ nền độc lập non trẻ bằng bất cứ vũ khí nào có trong tay.",
+        "context": "Thực dân Pháp bội ước, quyết tâm tái chiếm Việt Nam.",
+        "significance": "Bắt đầu cuộc kháng chiến trường kỳ 9 năm đầy anh dũng."
+      },
+      {
+        "id": "ev23",
+        "eraId": 6,
+        "date": "10/1947",
+        "title": "Viết tác phẩm Sửa đổi lối làm việc",
+        "location": "Việt Bắc",
+        "summary": "Hệ thống hóa tư tưởng về xây dựng Đảng, rèn luyện cán bộ và sửa chữa khuyết điểm.",
+        "context": "Cách mạng cần đội ngũ cán bộ trong sạch, gắn bó mật thiết với dân.",
+        "significance": "Kim chỉ nam thường xuyên trong công tác tổ chức, cán bộ."
+      },
+      {
+        "id": "ev24",
+        "eraId": 6,
+        "date": "11/06/1948",
+        "title": "Ra Lời kêu gọi Thi đua ái quốc",
+        "location": "Việt Bắc",
+        "summary": "Phát động phong trào thi đua diệt giặc đói, diệt giặc dốt, diệt giặc ngoại xâm.",
+        "context": "Kỷ niệm 1.000 ngày kháng chiến Nam Bộ.",
+        "significance": "Coi trọng sức dân: \"Thi đua là yêu nước, yêu nước thì phải thi đua\"."
+      },
+      {
+        "id": "ev25",
+        "eraId": 6,
+        "date": "15/10/1949",
+        "title": "Công bố bài báo Dân vận trên báo Sự thật",
+        "location": "Việt Bắc",
+        "summary": "Đúc kết phương châm dân vận: \"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\".",
+        "context": "Yêu cầu củng cố khối đại đoàn kết phục vụ kháng chiến.",
+        "significance": "Nền tảng kinh điển cho công tác dân vận và dân chủ cơ sở hiện nay."
+      },
+      {
+        "id": "ev26",
+        "eraId": 6,
+        "date": "07/05/1954",
+        "title": "Chiến thắng lịch sử Điện Biên Phủ",
+        "location": "Điện Biên Phủ",
+        "summary": "Quân và dân ta tiêu diệt hoàn toàn tập đoàn cứ điểm Điện Biên Phủ, buộc Pháp ký Hiệp định Genève.",
+        "context": "Chiến cuộc Đông Xuân 1953–1954.",
+        "significance": "Giải phóng hoàn toàn miền Bắc, cổ vũ phong trào giải phóng thuộc địa toàn cầu."
+      },
+      {
+        "id": "ev27",
+        "eraId": 7,
+        "date": "05/1958",
+        "title": "Sống và làm việc tại Nhà sàn Phủ Chủ tịch",
+        "location": "Hà Nội",
+        "summary": "Thể hiện phong cách giản dị, thanh cao, gần gũi thiên nhiên và tiết kiệm vì nước vì dân.",
+        "context": "Xây dựng miền Bắc trở thành hậu phương lớn.",
+        "significance": "Biểu tượng sống động về đạo đức cần kiệm liêm chính của người lãnh đạo."
+      },
+      {
+        "id": "ev28",
+        "eraId": 7,
+        "date": "17/07/1966",
+        "title": "Ra Lời kêu gọi chống Mỹ cứu nước",
+        "location": "Hà Nội",
+        "summary": "Khẳng định chân lý bất hủ: \"Không có gì quý hơn độc lập, tự do\".",
+        "context": "Đế quốc Mỹ leo thang chiến tranh phá hoại miền Bắc.",
+        "significance": "Củng cố ý chí quyết tâm thống nhất Tổ quốc."
+      },
+      {
+        "id": "ev29",
+        "eraId": 7,
+        "date": "03/02/1969",
+        "title": "Bài viết Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân",
+        "location": "Hà Nội",
+        "summary": "Cảnh báo nguy cơ thoái hóa của chủ nghĩa cá nhân khi Đảng cầm quyền.",
+        "context": "Kỷ niệm 39 năm ngày thành lập Đảng.",
+        "significance": "Cẩm nang cốt lõi trong công tác xây dựng, chỉnh đốn Đảng hiện nay."
+      },
+      {
+        "id": "ev30",
+        "eraId": 7,
+        "date": "02/09/1969",
+        "title": "Chủ tịch Hồ Chí Minh qua đời, để lại bản Di chúc bất hủ",
+        "location": "Nhà số 67, Phủ Chủ tịch, Hà Nội",
+        "imageUrl": "/assets/hcm-space/anh-bac.png",
+        "summary": "Người đi xa đúng dịp Quốc khánh 02/9, để lại Di chúc căn dặn toàn Đảng giữ gìn sự đoàn kết và chăm lo đời sống Nhân dân.",
+        "context": "Hoàn chỉnh Di chúc qua nhiều năm từ 1965 đến tháng 5/1969.",
+        "significance": "Tư tưởng, đạo đức và phong cách Hồ Chí Minh mãi là tài sản tinh thần vô giá của dân tộc."
+      }
+    ],
+    "toanTapVolumes": [
+      {
+        "volume": 1,
+        "period": "1912–1924",
+        "highlights": "Yêu sách của nhân dân An Nam (1919), báo Người cùng khổ, diễn văn tại Quốc tế V",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 1, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 2,
+        "period": "1924–1929",
+        "highlights": "Bản án chế độ thực dân Pháp (1925), Đường Kách mệnh (1927), báo Thanh niên",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 2, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 3,
+        "period": "1930–1945",
+        "highlights": "Chánh cương & Sách lược vắn tắt (1930), Nhật ký trong tù (1942–1943)",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 3, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 4,
+        "period": "1945–1946",
+        "highlights": "Tuyên ngôn Độc lập (1945), Thư gửi UBND các cấp, Lời kêu gọi toàn quốc kháng chiến",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 4, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 5,
+        "period": "1947–1949",
+        "highlights": "Đời sống mới (1947), Sửa đổi lối làm việc (1947), Lời kêu gọi Thi đua ái quốc (1948)",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 6,
+        "period": "1949–1950",
+        "highlights": "Bài báo Dân vận (15/10/1949), Thư gửi Hội nghị cán bộ, chiến dịch Biên giới",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 6, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 7,
+        "period": "1951–1952",
+        "highlights": "Báo cáo chính trị tại Đại hội II của Đảng, thực hành tiết kiệm chống tham ô lãng phí",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 7, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 8,
+        "period": "1953–1954",
+        "highlights": "Chiến dịch Điện Biên Phủ, thư gửi đồng bào và chiến sĩ tiếp quản Thủ đô",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 8, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 9,
+        "period": "1954–1955",
+        "highlights": "Khôi phục kinh tế miền Bắc, củng cố chính quyền dân chủ nhân dân",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 9, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 10,
+        "period": "1955–1957",
+        "highlights": "Xây dựng khối đại đoàn kết, nâng cao văn hóa giáo dục quần chúng",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 10, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 11,
+        "period": "1958–1959",
+        "highlights": "Đạo đức cách mạng (1958), Thường thức chính trị và đào tạo cán bộ cơ sở",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 11, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 12,
+        "period": "1959–1960",
+        "highlights": "Đại hội đại biểu toàn quốc lần thứ III, Tết trồng cây đầu tiên (1959)",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 12, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 13,
+        "period": "1961–1962",
+        "highlights": "Phong trào Người tốt Việc tốt, giáo dục thiếu niên nhi đồng và công tác Mặt trận",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 13, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 14,
+        "period": "1963–1965",
+        "highlights": "Hội nghị Chính trị đặc biệt (1964), chi viện miền Nam ruột thịt",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 14, NXB CTQG Sự thật (2011)"
+      },
+      {
+        "volume": 15,
+        "period": "1965–1969",
+        "highlights": "Lời kêu gọi 17/7/1966, Nâng cao đạo đức cách mạng (1969) và Bản Di chúc (1969)",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, NXB CTQG Sự thật (2011)"
+      }
+    ],
+    "classicWorks15": [
+      {
+        "id": "w01",
+        "year": "1919",
+        "title": "Yêu sách của nhân dân An Nam",
+        "volumeRef": "Tập 1, tr. 435–438",
+        "penName": "Nguyễn Ái Quốc",
+        "place": "Paris, Pháp",
+        "summary": "Văn kiện 8 điểm đòi quyền tự do, bình đẳng pháp lý và ân xá tù chính trị gửi tới Hội nghị Versailles.",
+        "theses": [
+          "Quyền dân tộc tự quyết",
+          "Bình đẳng pháp quyền giữa người Việt và người Pháp",
+          "Tự do báo chí, hội họp, học tập"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 1, tr. 435–438"
+      },
+      {
+        "id": "w02",
+        "year": "1925",
+        "title": "Bản án chế độ thực dân Pháp",
+        "volumeRef": "Tập 2, tr. 1–138",
+        "penName": "Nguyễn Ái Quốc",
+        "place": "Paris, Pháp",
+        "summary": "Tố cáo đanh thép chế độ thuế máu, đầu độc thuốc phiện và áp bức ở các thuộc địa Pháp.",
+        "theses": [
+          "Vạch trần bản chất bóc lột của chủ nghĩa thực dân",
+          "Liên minh các dân tộc thuộc địa bị áp bức",
+          "Thức tỉnh lương tri giai cấp công nhân chính quốc"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 2, tr. 1–138"
+      },
+      {
+        "id": "w03",
+        "year": "1927",
+        "title": "Đường Kách mệnh",
+        "volumeRef": "Tập 2, tr. 279–347",
+        "penName": "Nguyễn Ái Quốc",
+        "place": "Quảng Châu",
+        "summary": "Giáo trình huấn luyện đầu tiên xác định tính chất cách mạng, lực lượng quần chúng và 23 điều tư cách người cách mạng.",
+        "theses": [
+          "Cách mạng là việc chung cả dân chúng",
+          "Đảng phải có chủ nghĩa làm cốt",
+          "23 điều tư cách cần kiệm liêm chính của cán bộ"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 2, tr. 279–347"
+      },
+      {
+        "id": "w04",
+        "year": "1930",
+        "title": "Chánh cương vắn tắt & Sách lược vắn tắt",
+        "volumeRef": "Tập 3, tr. 1–5",
+        "penName": "Nguyễn Ái Quốc",
+        "place": "Hương Cảng",
+        "summary": "Cương lĩnh chính trị đầu tiên của Đảng Cộng sản Việt Nam tại Hội nghị hợp nhất tháng 2/1930.",
+        "theses": [
+          "Độc lập dân tộc gắn với chủ nghĩa xã hội",
+          "Công – nông làm gốc, đoàn kết tiểu tư sản và trí thức",
+          "Đảng Cộng sản là đội tiên phong lãnh đạo"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 3, tr. 1–5"
+      },
+      {
+        "id": "w05",
+        "year": "1942–1943",
+        "title": "Ngục trung nhật ký (Nhật ký trong tù)",
+        "volumeRef": "Tập 3, tr. 260–420",
+        "penName": "Hồ Chí Minh",
+        "place": "Quảng Tây",
+        "summary": "133 bài thơ chữ Hán viết trong lao tù, ngời sáng bản lĩnh kiên trung và tình thương yêu con người.",
+        "theses": [
+          "Bản lĩnh thép trước gian khổ",
+          "Lạc quan hướng về tự do",
+          "Phong thái văn hóa kết hợp cổ điển và hiện đại"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 3, tr. 260–420"
+      },
+      {
+        "id": "w06",
+        "year": "1945",
+        "title": "Tuyên ngôn Độc lập",
+        "volumeRef": "Tập 4, tr. 1–4",
+        "penName": "Chủ tịch Hồ Chí Minh",
+        "place": "Ba Đình, Hà Nội",
+        "summary": "Bản hùng văn lập quốc khẳng định quyền tự do, độc lập bất khả xâm phạm của dân tộc Việt Nam.",
+        "theses": [
+          "Mở rộng quyền con người thành quyền dân tộc",
+          "Phá bỏ mọi xiềng xích thực dân – phát xít",
+          "Quyết tâm bảo vệ nền độc lập bằng tất cả sức lực"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 4, tr. 1–4"
+      },
+      {
+        "id": "w07",
+        "year": "1946",
+        "title": "Lời kêu gọi toàn quốc kháng chiến",
+        "volumeRef": "Tập 4, tr. 534",
+        "penName": "Chủ tịch Hồ Chí Minh",
+        "place": "Vạn Phúc, Hà Đông",
+        "summary": "Lời hịch ngắn gọn, đanh thép hiệu triệu toàn dân đứng lên bảo vệ chủ quyền Tổ quốc.",
+        "theses": [
+          "Chúng ta muốn hòa bình nhưng thực dân lấn tới",
+          "Thà hy sinh tất cả chứ không chịu làm nô lệ",
+          "Toàn dân kháng chiến bằng mọi lực lượng sẵn có"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 4, tr. 534"
+      },
+      {
+        "id": "w08",
+        "year": "1947",
+        "title": "Đời sống mới",
+        "volumeRef": "Tập 5, tr. 110–132",
+        "penName": "Tân Sinh (Hồ Chí Minh)",
+        "place": "Việt Bắc",
+        "summary": "Hướng dẫn nếp sống văn minh, vệ sinh, đoàn kết, cần kiệm từ mỗi gia đình đến cơ quan, làng xã.",
+        "theses": [
+          "Thực hành Cần, Kiệm, Liêm, Chính hằng ngày",
+          "Bài trừ hủ tục, xây dựng văn hóa mới",
+          "Đoàn kết tương trợ nơi khu dân cư"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, tr. 110–132"
+      },
+      {
+        "id": "w09",
+        "year": "1947",
+        "title": "Sửa đổi lối làm việc",
+        "volumeRef": "Tập 5, tr. 269–346",
+        "penName": "X.Y.Z (Hồ Chí Minh)",
+        "place": "Việt Bắc",
+        "summary": "Cẩm nang xây dựng Đảng về phê bình, tự phê bình, 5 đức tính cán bộ và tác phong sâu sát dân.",
+        "theses": [
+          "Cán bộ là gốc của mọi công việc",
+          "Chống bệnh quan liêu, mệnh lệnh, hình thức",
+          "Tự phê bình và phê bình phải chân thành, có lý có tình"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, tr. 269–346"
+      },
+      {
+        "id": "w10",
+        "year": "1948",
+        "title": "Lời kêu gọi thi đua ái quốc",
+        "volumeRef": "Tập 5, tr. 556–558",
+        "penName": "Chủ tịch Hồ Chí Minh",
+        "place": "Việt Bắc",
+        "summary": "Phát động phong trào thi đua yêu nước rộng khắp mọi ngành, mọi lứa tuổi.",
+        "theses": [
+          "Thi đua là yêu nước, yêu nước thì phải thi đua",
+          "Mỗi người dân đều có thể góp công vào thắng lợi chung",
+          "Gắn thi đua với kết quả công việc thiết thực"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, tr. 556–558"
+      },
+      {
+        "id": "w11",
+        "year": "1949",
+        "title": "Dân vận",
+        "volumeRef": "Tập 6, tr. 232–234",
+        "penName": "X.Y.Z (Hồ Chí Minh)",
+        "place": "Báo Sự thật",
+        "summary": "Định nghĩa ngắn gọn, chuẩn mực nhất về công tác dân vận: việc gì có lợi cho dân phải hết sức làm.",
+        "theses": [
+          "Bao nhiêu lợi ích đều vì dân, quyền hành đều ở nơi dân",
+          "Dân vận kém thì việc gì cũng kém",
+          "Cán bộ phải óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234"
+      },
+      {
+        "id": "w12",
+        "year": "1958",
+        "title": "Đạo đức cách mạng",
+        "volumeRef": "Tập 11, tr. 600–615",
+        "penName": "Trần Lực (Hồ Chí Minh)",
+        "place": "Tạp chí Học tập",
+        "summary": "Phân tích nguồn gốc sức mạnh đạo đức người cộng sản và cuộc đấu tranh chống chủ nghĩa cá nhân.",
+        "theses": [
+          "Có tài mà không có đức là người vô dụng",
+          "Đặt lợi ích của Đảng, của dân tộc lên trên hết",
+          "Rèn luyện đạo đức suốt đời như ngọc càng mài càng sáng"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 11, tr. 600–615"
+      },
+      {
+        "id": "w13",
+        "year": "1966",
+        "title": "Lời kêu gọi đồng bào và chiến sĩ cả nước",
+        "volumeRef": "Tập 15, tr. 130–131",
+        "penName": "Chủ tịch Hồ Chí Minh",
+        "place": "Hà Nội",
+        "summary": "Khẳng định chân lý thời đại: \"Không có gì quý hơn độc lập, tự do\".",
+        "theses": [
+          "Ý chí sắt đá thống nhất Tổ quốc",
+          "Độc lập tự do là giá trị thiêng liêng nhất",
+          "Niềm tin tất thắng vào sức mạnh Nhân dân"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 130–131"
+      },
+      {
+        "id": "w14",
+        "year": "1969",
+        "title": "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân",
+        "volumeRef": "Tập 15, tr. 546–549",
+        "penName": "T.L (Hồ Chí Minh)",
+        "place": "Báo Nhân Dân (03/02/1969)",
+        "summary": "Cảnh báo trực diện các biểu hiện thoái hóa đạo đức trong Đảng cầm quyền.",
+        "theses": [
+          "Chủ nghĩa cá nhân là giặc nội xâm nguy hiểm",
+          "Đoàn kết nội bộ và tôn trọng quyền làm chủ của dân",
+          "Kiểm tra giám sát chặt chẽ cán bộ, đảng viên"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 546–549"
+      },
+      {
+        "id": "w15",
+        "year": "1965–1969",
+        "title": "Di chúc của Chủ tịch Hồ Chí Minh",
+        "volumeRef": "Tập 15, tr. 621–624",
+        "penName": "Hồ Chí Minh",
+        "place": "Hà Nội",
+        "summary": "Bảo vật quốc gia dặn dò toàn Đảng giữ gìn đoàn kết, chỉnh đốn Đảng và chăm lo thế hệ trẻ, Nhân dân.",
+        "theses": [
+          "Giữ gìn sự đoàn kết nhất trí trong Đảng",
+          "Đào tạo, bồi dưỡng thế hệ trẻ vừa hồng vừa chuyên",
+          "Nâng cao đời sống vật chất, văn hóa cho Nhân dân"
+        ],
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 621–624"
+      }
+    ],
+    "verifiedQuotes12": [
+      {
+        "id": "q01",
+        "theme": "Đại đoàn kết",
+        "quote": "Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.",
+        "context": "Nói chuyện tại Hội nghị mở rộng Ủy ban Trung ương MTTQ Việt Nam (1962)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 13, tr. 119"
+      },
+      {
+        "id": "q02",
+        "theme": "Đại đoàn kết",
+        "quote": "Dân tộc ta là một, nước Việt Nam là một. Sông có thể cạn, núi có thể mòn, song chân lý ấy không bao giờ thay đổi.",
+        "context": "Thư gửi đồng bào Nam Bộ trước khi sang Pháp (31/5/1946)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 4, tr. 280"
+      },
+      {
+        "id": "q03",
+        "theme": "Đại đoàn kết",
+        "quote": "Trong bầu trời không gì quý bằng nhân dân. Trong thế giới không gì mạnh bằng lực lượng đoàn kết của nhân dân.",
+        "context": "Bài giảng Lớp chỉnh huấn trung, cao cấp Bộ Quốc phòng (1956)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 10, tr. 453"
+      },
+      {
+        "id": "q04",
+        "theme": "Đại đoàn kết",
+        "quote": "Giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình.",
+        "context": "Di chúc của Chủ tịch Hồ Chí Minh (1969)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 15, tr. 622"
+      },
+      {
+        "id": "q05",
+        "theme": "Dân vận",
+        "quote": "Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.",
+        "context": "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 4, tr. 65"
+      },
+      {
+        "id": "q06",
+        "theme": "Dân vận",
+        "quote": "Dễ trăm lần không dân cũng chịu, khó vạn lần dân liệu cũng xong.",
+        "context": "Ca dao vận động quần chúng Bác Hồ trích trong công tác dân vận",
+        "source": "Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234"
+      },
+      {
+        "id": "q07",
+        "theme": "Dân vận",
+        "quote": "Lực lượng của dân vận rất to lớn. Việc dân vận rất quan trọng. Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.",
+        "context": "Bài báo Dân vận trên báo Sự thật (15/10/1949)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 6, tr. 234"
+      },
+      {
+        "id": "q08",
+        "theme": "Cán bộ & Đạo đức",
+        "quote": "Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.",
+        "context": "Nêu cao trách nhiệm gương mẫu trong Đảng và xã hội (1927–1958)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 1, tr. 284"
+      },
+      {
+        "id": "q09",
+        "theme": "Cán bộ & Đạo đức",
+        "quote": "Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại, đều do cán bộ tốt hoặc kém.",
+        "context": "Tác phẩm Sửa đổi lối làm việc (10/1947)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 5, tr. 309–313"
+      },
+      {
+        "id": "q10",
+        "theme": "Độc lập tự do",
+        "quote": "Không có gì quý hơn độc lập, tự do.",
+        "context": "Lời kêu gọi đồng bào và chiến sĩ cả nước (17/7/1966)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 15, tr. 131"
+      },
+      {
+        "id": "q11",
+        "theme": "Thi đua ái quốc",
+        "quote": "Thi đua là yêu nước, yêu nước thì phải thi đua. Và những người thi đua là những người yêu nước nhất.",
+        "context": "Phát biểu tại Đại hội Chiến sĩ thi đua toàn quốc lần thứ I (01/5/1952)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 7, tr. 407"
+      },
+      {
+        "id": "q12",
+        "theme": "Thanh niên & Giáo dục",
+        "quote": "Vì lợi ích mười năm thì phải trồng cây, vì lợi ích trăm năm thì phải trồng người.",
+        "context": "Nói chuyện tại Lớp học chính trị giáo viên cấp II, III miền Bắc (13/9/1958)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 11, tr. 528"
+      }
+    ],
+    "additionalQuotes4": [
+      {
+        "id": "q13",
+        "theme": "Cán bộ & Đạo đức",
+        "quote": "Cán bộ là người đầy tớ của nhân dân, chứ không phải là \"quan cách mạng\" để đè đầu cưỡi cổ nhân dân.",
+        "context": "Nói chuyện tại Đại hội Thanh niên tích cực (1956)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 8, tr. 264"
+      },
+      {
+        "id": "q14",
+        "theme": "Dân vận",
+        "quote": "Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.",
+        "context": "Bài báo \"Dân vận\" trên báo Sự thật (15/10/1949)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 6, tr. 234"
+      },
+      {
+        "id": "q15",
+        "theme": "Thanh niên & Giáo dục",
+        "quote": "Học để làm việc, làm người, làm cán bộ. Học để phụng sự Đoàn thể, giai cấp và nhân dân, Tổ quốc và nhân loại.",
+        "context": "Huấn thị tại Lớp cán bộ Trung cấp (1949)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 6, tr. 208"
+      },
+      {
+        "id": "q16",
+        "theme": "Cán bộ & Đạo đức",
+        "quote": "Trời có bốn mùa: Xuân, Hạ, Thu, Đông. Đất có bốn phương: Đông, Tây, Nam, Bắc. Người có bốn đức: Cần, Kiệm, Liêm, Chính. Thiếu một mùa, thì không thành trời. Thiếu một phương, thì không thành đất. Thiếu một đức, thì không thành người.",
+        "context": "Tác phẩm \"Thế nào là Cần, Kiệm, Liêm, Chính\" (tháng 6/1949)",
+        "source": "Hồ Chí Minh Toàn tập, Tập 6, tr. 117"
+      }
+    ],
+    "footprints20": [
+      {
+        "order": 1,
+        "title": "Nam Đàn",
+        "country": "Việt Nam",
+        "period": "1890–1895",
+        "coords": [
+          18.683,
+          105.533
+        ],
+        "alias": "Nguyễn Sinh Cung",
+        "events": "Nơi sinh và tuổi thơ tại Làng Sen, Hoàng Trù.",
+        "memorial": "Khu di tích Quốc gia đặc biệt Kim Liên",
+        "svgX": 74,
+        "svgY": 50
+      },
+      {
+        "order": 2,
+        "title": "Kinh thành Huế",
+        "country": "Việt Nam",
+        "period": "1895–1909",
+        "coords": [
+          16.463,
+          107.59
+        ],
+        "alias": "Nguyễn Tất Thành",
+        "events": "Theo học Quốc học Huế, tham gia phong trào chống thuế 1908.",
+        "memorial": "Trường Quốc học Huế & Nhà lưu niệm Dương Nỗ",
+        "svgX": 76,
+        "svgY": 54
+      },
+      {
+        "order": 3,
+        "title": "Phan Thiết",
+        "country": "Việt Nam",
+        "period": "1910–1911",
+        "coords": [
+          10.928,
+          108.102
+        ],
+        "alias": "Thầy giáo Thành",
+        "events": "Dạy học tại Trường Dục Thanh trước khi vào Sài Gòn.",
+        "memorial": "Khu di tích Dục Thanh, Bình Thuận",
+        "svgX": 77,
+        "svgY": 59
+      },
+      {
+        "order": 4,
+        "title": "Bến Nhà Rồng (Sài Gòn)",
+        "country": "Việt Nam",
+        "period": "05/06/1911",
+        "coords": [
+          10.768,
+          106.706
+        ],
+        "alias": "Văn Ba",
+        "events": "Lên tàu Amiral Latouche-Tréville ra đi tìm đường cứu nước.",
+        "memorial": "Bảo tàng Hồ Chí Minh – Chi nhánh TP.HCM",
+        "svgX": 75,
+        "svgY": 61
+      },
+      {
+        "order": 5,
+        "title": "Marseille & Le Havre",
+        "country": "Pháp",
+        "period": "07/1911",
+        "coords": [
+          43.296,
+          5.369
+        ],
+        "alias": "Văn Ba",
+        "events": "Cập cảng châu Âu đầu tiên, khảo sát đời sống công nhân Pháp.",
+        "memorial": "Di tích cảng Marseille",
+        "svgX": 49,
+        "svgY": 31
+      },
+      {
+        "order": 6,
+        "title": "Boston & New York",
+        "country": "Hoa Kỳ",
+        "period": "1912–1913",
+        "coords": [
+          40.712,
+          -74.006
+        ],
+        "alias": "Nguyễn Tất Thành",
+        "events": "Làm việc tại khách sạn Omni Parker House và khu Harlem.",
+        "memorial": "Điểm dấu chân Omni Parker House, Boston",
+        "svgX": 25,
+        "svgY": 34
+      },
+      {
+        "order": 7,
+        "title": "London",
+        "country": "Vương quốc Anh",
+        "period": "1913–1917",
+        "coords": [
+          51.507,
+          -0.127
+        ],
+        "alias": "Nguyễn Tất Thành",
+        "events": "Lao động tại khách sạn Carlton và gia nhập Hội Lao động Hải ngoại.",
+        "memorial": "Biển kỷ niệm New Zealand House (Carlton cũ)",
+        "svgX": 46,
+        "svgY": 26
+      },
+      {
+        "order": 8,
+        "title": "Paris",
+        "country": "Pháp",
+        "period": "1917–1923",
+        "coords": [
+          48.856,
+          2.352
+        ],
+        "alias": "Nguyễn Ái Quốc",
+        "events": "Gửi Yêu sách 1919, dự Đại hội Tours 1920, ra báo Le Paria.",
+        "memorial": "Ngõ Compoint số 9 (quận 17, Paris)",
+        "svgX": 48,
+        "svgY": 28
+      },
+      {
+        "order": 9,
+        "title": "Moskva",
+        "country": "Liên Xô (LB Nga)",
+        "period": "1923–1924",
+        "coords": [
+          55.755,
+          37.617
+        ],
+        "alias": "Nguyễn Ái Quốc",
+        "events": "Học tập, viết báo và tham dự Đại hội V Quốc tế Cộng sản.",
+        "memorial": "Viện Hồ Chí Minh tại Moskva",
+        "svgX": 59,
+        "svgY": 23
+      },
+      {
+        "order": 10,
+        "title": "Quảng Châu",
+        "country": "Trung Quốc",
+        "period": "1924–1927",
+        "coords": [
+          23.129,
+          113.264
+        ],
+        "alias": "Lý Thụy",
+        "events": "Lập Hội VN Cách mạng Thanh niên, mở lớp và viết Đường Kách mệnh.",
+        "memorial": "Di tích số 13 đường Văn Minh, Quảng Châu",
+        "svgX": 78,
+        "svgY": 46
+      },
+      {
+        "order": 11,
+        "title": "Siam (Thái Lan)",
+        "country": "Thái Lan",
+        "period": "1928–1929",
+        "coords": [
+          17.415,
+          102.785
+        ],
+        "alias": "Thầu Chín",
+        "events": "Xây dựng cơ sở Việt kiều yêu nước tại Udon Thani, Nakhon Phanom.",
+        "memorial": "Khu tưởng niệm Chủ tịch Hồ Chí Minh tại Nakhon Phanom",
+        "svgX": 73,
+        "svgY": 56
+      },
+      {
+        "order": 12,
+        "title": "Hương Cảng",
+        "country": "Hồng Kông",
+        "period": "1930–1933",
+        "coords": [
+          22.319,
+          114.169
+        ],
+        "alias": "Tống Văn Sơ",
+        "events": "Chủ trì Hội nghị thành lập Đảng 03/02/1930 và vượt qua vụ án chính trị.",
+        "memorial": "Công viên Kowloon Park & Nhà giam Victoria (cũ)",
+        "svgX": 80,
+        "svgY": 48
+      },
+      {
+        "order": 13,
+        "title": "Quế Lâm & Côn Minh",
+        "country": "Trung Quốc",
+        "period": "1938–1940",
+        "coords": [
+          25.042,
+          102.712
+        ],
+        "alias": "Hồ Quang",
+        "events": "Chuẩn bị điều kiện kết nối phong trào trong nước trước khi về nước.",
+        "memorial": "Bát Lộ Quân Biện Sự Xứ Quế Lâm",
+        "svgX": 76,
+        "svgY": 44
+      },
+      {
+        "order": 14,
+        "title": "Pác Bó (Cao Bằng)",
+        "country": "Việt Nam",
+        "period": "28/01/1941",
+        "coords": [
+          22.981,
+          106.05
+        ],
+        "alias": "Già Thu / Hồ Chí Minh",
+        "events": "Về nước sau 30 năm, lập Mặt trận Việt Minh và Đội VNTTGPQ.",
+        "memorial": "Khu di tích Quốc gia đặc biệt Pác Bó",
+        "svgX": 75,
+        "svgY": 47
+      },
+      {
+        "order": 15,
+        "title": "Tân Trào (Tuyên Quang)",
+        "country": "Việt Nam",
+        "period": "05–08/1945",
+        "coords": [
+          21.771,
+          105.459
+        ],
+        "alias": "Chủ tịch Hồ Chí Minh",
+        "events": "Lán Nà Nưa và Đình Tân Trào, phát động Tổng khởi nghĩa Tháng Tám.",
+        "memorial": "Khu di tích Quốc gia đặc biệt Tân Trào",
+        "svgX": 74,
+        "svgY": 48
+      },
+      {
+        "order": 16,
+        "title": "Số 48 Hàng Ngang",
+        "country": "Việt Nam",
+        "period": "Cuối 08/1945",
+        "coords": [
+          21.034,
+          105.849
+        ],
+        "alias": "Chủ tịch Hồ Chí Minh",
+        "events": "Soạn thảo bản Tuyên ngôn Độc lập lịch sử.",
+        "memorial": "Di tích nhà số 48 Hàng Ngang, Hà Nội",
+        "svgX": 76,
+        "svgY": 49
+      },
+      {
+        "order": 17,
+        "title": "Quảng trường Ba Đình",
+        "country": "Việt Nam",
+        "period": "02/09/1945",
+        "coords": [
+          21.036,
+          105.834
+        ],
+        "alias": "Chủ tịch Hồ Chí Minh",
+        "events": "Đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+        "memorial": "Lăng Chủ tịch Hồ Chí Minh & Quảng trường Ba Đình",
+        "svgX": 75,
+        "svgY": 49
+      },
+      {
+        "order": 18,
+        "title": "ATK Định Hóa",
+        "country": "Việt Nam",
+        "period": "1947–1954",
+        "coords": [
+          21.916,
+          105.641
+        ],
+        "alias": "Chủ tịch Hồ Chí Minh",
+        "events": "Trung tâm đầu não lãnh đạo cuộc kháng chiến chống thực dân Pháp.",
+        "memorial": "An toàn khu Định Hóa, Thái Nguyên",
+        "svgX": 75,
+        "svgY": 48
+      },
+      {
+        "order": 19,
+        "title": "Điện Biên Phủ",
+        "country": "Việt Nam",
+        "period": "1953–1954",
+        "coords": [
+          21.386,
+          103.023
+        ],
+        "alias": "Chủ tịch Hồ Chí Minh",
+        "events": "Chỉ đạo chiến lược Chiến dịch Điện Biên Phủ thắng lợi 07/5/1954.",
+        "memorial": "Quần thể Di tích Chiến trường Điện Biên Phủ",
+        "svgX": 72,
+        "svgY": 49
+      },
+      {
+        "order": 20,
+        "title": "Nhà sàn Phủ Chủ tịch",
+        "country": "Việt Nam",
+        "period": "1958–1969",
+        "coords": [
+          21.039,
+          105.833
+        ],
+        "alias": "Bác Hồ",
+        "events": "Sống, làm việc giản dị và viết bản Di chúc lịch sử (1965–1969).",
+        "memorial": "Khu di tích Chủ tịch Hồ Chí Minh tại Phủ Chủ tịch",
+        "svgX": 76,
+        "svgY": 50
+      }
+    ],
+    "audioArchive4": [
+      {
+        "id": "au_01",
+        "title": "Bản ghi âm Tuyên ngôn Độc lập",
+        "date": "02/09/1945",
+        "duration": "04:35",
+        "source": "Đài Tiếng nói Việt Nam & Lưu trữ Quốc gia III",
+        "transcript": "Hỡi đồng bào cả nước! Tất cả mọi người đều sinh ra có quyền bình đẳng. Tạo hóa cho họ những quyền không ai có thể xâm phạm được; trong những quyền ấy, có quyền được sống, quyền tự do và quyền mưu cầu hạnh phúc... Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập. Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy."
+      },
+      {
+        "id": "au_02",
+        "title": "Lời kêu gọi Toàn quốc kháng chiến",
+        "date": "19/12/1946",
+        "duration": "03:12",
+        "source": "Đài Tiếng nói Việt Nam",
+        "transcript": "Hỡi đồng bào toàn quốc! Chúng ta muốn hòa bình, chúng ta phải nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta lần nữa! Không! Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ. Hỡi đồng bào! Chúng ta phải đứng lên!"
+      },
+      {
+        "id": "au_03",
+        "title": "Lời kêu gọi đồng bào và chiến sĩ cả nước",
+        "date": "17/07/1966",
+        "duration": "05:20",
+        "source": "Lưu trữ Đài Tiếng nói Việt Nam",
+        "transcript": "Chiến tranh có thể kéo dài 5 năm, 10 năm, 20 năm hoặc lâu hơn nữa. Hà Nội, Hải Phòng và một số thành phố, xí nghiệp có thể bị tàn phá, song nhân dân Việt Nam quyết không sợ! Không có gì quý hơn độc lập, tự do. Đến ngày thắng lợi, nhân dân ta sẽ xây dựng lại đất nước ta đàng hoàng hơn, to đẹp hơn!"
+      },
+      {
+        "id": "au_04",
+        "title": "Thơ chúc Tết Xuân Kỷ Dậu 1969",
+        "date": "01/01/1969",
+        "duration": "01:45",
+        "source": "Đài Tiếng nói Việt Nam",
+        "transcript": "Năm qua thắng lợi vẻ vang / Năm nay tiền tuyến chắc càng thắng to / Vì độc lập, vì tự do / Đánh cho Mỹ cút, đánh cho ngụy nhào / Tiến lên! Chiến sĩ, đồng bào / Bắc – Nam sum họp, Xuân nào vui hơn!"
+      }
+    ],
+    "videoDocumentaries11": [
+      {
+        "id": "v01",
+        "title": "Nguyễn Ái Quốc, Hồ Chí Minh — Hành trình đi tìm hình của Nước",
+        "duration": "45:00",
+        "topic": "Hành trình cứu nước",
+        "sourceName": "VTV24 / Đài Truyền hình Việt Nam",
+        "url": "https://www.youtube.com/watch?v=Pjpt7aGiY8E",
+        "youtubeId": "Pjpt7aGiY8E",
+        "thumbnailUrl": "/assets/hcm-space/nha-rong.jpg",
+        "summary": "Phim tài liệu đặc biệt của VTV24 tái hiện hành trình từ Bến Nhà Rồng qua Pháp, Anh, Mỹ, Liên Xô đến ngày trở về Pác Bó.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/tieusu1-1911.png",
+            "caption": "05/6/1911 — Bến Nhà Rồng, Sài Gòn",
+            "narration": "Người thanh niên Nguyễn Tất Thành rời bến cảng Sài Gòn trên con tàu Amiral Latouche-Tréville mang khát vọng độc lập cho dân tộc."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/tieusu2-1919.png",
+            "caption": "18/6/1919 — Yêu sách Hội nghị Versailles",
+            "narration": "Với tên gọi Nguyễn Ái Quốc, Người gửi bản Yêu sách 8 điểm đòi quyền tự do, dân chủ cho nhân dân An Nam."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/tieusu3-1920.png",
+            "caption": "12/1920 — Đại hội Tours & Ánh sáng Lênin",
+            "narration": "Đọc Luận cương của Lênin và bỏ phiếu sáng lập Đảng Cộng sản Pháp, tìm thấy con đường cứu nước đúng đắn."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/nha-rong.jpg",
+            "caption": "Di sản còn mãi tại Bến Nhà Rồng",
+            "narration": "Hành trình vĩ đại trở thành nền tảng hình thành Không gian Văn hóa Hồ Chí Minh hôm nay."
+          }
+        ]
+      },
+      {
+        "id": "v02",
+        "title": "Hồ Chí Minh năm 1946 — Tập 2: Bản lĩnh Ngoại giao Dĩ bất biến, ứng vạn biến",
+        "duration": "38:20",
+        "topic": "Ngoại giao & Quốc tế",
+        "sourceName": "Rạng rỡ Việt Nam / Tư liệu VTV",
+        "url": "https://www.youtube.com/watch?v=gJd-I-vg2aA",
+        "youtubeId": "gJd-I-vg2aA",
+        "thumbnailUrl": "/assets/hcm-space/quoc-te.jpg",
+        "summary": "Tư liệu quý về hoạt động đối ngoại mềm dẻo nhưng kiên quyết bảo vệ chủ quyền tại Hội nghị Fontainebleau năm 1946.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/quoc-te.jpg",
+            "caption": "Năm 1946 — Trước vận mệnh Tổ quốc",
+            "narration": "Vận dụng sách lược \"Dĩ bất biến, ứng vạn biến\" tranh thủ hòa bình củng cố lực lượng cách mạng."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+            "caption": "Tình cảm đồng bào Miền Nam",
+            "narration": "Khẳng định chân lý \"Đồng bào Nam Bộ là dân nước Việt Nam. Sông có thể cạn, núi có thể mòn, song chân lý đó không bao giờ thay đổi\"."
+          }
+        ]
+      },
+      {
+        "id": "v03",
+        "title": "Hồ Chí Minh trên đất nước Lênin",
+        "duration": "35:10",
+        "topic": "Ngoại giao & Quốc tế",
+        "sourceName": "Rạng rỡ Việt Nam / Phim Tài liệu",
+        "url": "https://www.youtube.com/watch?v=kiV65do4zD4",
+        "youtubeId": "kiV65do4zD4",
+        "thumbnailUrl": "/assets/hcm-space/tieusu3-1920.png",
+        "summary": "Những năm tháng hoạt động quốc tế tại Moskva, dự Đại hội Quốc tế Cộng sản và vun đắp tình hữu nghị quốc tế.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/tieusu3-1920.png",
+            "caption": "Moskva 1923–1924",
+            "narration": "Nghiên cứu lý luận Mác – Lênin và lên tiếng bảo vệ quyền tự quyết của các dân tộc thuộc địa."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/quoc-te.jpg",
+            "caption": "Chủ tịch Hồ Chí Minh trong lòng bạn bè quốc tế",
+            "narration": "UNESCO tôn vinh Người là Anh hùng giải phóng dân tộc và Nhà văn hóa kiệt xuất."
+          }
+        ]
+      },
+      {
+        "id": "v04",
+        "title": "Bác Hồ với Khối Đại đoàn kết & Không gian Văn hóa Nhân dân",
+        "duration": "18:45",
+        "topic": "Bác Hồ với Nhân dân",
+        "sourceName": "hochiminhcity.gov.vn / Tư liệu",
+        "url": "https://hochiminhcity.gov.vn/cuoc-doi-su-nghiep",
+        "thumbnailUrl": "/assets/hcm-space/khu-pho.jpg",
+        "summary": "Lan tỏa tư tưởng đại đoàn kết toàn dân tộc từ Di sản Hồ Chí Minh đến không gian cộng đồng khu phố.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/anh-bac.png",
+            "caption": "Chân dung giản dị, gần dân",
+            "narration": "Cả cuộc đời Người chỉ có một ham muốn tột bậc là làm sao cho nước ta hoàn toàn độc lập, dân ta hoàn toàn tự do."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/khu-pho.jpg",
+            "caption": "Không gian Văn hóa HCM tại Khu phố",
+            "narration": "Đảng ủy và Nhân dân phường Thủ Dầu Một hiện thực hóa lời Bác dạy ngay từ từng tuyến phố, chi bộ."
+          }
+        ]
+      },
+      {
+        "id": "v05",
+        "title": "Lễ Độc lập 02/9/1945 tại Quảng trường Ba Đình",
+        "duration": "05:18",
+        "topic": "Tuyên ngôn & Độc lập",
+        "sourceName": "hochiminh.vn / Lưu trữ QG",
+        "url": "https://hochiminh.vn",
+        "thumbnailUrl": "/assets/hcm-space/banner-hoctap.png",
+        "summary": "Khoảnh khắc lịch sử đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam mới.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/banner-hoctap.png",
+            "caption": "Ngày 02/9/1945 — Nước Việt Nam mới",
+            "narration": "Bản Tuyên ngôn Độc lập bất hủ mở ra kỷ nguyên độc lập, tự do và làm chủ của Nhân dân."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/hoasen.png",
+            "caption": "Khí phách văn hóa Việt Nam",
+            "narration": "Giá trị trường tồn soi đường cho sự nghiệp xây dựng và bảo vệ Tổ quốc hôm nay."
+          }
+        ]
+      },
+      {
+        "id": "v06",
+        "title": "Hồ Chí Minh năm 1946 — Tập 1: Chèo lái Đất nước giữa Giờ Phút Hiểm Nghèo",
+        "duration": "39:15",
+        "topic": "Ngoại giao & Quốc tế",
+        "sourceName": "Rạng rỡ Việt Nam / Phim Tài liệu",
+        "url": "https://www.youtube.com/watch?v=g_goOMCD1Rc",
+        "youtubeId": "g_goOMCD1Rc",
+        "thumbnailUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+        "summary": "Tư liệu lịch sử khắc họa bản lĩnh lãnh đạo chính quyền cách mạng non trẻ trong tình thế ngàn cân treo sợi tóc năm 1946.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+            "caption": "Thù trong giặc ngoài 1945–1946",
+            "narration": "Chủ tịch Hồ Chí Minh cùng toàn Đảng diệt giặc đói, diệt giặc dốt, tổ chức Tổng tuyển cử đầu tiên."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/tieusu4-1928.png",
+            "caption": "Tất cả vì độc lập dân tộc",
+            "narration": "Giữ vững ngọn cờ chủ quyền và quy tụ khối đại đoàn kết toàn dân."
+          }
+        ]
+      },
+      {
+        "id": "v07",
+        "title": "Không gian Văn hóa Hồ Chí Minh Số 3D & Tủ Sách QR",
+        "duration": "08:40",
+        "topic": "Chuyển đổi số Tuyên giáo",
+        "sourceName": "hochiminhcity.gov.vn / Mô hình điểm",
+        "url": "https://hochiminhcity.gov.vn/vi/web/hcm/w/nhung-khong-gian-van-hoa-ho-chi-minh-noi-bat-o-thanh-pho-mang-ten-bac",
+        "thumbnailUrl": "/assets/hcm-space/ueh-3d.jpg",
+        "summary": "Tổng hợp điểm mới: kết hợp mô hình 3D, infographic, tủ sách trực tuyến mã QR và thuyết minh số tại cơ sở.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/ueh-3d.jpg",
+            "caption": "Phòng trưng bày 3D & Màn hình tương tác",
+            "narration": "Ứng dụng công nghệ 3D và Infographic đưa tư liệu lịch sử đến gần cán bộ trẻ và đoàn viên."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/duong-sach.jpg",
+            "caption": "Tủ sách Bác Hồ & Mã QR cộng đồng",
+            "narration": "Mỗi chi bộ, khu phố phường Thủ Dầu Một đều có thể quét mã QR đọc sách và học tập chuyên đề."
+          }
+        ]
+      },
+      {
+        "id": "v08",
+        "title": "Khoảnh khắc Bác Hồ bắt nhịp bài ca \"Kết đoàn\" (1960)",
+        "duration": "03:30",
+        "topic": "Bác Hồ với Nhân dân",
+        "sourceName": "hochiminh.vn",
+        "url": "https://hochiminh.vn",
+        "thumbnailUrl": "/assets/hcm-space/bao-tang-tdt.jpg",
+        "summary": "Hình ảnh biểu trưng cho tinh thần đoàn kết toàn dân và văn nghệ cách mạng.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/bao-tang-tdt.jpg",
+            "caption": "Sức mạnh Đại đoàn kết toàn dân",
+            "narration": "\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\""
+          }
+        ]
+      },
+      {
+        "id": "v09",
+        "title": "Bác Hồ và Kiệt tác \"Nhật ký trong tù\" | Người là Hồ Chí Minh",
+        "duration": "24:10",
+        "topic": "Di sản tư tưởng",
+        "sourceName": "VTV24 / Đài Truyền hình Việt Nam",
+        "url": "https://www.youtube.com/watch?v=VupM8YW6jyw",
+        "youtubeId": "VupM8YW6jyw",
+        "thumbnailUrl": "/assets/hcm-space/duong-sach.jpg",
+        "summary": "Phóng sự chiều sâu của VTV24 phân tích giá trị nhân văn, ý chí thép và vẻ đẹp thi ca trong tập thơ Ngục trung nhật ký.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/duong-sach.jpg",
+            "caption": "133 bài thơ chữ Hán (1942–1943)",
+            "narration": "Trong chốn lao tù khắc nghiệt, tâm hồn Người vẫn sáng ngời lạc quan và khát vọng tự do."
+          },
+          {
+            "imageUrl": "/assets/hcm-space/anh-bac.png",
+            "caption": "\"Thân thể ở trong lao, tinh thần ở ngoài lao\"",
+            "narration": "Giá trị văn hóa kiệt xuất được bạn bè quốc tế dịch ra hàng chục ngôn ngữ."
+          }
+        ]
+      },
+      {
+        "id": "v10",
+        "title": "Bác Hồ với thiếu niên, nhi đồng và đồng bào các dân tộc (1961–1969)",
+        "duration": "07:45",
+        "topic": "Bác Hồ với Nhân dân",
+        "sourceName": "hochiminh.vn",
+        "url": "https://hochiminh.vn",
+        "thumbnailUrl": "/assets/hcm-space/hoasen.png",
+        "summary": "Tình cảm bao la của Bác dành cho thế hệ măng non và đồng bào cả nước.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/hoasen.png",
+            "caption": "Vì lợi ích trăm năm trồng người",
+            "narration": "5 điều Bác Hồ dạy thiếu niên nhi đồng trở thành chuẩn mực giáo dục thế hệ trẻ Việt Nam."
+          }
+        ]
+      },
+      {
+        "id": "v11",
+        "title": "Di chúc Chủ tịch Hồ Chí Minh — Sức sống trường tồn từ năm 1969",
+        "duration": "15:20",
+        "topic": "Quốc tang & Di chúc",
+        "sourceName": "hochiminh.vn / VTV",
+        "url": "https://hochiminh.vn",
+        "thumbnailUrl": "/assets/hcm-space/chandungbac.png",
+        "summary": "Những căn dặn thiêng liêng về công tác xây dựng Đảng, đạo đức cán bộ và chăm lo đời sống Nhân dân.",
+        "scenes": [
+          {
+            "imageUrl": "/assets/hcm-space/chandungbac.png",
+            "caption": "Bản Di chúc thiêng liêng (1965–1969)",
+            "narration": "Toàn Đảng, toàn dân phường Thủ Dầu Một nguyện tiếp tục học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh."
+          }
+        ]
+      }
+    ],
+    "museumExhibits8": [
+      {
+        "id": "ex01",
+        "code": "01",
+        "category": "Hiện vật & Di tích",
+        "title": "Tượng Bác Hồ & Không gian Bảo tàng Hồ Chí Minh (Bến Nhà Rồng)",
+        "period": "05/6/1911 – 02/9/1945",
+        "location": "Quảng trường Ba Đình & Bến Nhà Rồng",
+        "imageUrl": "/assets/hcm-space/nha-rong.jpg",
+        "imageCaption": "Bảo tàng Hồ Chí Minh — Chi nhánh TP.HCM (Bến Nhà Rồng), nơi lưu giữ những kỷ vật lịch sử gắn với hành trình ra đi tìm đường cứu nước.",
+        "quote": "\"Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập.\"",
+        "summary": "Gian trưng bày trung tâm tôn vinh chân dung Chủ tịch Hồ Chí Minh, Di tích Bến Nhà Rồng và bản Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+        "values": [
+          "Khẳng định giá trị bất biến của độc lập, tự do",
+          "Ý chí tự lực tự cường của dân tộc Việt Nam",
+          "Gắn trách nhiệm cán bộ phường phục vụ Nhân dân"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Kiến trúc Di tích Bến Nhà Rồng",
+            "detail": "Nơi ngày 05/6/1911 người thanh niên Nguyễn Tất Thành lên tàu tìm đường cứu nước.",
+            "xPercent": 52,
+            "yPercent": 34
+          },
+          {
+            "pin": 2,
+            "label": "Gian trưng bày Di sản Lập quốc",
+            "detail": "Tái hiện khoảnh khắc 02/9/1945 vang vọng trên Quảng trường Ba Đình.",
+            "xPercent": 30,
+            "yPercent": 58
+          },
+          {
+            "pin": 3,
+            "label": "Không gian mở rộng 11 ha hướng tới cộng đồng",
+            "detail": "Định hướng kết nối không gian di sản lịch sử với sinh hoạt văn hóa đương đại.",
+            "xPercent": 72,
+            "yPercent": 60
+          },
+          {
+            "pin": 4,
+            "label": "Quốc kỳ & Biểu trưng Di sản",
+            "detail": "Biểu tượng thiêng liêng của khối đại đoàn kết toàn dân tộc.",
+            "xPercent": 22,
+            "yPercent": 28
+          }
+        ]
+      },
+      {
+        "id": "ex02",
+        "code": "02",
+        "category": "Tư liệu lịch sử",
+        "title": "Bản Di chúc thiêng liêng & Tình đồng chí (Bảo tàng Tôn Đức Thắng)",
+        "period": "1965–1969",
+        "location": "Phủ Chủ tịch, Hà Nội & Di sản Nam Bộ",
+        "imageUrl": "/assets/hcm-space/bao-tang-tdt.jpg",
+        "imageCaption": "Không gian trưng bày chuyên đề cuộc đời hoạt động cách mạng gắn bó keo sơn giữa Bác Hồ và Bác Tôn.",
+        "quote": "\"Đầu tiên là công việc đối với con người... Đảng ta là một Đảng cầm quyền.\"",
+        "summary": "Bản thảo Di chúc viết tay qua 5 năm cùng chuyên đề tình đồng chí giữa Chủ tịch Hồ Chí Minh và Chủ tịch Tôn Đức Thắng — biểu tượng khối đại đoàn kết Nam – Bắc.",
+        "values": [
+          "Xây dựng, chỉnh đốn Đảng và giữ gìn đoàn kết",
+          "Chăm lo gia đình chính sách, công nhân, nông dân, thế hệ trẻ",
+          "Bồi dưỡng đạo đức cách mạng Cần – Kiệm – Liêm – Chính"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Trang mở đầu \"Tuyệt đối bí mật\"",
+            "detail": "Bác bắt đầu viết tháng 5/1965 với tinh thần chủ động, thanh thản.",
+            "xPercent": 48,
+            "yPercent": 30
+          },
+          {
+            "pin": 2,
+            "label": "Phần căn dặn về Đảng",
+            "detail": "Nhấn mạnh tự phê bình, phê bình và tình đồng chí thương yêu lẫn nhau.",
+            "xPercent": 35,
+            "yPercent": 60
+          },
+          {
+            "pin": 3,
+            "label": "Tư liệu Bác Hồ & Bác Tôn",
+            "detail": "Hiện vật giáo dục truyền thống cách mạng kiên trung của miền Nam.",
+            "xPercent": 68,
+            "yPercent": 66
+          }
+        ]
+      },
+      {
+        "id": "ex03",
+        "code": "03",
+        "category": "Ảnh tư liệu",
+        "title": "Chủ tịch Hồ Chí Minh trong Lòng Bạn Bè Quốc Tế",
+        "period": "1930–1969",
+        "location": "5 Châu lục · UNESCO Tôn vinh",
+        "imageUrl": "/assets/hcm-space/quoc-te.jpg",
+        "imageCaption": "Infographic tư liệu từ Cổng TTĐT TP.HCM (hochiminhcity.gov.vn): Tình cảm và sự ngưỡng mộ của nhân dân thế giới đối với Chủ tịch Hồ Chí Minh.",
+        "quote": "\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\"",
+        "summary": "Bộ ảnh và infographic trích từ chuyên mục Hồ Chí Minh và Thế giới, khẳng định tầm vóc Anh hùng giải phóng dân tộc và Nhà văn hóa kiệt xuất.",
+        "values": [
+          "Củng cố sức mạnh đối ngoại nhân dân & đồng thuận",
+          "Khẳng định giá trị nhân văn phổ quát trong tư tưởng Hồ Chí Minh",
+          "Lấy dân làm gốc trong mọi phong trào"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Đánh giá của bạn bè Quốc tế",
+            "detail": "Những nhận xét trân trọng của nguyên thủ, học giả toàn cầu về Chủ tịch Hồ Chí Minh.",
+            "xPercent": 50,
+            "yPercent": 34
+          },
+          {
+            "pin": 2,
+            "label": "Nghị quyết UNESCO 24C/18.65",
+            "detail": "Ghi nhận những đóng góp vĩ đại của Người cho hòa bình và văn hóa thế giới.",
+            "xPercent": 28,
+            "yPercent": 60
+          },
+          {
+            "pin": 3,
+            "label": "Tư liệu báo chí quốc tế",
+            "detail": "Hình ảnh Người hoạt động tại Paris, Moskva và các diễn đàn quốc tế.",
+            "xPercent": 72,
+            "yPercent": 56
+          }
+        ]
+      },
+      {
+        "id": "ex04",
+        "code": "04",
+        "category": "Tủ sách Bác Hồ",
+        "title": "Tủ sách Điện Tử & Không Gian Đọc Sách Cộng Đồng (15 Tập Toàn tập)",
+        "period": "1912–1969",
+        "location": "Mô hình Đường Sách — Ứng dụng tại Phường Thủ Dầu Một",
+        "imageUrl": "/assets/hcm-space/duong-sach.jpg",
+        "imageCaption": "Mô hình Đường sách & Tủ sách mở tích hợp mã QR đọc trực tuyến cho cán bộ, đảng viên và thanh thiếu nhi.",
+        "quote": "\"Siêng học, siêng nghĩ, siêng làm thì việc gì cũng thành công.\"",
+        "summary": "Hệ thống 15 tập Hồ Chí Minh Toàn tập và 15 tác phẩm kinh điển kết hợp trải nghiệm quét mã QR đọc sách tại các điểm sinh hoạt khu dân cư.",
+        "values": [
+          "Chuẩn hóa trích dẫn văn kiện chính thống",
+          "Xây dựng thói quen đọc sách lý luận ở khu phố",
+          "Phục vụ thi tìm hiểu & sinh hoạt chuyên đề"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Hồ Chí Minh Toàn tập (15 Tập)",
+            "detail": "Ấn bản chuẩn của NXB Chính trị quốc gia Sự thật (2011).",
+            "xPercent": 40,
+            "yPercent": 36
+          },
+          {
+            "pin": 2,
+            "label": "Khu vực sách & Trò chơi tương tác",
+            "detail": "Thiết kế thân thiện cho đoàn viên, học sinh tìm hiểu lịch sử.",
+            "xPercent": 62,
+            "yPercent": 45
+          },
+          {
+            "pin": 3,
+            "label": "Mã QR truy cập nhanh cho đảng viên",
+            "detail": "Quét mã để đọc trích dẫn chuẩn trong cuộc họp chi bộ.",
+            "xPercent": 50,
+            "yPercent": 72
+          }
+        ]
+      },
+      {
+        "id": "ex05",
+        "code": "05",
+        "category": "Ảnh tư liệu",
+        "title": "Bác Hồ với Miền Nam & Không Gian Triển Lãm Ven Bến Nhà Rồng",
+        "period": "1946–1969",
+        "location": "Miền Nam — Thành đồng Tổ quốc",
+        "imageUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+        "imageCaption": "Cảnh quan Không gian trưng bày gắn với Bến Nhà Rồng — nhịp cầu lịch sử nối liền tình cảm Bắc – Nam.",
+        "quote": "\"Miền Nam ở trong trái tim tôi.\"",
+        "summary": "Những bức ảnh và thư từ thể hiện tình cảm sâu nặng của Bác Hồ đối với đồng bào, chiến sĩ miền Nam và vùng đất Thủ Dầu Một.",
+        "values": [
+          "Truyền thống trung dũng kiên cường miền Nam",
+          "Khát vọng hòa bình, thống nhất non sông",
+          "Trách nhiệm tiếp bước truyền thống tại đô thị Thủ Dầu Một"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Bức thư gửi đồng bào Nam Bộ (1946)",
+            "detail": "Khẳng định chân lý nước Việt Nam là một, dân tộc Việt Nam là một.",
+            "xPercent": 42,
+            "yPercent": 32
+          },
+          {
+            "pin": 2,
+            "label": "Cây vú sữa miền Nam tại vườn Bác",
+            "detail": "Kỷ vật thiêng liêng đồng bào miền Nam gửi tặng Bác Hồ.",
+            "xPercent": 65,
+            "yPercent": 54
+          },
+          {
+            "pin": 3,
+            "label": "Tiếp đón các đoàn đại biểu miền Nam",
+            "detail": "Sự ân cần, chu đáo của Bác với cán bộ, dũng sĩ từ chiến trường ra.",
+            "xPercent": 30,
+            "yPercent": 64
+          }
+        ]
+      },
+      {
+        "id": "ex06",
+        "code": "06",
+        "category": "Hiện vật & Di tích",
+        "title": "Không Gian Văn Hóa Hồ Chí Minh Tại Khu Phố & Di Tích Phường Thủ Dầu Một",
+        "period": "1930–Nay",
+        "location": "Phường Thủ Dầu Một",
+        "imageUrl": "/assets/hcm-space/khu-pho.jpg",
+        "imageCaption": "Mô hình Không gian Văn hóa Hồ Chí Minh ngoài trời tại công viên khu phố gắn với bảng mốc thời gian & cảnh quan xanh sạch đẹp.",
+        "quote": "\"Lấy dân làm gốc — Xây dựng phường Thủ Dầu Một văn minh, nghĩa tình, hiện đại.\"",
+        "summary": "Không gian trưng bày truyền thống cách mạng phường Thủ Dầu Một (Di tích Nhà tù Phú Lợi, Hoa viên Bạch Đằng, Chùa Bà Thiên Hậu) kết hợp pano lịch sử và mã QR tại các khu phố.",
+        "values": [
+          "Giáo dục truyền thống lịch sử Đảng bộ tại địa phương",
+          "Gắn Di sản Hồ Chí Minh với thực tiễn xây dựng phường Thủ Dầu Một",
+          "Nhân rộng mô hình Chi bộ & Khu phố làm theo Bác"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Di tích lịch sử Nhà tù Phú Lợi & Hoa viên Bạch Đằng",
+            "detail": "Minh chứng tinh thần bất khuất và không gian sinh hoạt văn hóa cộng đồng Thủ Dầu Một.",
+            "xPercent": 38,
+            "yPercent": 36
+          },
+          {
+            "pin": 2,
+            "label": "Công viên & Nhà văn hóa Khu phố Thủ Dầu Một",
+            "detail": "Bố trí bảng ảnh theo mốc thời gian để người dân dễ tiếp cận hằng ngày.",
+            "xPercent": 64,
+            "yPercent": 46
+          },
+          {
+            "pin": 3,
+            "label": "Kho mô hình tự quản & QR của phường",
+            "detail": "Cập nhật trực tiếp từ mục Gương điển hình Thủ Dầu Một.",
+            "xPercent": 50,
+            "yPercent": 70
+          }
+        ]
+      },
+      {
+        "id": "ex07",
+        "code": "07",
+        "category": "Hiện vật & Di tích",
+        "title": "Biểu Trưng Học Tập Làm Theo Bác & Phong Trào Dân Vận Khéo",
+        "period": "1960–Nay",
+        "location": "Lưu trữ truyền thống & Cơ sở",
+        "imageUrl": "/assets/hcm-space/banner-hoctap.png",
+        "imageCaption": "Ấn phẩm tuyên truyền Học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh từ Cổng TTĐT TP.HCM.",
+        "quote": "\"Đoàn kết chặt chẽ, nêu gương sáng, hoàn thành xuất sắc mọi nhiệm vụ.\"",
+        "summary": "Giới thiệu ý nghĩa Huy hiệu Bác Hồ, ấn phẩm tuyên truyền chuẩn mực và các kỷ vật sinh hoạt, công tác giản dị của cán bộ, đảng viên qua các thời kỳ.",
+        "values": [
+          "Tôn vinh tinh thần cống hiến tận tụy vì dân",
+          "Rèn luyện nếp sống giản dị, liêm khiết",
+          "Truyền cảm hứng cống hiến cho cán bộ trẻ"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Huy hiệu & Danh hiệu Người tốt Việc tốt",
+            "detail": "Phần thưởng tinh thần cao quý cho gương điển hình cơ sở.",
+            "xPercent": 50,
+            "yPercent": 35
+          },
+          {
+            "pin": 2,
+            "label": "Sổ tay ghi chép sinh hoạt chi bộ",
+            "detail": "Lưu giữ tinh thần tự phê bình và kỷ luật cách mạng.",
+            "xPercent": 34,
+            "yPercent": 62
+          },
+          {
+            "pin": 3,
+            "label": "Hiện vật công tác dân vận",
+            "detail": "Minh chứng phong cách gần dân, sát dân tại Thủ Dầu Một.",
+            "xPercent": 66,
+            "yPercent": 62
+          }
+        ]
+      },
+      {
+        "id": "ex08",
+        "code": "08",
+        "category": "Mô hình 3D",
+        "title": "Không Gian Trưng Bày Số Đa Phương Tiện (3D · Infographic · QR)",
+        "period": "1911–2026",
+        "location": "Khu Trải Nghiệm Số Tuyên Giáo",
+        "imageUrl": "/assets/hcm-space/ueh-3d.jpg",
+        "imageCaption": "Không gian trải nghiệm số kết hợp mô hình 3D, màn hình tương tác, infographic và mã QR truy cập kho tư liệu đa phương tiện.",
+        "quote": "\"Tôi muốn đi ra ngoài, xem nước Pháp và các nước khác... rồi trở về giúp đồng bào chúng ta.\"",
+        "summary": "Khu trải nghiệm công nghệ số kết hợp sa bàn hành trình 30 năm tìm đường cứu nước, màn hình cảm ứng infographic và thư viện QR thông minh.",
+        "values": [
+          "Ứng dụng chuyển đổi số phục vụ giáo dục chính trị tư tưởng",
+          "Trực quan hóa lịch sử qua mô hình 3D & clip thuyết minh",
+          "Kết nối chặt chẽ với Bản đồ 20 Dấu chân Người"
+        ],
+        "hotspots": [
+          {
+            "pin": 1,
+            "label": "Mô hình 3D & Trục Trống đồng",
+            "detail": "Kết hợp hài hòa bản sắc văn hóa dân tộc và giao diện hiện đại.",
+            "xPercent": 68,
+            "yPercent": 56
+          },
+          {
+            "pin": 2,
+            "label": "Khu vực Infographic & Video Clips",
+            "detail": "Trình chiếu trực quan phim tài liệu VTV24 và clip chuyên đề.",
+            "xPercent": 38,
+            "yPercent": 30
+          },
+          {
+            "pin": 3,
+            "label": "Hệ thống quét mã QR 26 Chi bộ",
+            "detail": "Đồng bộ tư liệu về điện thoại cán bộ, đảng viên tức thì.",
+            "xPercent": 52,
+            "yPercent": 72
+          }
+        ]
+      }
+    ],
+    "photoGallery": [
+      {
+        "id": "pg01",
+        "title": "Bảo tàng Hồ Chí Minh — Chi nhánh TP.HCM (Bến Nhà Rồng)",
+        "category": "Di tích & Bảo tàng",
+        "imageUrl": "/assets/hcm-space/nha-rong.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Phóng sự ảnh",
+        "caption": "Nơi Chủ tịch Hồ Chí Minh ra đi tìm đường cứu nước ngày 05/6/1911, đang được quy hoạch mở rộng thành không gian văn hóa - giáo dục trải nghiệm.",
+        "tdmTakeaway": "Gắn kết tuyến tham quan về nguồn với Di tích Nhà tù Phú Lợi tại Phường Thủ Dầu Một."
+      },
+      {
+        "id": "pg02",
+        "title": "Không gian Trưng bày Số kết hợp Mô hình 3D & QR (Mô hình điểm ĐH UEH)",
+        "category": "Chuyển đổi số & QR",
+        "imageUrl": "/assets/hcm-space/ueh-3d.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Mô hình tiêu biểu",
+        "caption": "Không gian trưng bày ứng dụng mô hình 3D, infographic, video trực quan và hệ thống mã QR tra cứu mở.",
+        "tdmTakeaway": "Triển khai ngay trên Cổng Không gian Văn hóa HCM số của Đảng ủy Phường Thủ Dầu Một."
+      },
+      {
+        "id": "pg03",
+        "title": "Không gian Văn hóa Hồ Chí Minh ngoài trời tại Công viên Khu phố",
+        "category": "Không gian trưng bày",
+        "imageUrl": "/assets/hcm-space/khu-pho.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Mô hình Khu dân cư",
+        "caption": "Trình bày ảnh tư liệu theo trục mốc thời gian tại công viên khu dân cư để người dân dễ tham quan, tìm hiểu hằng ngày.",
+        "tdmTakeaway": "Nhân rộng tại Hoa viên Bạch Đằng và Nhà văn hóa các khu phố Phường Thủ Dầu Một."
+      },
+      {
+        "id": "pg04",
+        "title": "Đường sách & Tủ sách QR Tuyên giáo cho Đảng viên và Thanh thiếu nhi",
+        "category": "Chuyển đổi số & QR",
+        "imageUrl": "/assets/hcm-space/duong-sach.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Đường sách",
+        "caption": "Kết hợp sách giấy, ảnh tư liệu và bảng mã QR đọc sách điện tử giúp học sinh, đoàn viên dễ tiếp cận.",
+        "tdmTakeaway": "Tích hợp 15 tập Hồ Chí Minh Toàn tập và Poster QR A4 tại 26 Chi bộ Thủ Dầu Một."
+      },
+      {
+        "id": "pg05",
+        "title": "Bảo tàng Tôn Đức Thắng — Không gian Di sản & Thi đua Ái quốc",
+        "category": "Di tích & Bảo tàng",
+        "imageUrl": "/assets/hcm-space/bao-tang-tdt.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Bảo tàng",
+        "caption": "Triển lãm chuyên đề song hành cuộc đời hoạt động cách mạng của Chủ tịch Hồ Chí Minh và Chủ tịch Tôn Đức Thắng.",
+        "tdmTakeaway": "Tổ chức sinh hoạt chuyên đề và hội thi tìm hiểu lịch sử Đảng bộ cho Chi bộ cơ sở."
+      },
+      {
+        "id": "pg06",
+        "title": "Infographic: Chủ tịch Hồ Chí Minh trong Lòng Bạn Bè Quốc Tế",
+        "category": "Tư liệu Quốc tế",
+        "imageUrl": "/assets/hcm-space/quoc-te.jpg",
+        "sourceRef": "hochiminhcity.gov.vn/hcm-va-the-gioi",
+        "caption": "Tổng hợp nhận định của lãnh đạo và nhân dân tiến bộ thế giới về tầm vóc văn hóa, nhân văn Hồ Chí Minh.",
+        "tdmTakeaway": "Bổ sung tư liệu sinh động phục vụ tuyên truyền đối ngoại nhân dân và bảo vệ nền tảng tư tưởng."
+      },
+      {
+        "id": "pg07",
+        "title": "Góc Bến Nhà Rồng & Không Gian Văn Hóa Cộng Đồng Hiện Đại",
+        "category": "Không gian trưng bày",
+        "imageUrl": "/assets/hcm-space/ben-nha-rong-06.jpg",
+        "sourceRef": "hochiminhcity.gov.vn / Phóng sự",
+        "caption": "Hòa quyện giữa di sản kiến trúc lịch sử và không gian công cộng xanh, thân thiện với người dân.",
+        "tdmTakeaway": "Định hướng xây dựng góc trưng bày mở, xanh và gần dân tại trụ sở Phường Thủ Dầu Một."
+      },
+      {
+        "id": "pg08",
+        "title": "Ấn phẩm Chuyên đề Học tập và Làm theo Tư tưởng, Đạo đức, Phong cách HCM",
+        "category": "Không gian trưng bày",
+        "imageUrl": "/assets/hcm-space/banner-hoctap.png",
+        "sourceRef": "hochiminhcity.gov.vn",
+        "caption": "Banner nhận diện chính thống phục vụ phong trào thi đua tại cơ quan, đơn vị và khu dân cư.",
+        "tdmTakeaway": "Chuẩn hóa bộ nhận diện pano, khẩu hiệu kết hợp Skill #05 kiểm định ấn phẩm."
+      }
+    ],
+    "newsArticles": [
+      {
+        "id": "news_tdm_01",
+        "category": "Hoạt động Thủ Dầu Một",
+        "date": "23/11/2026",
+        "title": "Đảng ủy Phường Thủ Dầu Một lan tỏa Không gian Văn hóa Hồ Chí Minh gắn với chuyển đổi số cơ sở",
+        "snippet": "Triển khai hệ thống Không gian Văn hóa Hồ Chí Minh số tại 26 chi bộ, kết hợp tủ sách mã QR, phòng trưng bày ảnh – clip tư liệu và mô hình Dân vận khéo tại khu dân cư.",
+        "content": "Thực hiện Chỉ thị 07-CT/TW ngày 13/7/2026 của Bộ Chính trị (về đẩy mạnh học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh trong giai đoạn phát triển mới, thay thế Chỉ thị 05-CT/TW) và Quy định 144-QĐ/TW, Ban Tuyên giáo & Dân vận Đảng ủy phường Thủ Dầu Một đã đưa vào vận hành Không gian Văn hóa Hồ Chí Minh trực tuyến tích hợp 16 ảnh tư liệu bảo tàng, bản đồ 20 dấu chân Người, 15 tập Hồ Chí Minh Toàn tập và kho phim tài liệu VTV24 phục vụ sinh hoạt chi bộ định kỳ. Mỗi chi bộ, khu phố xây dựng góc trưng bày trang trọng kèm mã QR A4 để cán bộ, đảng viên và Nhân dân thuận tiện tra cứu.",
+        "source": "Ban Tuyên giáo & Dân vận Đảng ủy Phường Thủ Dầu Một",
+        "imageUrl": "/assets/hcm-space/khu-pho.jpg",
+        "views": 342
+      },
+      {
+        "id": "news_tdm_02",
+        "category": "Dân vận khéo",
+        "date": "23/10/2026",
+        "title": "Tuyên dương các gương điển hình \"Dân vận khéo\" & Công trình làm theo lời Bác tại cơ sở",
+        "snippet": "Tôn vinh các tập thể, cá nhân tiêu biểu với những phần việc thiết thực: tuyến hẻm văn minh, tủ sách khu phố, hỗ trợ an sinh và cải cách thủ tục hành chính vì dân.",
+        "content": "Phong trào thi đua \"Dân vận khéo\" gắn với Học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh tiếp tục tạo sức lan tỏa sâu rộng tại các khu phố và đoàn thể. Nhiều mô hình mới chú trọng tính thiết thực, lấy sự hài lòng của người dân làm thước đo hiệu quả phục vụ, đúng tinh thần \"Việc gì lợi cho dân, ta phải hết sức làm\".",
+        "source": "Tổng hợp Cổng TTĐT & Tuyên giáo Thủ Dầu Một",
+        "imageUrl": "/assets/hcm-space/banner-hoctap.png",
+        "views": 289
+      },
+      {
+        "id": "news_tdm_03",
+        "category": "Tư tưởng & Chuyên đề",
+        "date": "04/09/2026",
+        "title": "Nhận thức sâu sắc và thực hành tốt nhất theo Di huấn thiêng liêng của Chủ tịch Hồ Chí Minh",
+        "snippet": "Bản Di chúc viết từ 10/5/1965 đến tháng 5/1969 là di sản tinh thần vô giá về xây dựng, chỉnh đốn Đảng và chăm lo đời sống vật chất, tinh thần của Nhân dân.",
+        "content": "Qua 5 năm chỉnh sửa công phu (1965–1969), Chủ tịch Hồ Chí Minh đã gửi gắm những căn dặn chiến lược: trước hết là công việc đối với con người; giữ gìn sự đoàn kết nhất trí trong Đảng như giữ gìn con ngươi của mắt mình; thực hành tự phê bình và phê bình nghiêm túc; bồi dưỡng thế hệ cách mạng cho đời sau vừa hồng vừa chuyên.",
+        "source": "Cổng TTĐT TP.HCM (hochiminhcity.gov.vn)",
+        "imageUrl": "/assets/hcm-space/bao-tang-tdt.jpg",
+        "views": 256
+      },
+      {
+        "id": "news_tdm_04",
+        "category": "Nghị quyết & Chỉ thị",
+        "date": "03/09/2026",
+        "title": "Quán triệt Quy định 144-QĐ/TW và chuẩn mực đạo đức cách mạng của cán bộ, đảng viên giai đoạn mới",
+        "snippet": "Cụ thể hóa 5 điều chuẩn mực \"Yêu nước – Bản lĩnh – Cần kiệm liêm chính – Đoàn kết – Nêu gương\" vào đánh giá chi bộ hằng tháng tại Thủ Dầu Một.",
+        "content": "Quy định số 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị xác định rõ 5 chuẩn mực đạo đức cách mạng cốt lõi của cán bộ, đảng viên. Tại Đảng ủy phường Thủ Dầu Một, từng chi bộ lồng ghép đánh giá mức độ chuyển biến nhận thức và thái độ phục vụ Nhân dân vào phiếu sinh hoạt chi bộ và bộ 5 tiêu chí Không gian Văn hóa HCM.",
+        "source": "Văn kiện Đảng & Ban Xây dựng Đảng",
+        "imageUrl": "/assets/hcm-space/ueh-3d.jpg",
+        "views": 241
+      },
+      {
+        "id": "news_tdm_05",
+        "category": "Hoạt động Thủ Dầu Một",
+        "date": "02/09/2026",
+        "title": "Tuyên ngôn Độc lập 02/9/1945 — Ngọn đuốc soi đường cho khát vọng phát triển đô thị văn minh",
+        "snippet": "Ôn lại giá trị trường tồn của bản Tuyên ngôn Độc lập gắn với giáo dục truyền thống cách mạng Di tích Nhà tù Phú Lợi và Hoa viên Bạch Đằng.",
+        "content": "Ngày 02/9/1945 tại Quảng trường Ba Đình lịch sử, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa. Tiếp nối mạch nguồn lịch sử đó, Đảng bộ và Nhân dân phường Thủ Dầu Một phát huy truyền thống vùng đất giàu nghĩa tình, kết hợp bảo tồn di tích địa phương với chuyển đổi số phục vụ Nhân dân.",
+        "source": "Tư liệu Lịch sử & Tuyên giáo Thủ Dầu Một",
+        "imageUrl": "/assets/hcm-space/nha-rong.jpg",
+        "views": 215
+      },
+      {
+        "id": "news_tdm_06",
+        "category": "Tư tưởng & Chuyên đề",
+        "date": "24/08/2026",
+        "title": "Đưa Không gian Văn hóa Hồ Chí Minh đi vào chiều sâu từ Tủ sách QR đến từng hộ gia đình",
+        "snippet": "Mở rộng mô hình đường sách cộng đồng, không gian đọc sách mở và câu chuyện kể về Bác trong trường học, khu dân cư.",
+        "content": "Việc xây dựng Không gian Văn hóa Hồ Chí Minh không dừng lại ở hình thức bảng biểu mà hướng đến tạo thói quen đọc sách, nghe kể chuyện lịch sử và thực hành lối sống nghĩa tình, tiết kiệm, gần dân trong đời sống hằng ngày tại các khu phố phường Thủ Dầu Một.",
+        "source": "hochiminhcity.gov.vn / Đường sách cộng đồng",
+        "imageUrl": "/assets/hcm-space/duong-sach.jpg",
+        "views": 198
+      }
+    ],
+    "quyDinh144Standards": [
+      {
+        "code": "Điều 1",
+        "title": "Yêu nước, tôn trọng Nhân dân, tuyệt đối trung thành với Đảng, với Tổ quốc",
+        "hcmQuote": "\"Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân.\" (Bài báo Dân vận, 1949)",
+        "coreValues": [
+          "Suốt đời phấn đấu cho mục tiêu độc lập dân tộc và chủ nghĩa xã hội.",
+          "Tôn trọng, lắng nghe, bảo vệ quyền và lợi ích hợp pháp, chính đáng của Nhân dân.",
+          "Đặt lợi ích quốc gia – dân tộc và hạnh phúc Nhân dân lên trên hết."
+        ],
+        "tdmPractice": "Cán bộ phường Thủ Dầu Một tiếp dân tận tình, giải quyết hồ sơ đúng hẹn, sâu sát địa bàn khu phố."
+      },
+      {
+        "code": "Điều 2",
+        "title": "Bản lĩnh, đổi mới, sáng tạo, hội nhập",
+        "hcmQuote": "\"Việc gì có lợi cho dân, dù nhỏ cũng hết sức làm; có hại cho dân, dù nhỏ cũng hết sức tránh.\"",
+        "coreValues": [
+          "Kiên định chủ nghĩa Mác – Lênin, tư tưởng Hồ Chí Minh; đấu tranh phản bác quan điểm sai trái.",
+          "Dám nghĩ, dám nói, dám làm, dám chịu trách nhiệm vì lợi ích chung.",
+          "Chủ động ứng dụng chuyển đổi số, nâng cao chất lượng tham mưu tuyên giáo."
+        ],
+        "tdmPractice": "Áp dụng Không gian Văn hóa HCM số, QR sinh hoạt chi bộ và bản tin điểm báo AI hằng ngày."
+      },
+      {
+        "code": "Điều 3",
+        "title": "Cần, kiệm, liêm, chính, chí công vô tư",
+        "hcmQuote": "\"Trời có bốn mùa: Xuân, Hạ, Thu, Đông. Đất có bốn phương... Người có bốn đức: Cần, Kiệm, Liêm, Chính.\"",
+        "coreValues": [
+          "Tâm huyết, trách nhiệm, không tham ô, lãng phí, tiêu cực, vụ lợi.",
+          "Thẳng thắn, trung thực, bảo vệ cái đúng, kiên quyết đấu tranh với cái sai.",
+          "Trong sáng, công tâm trong công tác cán bộ và phục vụ Nhân dân."
+        ],
+        "tdmPractice": "Minh bạch thu chi phong trào khu phố, thực hành tiết kiệm trong hội họp và sử dụng tài sản công."
+      },
+      {
+        "code": "Điều 4",
+        "title": "Đoàn kết, kỷ cương, tình thương, trách nhiệm",
+        "hcmQuote": "\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\"",
+        "coreValues": [
+          "Giữ gìn đoàn kết nội bộ trên cơ sở nguyên tắc tập trung dân chủ.",
+          "Chấp hành nghiêm kỷ luật của Đảng, pháp luật Nhà nước.",
+          "Sống nghĩa tình, tương trợ đồng chí và đồng bào lúc khó khăn."
+        ],
+        "tdmPractice": "Phát huy vai trò 26 chi bộ, Mặt trận và đoàn thể chăm lo gia đình chính sách, hộ khó khăn trên địa bàn."
+      },
+      {
+        "code": "Điều 5",
+        "title": "Gương mẫu, khiêm tốn, tu dưỡng rèn luyện, học tập suốt đời",
+        "hcmQuote": "\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\"",
+        "coreValues": [
+          "Nêu gương về đạo đức, lối sống và tác phong làm việc trước quần chúng.",
+          "Không tự mãn, chủ động tự phê bình, phê bình và học tập nâng cao trình độ.",
+          "Gia đình gương mẫu nơi cư trú, xây dựng nếp sống văn minh đô thị."
+        ],
+        "tdmPractice": "100% đảng viên có bản cam kết tu dưỡng hằng năm gắn với mô hình cụ thể tại chi bộ."
+      }
+    ],
+    "interactiveQuiz8": [
+      {
+        "id": "qz01",
+        "question": "Ngày 05/6/1911, người thanh niên Nguyễn Tất Thành rời Bến Nhà Rồng ra đi tìm đường cứu nước trên con tàu nào với tên gọi gì?",
+        "options": [
+          "Tàu Amiral Latouche-Tréville với tên Văn Ba",
+          "Tàu La Marseillaise với tên Nguyễn Ái Quốc",
+          "Tàu Édouard Vaillant với tên Lý Thụy",
+          "Tàu André Lebon với tên Tống Văn Sơ"
+        ],
+        "correctIndex": 0,
+        "explanation": "Ngày 05/6/1911, với tên gọi Văn Ba, Người làm phụ bếp trên tàu buôn Amiral Latouche-Tréville rời cảng Sài Gòn.",
+        "citation": "Hồ Chí Minh Biên niên tiểu sử, Tập 1"
+      },
+      {
+        "id": "qz02",
+        "question": "Tác phẩm \"Đường Kách mệnh\" xuất bản năm 1927 xác định bao nhiêu điều tư cách của người cách mạng?",
+        "options": [
+          "12 điều",
+          "19 điều",
+          "23 điều",
+          "10 điều"
+        ],
+        "correctIndex": 2,
+        "explanation": "Ở trang mở đầu \"Đường Kách mệnh\" (1927), Nguyễn Ái Quốc nêu rõ 23 điều \"Tư cách một người cách mệnh\" gồm tự mình phải, đối người phải, làm việc phải.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 2, tr. 280–281"
+      },
+      {
+        "id": "qz03",
+        "question": "Phương châm dân vận kinh điển \"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\" được Bác viết trong tác phẩm nào?",
+        "options": [
+          "Sửa đổi lối làm việc (1947)",
+          "Bài báo \"Dân vận\" trên báo Sự thật (15/10/1949)",
+          "Đạo đức cách mạng (1958)",
+          "Đời sống mới (1947)"
+        ],
+        "correctIndex": 1,
+        "explanation": "Ngày 15/10/1949, với bút danh X.Y.Z, Chủ tịch Hồ Chí Minh viết bài \"Dân vận\" đăng trên báo Sự thật nêu 6 yêu cầu đối với người phụ trách dân vận.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234"
+      },
+      {
+        "id": "qz04",
+        "question": "Sau 30 năm bôn ba tìm đường cứu nước, Chủ tịch Hồ Chí Minh trở về Tổ quốc ngày 28/01/1941 tại địa danh nào?",
+        "options": [
+          "Tân Trào (Tuyên Quang)",
+          "Định Hóa (Thái Nguyên)",
+          "Cột mốc 108, Pác Bó (Hà Quảng, Cao Bằng)",
+          "Bến Nhà Rồng (Sài Gòn)"
+        ],
+        "correctIndex": 2,
+        "explanation": "Ngày 28/01/1941 (mùng 2 Tết Tân Tỵ), Người vượt cột mốc 108 biên giới Việt – Trung về tới Pác Bó trực tiếp lãnh đạo cách mạng trong nước.",
+        "citation": "Hồ Chí Minh Biên niên tiểu sử, Tập 2"
+      },
+      {
+        "id": "qz05",
+        "question": "Nghị quyết UNESCO tôn vinh Chủ tịch Hồ Chí Minh là \"Anh hùng giải phóng dân tộc và Nhà văn hóa kiệt xuất của Việt Nam\" mang số hiệu nào?",
+        "options": [
+          "Nghị quyết 24C/18.65 năm 1987",
+          "Nghị quyết 19C/10.2 năm 1979",
+          "Nghị quyết 27C/14.3 năm 1990",
+          "Nghị quyết 30C/22.1 năm 1995"
+        ],
+        "correctIndex": 0,
+        "explanation": "Tại kỳ họp lần thứ 24 năm 1987, Đại hội đồng UNESCO thông qua Nghị quyết 24C/18.65 kỷ niệm 100 năm Ngày sinh Chủ tịch Hồ Chí Minh.",
+        "citation": "Tư liệu UNESCO & Ban Tuyên giáo TW"
+      },
+      {
+        "id": "qz06",
+        "question": "Chủ tịch Hồ Chí Minh bắt đầu viết bản Di chúc vào thời gian nào và hoàn chỉnh lần cuối vào năm nào?",
+        "options": [
+          "Tháng 05/1965 đến tháng 05/1969",
+          "Tháng 09/1960 đến tháng 09/1969",
+          "Tháng 01/1966 đến tháng 08/1968",
+          "Tháng 02/1969 đến tháng 09/1969"
+        ],
+        "correctIndex": 0,
+        "explanation": "Bác khởi thảo những dòng đầu tiên tháng 5/1965 dịp kỷ niệm 75 tuổi và chỉnh sửa lần cuối vào 10 giờ ngày 10/5/1969.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 621–624"
+      },
+      {
+        "id": "qz07",
+        "question": "Theo bài viết \"Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân\" (03/02/1969), kẻ địch bên trong cản trở sự nghiệp cách mạng là gì?",
+        "options": [
+          "Bệnh thành tích đơn thuần",
+          "Chủ nghĩa cá nhân",
+          "Sự thiếu hụt phương tiện kỹ thuật",
+          "Khoảng cách địa lý vùng miền"
+        ],
+        "correctIndex": 1,
+        "explanation": "Bác chỉ rõ chủ nghĩa cá nhân là giặc nội xâm đẻ ra nhiều thói hư tật xấu như tham ô, quan liêu, hủ hóa, chia rẽ.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 546–549"
+      },
+      {
+        "id": "qz08",
+        "question": "Theo Quy định 144-QĐ/TW và Bộ 5 Tiêu chí Không gian Văn hóa HCM tại Phường Thủ Dầu Một, thước đo cao nhất của đạo đức công vụ là gì?",
+        "options": [
+          "Số lượng khẩu hiệu in trên giấy",
+          "Sự hài lòng, đồng thuận của Nhân dân và hiệu quả mô hình thiết thực tại khu phố/chi bộ",
+          "Chiều cao của bảng pano cổ động",
+          "Số lần tổ chức liên hoan văn nghệ"
+        ],
+        "correctIndex": 1,
+        "explanation": "Thấm nhuần lời Bác \"Cán bộ là công bộc của dân\", mọi mô hình và không gian văn hóa HCM đều hướng tới phục vụ Nhân dân thiết thực, hiệu quả.",
+        "citation": "Quy định 144-QĐ/TW & Bộ Tiêu chí Đảng ủy Phường Thủ Dầu Một"
+      }
+    ],
+    "advancedQuiz4": [
+      {
+        "id": "qz09",
+        "question": "Tác phẩm \"Sửa đổi lối làm việc\" (10/1947) của Chủ tịch Hồ Chí Minh ký bút danh là gì và nêu lên 5 đức tính cốt lõi nào của người cách mạng?",
+        "options": [
+          "Bút danh X.Y.Z — 5 đức tính: Nhân, Nghĩa, Trí, Dũng, Liêm",
+          "Bút danh Nguyễn Ái Quốc — 5 đức tính: Cần, Kiệm, Liêm, Chính, Chí công vô tư",
+          "Bút danh Tân Sinh — 5 đức tính: Trung, Hiếu, Lễ, Nghĩa, Tín",
+          "Bút danh Chiến Thắng — 5 đức tính: Đoàn kết, Kỷ cương, Tình thương, Trách nhiệm, Nêu gương"
+        ],
+        "correctIndex": 0,
+        "explanation": "Tháng 10/1947 tại chiến khu Việt Bắc, Bác ký bút danh X.Y.Z viết tác phẩm \"Sửa đổi lối làm việc\", xác định người cán bộ cách mạng phải rèn luyện đủ 5 đức tính: Nhân, Nghĩa, Trí, Dũng, Liêm.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, tr. 291–293"
+      },
+      {
+        "id": "qz10",
+        "question": "Trong bản Di chúc thiêng liêng năm 1969, khi bàn về kế hoạch xây dựng lại đất nước sau chiến tranh, Bác nhấn mạnh điều gì là đầu tiên?",
+        "options": [
+          "Khôi phục ngay các nhà máy công nghiệp nặng",
+          "Đầu tiên là công việc đối với con người, chăm lo gia đình chính sách, thương binh và bồi dưỡng thế hệ cách mạng cho đời sau",
+          "Quy hoạch mở rộng nhanh chóng các đô thị lớn",
+          "Mở rộng các hiệp định thương mại quốc tế song phương"
+        ],
+        "correctIndex": 1,
+        "explanation": "Trong Di chúc, Bác căn dặn: \"Theo ý tôi, việc cần phải làm trước tiên là chỉnh đốn lại Đảng... Đầu tiên là công việc đối với con người... Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết.\"",
+        "citation": "Di chúc của Chủ tịch Hồ Chí Minh (1969), Hồ Chí Minh Toàn tập, Tập 15"
+      },
+      {
+        "id": "qz11",
+        "question": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị có điểm bổ sung mới cốt lõi nào so với các giai đoạn trước?",
+        "options": [
+          "Chỉ tập trung vào công tác kiểm tra, giám sát cuối năm",
+          "Bổ sung rõ cấu phần \"PHƯƠNG PHÁP\" Hồ Chí Minh bên cạnh Tư tưởng, Đạo đức, Phong cách và nhấn mạnh mạnh mẽ yếu tố \"thực hành\"",
+          "Chỉ áp dụng đối với cán bộ thuộc khối các cơ quan Trung ương",
+          "Bỏ yêu cầu xây dựng bản cam kết tu dưỡng, rèn luyện hằng năm"
+        ],
+        "correctIndex": 1,
+        "explanation": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị xác định rõ yêu cầu: \"Đẩy mạnh học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh trong giai đoạn phát triển mới\", đặc biệt nhấn mạnh bổ sung cấu phần \"Phương pháp\" và phương châm \"thực hành - nói đi đôi với làm\" của cán bộ, đảng viên.",
+        "citation": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị"
+      },
+      {
+        "id": "qz12",
+        "question": "Quy định số 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị ban hành chuẩn mực đạo đức cách mạng của cán bộ, đảng viên trong giai đoạn mới gồm bao nhiêu điều?",
+        "options": [
+          "3 điều chuẩn mực",
+          "5 điều chuẩn mực (Yêu nước, tôn trọng Nhân dân; Bản lĩnh, đổi mới; Cần, kiệm, liêm, chính; Đoàn kết, kỷ cương; Gương mẫu, tu dưỡng suốt đời)",
+          "7 điều chuẩn mực",
+          "10 điều chuẩn mực"
+        ],
+        "correctIndex": 1,
+        "explanation": "Quy định 144-QĐ/TW gồm 5 điều chuẩn mực đạo đức cách mạng cốt lõi: Điều 1: Yêu nước, tôn trọng Nhân dân...; Điều 2: Bản lĩnh, đổi mới, sáng tạo, hội nhập; Điều 3: Cần, kiệm, liêm, chính, chí công vô tư; Điều 4: Đoàn kết, kỷ cương, tình thương, trách nhiệm; Điều 5: Gương mẫu, khiêm tốn, tu dưỡng rèn luyện, học tập suốt đời.",
+        "citation": "Quy định số 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị"
+      }
+    ],
+    "allQuizzes12": [
+      {
+        "id": "qz01",
+        "question": "Ngày 05/6/1911, người thanh niên Nguyễn Tất Thành rời Bến Nhà Rồng ra đi tìm đường cứu nước trên con tàu nào với tên gọi gì?",
+        "options": [
+          "Tàu Amiral Latouche-Tréville với tên Văn Ba",
+          "Tàu La Marseillaise với tên Nguyễn Ái Quốc",
+          "Tàu Édouard Vaillant với tên Lý Thụy",
+          "Tàu André Lebon với tên Tống Văn Sơ"
+        ],
+        "correctIndex": 0,
+        "explanation": "Ngày 05/6/1911, với tên gọi Văn Ba, Người làm phụ bếp trên tàu buôn Amiral Latouche-Tréville rời cảng Sài Gòn.",
+        "citation": "Hồ Chí Minh Biên niên tiểu sử, Tập 1"
+      },
+      {
+        "id": "qz02",
+        "question": "Tác phẩm \"Đường Kách mệnh\" xuất bản năm 1927 xác định bao nhiêu điều tư cách của người cách mạng?",
+        "options": [
+          "12 điều",
+          "19 điều",
+          "23 điều",
+          "10 điều"
+        ],
+        "correctIndex": 2,
+        "explanation": "Ở trang mở đầu \"Đường Kách mệnh\" (1927), Nguyễn Ái Quốc nêu rõ 23 điều \"Tư cách một người cách mệnh\" gồm tự mình phải, đối người phải, làm việc phải.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 2, tr. 280–281"
+      },
+      {
+        "id": "qz03",
+        "question": "Phương châm dân vận kinh điển \"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\" được Bác viết trong tác phẩm nào?",
+        "options": [
+          "Sửa đổi lối làm việc (1947)",
+          "Bài báo \"Dân vận\" trên báo Sự thật (15/10/1949)",
+          "Đạo đức cách mạng (1958)",
+          "Đời sống mới (1947)"
+        ],
+        "correctIndex": 1,
+        "explanation": "Ngày 15/10/1949, với bút danh X.Y.Z, Chủ tịch Hồ Chí Minh viết bài \"Dân vận\" đăng trên báo Sự thật nêu 6 yêu cầu đối với người phụ trách dân vận.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234"
+      },
+      {
+        "id": "qz04",
+        "question": "Sau 30 năm bôn ba tìm đường cứu nước, Chủ tịch Hồ Chí Minh trở về Tổ quốc ngày 28/01/1941 tại địa danh nào?",
+        "options": [
+          "Tân Trào (Tuyên Quang)",
+          "Định Hóa (Thái Nguyên)",
+          "Cột mốc 108, Pác Bó (Hà Quảng, Cao Bằng)",
+          "Bến Nhà Rồng (Sài Gòn)"
+        ],
+        "correctIndex": 2,
+        "explanation": "Ngày 28/01/1941 (mùng 2 Tết Tân Tỵ), Người vượt cột mốc 108 biên giới Việt – Trung về tới Pác Bó trực tiếp lãnh đạo cách mạng trong nước.",
+        "citation": "Hồ Chí Minh Biên niên tiểu sử, Tập 2"
+      },
+      {
+        "id": "qz05",
+        "question": "Nghị quyết UNESCO tôn vinh Chủ tịch Hồ Chí Minh là \"Anh hùng giải phóng dân tộc và Nhà văn hóa kiệt xuất của Việt Nam\" mang số hiệu nào?",
+        "options": [
+          "Nghị quyết 24C/18.65 năm 1987",
+          "Nghị quyết 19C/10.2 năm 1979",
+          "Nghị quyết 27C/14.3 năm 1990",
+          "Nghị quyết 30C/22.1 năm 1995"
+        ],
+        "correctIndex": 0,
+        "explanation": "Tại kỳ họp lần thứ 24 năm 1987, Đại hội đồng UNESCO thông qua Nghị quyết 24C/18.65 kỷ niệm 100 năm Ngày sinh Chủ tịch Hồ Chí Minh.",
+        "citation": "Tư liệu UNESCO & Ban Tuyên giáo TW"
+      },
+      {
+        "id": "qz06",
+        "question": "Chủ tịch Hồ Chí Minh bắt đầu viết bản Di chúc vào thời gian nào và hoàn chỉnh lần cuối vào năm nào?",
+        "options": [
+          "Tháng 05/1965 đến tháng 05/1969",
+          "Tháng 09/1960 đến tháng 09/1969",
+          "Tháng 01/1966 đến tháng 08/1968",
+          "Tháng 02/1969 đến tháng 09/1969"
+        ],
+        "correctIndex": 0,
+        "explanation": "Bác khởi thảo những dòng đầu tiên tháng 5/1965 dịp kỷ niệm 75 tuổi và chỉnh sửa lần cuối vào 10 giờ ngày 10/5/1969.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 621–624"
+      },
+      {
+        "id": "qz07",
+        "question": "Theo bài viết \"Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân\" (03/02/1969), kẻ địch bên trong cản trở sự nghiệp cách mạng là gì?",
+        "options": [
+          "Bệnh thành tích đơn thuần",
+          "Chủ nghĩa cá nhân",
+          "Sự thiếu hụt phương tiện kỹ thuật",
+          "Khoảng cách địa lý vùng miền"
+        ],
+        "correctIndex": 1,
+        "explanation": "Bác chỉ rõ chủ nghĩa cá nhân là giặc nội xâm đẻ ra nhiều thói hư tật xấu như tham ô, quan liêu, hủ hóa, chia rẽ.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 15, tr. 546–549"
+      },
+      {
+        "id": "qz08",
+        "question": "Theo Quy định 144-QĐ/TW và Bộ 5 Tiêu chí Không gian Văn hóa HCM tại Phường Thủ Dầu Một, thước đo cao nhất của đạo đức công vụ là gì?",
+        "options": [
+          "Số lượng khẩu hiệu in trên giấy",
+          "Sự hài lòng, đồng thuận của Nhân dân và hiệu quả mô hình thiết thực tại khu phố/chi bộ",
+          "Chiều cao của bảng pano cổ động",
+          "Số lần tổ chức liên hoan văn nghệ"
+        ],
+        "correctIndex": 1,
+        "explanation": "Thấm nhuần lời Bác \"Cán bộ là công bộc của dân\", mọi mô hình và không gian văn hóa HCM đều hướng tới phục vụ Nhân dân thiết thực, hiệu quả.",
+        "citation": "Quy định 144-QĐ/TW & Bộ Tiêu chí Đảng ủy Phường Thủ Dầu Một"
+      },
+      {
+        "id": "qz09",
+        "question": "Tác phẩm \"Sửa đổi lối làm việc\" (10/1947) của Chủ tịch Hồ Chí Minh ký bút danh là gì và nêu lên 5 đức tính cốt lõi nào của người cách mạng?",
+        "options": [
+          "Bút danh X.Y.Z — 5 đức tính: Nhân, Nghĩa, Trí, Dũng, Liêm",
+          "Bút danh Nguyễn Ái Quốc — 5 đức tính: Cần, Kiệm, Liêm, Chính, Chí công vô tư",
+          "Bút danh Tân Sinh — 5 đức tính: Trung, Hiếu, Lễ, Nghĩa, Tín",
+          "Bút danh Chiến Thắng — 5 đức tính: Đoàn kết, Kỷ cương, Tình thương, Trách nhiệm, Nêu gương"
+        ],
+        "correctIndex": 0,
+        "explanation": "Tháng 10/1947 tại chiến khu Việt Bắc, Bác ký bút danh X.Y.Z viết tác phẩm \"Sửa đổi lối làm việc\", xác định người cán bộ cách mạng phải rèn luyện đủ 5 đức tính: Nhân, Nghĩa, Trí, Dũng, Liêm.",
+        "citation": "Hồ Chí Minh Toàn tập, Tập 5, tr. 291–293"
+      },
+      {
+        "id": "qz10",
+        "question": "Trong bản Di chúc thiêng liêng năm 1969, khi bàn về kế hoạch xây dựng lại đất nước sau chiến tranh, Bác nhấn mạnh điều gì là đầu tiên?",
+        "options": [
+          "Khôi phục ngay các nhà máy công nghiệp nặng",
+          "Đầu tiên là công việc đối với con người, chăm lo gia đình chính sách, thương binh và bồi dưỡng thế hệ cách mạng cho đời sau",
+          "Quy hoạch mở rộng nhanh chóng các đô thị lớn",
+          "Mở rộng các hiệp định thương mại quốc tế song phương"
+        ],
+        "correctIndex": 1,
+        "explanation": "Trong Di chúc, Bác căn dặn: \"Theo ý tôi, việc cần phải làm trước tiên là chỉnh đốn lại Đảng... Đầu tiên là công việc đối với con người... Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết.\"",
+        "citation": "Di chúc của Chủ tịch Hồ Chí Minh (1969), Hồ Chí Minh Toàn tập, Tập 15"
+      },
+      {
+        "id": "qz11",
+        "question": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị có điểm bổ sung mới cốt lõi nào so với các giai đoạn trước?",
+        "options": [
+          "Chỉ tập trung vào công tác kiểm tra, giám sát cuối năm",
+          "Bổ sung rõ cấu phần \"PHƯƠNG PHÁP\" Hồ Chí Minh bên cạnh Tư tưởng, Đạo đức, Phong cách và nhấn mạnh mạnh mẽ yếu tố \"thực hành\"",
+          "Chỉ áp dụng đối với cán bộ thuộc khối các cơ quan Trung ương",
+          "Bỏ yêu cầu xây dựng bản cam kết tu dưỡng, rèn luyện hằng năm"
+        ],
+        "correctIndex": 1,
+        "explanation": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị xác định rõ yêu cầu: \"Đẩy mạnh học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh trong giai đoạn phát triển mới\", đặc biệt nhấn mạnh bổ sung cấu phần \"Phương pháp\" và phương châm \"thực hành - nói đi đôi với làm\" của cán bộ, đảng viên.",
+        "citation": "Chỉ thị số 07-CT/TW ngày 13/7/2026 của Bộ Chính trị"
+      },
+      {
+        "id": "qz12",
+        "question": "Quy định số 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị ban hành chuẩn mực đạo đức cách mạng của cán bộ, đảng viên trong giai đoạn mới gồm bao nhiêu điều?",
+        "options": [
+          "3 điều chuẩn mực",
+          "5 điều chuẩn mực (Yêu nước, tôn trọng Nhân dân; Bản lĩnh, đổi mới; Cần, kiệm, liêm, chính; Đoàn kết, kỷ cương; Gương mẫu, tu dưỡng suốt đời)",
+          "7 điều chuẩn mực",
+          "10 điều chuẩn mực"
+        ],
+        "correctIndex": 1,
+        "explanation": "Quy định 144-QĐ/TW gồm 5 điều chuẩn mực đạo đức cách mạng cốt lõi: Điều 1: Yêu nước, tôn trọng Nhân dân...; Điều 2: Bản lĩnh, đổi mới, sáng tạo, hội nhập; Điều 3: Cần, kiệm, liêm, chính, chí công vô tư; Điều 4: Đoàn kết, kỷ cương, tình thương, trách nhiệm; Điều 5: Gương mẫu, khiêm tốn, tu dưỡng rèn luyện, học tập suốt đời.",
+        "citation": "Quy định số 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị"
+      }
+    ],
+    "evaluationCriteria5": [
+      {
+        "id": "crit1",
+        "title": "Tiêu chí 1: Thiết chế vật lý & Không gian trưng bày tại cơ sở",
+        "weightPercent": 20,
+        "description": "Xây dựng góc trưng bày trang trọng, mỹ quan, dễ tiếp cận tại trụ sở Đảng ủy – UBND, nhà văn hóa khu phố và cơ quan thuộc phường Thủ Dầu Một.",
+        "items": [
+          {
+            "id": "c1_1",
+            "text": "Có góc Không gian Văn hóa Hồ Chí Minh bố trí trang trọng, đúng nghi thức"
+          },
+          {
+            "id": "c1_2",
+            "text": "Trưng bày đầy đủ ảnh chân dung, mốc lịch sử và Tủ sách học tập Bác Hồ"
+          },
+          {
+            "id": "c1_3",
+            "text": "Bố trí bảng QR kết nối vào Không gian Văn hóa HCM số phường Thủ Dầu Một"
+          },
+          {
+            "id": "c1_4",
+            "text": "Có phân công cán bộ/chi bộ quản lý, cập nhật và bảo quản hiện vật thường xuyên"
+          }
+        ]
+      },
+      {
+        "id": "crit2",
+        "title": "Tiêu chí 2: Không gian văn hóa phi vật thể & Sinh hoạt chuyên đề",
+        "weightPercent": 25,
+        "description": "Đưa việc học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh vào sinh hoạt thường xuyên của chi bộ và đoàn thể.",
+        "items": [
+          {
+            "id": "c2_1",
+            "text": "Lồng ghép kể chuyện hoặc đọc lời dạy của Bác vào sinh hoạt chi bộ hàng tháng"
+          },
+          {
+            "id": "c2_2",
+            "text": "Tổ chức sinh hoạt chuyên đề Chỉ thị 07-CT/TW (thay thế Chỉ thị 05-CT/TW) và Quy định 144-QĐ/TW đúng tiến độ"
+          },
+          {
+            "id": "c2_3",
+            "text": "100% đảng viên có bản cam kết tu dưỡng, rèn luyện và nêu gương hằng năm"
+          },
+          {
+            "id": "c2_4",
+            "text": "Tổ chức hoạt động giáo dục truyền thống cho đoàn viên, hội viên và thanh thiếu nhi"
+          }
+        ]
+      },
+      {
+        "id": "crit3",
+        "title": "Tiêu chí 3: Chuyển biến nhận thức, Đạo đức công vụ & Ứng xử",
+        "weightPercent": 20,
+        "description": "Đo lường bằng thái độ phục vụ Nhân dân, kỷ luật công vụ và văn hóa giao tiếp của đội ngũ cán bộ phường Thủ Dầu Một.",
+        "items": [
+          {
+            "id": "c3_1",
+            "text": "Cán bộ thực hiện nghiêm tinh thần \"gần dân, sát dân, lắng nghe và giải quyết kịp thời\""
+          },
+          {
+            "id": "c3_2",
+            "text": "Thực hành tiết kiệm, chống lãng phí trong chi tiêu, hội họp và công vụ"
+          },
+          {
+            "id": "c3_3",
+            "text": "Gương mẫu chấp hành kỷ luật phát ngôn và chuẩn mực đạo đức nơi cư trú"
+          },
+          {
+            "id": "c3_4",
+            "text": "Có kết quả tự kiểm điểm gắn với tiêu chí nêu gương của người đứng đầu"
+          }
+        ]
+      },
+      {
+        "id": "crit4",
+        "title": "Tiêu chí 4: Không gian văn hóa số & Chuyển đổi số Tuyên giáo",
+        "weightPercent": 20,
+        "description": "Ứng dụng công nghệ số trong lan tỏa tư tưởng Hồ Chí Minh trên nền tảng web Tuyên giáo số phường Thủ Dầu Một.",
+        "items": [
+          {
+            "id": "c4_1",
+            "text": "Cập nhật bài viết, mô hình thực tế của chi bộ/khu phố lên Không gian Văn hóa số"
+          },
+          {
+            "id": "c4_2",
+            "text": "Sử dụng bản tin phát thanh AI, infographic hoặc video ngắn tuyên truyền chuyên đề"
+          },
+          {
+            "id": "c4_3",
+            "text": "Áp dụng kiểm định khẩu hiệu/pano (Skill #05) bảo đảm chuẩn mực trước phát hành"
+          },
+          {
+            "id": "c4_4",
+            "text": "Có đường dẫn/mã QR chia sẻ thuận tiện cho đảng viên và Nhân dân tra cứu"
+          }
+        ]
+      },
+      {
+        "id": "crit5",
+        "title": "Tiêu chí 5: Mô hình \"Dân vận khéo\" & Công trình làm theo Bác",
+        "weightPercent": 15,
+        "description": "Gắn học tập Bác với giải quyết việc cụ thể, thiết thực phục vụ đời sống người dân phường Thủ Dầu Một.",
+        "items": [
+          {
+            "id": "c5_1",
+            "text": "Mỗi chi bộ/khu phố duy trì ít nhất 01 mô hình hoặc phần việc thiết thực làm theo Bác"
+          },
+          {
+            "id": "c5_2",
+            "text": "Có hồ sơ theo dõi hiệu quả, minh chứng hình ảnh và đánh giá định kỳ"
+          },
+          {
+            "id": "c5_3",
+            "text": "Phát hiện, biểu dương kịp thời gương Người tốt – Việc tốt tại địa phương"
+          },
+          {
+            "id": "c5_4",
+            "text": "Tổ chức nhân rộng các mô hình tiêu biểu trong toàn Đảng bộ phường Thủ Dầu Một"
+          }
+        ]
+      }
+    ],
+    "methodology6": [
+      {
+        "id": "method_01",
+        "order": 1,
+        "title": "Phương pháp gắn Lý luận với Thực tiễn — \"Nói đi đôi với làm\"",
+        "subtitle": "Chống bệnh nói suông, lý luận xa rời thực tế công tác",
+        "principle": "Thực tiễn là tiêu chuẩn của chân lý; lý luận mà không liên hệ với thực tiễn là lý luận suông; thực tiễn mà không có lý luận hướng dẫn là thực tiễn mù quáng.",
+        "coreProse": "Chủ tịch Hồ Chí Minh luôn căn dặn: người cán bộ cách mạng không được nói một đằng làm một nẻo, không được hứa suông trước Nhân dân. Trong lãnh đạo và chỉ đạo cơ sở, mọi nghị quyết, kế hoạch ban hành đều phải xuất phát từ thực tế đời sống của đồng bào, có giải pháp cụ thể và kiểm tra việc thực hiện đến nơi đến chốn.",
+        "hcmQuote": "\"Thực hành sinh ra hiểu biết; hiểu biết tiến lên lý luận; lý luận lãnh đạo thực hành... Nói thì phải làm, làm cho bằng được.\"",
+        "quoteSource": "Hồ Chí Minh Toàn tập, Tập 5, tr. 274–276",
+        "actionGuideline": "Đảng viên và cán bộ khi xây dựng kế hoạch phải xác định rõ sản phẩm đầu ra, thời hạn hoàn thành và kết quả đo lường được.",
+        "tdmApplication": "Đảng ủy và 26 chi bộ Phường Thủ Dầu Một gắn việc quán triệt nghị quyết với từng phần việc cụ thể tại khu phố, không ban hành văn bản chung chung."
+      },
+      {
+        "id": "method_02",
+        "order": 2,
+        "title": "Phương pháp Dựa vào Dân, phát huy Dân chủ — \"Lấy Dân làm gốc\"",
+        "subtitle": "Thực hiện phương châm \"Dân biết, dân bàn, dân làm, dân kiểm tra, dân giám sát, dân thụ hưởng\"",
+        "principle": "Cách mạng là sự nghiệp của quần chúng. Sức mạnh của Đảng bắt nguồn từ mối quan hệ máu thịt mật thiết với Nhân dân.",
+        "coreProse": "Người khẳng định: Nước lấy dân làm gốc. Việc gì có lợi cho dân, dù nhỏ cũng phải hết sức làm; việc gì có hại cho dân, dù nhỏ cũng phải hết sức tránh. Cán bộ không được tự cho mình là quan cách mạng để đè đầu cưỡi cổ dân, mà phải thật sự là người đầy tớ trung thành, tận tụy phục vụ Nhân dân.",
+        "hcmQuote": "\"Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân. Công cuộc đổi mới, xây dựng là trách nhiệm của dân. Sự nghiệp kháng chiến, kiến quốc là công việc của dân.\"",
+        "quoteSource": "Bài báo \"Dân vận\" trên báo Sự thật (15/10/1949), Hồ Chí Minh Toàn tập, Tập 6, tr. 232",
+        "actionGuideline": "Luôn lắng nghe, tôn trọng ý kiến phản biện của Nhân dân; giải quyết thấu đáo khiếu nại, phản ánh ngay tại cơ sở.",
+        "tdmApplication": "Duy trì lịch tiếp công dân định kỳ hằng tuần của Bí thư, Chủ tịch phường; công khai minh bạch các dự án chỉnh trang đô thị khu phố trên Zalo và bảng tin."
+      },
+      {
+        "id": "method_03",
+        "order": 3,
+        "title": "Phương pháp Nêu gương — \"Tiền phong, gương mẫu\"",
+        "subtitle": "Cán bộ chức vụ càng cao càng phải gương mẫu trước quần chúng",
+        "principle": "Sức thuyết phục lớn nhất của người cán bộ không phải bằng mệnh lệnh hay lời nói hoa mỹ mà bằng chính tấm gương đạo đức và hành động thực tế.",
+        "coreProse": "Bác Hồ dạy: Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền. Người cán bộ, đảng viên phải đi đầu trong mọi phong trào, từ việc rèn luyện lối sống cần kiệm liêm chính đến chấp hành kỷ luật công vụ và quy định nơi cư trú.",
+        "hcmQuote": "\"Muốn hướng dẫn nhân dân, mình phải làm mực thước cho người ta bắt chước... Tự mình phải chính trước, mới giúp người khác chính được.\"",
+        "quoteSource": "Hồ Chí Minh Toàn tập, Tập 6, tr. 16",
+        "actionGuideline": "Đảng viên lãnh đạo phải thực hiện nêu gương 3 chiều: gương mẫu trong cơ quan, gương mẫu trong gia đình và gương mẫu nơi cư trú.",
+        "tdmApplication": "100% cán bộ chủ chốt phường Thủ Dầu Một ký cam kết nêu gương theo Quy định 144-QĐ/TW, lấy kết quả nêu gương làm căn cứ đánh giá xếp loại cuối năm."
+      },
+      {
+        "id": "method_04",
+        "order": 4,
+        "title": "Phương pháp Tự phê bình và Phê bình — \"Rửa mặt hằng ngày\"",
+        "subtitle": "Vũ khí sắc bén để xây dựng, chỉnh đốn Đảng trong sạch, vững mạnh",
+        "principle": "Tự phê bình và phê bình là quy luật phát triển của Đảng, là phương thuốc tốt nhất để sửa chữa khuyết điểm, phát huy ưu điểm, củng cố sự đoàn kết thống nhất.",
+        "coreProse": "Chủ tịch Hồ Chí Minh ví tự phê bình và phê bình như việc rửa mặt mỗi sáng: phải làm thường xuyên, nghiêm túc, chân thành và có tình đồng chí thương yêu lẫn nhau. Không giấu giếm khuyết điểm, không nể nang né tránh nhưng cũng không lợi dụng phê bình để công kích, chia rẽ nội bộ.",
+        "hcmQuote": "\"Một Đảng mà giấu giếm khuyết điểm của mình là một Đảng hỏng. Một Đảng có gan thừa nhận khuyết điểm của mình, vạch rõ những cái đó... thế là một Đảng tiến bộ, mạnh dạn, chắc chắn, chân chính.\"",
+        "quoteSource": "Tác phẩm \"Sửa đổi lối làm việc\" (10/1947), Hồ Chí Minh Toàn tập, Tập 5, tr. 301",
+        "actionGuideline": "Trong sinh hoạt cấp ủy, chi bộ phải đảm bảo không khí dân chủ thực sự; kết luận sau phê bình phải có kế hoạch khắc phục rõ ràng.",
+        "tdmApplication": "Định kỳ sinh hoạt chi bộ hằng tháng tại 26 chi bộ dành thời lượng kiểm điểm việc thực hiện cam kết tu dưỡng cá nhân của đảng viên."
+      },
+      {
+        "id": "method_05",
+        "order": 5,
+        "title": "Phương pháp Biện chứng & Sách lược linh hoạt — \"Dĩ bất biến, ứng vạn biến\"",
+        "subtitle": "Kiên định nguyên tắc độc lập dân tộc & linh hoạt, sáng tạo trong hành động",
+        "principle": "Giữ vững mục tiêu, lý tưởng cốt lõi (cái bất biến) đồng thời thích ứng nhanh nhạy, sáng tạo trước mọi biến chuyển của thực tiễn khách quan (cái vạn biến).",
+        "coreProse": "Trong mọi thời khắc cam go của lịch sử, Bác Hồ luôn vận dụng tài tình sách lược mềm dẻo: có lúc tiến, có lúc tạm hoãn, có lúc thỏa hiệp có nguyên tắc để giữ vững mục tiêu tối cao là độc lập dân tộc và hạnh phúc của Nhân dân. Đây là bài học sâu sắc về tư duy chiến lược và nghệ thuật ứng xử cách mạng.",
+        "hcmQuote": "\"Nguyên tắc của ta thì phải vững chắc, nhưng sách lược của ta thì phải linh hoạt... Dĩ bất biến, ứng vạn biến.\"",
+        "quoteSource": "Lời căn dặn Huỳnh Thúc Kháng trước khi sang Pháp (31/5/1946)",
+        "actionGuideline": "Trước nhiệm vụ mới, khó hoặc phát sinh đột xuất, cần nắm vững chủ trương cấp trên nhưng chủ động tìm tòi giải pháp phù hợp địa bàn.",
+        "tdmApplication": "Chủ động ứng dụng công nghệ thông tin, mạng xã hội và nền tảng số Tuyên giáo để lan tỏa chủ trương Đảng, linh hoạt nắm bắt dư luận cơ sở."
+      },
+      {
+        "id": "method_06",
+        "order": 6,
+        "title": "Phương pháp Làm việc Khoa học & Sâu sát — \"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\"",
+        "subtitle": "Chống bệnh quan liêu, bàn giấy, mệnh lệnh hành chính xa dân",
+        "principle": "Phong cách làm việc khoa học đòi hỏi phải điều tra, khảo sát, nắm chắc tình hình cụ thể, tránh chủ quan duy ý chí, hành động mù quáng.",
+        "coreProse": "Bác Hồ yêu cầu người cán bộ không được ngồi một chỗ chỉ tay năm ngón mà phải: óc nghĩ (suy ngẫm thấu đáo), mắt trông (quan sát thực tế), tai nghe (lắng nghe đa chiều), chân đi (sâu sát địa bàn), miệng nói (tuyên truyền thuyết phục), tay làm (trực tiếp hướng dẫn, cùng làm với dân).",
+        "hcmQuote": "\"Phải óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm. Chứ không phải chỉ nói suông, chỉ ngồi viết mệnh lệnh... Phải thật thà nhúng tay vào việc.\"",
+        "quoteSource": "Bài báo \"Dân vận\" (15/10/1949), Hồ Chí Minh Toàn tập, Tập 6, tr. 233–234",
+        "actionGuideline": "Loại bỏ hoàn toàn tác phong hành chính hóa; tăng cường giải quyết công việc trực tiếp tại địa bàn và tổ dân phố.",
+        "tdmApplication": "Mô hình \"Ngày thứ Bảy lắng nghe dân\" của Khối Vận phường Thủ Dầu Một trực tiếp xuống hẻm phố đối thoại và xử lý kiến nghị trong 48 giờ."
+      }
+    ],
+    "commitmentTemplates": [
+      {
+        "roleId": "LANH_DAO",
+        "roleName": "Cán bộ Lãnh đạo, Cấp ủy viên Chi bộ / Đảng ủy",
+        "badge": "Mẫu 01 · Lãnh đạo & Cấp ủy",
+        "description": "Bản cam kết tu dưỡng, rèn luyện dành cho Bí thư, Phó Bí thư, Cấp ủy viên chi bộ và lãnh đạo phường theo Chỉ thị 07-CT/TW & Quy định 144-QĐ/TW.",
+        "commitments": [
+          {
+            "standardTitle": "1. Về Yêu nước, tôn trọng Nhân dân, tuyệt đối trung thành với Đảng",
+            "actionItems": [
+              "Kiên định mục tiêu độc lập dân tộc gắn liền CNXH; tuyệt đối chấp hành nghị quyết Đảng.",
+              "Định kỳ trực tiếp đối thoại, lắng nghe và giải quyết dứt điểm các kiến nghị chính đáng của Nhân dân.",
+              "Gắn bó máu thịt với nhân dân nơi công tác và nơi cư trú."
+            ]
+          },
+          {
+            "standardTitle": "2. Về Bản lĩnh, đổi mới, sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm",
+            "actionItems": [
+              "Chủ động đề xuất các mô hình mới trong quản lý trật tự đô thị, cải cách hành chính và chuyển đổi số.",
+              "Không né tránh, đùn đẩy trách nhiệm; bảo vệ cán bộ năng động, sáng tạo vì lợi ích chung.",
+              "Kiên quyết đấu tranh phản bác các quan điểm sai trái, bảo vệ nền tảng tư tưởng của Đảng."
+            ]
+          },
+          {
+            "standardTitle": "3. Về Cần, kiệm, liêm, chính, chí công vô tư",
+            "actionItems": [
+              "Gương mẫu đi đầu thực hành tiết kiệm, chống lãng phí trong quản lý tài sản công, hội họp.",
+              "Kiên quyết không nhận hối lộ, không vụ lợi cá nhân; công tâm trong đánh giá cán bộ.",
+              "Thực hiện nghiêm túc việc kê khai tài sản, thu nhập theo quy định."
+            ]
+          },
+          {
+            "standardTitle": "4. Về Đoàn kết, kỷ cương, tình thương, trách nhiệm",
+            "actionItems": [
+              "Giữ gìn đoàn kết nội bộ trong Ban Chấp hành, cấp ủy và tập thể chi bộ.",
+              "Thực hiện nghiêm nguyên tắc tập trung dân chủ, tập thể lãnh đạo, cá nhân phụ trách.",
+              "Quan tâm chăm lo đời sống vật chất, tinh thần của cán bộ, đảng viên và Nhân dân có hoàn cảnh khó khăn."
+            ]
+          },
+          {
+            "standardTitle": "5. Về Gương mẫu, khiêm tốn, tu dưỡng rèn luyện, học tập suốt đời",
+            "actionItems": [
+              "Nêu gương sáng về đạo đức, phong cách sống giản dị, khiêm tốn, gần gũi.",
+              "Thường xuyên tự phê bình và phê bình với tinh thần cầu thị, chân thành.",
+              "Tích cực học tập nâng cao trình độ lý luận chính trị và kỹ năng chuyển đổi số."
+            ]
+          }
+        ]
+      },
+      {
+        "roleId": "DANG_VIEN",
+        "roleName": "Đảng viên Chi bộ Cơ sở",
+        "badge": "Mẫu 02 · Đảng viên Chi bộ",
+        "description": "Bản cam kết phấn đấu tu dưỡng, rèn luyện của Đảng viên đang sinh hoạt tại 26 chi bộ khu phố, cơ quan, trường học.",
+        "commitments": [
+          {
+            "standardTitle": "1. Về Tư tưởng chính trị & Yêu nước",
+            "actionItems": [
+              "Tuyệt đối trung thành với Cương lĩnh chính trị, Điều lệ Đảng và pháp luật Nhà nước.",
+              "Tham gia đầy đủ các buổi sinh hoạt chi bộ định kỳ, sinh hoạt chuyên đề Chỉ thị 07-CT/TW."
+            ]
+          },
+          {
+            "standardTitle": "2. Về Đạo đức, lối sống, Cần kiệm liêm chính",
+            "actionItems": [
+              "Thực hiện nếp sống văn minh, tiết kiệm; không vi phạm 19 điều đảng viên không được làm.",
+              "Tích cực tuyên truyền người thân trong gia đình chấp hành tốt chủ trương của khu phố."
+            ]
+          },
+          {
+            "standardTitle": "3. Về Trách nhiệm công tác & Gắn bó với Nhân dân",
+            "actionItems": [
+              "Hoàn thành 100% nhiệm vụ chuyên môn và công tác chi bộ phân công đúng tiến độ.",
+              "Gương mẫu tham gia phong trào \"Toàn dân đoàn kết xây dựng đời sống văn hóa\" tại khu dân cư."
+            ]
+          },
+          {
+            "standardTitle": "4. Về Tự phê bình và học tập rèn luyện",
+            "actionItems": [
+              "Nghiêm túc tự kiểm điểm, tiếp thu ý kiến đóng góp của đồng chí trong chi bộ.",
+              "Thường xuyên tự học qua Tủ sách Bác Hồ số và Không gian Văn hóa Hồ Chí Minh trực tuyến."
+            ]
+          }
+        ]
+      },
+      {
+        "roleId": "CONG_CHUC",
+        "roleName": "Cán bộ, Công chức Bộ phận Một cửa & Cơ quan UBND",
+        "badge": "Mẫu 03 · Công chức Phục vụ Dân",
+        "description": "Bản cam kết văn hóa công vụ, đạo đức công chức thực hành tinh thần \"Nụ cười công sở - Vì Dân phục vụ\" theo tư tưởng Bác.",
+        "commitments": [
+          {
+            "standardTitle": "1. Về Đạo đức công vụ & Tinh thần phục vụ Nhân dân",
+            "actionItems": [
+              "Thực hiện nghiêm túc cam kết \"4 xin, 4 luôn\": xin chào, xin lỗi, xin cảm ơn, xin phép; luôn mỉm cười, luôn nhẹ nhàng, luôn lắng nghe, luôn giúp đỡ.",
+              "Tuyệt đối không hách dịch, nhũng nhiễu, gây khó khăn cho người dân và doanh nghiệp.",
+              "Đảm bảo 100% hồ sơ tiếp nhận được giải quyết đúng hạn và trước hạn."
+            ]
+          },
+          {
+            "standardTitle": "2. Về Kỷ luật, kỷ cương hành chính",
+            "actionItems": [
+              "Chấp hành nghiêm giờ giấc làm việc, đeo thẻ công chức, mặc trang phục lịch sự đúng quy định.",
+              "Thực hiện nguyên tắc giải quyết công việc theo đúng quy trình ISO và một cửa điện tử."
+            ]
+          },
+          {
+            "standardTitle": "3. Về Nâng cao trình độ và Chuyển đổi số",
+            "actionItems": [
+              "Tích cực hướng dẫn người dân nộp hồ sơ trực tuyến, thanh toán không dùng tiền mặt.",
+              "Học tập và làm theo tác phong làm việc khoa học, ngăn nắp, nhanh nhạy của Bác Hồ."
+            ]
+          }
+        ]
+      },
+      {
+        "roleId": "DOAN_VIEN",
+        "roleName": "Đoàn viên Thanh niên & Thế hệ Trẻ",
+        "badge": "Mẫu 04 · Thanh niên Tiên phong",
+        "description": "Bản cam kết rèn đức luyện tài theo lời dạy của Bác \"Đâu cần thanh niên có, việc gì khó có thanh niên\".",
+        "commitments": [
+          {
+            "standardTitle": "1. Về Lý tưởng cách mạng & Tinh thần xung kích",
+            "actionItems": [
+              "Nuôi dưỡng khát vọng cống hiến, tích cực tham gia các phong trào tình nguyện vì cộng đồng.",
+              "Tiên phong đi đầu trong chuyển đổi số, tổ công nghệ số cộng đồng tại khu phố."
+            ]
+          },
+          {
+            "standardTitle": "2. Về Rèn luyện đạo đức & Lối sống văn minh",
+            "actionItems": [
+              "Sống có lý tưởng, trung thực, trách nhiệm, nghĩa tình; nói không với các tệ nạn xã hội.",
+              "Vận động thanh thiếu nhi tham gia tìm hiểu lịch sử Đảng và cuộc đời Chủ tịch Hồ Chí Minh."
+            ]
+          }
+        ]
+      }
+    ],
+    "classicWorkDeepReads": [
+      {
+        "id": "deep_tuyen_ngon",
+        "title": "Tuyên ngôn Độc lập (02/9/1945)",
+        "timeAndPlace": "Ngày 02/9/1945 tại Quảng trường Ba Đình, Hà Nội",
+        "historicalContext": "Sau thắng lợi vĩ đại của Cách mạng Tháng Tám, thay mặt Chính phủ lâm thời, Chủ tịch Hồ Chí Minh soạn thảo và đọc bản Tuyên ngôn Độc lập trước hàng chục vạn đồng bào tại Quảng trường Ba Đình, chính thức khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+        "keyThemes": [
+          "Khẳng định quyền con người và quyền dân tộc thiêng liêng, bất khả xâm phạm.",
+          "Đập tan luận điệu của chủ nghĩa thực dân và phát xít.",
+          "Ý chí sắt đá của toàn thể dân tộc Việt Nam quyết giữ vững nền độc lập, tự do."
+        ],
+        "fullTextOrCoreExcerpt": "“Tất cả mọi người đều sinh ra có quyền bình đẳng. Tạo hóa cho họ những quyền không ai có thể xâm phạm được; trong những quyền ấy, có quyền được sống, quyền tự do và quyền mưu cầu hạnh phúc”...\n\nNước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập. Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy!",
+        "audioVoiceHint": "Giọng đọc hào sảng, trang nghiêm lịch sử (Đài Tiếng nói Việt Nam)",
+        "tdmTakeaway": "Bài học về kiên định độc lập dân tộc, phát huy tinh thần tự cường và trách nhiệm bảo vệ thành quả cách mạng tại địa phương."
+      },
+      {
+        "id": "deep_di_chuc",
+        "title": "Bản Di chúc thiêng liêng của Chủ tịch Hồ Chí Minh (1965–1969)",
+        "timeAndPlace": "Khởi thảo tháng 5/1965, hoàn chỉnh tháng 5/1969 tại Nhà sàn Phủ Chủ tịch, Hà Nội",
+        "historicalContext": "Trong những năm tháng kháng chiến chống Mỹ cứu nước ác liệt nhất, Chủ tịch Hồ Chí Minh đã dành trọn tâm huyết suốt 5 năm để suy ngẫm, viết và sửa bản Di chúc để lại cho toàn Đảng, toàn quân và toàn dân ta trước lúc đi xa.",
+        "keyThemes": [
+          "Giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.",
+          "Đầu tiên là công việc đối với con người; chăm lo đời sống vật chất, tinh thần của Nhân dân.",
+          "Bồi dưỡng thế hệ cách mạng cho đời sau vừa hồng vừa chuyên.",
+          "Xây dựng lại đất nước đàng hoàng hơn, to đẹp hơn sau chiến tranh."
+        ],
+        "fullTextOrCoreExcerpt": "“Trước hết nói về Đảng: Nhờ đoàn kết chặt chẽ, một lòng một dạ phục vụ giai cấp, phục vụ nhân dân, phục vụ Tổ quốc, cho nên từ ngày thành lập đến nay, Đảng ta đã đoàn kết, lãnh đạo nhân dân ta hăng hái đấu tranh tiến từ thắng lợi này đến thắng lợi khác. Đoàn kết là một truyền thống cực kỳ quý báu của Đảng và của dân ta. Các đồng chí từ Trung ương đến các chi bộ cần phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình...\n\nĐầu tiên là công việc đối với con người... Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết... Điều mong muốn cuối cùng của tôi là: Toàn Đảng, toàn dân ta đoàn kết phấn đấu, xây dựng một nước Việt Nam hòa bình, thống nhất, độc lập, dân chủ và giàu mạnh, và góp phần xứng đáng vào sự nghiệp cách mạng thế giới.”",
+        "audioVoiceHint": "Giọng đọc ấm áp, xúc động, sâu lắng tình người",
+        "tdmTakeaway": "Kim chỉ nam cho công tác xây dựng, chỉnh đốn Đảng tại chi bộ và chăm lo an sinh xã hội cho người dân khu phố."
+      },
+      {
+        "id": "deep_dan_van",
+        "title": "Tác phẩm \"Dân vận\" (15/10/1949)",
+        "timeAndPlace": "Đăng trên Báo Sự Thật, số 120, ngày 15/10/1949",
+        "historicalContext": "Trong giai đoạn cuộc kháng chiến chống Pháp bước vào thời kỳ phản công, Bác Hồ viết tác phẩm với bút danh X.Y.Z nhằm chấn chỉnh những lệch lạc trong công tác vận động quần chúng, xác lập cơ sở khoa học cho công tác Dân vận của Đảng.",
+        "keyThemes": [
+          "Bản chất chế độ dân chủ: Nước ta là nước dân chủ, bao nhiêu lợi ích đều vì dân, bao nhiêu quyền hạn đều của dân.",
+          "Ai phụ trách dân vận: Tất cả cán bộ chính quyền, đoàn thể và đảng viên đều phải làm dân vận.",
+          "Phương pháp dân vận khéo: Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm.",
+          "Chân lý: Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công."
+        ],
+        "fullTextOrCoreExcerpt": "“Vấn đề Dân vận một tấc lòng son vì nước vì dân:\nNước ta là nước dân chủ.\nBao nhiêu lợi ích đều vì dân.\nBao nhiêu quyền hạn đều của dân.\nCông cuộc đổi mới, xây dựng là trách nhiệm của dân.\nSự nghiệp kháng chiến, kiến quốc là công việc của dân.\nChính quyền từ xã đến Chính phủ trung ương do dân cử ra.\nĐoàn thể từ Trung ương đến xã do dân tổ chức nên.\nNói tóm lại, quyền hành và lực lượng đều ở nơi dân...\n\nLực lượng của dân vận rất to lớn. Việc dân vận rất quan trọng. Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.”",
+        "audioVoiceHint": "Giọng đọc rành mạch, gần gũi, thuyết phục",
+        "tdmTakeaway": "Mô hình chuẩn để Khối Dân vận và các chi bộ phường Thủ Dầu Một đổi mới phương thức tiếp xúc, lắng nghe Nhân dân."
+      },
+      {
+        "id": "deep_sua_doi",
+        "title": "Tác phẩm \"Sửa đổi lối làm việc\" (Tháng 10/1947)",
+        "timeAndPlace": "Tháng 10/1947 tại Chiến khu Việt Bắc, ký bút danh X.Y.Z",
+        "historicalContext": "Sau ngày Toàn quốc kháng chiến, Đảng ta phải lãnh đạo cuộc kháng chiến trường kỳ trong điều kiện vô cùng gian khổ. Để cán bộ thích ứng với hoàn cảnh chiến tranh và làm tròn trọng trách trước Nhân dân, Bác viết tác phẩm chỉ rõ các căn bệnh nội xâm và cách khắc phục.",
+        "keyThemes": [
+          "Chống 3 chứng bệnh nguy hiểm: Bệnh chủ quan, Bệnh hẹp hòi, Bệnh ba hoa.",
+          "Nêu 5 đức tính của người cách mạng: Nhân, Nghĩa, Trí, Dũng, Liêm.",
+          "Cán bộ là cái gốc của mọi công việc; muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.",
+          "Cách dùng cán bộ: Phải có lòng độ lượng, chí đại công vô tư, biết người biết việc, không thành kiến."
+        ],
+        "fullTextOrCoreExcerpt": "“Cán bộ là cái gốc của mọi công việc. Vì vậy, huấn luyện cán bộ là công việc gốc của Đảng... Phải sửa đổi lối làm việc của Đảng: chống bệnh chủ quan, bệnh hẹp hòi, bệnh ba hoa...\n\nNgười cách mạng phải có đạo đức: Nhân, Nghĩa, Trí, Dũng, Liêm. Tự mình phải cần kiệm, liêm chính, chí công vô tư. Muốn người ta nghe mình, mình phải làm gương mẫu trước.”",
+        "audioVoiceHint": "Giọng đọc đanh thép, phê phán sâu sắc, định hướng rõ ràng",
+        "tdmTakeaway": "Tài liệu sinh hoạt cốt lõi để chi bộ tiến hành tự phê bình và phê bình, rèn luyện tác phong công vụ văn minh."
+      },
+      {
+        "id": "deep_loi_keu_goi_1946",
+        "title": "Lời kêu gọi toàn quốc kháng chiến (19/12/1946)",
+        "timeAndPlace": "Đêm ngày 19/12/1946 tại làng Vạn Phúc, Hà Đông (nay là Hà Nội)",
+        "historicalContext": "Trước dã tâm quay lại xâm lược nước ta của thực dân Pháp, sau mọi nỗ lực đàm phán hòa bình không thành, Chủ tịch Hồ Chí Minh đã ra Lời kêu gọi thiêng liêng thúc giục toàn dân tộc đứng lên bảo vệ độc lập.",
+        "keyThemes": [
+          "Tinh thần yêu chuộng hòa bình nhưng kiên quyết không chịu mất nước, không chịu làm nô lệ.",
+          "Đường lối kháng chiến toàn dân, toàn diện: Hễ là người Việt Nam thì phải đứng lên đánh thực dân cứu nước.",
+          "Niềm tin tất thắng vào cuộc kháng chiến trường kỳ gian khổ."
+        ],
+        "fullTextOrCoreExcerpt": "“Chúng ta muốn hòa bình, chúng ta phải nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta một lần nữa!\n\nKhông! Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ.\n\nHỡi đồng bào! Chúng ta phải đứng lên! Bất kỳ đàn ông, đàn bà, bất kỳ người già, người trẻ, không chia tôn giáo, đảng phái, dân tộc. Hễ là người Việt Nam thì phải đứng lên đánh thực dân Pháp để cứu Tổ quốc...\n\nKháng chiến thắng lợi muôn năm! Việt Nam độc lập và thống nhất muôn năm!”",
+        "audioVoiceHint": "Giọng đọc đanh thép, lay động hàng triệu trái tim yêu nước",
+        "tdmTakeaway": "Bài học về ý chí quật cường, tinh thần đại đoàn kết toàn dân tộc và lòng yêu nước nồng nàn."
+      }
+    ]
+  }
+}

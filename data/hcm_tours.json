@@ -1,0 +1,35 @@
+[
+  {
+    "id": "tour_pho_thong",
+    "title": "Hành trình 1: Hành trình Tìm đường Cứu nước & Độc lập (Dành cho Khách tham quan)",
+    "audience": "Tham quan phổ thông",
+    "description": "Lộ trình 15 phút qua Bến Nhà Rồng 1911, Tuyên ngôn Độc lập 1945, phim VTV24 và Di tích Thủ Dầu Một.",
+    "duration_label": "15 phút · 4 điểm dừng",
+    "dossier_ids_json": "[\"dos_ev_1911\",\"dos_media_vtv24\",\"dos_ev_1945\",\"dos_artifact_tdm_phuloi\"]",
+    "is_published": 1,
+    "sort_order": 1,
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "tour_dang_vien",
+    "title": "Hành trình 2: Chuyên đề Xây dựng Đảng & Quy định 144-QĐ/TW (Dành cho Cán bộ, Đảng viên)",
+    "audience": "Cán bộ & Đảng viên",
+    "description": "Sinh hoạt chuyên đề trọng tâm: Di chúc 1969, Dân vận 1949, Quy định 144 và thực tiễn Thủ Dầu Một.",
+    "duration_label": "20 phút · 4 điểm dừng",
+    "dossier_ids_json": "[\"dos_work_dichuc\",\"dos_work_danvan\",\"dos_research_144\",\"dos_artifact_tdm_phuloi\"]",
+    "is_published": 1,
+    "sort_order": 2,
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "tour_doan_vien",
+    "title": "Hành trình 3: Tuổi trẻ Học tập & Làm theo Lời Bác (Dành cho Đoàn viên, Học sinh)",
+    "audience": "Đoàn viên & Học sinh",
+    "description": "Truyền cảm hứng cống hiến từ tuổi trẻ Nguyễn Tất Thành, Tình đồng chí Bác Hồ – Bác Tôn và di tích địa phương.",
+    "duration_label": "12 phút · 4 điểm dừng",
+    "dossier_ids_json": "[\"dos_ev_1911\",\"dos_artifact_tdt\",\"dos_media_vtv24\",\"dos_artifact_tdm_phuloi\"]",
+    "is_published": 1,
+    "sort_order": 3,
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  }
+]

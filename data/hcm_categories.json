@@ -1,0 +1,79 @@
+[
+  {
+    "id": "cat_bio",
+    "slug": "cuoc-doi-su-nghiep",
+    "title": "Cuộc đời & Sự nghiệp",
+    "description": "06 chương tiểu sử và 30 mốc biên niên lịch sử chuẩn xác.",
+    "icon_name": "History",
+    "sort_order": 1,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_works",
+    "slug": "tac-pham-loi-day",
+    "title": "Tác phẩm & Lời Bác dạy",
+    "description": "15 tập Hồ Chí Minh Toàn tập, tác phẩm kinh điển và trích dẫn xác thực.",
+    "icon_name": "BookMarked",
+    "sort_order": 2,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_exhibit",
+    "slug": "bao-tang-trung-bay",
+    "title": "Bảo tàng & Hiện vật Số",
+    "description": "08 gian trưng bày hiện vật, di tích quốc gia và không gian 3D.",
+    "icon_name": "Landmark",
+    "sort_order": 3,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_world",
+    "slug": "dau-chan-quoc-te",
+    "title": "Dấu chân Người & Thế giới",
+    "description": "Hành trình 30 năm tìm đường cứu nước qua 20 tọa độ lịch sử.",
+    "icon_name": "Compass",
+    "sort_order": 4,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_media",
+    "slug": "kho-anh-clip-audio",
+    "title": "Ảnh, Clip & Âm thanh Di sản",
+    "description": "Phim tài liệu VTV24, trình chiếu lịch sử, bản ghi âm và phóng sự ảnh.",
+    "icon_name": "Film",
+    "sort_order": 5,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_local",
+    "slug": "thu-dau-mot-thuc-tien",
+    "title": "Tin tức & Mô hình Thủ Dầu Một",
+    "description": "Hoạt động chi bộ, Dân vận khéo, di tích và mô hình tại phường Thủ Dầu Một.",
+    "icon_name": "Award",
+    "sort_order": 6,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  },
+  {
+    "id": "cat_ideology",
+    "slug": "tu-tuong-quy-dinh-144",
+    "title": "Tư tưởng, Đạo đức & Học tập",
+    "description": "Chỉ thị 07-CT/TW, Quy định 144-QĐ/TW và chuyên đề rèn luyện cán bộ.",
+    "icon_name": "ShieldCheck",
+    "sort_order": 7,
+    "is_active": 1,
+    "created_at": "2026-11-23T12:10:21.448Z",
+    "updated_at": "2026-11-23T12:10:21.448Z"
+  }
+]

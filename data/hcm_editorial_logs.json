@@ -1,0 +1,672 @@
+[
+  {
+    "id": "edlog_139cbd2c-8",
+    "dossier_id": "dos_ev_1911",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_a68d508a-f",
+    "dossier_id": "dos_ev_1945",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_ec7addc2-d",
+    "dossier_id": "dos_work_dichuc",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_427bd5ac-1",
+    "dossier_id": "dos_work_danvan",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_6f5d0b00-9",
+    "dossier_id": "dos_artifact_tdt",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_2669fd82-c",
+    "dossier_id": "dos_artifact_tdm_phuloi",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_1eb3c784-e",
+    "dossier_id": "dos_media_vtv24",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_912c44b7-b",
+    "dossier_id": "dos_research_144",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "edlog_69558d8e-e",
+    "dossier_id": "legacy_ms_1911",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.452Z"
+  },
+  {
+    "id": "edlog_e6f275fa-3",
+    "dossier_id": "legacy_ms_1930",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "edlog_f08b3c66-d",
+    "dossier_id": "legacy_ms_1941",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "edlog_7fdb388b-4",
+    "dossier_id": "legacy_ms_1945",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_ev_1945)",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "edlog_db7c4dd6-7",
+    "dossier_id": "legacy_ms_1954",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "edlog_742961a1-8",
+    "dossier_id": "legacy_ms_1969",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_work_dichuc)",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "edlog_583a8143-f",
+    "dossier_id": "legacy_work_duong_kach_menh",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "edlog_01e725ce-2",
+    "dossier_id": "legacy_work_nhat_ky",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "edlog_e7e36991-b",
+    "dossier_id": "legacy_work_tuyen_ngon",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "edlog_f898655d-3",
+    "dossier_id": "legacy_work_sua_doi",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "edlog_d717153a-5",
+    "dossier_id": "legacy_work_di_chuc",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "edlog_89a7beff-4",
+    "dossier_id": "legacy_quote_dan",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "edlog_a26a40e2-8",
+    "dossier_id": "legacy_quote_neu_guong",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "edlog_733580c0-9",
+    "dossier_id": "legacy_quote_doan_ket",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "edlog_65e703aa-8",
+    "dossier_id": "legacy_quote_144",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T12:10:21.458Z"
+  },
+  {
+    "id": "edlog_844755ad-b",
+    "dossier_id": "dos_ev_1911",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.191Z"
+  },
+  {
+    "id": "edlog_2ae64bdc-5",
+    "dossier_id": "dos_ev_1945",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_153330ec-d",
+    "dossier_id": "dos_work_dichuc",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_18e08f8e-f",
+    "dossier_id": "dos_work_danvan",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_7e52d2fd-4",
+    "dossier_id": "dos_artifact_tdt",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_51ec3db7-5",
+    "dossier_id": "dos_artifact_tdm_phuloi",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_2c883e6d-0",
+    "dossier_id": "dos_media_vtv24",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_3fc762f3-e",
+    "dossier_id": "dos_research_144",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "edlog_801c7fd9-3",
+    "dossier_id": "dos_loc_tu_sach_qr",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "edlog_85da4b3b-1",
+    "dossier_id": "dos_loc_dan_van_kheo",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "edlog_2216c76c-6",
+    "dossier_id": "dos_loc_nu_cuoi_cong_so",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "edlog_bb364e58-0",
+    "dossier_id": "dos_loc_thanh_nien_so",
+    "action": "MIGRATE_BASELINE",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "edlog_62016f5c-c",
+    "dossier_id": "legacy_ms_1911",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.196Z"
+  },
+  {
+    "id": "edlog_5a7ae379-a",
+    "dossier_id": "legacy_ms_1930",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.197Z"
+  },
+  {
+    "id": "edlog_cb39c02b-0",
+    "dossier_id": "legacy_ms_1941",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "edlog_03d1af45-5",
+    "dossier_id": "legacy_ms_1945",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_ev_1945)",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "edlog_96e6c4e8-a",
+    "dossier_id": "legacy_ms_1954",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "edlog_5f4ad93d-5",
+    "dossier_id": "legacy_ms_1969",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_work_dichuc)",
+    "created_at": "2026-11-23T16:24:00.199Z"
+  },
+  {
+    "id": "edlog_cd5e2287-0",
+    "dossier_id": "legacy_work_duong_kach_menh",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.199Z"
+  },
+  {
+    "id": "edlog_183b69e1-0",
+    "dossier_id": "legacy_work_nhat_ky",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "edlog_e68cf1b7-1",
+    "dossier_id": "legacy_work_tuyen_ngon",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "edlog_75e93eea-0",
+    "dossier_id": "legacy_work_sua_doi",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "edlog_1b09028a-f",
+    "dossier_id": "legacy_work_di_chuc",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "edlog_0ea43e67-e",
+    "dossier_id": "legacy_work_ban_an_thuc_dan",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "edlog_56121a51-3",
+    "dossier_id": "legacy_work_dan_van",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "edlog_8f3a67ed-3",
+    "dossier_id": "legacy_work_dao_duc_cach_mang",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "edlog_a9d8932b-0",
+    "dossier_id": "legacy_quote_dan",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.202Z"
+  },
+  {
+    "id": "edlog_69ddb618-e",
+    "dossier_id": "legacy_quote_neu_guong",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.202Z"
+  },
+  {
+    "id": "edlog_9433d745-c",
+    "dossier_id": "legacy_quote_doan_ket",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.203Z"
+  },
+  {
+    "id": "edlog_b96e3f56-0",
+    "dossier_id": "legacy_quote_144",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.204Z"
+  },
+  {
+    "id": "edlog_c1755e8e-6",
+    "dossier_id": "legacy_quote_dan_van_kheo",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.204Z"
+  },
+  {
+    "id": "edlog_6c39e153-e",
+    "dossier_id": "legacy_quote_hoc_suot_doi",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.205Z"
+  },
+  {
+    "id": "edlog_fe6ba140-8",
+    "dossier_id": "legacy_quote_day_to_nhan_dan",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.205Z"
+  },
+  {
+    "id": "edlog_4272ccac-a",
+    "dossier_id": "legacy_quote_de_muoi_lan",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "edlog_53b1b9de-d",
+    "dossier_id": "legacy_model_tdm_tu_sach_qr",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "edlog_677b9717-6",
+    "dossier_id": "legacy_model_tdm_dan_van_kheo",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_dan_van_kheo)",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "edlog_fd433d62-6",
+    "dossier_id": "legacy_model_tdm_nu_cuoi_cong_so",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_nu_cuoi_cong_so)",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "edlog_71ec1fc1-a",
+    "dossier_id": "legacy_model_tdm_thanh_nien_chuyen_doi_so",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_thanh_nien_so)",
+    "created_at": "2026-11-23T16:24:00.207Z"
+  },
+  {
+    "id": "edlog_1be6575f-3",
+    "dossier_id": "legacy_model_tdm_tuyen_hem_van_minh",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.208Z"
+  },
+  {
+    "id": "edlog_dabd9537-5",
+    "dossier_id": "legacy_model_tdm_ong_ba_mau_muc",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.210Z"
+  },
+  {
+    "id": "edlog_8a4a891e-8",
+    "dossier_id": "legacy_news_tdm_quy_dinh_144",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.210Z"
+  },
+  {
+    "id": "edlog_561aa4e3-2",
+    "dossier_id": "legacy_news_tdm_toa_dam_dan_van",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.211Z"
+  },
+  {
+    "id": "edlog_f8b03c1b-f",
+    "dossier_id": "legacy_news_tdm_hoi_thi_theo_chan_bac",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.211Z"
+  },
+  {
+    "id": "edlog_96d869d8-2",
+    "dossier_id": "legacy_news_tdm_khanh_thanh_tu_sach",
+    "action": "MIGRATE_LEGACY",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "actor_role": "admin",
+    "note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "created_at": "2026-11-23T16:24:00.212Z"
+  }
+]

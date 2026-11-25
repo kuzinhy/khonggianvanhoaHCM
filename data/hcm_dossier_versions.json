@@ -1,0 +1,672 @@
+[
+  {
+    "id": "ver_41ab1887-7",
+    "dossier_id": "dos_ev_1911",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_ev_1911\",\"title\":\"Nguyễn Tất Thành rời Bến Nhà Rồng ra đi tìm đường cứu nước (05/6/1911)\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\",\"cat_world\"],\"topicId\":\"top_niên_thieu\",\"tags\":[\"Bến Nhà Rồng\",\"1911\",\"Văn Ba\",\"Tìm đường cứu nước\"],\"audiences\":[\"Tham quan phổ thông\",\"Đoàn viên & Học sinh\",\"Cán bộ & Đảng viên\"],\"summary\":\"Ngày 05/6/1911, từ cảng Nhà Rồng (Sài Gòn), người thanh niên Nguyễn Tất Thành với tên Văn Ba lên tàu Amiral Latouche-Tréville bắt đầu hành trình 30 năm tìm đường cứu nước.\",\"content\":\"Trước sự bế tắc của các phong trào yêu nước cuối thế kỷ XIX đầu XX, Nguyễn Tất Thành quyết định sang phương Tây xem nước Pháp và các nước làm như thế nào rồi trở về giúp đồng bào. Sự kiện mở đầu chặng đường lịch sử 30 năm bôn ba qua nhiều châu lục để đến với chủ nghĩa Mác – Lênin.\",\"timelineDate\":\"05/06/1911\",\"location\":\"Bến Nhà Rồng, Sài Gòn\",\"imageUrl\":\"/assets/hcm-space/nha-rong.jpg\",\"imageCaption\":\"Bảo tàng Hồ Chí Minh — Chi nhánh TP.HCM (Bến Nhà Rồng).\",\"sourceName\":\"Cổng TTĐT TP.HCM — Cuộc đời, Sự nghiệp Hồ Chí Minh\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/cuoc-doi-su-nghiep\",\"author\":\"Ban Nghiên cứu Lịch sử Đảng\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Tư liệu lịch sử chính thống — Công khai phục vụ giáo dục\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_a3595fc6-f",
+    "dossier_id": "dos_ev_1945",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_ev_1945\",\"title\":\"Đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa (02/9/1945)\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\",\"cat_works\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"02/9/1945\",\"Ba Đình\",\"Tuyên ngôn Độc lập\"],\"audiences\":[\"Tham quan phổ thông\",\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Chiều 02/9/1945 tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn Độc lập tuyên bố sự ra đời của nước Việt Nam mới.\",\"content\":\"Kế thừa tinh thần bất hủ về quyền con người và khẳng định quyền độc lập tự do của toàn thể dân tộc Việt Nam, Tuyên ngôn Độc lập mở ra kỷ nguyên mới: kỷ nguyên độc lập dân tộc gắn liền với chủ nghĩa xã hội.\",\"timelineDate\":\"02/09/1945\",\"location\":\"Quảng trường Ba Đình, Hà Nội\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Minh họa tư liệu tuyên truyền độc lập dân tộc.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 4, tr. 1–4\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"Chủ tịch Hồ Chí Minh\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Văn kiện lịch sử quốc gia\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_c4b9cfcb-6",
+    "dossier_id": "dos_work_dichuc",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_work_dichuc\",\"title\":\"Bản Di chúc thiêng liêng của Chủ tịch Hồ Chí Minh (1965–1969)\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\",\"cat_ideology\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"Di chúc\",\"Xây dựng Đảng\",\"Đạo đức cách mạng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\",\"Toàn dân\"],\"summary\":\"Bảo vật quốc gia được Bác Hồ khởi thảo từ tháng 5/1965 đến tháng 5/1969, căn dặn toàn Đảng giữ gìn đoàn kết, chỉnh đốn Đảng và chăm lo đời sống Nhân dân.\",\"content\":\"Di chúc nhấn mạnh: \\\"Đầu tiên là công việc đối với con người\\\"; \\\"Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư\\\"; đồng thời chăm lo thế hệ trẻ vừa hồng vừa chuyên.\",\"timelineDate\":\"1965–1969\",\"location\":\"Phủ Chủ tịch, Hà Nội\",\"imageUrl\":\"/assets/hcm-space/anh-bac.png\",\"imageCaption\":\"Chân dung Chủ tịch Hồ Chí Minh — Di sản tư tưởng trường tồn.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 15, tr. 621–624\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"Chủ tịch Hồ Chí Minh\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Bảo vật quốc gia — Văn kiện Đảng công khai\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_c6ac0388-5",
+    "dossier_id": "dos_work_danvan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_work_danvan\",\"title\":\"Bài báo \\\"Dân vận\\\" (15/10/1949) — Kim chỉ nam công tác vận động quần chúng\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\",\"cat_ideology\",\"cat_local\"],\"topicId\":\"top_144\",\"tags\":[\"Dân vận khéo\",\"Lấy dân làm gốc\",\"X.Y.Z\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Công bố trên báo Sự thật ngày 15/10/1949, xác định \\\"Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân\\\" và 6 yêu cầu óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm.\",\"content\":\"Tác phẩm ngắn gọn, súc tích nhưng tổng kết toàn bộ lý luận và phương pháp dân vận của Đảng: Dân vận kém thì việc gì cũng kém, dân vận khéo thì việc gì cũng thành công.\",\"timelineDate\":\"15/10/1949\",\"location\":\"Chiến khu Việt Bắc\",\"imageUrl\":\"/assets/hcm-space/hoasen.png\",\"imageCaption\":\"Họa tiết hoa sen thanh cao gắn với phong cách gần dân.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"X.Y.Z (Chủ tịch Hồ Chí Minh)\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Tác phẩm kinh điển — Phổ biến rộng rãi\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_0b11f3d1-2",
+    "dossier_id": "dos_artifact_tdt",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_artifact_tdt\",\"title\":\"Chuyên đề Bác Hồ & Chủ tịch Tôn Đức Thắng — Tình đồng chí keo sơn Nam – Bắc\",\"dossierType\":\"PERSON\",\"categoryIds\":[\"cat_exhibit\",\"cat_bio\"],\"topicId\":\"top_nhan_vat\",\"tags\":[\"Tôn Đức Thắng\",\"Bảo tàng\",\"Đại đoàn kết\"],\"audiences\":[\"Tham quan phổ thông\",\"Nghiên cứu\",\"Đoàn viên & Học sinh\"],\"summary\":\"Hồ sơ nhân vật và không gian trưng bày tái hiện tình bạn chiến đấu cao đẹp giữa Chủ tịch Hồ Chí Minh và Chủ tịch Tôn Đức Thắng — người con ưu tú của Nam Bộ.\",\"content\":\"Trong sự nghiệp giải phóng dân tộc và xây dựng đất nước, Chủ tịch Tôn Đức Thắng là người bạn chiến đấu kiên trung, suốt đời học tập và noi gương cần kiệm liêm chính của Chủ tịch Hồ Chí Minh.\",\"timelineDate\":\"1945–1969\",\"location\":\"Bảo tàng Tôn Đức Thắng & Miền Nam\",\"imageUrl\":\"/assets/hcm-space/bao-tang-tdt.jpg\",\"imageCaption\":\"Không gian trưng bày chuyên đề tại Bảo tàng Tôn Đức Thắng.\",\"sourceName\":\"Cổng TTĐT TP.HCM — Phóng sự Không gian Văn hóa HCM\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/vi/web/hcm/w/nhung-khong-gian-van-hoa-ho-chi-minh-noi-bat-o-thanh-pho-mang-ten-bac\",\"author\":\"Bảo tàng Tôn Đức Thắng\",\"publisher\":\"Cổng TTĐT TP.HCM\",\"publishYear\":\"2026\",\"licenseInfo\":\"Tư liệu báo chí chính thống\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_766ccf1c-a",
+    "dossier_id": "dos_artifact_tdm_phuloi",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_artifact_tdm_phuloi\",\"title\":\"Di tích Nhà tù Phú Lợi & Không gian Văn hóa HCM Phường Thủ Dầu Một\",\"dossierType\":\"ARTIFACT\",\"categoryIds\":[\"cat_exhibit\",\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"Thủ Dầu Một\",\"Nhà tù Phú Lợi\",\"Hoa viên Bạch Đằng\",\"Di tích\"],\"audiences\":[\"Tham quan phổ thông\",\"Cán bộ & Đảng viên\",\"Đoàn viên & Học sinh\"],\"summary\":\"Kết nối giáo dục truyền thống cách mạng địa phương (Nhà tù Phú Lợi, Hoa viên Bạch Đằng) với 26 chi bộ và các khu phố Phường Thủ Dầu Một.\",\"content\":\"Không gian trưng bày tại phường Thủ Dầu Một kết hợp bảng ảnh mốc lịch sử, di tích cách mạng địa phương, tủ sách điện tử 15 tập Hồ Chí Minh Toàn tập và bảng mã QR để đảng viên, đoàn viên và người dân tra cứu thuận tiện.\",\"timelineDate\":\"1957–Nay\",\"location\":\"Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Mô hình Không gian Văn hóa HCM mở tại công viên khu dân cư.\",\"sourceName\":\"Ban Tuyên giáo & Dân vận Đảng ủy Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/tin-tuc-khong-gian-van-hoa\",\"author\":\"Đảng ủy Phường Thủ Dầu Một\",\"publisher\":\"Tuyên giáo số Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Tài sản nội bộ Đảng ủy Phường Thủ Dầu Một\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_fd334b5f-9",
+    "dossier_id": "dos_media_vtv24",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_media_vtv24\",\"title\":\"Phim tài liệu VTV24: Nguyễn Ái Quốc, Hồ Chí Minh — Hành trình đi tìm hình của Nước\",\"dossierType\":\"MEDIA\",\"categoryIds\":[\"cat_media\",\"cat_bio\"],\"topicId\":\"top_phim_audio\",\"tags\":[\"VTV24\",\"Phim tài liệu\",\"1911–1941\"],\"audiences\":[\"Tham quan phổ thông\",\"Đoàn viên & Học sinh\",\"Cán bộ & Đảng viên\"],\"summary\":\"Phim tài liệu truyền hình do VTV24 sản xuất, tái hiện 30 năm tìm đường cứu nước của Nguyễn Ái Quốc – Hồ Chí Minh.\",\"content\":\"Phục vụ trình chiếu tại các buổi sinh hoạt chi bộ định kỳ, sinh hoạt đoàn thanh niên và góc trải nghiệm Không gian Văn hóa Hồ Chí Minh trực tuyến.\",\"timelineDate\":\"1911–1941\",\"location\":\"Việt Nam — Pháp — Anh — Mỹ — Liên Xô\",\"imageUrl\":\"/assets/hcm-space/tieusu1-1911.png\",\"imageCaption\":\"Tư liệu hành trình 1911 — hochiminhcity.gov.vn.\",\"sourceName\":\"Đài Truyền hình Việt Nam (VTV24)\",\"sourceUrl\":\"https://www.youtube.com/watch?v=Pjpt7aGiY8E\",\"author\":\"Ban Truyền hình Đối ngoại — VTV24\",\"publisher\":\"Đài Truyền hình Việt Nam\",\"publishYear\":\"2024\",\"licenseInfo\":\"Video nhúng công khai chính thức VTV24 (youtube-nocookie)\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_12e3b01c-d",
+    "dossier_id": "dos_research_144",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_research_144\",\"title\":\"Nghiên cứu Chuyên đề: Thực hành Quy định 144-QĐ/TW tại Đảng bộ Phường Thủ Dầu Một\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_ideology\",\"cat_local\"],\"topicId\":\"top_144\",\"tags\":[\"Quy định 144-QĐ/TW\",\"Cần Kiệm Liêm Chính\",\"Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Cụ thể hóa 5 chuẩn mực đạo đức cách mạng của Bộ Chính trị vào đánh giá xếp loại chi bộ và chất lượng phục vụ Nhân dân phường Thủ Dầu Một.\",\"content\":\"Kết hợp 5 tiêu chí Quy định 144-QĐ/TW với Bộ 5 Tiêu chí Không gian Văn hóa HCM (20 mục đánh giá) để đo lường thực chất mức độ chuyển biến nhận thức và hành động nêu gương của cán bộ, đảng viên.\",\"timelineDate\":\"09/05/2024 – Nay\",\"location\":\"Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/ueh-3d.jpg\",\"imageCaption\":\"Không gian học tập số 3D & Infographic chuyên đề.\",\"sourceName\":\"Quy định 144-QĐ/TW của Bộ Chính trị\",\"sourceUrl\":\"https://dangcongsan.vn\",\"author\":\"Ban Xây dựng Đảng — Phường Thủ Dầu Một\",\"publisher\":\"Ban Tuyên giáo & Dân vận\",\"publishYear\":\"2026\",\"licenseInfo\":\"Văn kiện hướng dẫn công tác Đảng\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T12:10:21.448Z\",\"updatedAt\":\"2026-11-23T12:10:21.448Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.449Z"
+  },
+  {
+    "id": "ver_774634f5-b",
+    "dossier_id": "legacy_ms_1911",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1911\",\"title\":\"Ra đi tìm đường cứu nước tại Bến Nhà Rồng\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Sài Gòn — TP. Hồ Chí Minh\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Người thanh niên Nguyễn Tất Thành rời bến cảng Nhà Rồng trên con tàu Đô đốc Latouche-Tréville, mở đầu hành trình 30 năm bôn ba tìm con đường giải phóng dân tộc.\",\"content\":\"Người thanh niên Nguyễn Tất Thành rời bến cảng Nhà Rồng trên con tàu Đô đốc Latouche-Tréville, mở đầu hành trình 30 năm bôn ba tìm con đường giải phóng dân tộc.\\n\\nTrích dẫn: \\\"Tự do cho đồng bào tôi, độc lập cho Tổ quốc tôi, đấy là tất cả những điều tôi muốn...\\\"\",\"timelineDate\":\"05/6/1911\",\"location\":\"Sài Gòn — TP. Hồ Chí Minh\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.452Z"
+  },
+  {
+    "id": "ver_77b1abad-d",
+    "dossier_id": "legacy_ms_1930",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1930\",\"title\":\"Sáng lập Đảng Cộng sản Việt Nam\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Cửu Long — Hương Cảng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Nguyễn Ái Quốc chủ trì Hội nghị hợp nhất các tổ chức cộng sản, thông qua Chính cương vắn tắt, Sách lược vắn tắt — bước ngoặt vĩ đại của cách mạng Việt Nam.\",\"content\":\"Nguyễn Ái Quốc chủ trì Hội nghị hợp nhất các tổ chức cộng sản, thông qua Chính cương vắn tắt, Sách lược vắn tắt — bước ngoặt vĩ đại của cách mạng Việt Nam.\\n\\nTrích dẫn: \\\"Đảng có vững cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy.\\\"\",\"timelineDate\":\"03/02/1930\",\"location\":\"Cửu Long — Hương Cảng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "ver_31047ed9-3",
+    "dossier_id": "legacy_ms_1941",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1941\",\"title\":\"Trở về Tổ quốc tại Pác Bó\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Pác Bó — Cao Bằng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Sau 30 năm hoạt động ở nước ngoài, Người trở về trực tiếp lãnh đạo phong trào cách mạng trong nước, sáng lập Mặt trận Việt Minh và Đội Việt Nam Tuyên truyền Giải phóng quân.\",\"content\":\"Sau 30 năm hoạt động ở nước ngoài, Người trở về trực tiếp lãnh đạo phong trào cách mạng trong nước, sáng lập Mặt trận Việt Minh và Đội Việt Nam Tuyên truyền Giải phóng quân.\\n\\nTrích dẫn: \\\"Non sông Việt Nam có trở nên tươi đẹp hay không... chính là nhờ một phần lớn ở công học tập của các em.\\\"\",\"timelineDate\":\"28/01/1941\",\"location\":\"Pác Bó — Cao Bằng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "ver_6a011d8e-c",
+    "dossier_id": "legacy_ms_1945",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1945\",\"title\":\"Đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Quảng trường Ba Đình — Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Thay mặt Chính phủ lâm thời, Chủ tịch Hồ Chí Minh trịnh trọng tuyên bố nền độc lập tự do của dân tộc Việt Nam trước toàn thể quốc dân và thế giới.\",\"content\":\"Thay mặt Chính phủ lâm thời, Chủ tịch Hồ Chí Minh trịnh trọng tuyên bố nền độc lập tự do của dân tộc Việt Nam trước toàn thể quốc dân và thế giới.\\n\\nTrích dẫn: \\\"Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy.\\\"\",\"timelineDate\":\"02/9/1945\",\"location\":\"Quảng trường Ba Đình — Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_ev_1945\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_ev_1945)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.453Z"
+  },
+  {
+    "id": "ver_6a297b35-d",
+    "dossier_id": "legacy_ms_1954",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1954\",\"title\":\"Kháng chiến kiến quốc & Chiến thắng Điện Biên Phủ\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Chiến khu Việt Bắc — Điện Biên Phủ\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Lãnh đạo toàn dân, toàn quân thực hiện đường lối kháng chiến toàn dân, toàn diện, trường kỳ, tự lực cánh sinh, làm nên chiến thắng \\\"lừng lẫy năm châu, chấn động địa cầu\\\".\",\"content\":\"Lãnh đạo toàn dân, toàn quân thực hiện đường lối kháng chiến toàn dân, toàn diện, trường kỳ, tự lực cánh sinh, làm nên chiến thắng \\\"lừng lẫy năm châu, chấn động địa cầu\\\".\\n\\nTrích dẫn: \\\"Không có gì quý hơn độc lập, tự do.\\\"\",\"timelineDate\":\"1946–1954\",\"location\":\"Chiến khu Việt Bắc — Điện Biên Phủ\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "ver_1a4e849f-c",
+    "dossier_id": "legacy_ms_1969",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1969\",\"title\":\"Bản Di chúc thiêng liêng của Chủ tịch Hồ Chí Minh\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Phủ Chủ tịch — Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Kết tinh toàn bộ tư tưởng, đạo đức, tầm nhìn chiến lược về xây dựng Đảng cầm quyền trong sạch, vững mạnh và chăm lo đời sống hạnh phúc của Nhân dân.\",\"content\":\"Kết tinh toàn bộ tư tưởng, đạo đức, tầm nhìn chiến lược về xây dựng Đảng cầm quyền trong sạch, vững mạnh và chăm lo đời sống hạnh phúc của Nhân dân.\\n\\nTrích dẫn: \\\"Đầu tiên là công việc đối với con người... Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết.\\\"\",\"timelineDate\":\"1965–1969\",\"location\":\"Phủ Chủ tịch — Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_work_dichuc\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_work_dichuc)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "ver_7cfaf666-e",
+    "dossier_id": "legacy_work_duong_kach_menh",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_duong_kach_menh\",\"title\":\"Đường Kách mệnh\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Quảng Châu\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tập hợp bài giảng huấn luyện cán bộ cách mạng tại Quảng Châu, nêu rõ 23 điều tư cách một người cách mạng: Cần, Kiệm, Liêm, Chính; tự mình phải gương mẫu trước Nhân dân.\",\"content\":\"Tập hợp bài giảng huấn luyện cán bộ cách mạng tại Quảng Châu, nêu rõ 23 điều tư cách một người cách mạng: Cần, Kiệm, Liêm, Chính; tự mình phải gương mẫu trước Nhân dân.\\n\\nTrích dẫn: \\\"Tự mình phải: Cần kiệm. Hòa mà không tư. Cả quyết sửa lỗi mình. Cẩn thận mà không nhút nhát.\\\"\",\"timelineDate\":\"Năm 1927\",\"location\":\"Quảng Châu\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.454Z"
+  },
+  {
+    "id": "ver_425817aa-1",
+    "dossier_id": "legacy_work_nhat_ky",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_nhat_ky\",\"title\":\"Ngục trung nhật ký (Nhật ký trong tù)\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Quảng Tây\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tập thơ gồm 133 bài bằng chữ Hán phản ánh ý chí kiên cường, tinh thần lạc quan cách mạng và phong thái nhân văn cao đẹp trong hoàn cảnh lao tù.\",\"content\":\"Tập thơ gồm 133 bài bằng chữ Hán phản ánh ý chí kiên cường, tinh thần lạc quan cách mạng và phong thái nhân văn cao đẹp trong hoàn cảnh lao tù.\\n\\nTrích dẫn: \\\"Thân thể ở trong lao / Tinh thần ở ngoài lao / Muốn nên sự nghiệp lớn / Tinh thần càng phải cao.\\\"\",\"timelineDate\":\"1942–1943\",\"location\":\"Quảng Tây\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "ver_15e00662-4",
+    "dossier_id": "legacy_work_tuyen_ngon",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_tuyen_ngon\",\"title\":\"Tuyên ngôn Độc lập\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Văn kiện lập quốc khẳng định quyền sống, quyền tự do và quyền mưu cầu hạnh phúc của dân tộc Việt Nam trước toàn thế giới tại Quảng trường Ba Đình.\",\"content\":\"Văn kiện lập quốc khẳng định quyền sống, quyền tự do và quyền mưu cầu hạnh phúc của dân tộc Việt Nam trước toàn thế giới tại Quảng trường Ba Đình.\\n\\nTrích dẫn: \\\"Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập.\\\"\",\"timelineDate\":\"02/9/1945\",\"location\":\"Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "ver_c16ef249-8",
+    "dossier_id": "legacy_work_sua_doi",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_sua_doi\",\"title\":\"Sửa đổi lối làm việc\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Việt Bắc\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tác phẩm nền tảng về xây dựng Đảng, nêu 5 đức tính của người cách mạng (Nhân, Nghĩa, Trí, Dũng, Liêm), chống bệnh quan liêu, chủ quan, hình thức.\",\"content\":\"Tác phẩm nền tảng về xây dựng Đảng, nêu 5 đức tính của người cách mạng (Nhân, Nghĩa, Trí, Dũng, Liêm), chống bệnh quan liêu, chủ quan, hình thức.\\n\\nTrích dẫn: \\\"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.\\\"\",\"timelineDate\":\"Năm 1947\",\"location\":\"Việt Bắc\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "ver_05c342b5-0",
+    "dossier_id": "legacy_work_di_chuc",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_di_chuc\",\"title\":\"Di chúc của Chủ tịch Hồ Chí Minh\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Bảo vật quốc gia kết tinh tư tưởng, tình cảm suốt đời vì nước vì dân; căn dặn giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.\",\"content\":\"Bảo vật quốc gia kết tinh tư tưởng, tình cảm suốt đời vì nước vì dân; căn dặn giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.\\n\\nTrích dẫn: \\\"Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư.\\\"\",\"timelineDate\":\"1965–1969\",\"location\":\"Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.455Z"
+  },
+  {
+    "id": "ver_527babc8-0",
+    "dossier_id": "legacy_quote_dan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_dan\",\"title\":\"Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.\",\"content\":\"\",\"timelineDate\":\"Đạo đức công vụ & Gần dân\",\"location\":\"Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "ver_605afdb7-b",
+    "dossier_id": "legacy_quote_neu_guong",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_neu_guong\",\"title\":\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Hồ Chí Minh Toàn tập — về nêu gương cách mạng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\",\"content\":\"\",\"timelineDate\":\"Công tác Tuyên giáo & Cán bộ\",\"location\":\"Hồ Chí Minh Toàn tập — về nêu gương cách mạng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "ver_a8a99efd-1",
+    "dossier_id": "legacy_quote_doan_ket",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_doan_ket\",\"title\":\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Bài nói chuyện tại Hội nghị mở rộng Ủy ban Trung ương MTTQ Việt Nam (1962)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\",\"content\":\"\",\"timelineDate\":\"Đoàn kết dân tộc\",\"location\":\"Bài nói chuyện tại Hội nghị mở rộng Ủy ban Trung ương MTTQ Việt Nam (1962)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.456Z"
+  },
+  {
+    "id": "ver_434c957d-9",
+    "dossier_id": "legacy_quote_144",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_144\",\"title\":\"1) Yêu nước, tôn trọng Nhân dân; 2) Bản lĩnh, đổi mới, sáng tạo; 3) Cần, kiệm, liêm, chính, chí công vô tư; 4) Đoàn kết, kỷ cương, tình thương, trách nhiệm; 5) Gương mẫu, khiêm tốn, tu dưỡng suốt đời.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Quy định 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"1) Yêu nước, tôn trọng Nhân dân; 2) Bản lĩnh, đổi mới, sáng tạo; 3) Cần, kiệm, liêm, chính, chí công vô tư; 4) Đoàn kết, kỷ cương, tình thương, trách nhiệm; 5) Gương mẫu, khiêm tốn, tu dưỡng suốt đời.\",\"content\":\"\",\"timelineDate\":\"Chuẩn mực Quy định 144-QĐ/TW (2024)\",\"location\":\"Quy định 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T08:12:46.783Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T08:12:46.783Z\",\"updatedAt\":\"2026-11-23T08:12:46.783Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T12:10:21.458Z"
+  },
+  {
+    "id": "ver_db2e47c9-1",
+    "dossier_id": "dos_ev_1911",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_ev_1911\",\"title\":\"Nguyễn Tất Thành rời Bến Nhà Rồng ra đi tìm đường cứu nước (05/6/1911)\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\",\"cat_world\"],\"topicId\":\"top_niên_thieu\",\"tags\":[\"Bến Nhà Rồng\",\"1911\",\"Văn Ba\",\"Tìm đường cứu nước\"],\"audiences\":[\"Tham quan phổ thông\",\"Đoàn viên & Học sinh\",\"Cán bộ & Đảng viên\"],\"summary\":\"Ngày 05/6/1911, từ cảng Nhà Rồng (Sài Gòn), người thanh niên Nguyễn Tất Thành với tên Văn Ba lên tàu Amiral Latouche-Tréville bắt đầu hành trình 30 năm tìm đường cứu nước.\",\"content\":\"Trước sự bế tắc của các phong trào yêu nước cuối thế kỷ XIX đầu XX, Nguyễn Tất Thành quyết định sang phương Tây xem nước Pháp và các nước làm như thế nào rồi trở về giúp đồng bào. Sự kiện mở đầu chặng đường lịch sử 30 năm bôn ba qua nhiều châu lục để đến với chủ nghĩa Mác – Lênin.\",\"timelineDate\":\"05/06/1911\",\"location\":\"Bến Nhà Rồng, Sài Gòn\",\"imageUrl\":\"/assets/hcm-space/nha-rong.jpg\",\"imageCaption\":\"Bảo tàng Hồ Chí Minh — Chi nhánh TP.HCM (Bến Nhà Rồng).\",\"sourceName\":\"Cổng TTĐT TP.HCM — Cuộc đời, Sự nghiệp Hồ Chí Minh\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/cuoc-doi-su-nghiep\",\"author\":\"Ban Nghiên cứu Lịch sử Đảng\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Tư liệu lịch sử chính thống — Công khai phục vụ giáo dục\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.191Z"
+  },
+  {
+    "id": "ver_f9648722-f",
+    "dossier_id": "dos_ev_1945",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_ev_1945\",\"title\":\"Đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa (02/9/1945)\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\",\"cat_works\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"02/9/1945\",\"Ba Đình\",\"Tuyên ngôn Độc lập\"],\"audiences\":[\"Tham quan phổ thông\",\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Chiều 02/9/1945 tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh đọc bản Tuyên ngôn Độc lập tuyên bố sự ra đời của nước Việt Nam mới.\",\"content\":\"Kế thừa tinh thần bất hủ về quyền con người và khẳng định quyền độc lập tự do của toàn thể dân tộc Việt Nam, Tuyên ngôn Độc lập mở ra kỷ nguyên mới: kỷ nguyên độc lập dân tộc gắn liền với chủ nghĩa xã hội.\",\"timelineDate\":\"02/09/1945\",\"location\":\"Quảng trường Ba Đình, Hà Nội\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Minh họa tư liệu tuyên truyền độc lập dân tộc.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 4, tr. 1–4\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"Chủ tịch Hồ Chí Minh\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Văn kiện lịch sử quốc gia\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_e139d1ca-b",
+    "dossier_id": "dos_work_dichuc",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_work_dichuc\",\"title\":\"Bản Di chúc thiêng liêng của Chủ tịch Hồ Chí Minh (1965–1969)\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\",\"cat_ideology\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"Di chúc\",\"Xây dựng Đảng\",\"Đạo đức cách mạng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\",\"Toàn dân\"],\"summary\":\"Bảo vật quốc gia được Bác Hồ khởi thảo từ tháng 5/1965 đến tháng 5/1969, căn dặn toàn Đảng giữ gìn đoàn kết, chỉnh đốn Đảng và chăm lo đời sống Nhân dân.\",\"content\":\"Di chúc nhấn mạnh: \\\"Đầu tiên là công việc đối với con người\\\"; \\\"Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư\\\"; đồng thời chăm lo thế hệ trẻ vừa hồng vừa chuyên.\",\"timelineDate\":\"1965–1969\",\"location\":\"Phủ Chủ tịch, Hà Nội\",\"imageUrl\":\"/assets/hcm-space/anh-bac.png\",\"imageCaption\":\"Chân dung Chủ tịch Hồ Chí Minh — Di sản tư tưởng trường tồn.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 15, tr. 621–624\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"Chủ tịch Hồ Chí Minh\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Bảo vật quốc gia — Văn kiện Đảng công khai\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_2db49bb6-9",
+    "dossier_id": "dos_work_danvan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_work_danvan\",\"title\":\"Bài báo \\\"Dân vận\\\" (15/10/1949) — Kim chỉ nam công tác vận động quần chúng\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\",\"cat_ideology\",\"cat_local\"],\"topicId\":\"top_144\",\"tags\":[\"Dân vận khéo\",\"Lấy dân làm gốc\",\"X.Y.Z\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Công bố trên báo Sự thật ngày 15/10/1949, xác định \\\"Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân\\\" và 6 yêu cầu óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm.\",\"content\":\"Tác phẩm ngắn gọn, súc tích nhưng tổng kết toàn bộ lý luận và phương pháp dân vận của Đảng: Dân vận kém thì việc gì cũng kém, dân vận khéo thì việc gì cũng thành công.\",\"timelineDate\":\"15/10/1949\",\"location\":\"Chiến khu Việt Bắc\",\"imageUrl\":\"/assets/hcm-space/hoasen.png\",\"imageCaption\":\"Họa tiết hoa sen thanh cao gắn với phong cách gần dân.\",\"sourceName\":\"Hồ Chí Minh Toàn tập, Tập 6, tr. 232–234\",\"sourceUrl\":\"https://hochiminh.vn\",\"author\":\"X.Y.Z (Chủ tịch Hồ Chí Minh)\",\"publisher\":\"NXB Chính trị quốc gia Sự thật\",\"publishYear\":\"2011\",\"licenseInfo\":\"Tác phẩm kinh điển — Phổ biến rộng rãi\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_52e82a33-c",
+    "dossier_id": "dos_artifact_tdt",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_artifact_tdt\",\"title\":\"Chuyên đề Bác Hồ & Chủ tịch Tôn Đức Thắng — Tình đồng chí keo sơn Nam – Bắc\",\"dossierType\":\"PERSON\",\"categoryIds\":[\"cat_exhibit\",\"cat_bio\"],\"topicId\":\"top_nhan_vat\",\"tags\":[\"Tôn Đức Thắng\",\"Bảo tàng\",\"Đại đoàn kết\"],\"audiences\":[\"Tham quan phổ thông\",\"Nghiên cứu\",\"Đoàn viên & Học sinh\"],\"summary\":\"Hồ sơ nhân vật và không gian trưng bày tái hiện tình bạn chiến đấu cao đẹp giữa Chủ tịch Hồ Chí Minh và Chủ tịch Tôn Đức Thắng — người con ưu tú của Nam Bộ.\",\"content\":\"Trong sự nghiệp giải phóng dân tộc và xây dựng đất nước, Chủ tịch Tôn Đức Thắng là người bạn chiến đấu kiên trung, suốt đời học tập và noi gương cần kiệm liêm chính của Chủ tịch Hồ Chí Minh.\",\"timelineDate\":\"1945–1969\",\"location\":\"Bảo tàng Tôn Đức Thắng & Miền Nam\",\"imageUrl\":\"/assets/hcm-space/bao-tang-tdt.jpg\",\"imageCaption\":\"Không gian trưng bày chuyên đề tại Bảo tàng Tôn Đức Thắng.\",\"sourceName\":\"Cổng TTĐT TP.HCM — Phóng sự Không gian Văn hóa HCM\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/vi/web/hcm/w/nhung-khong-gian-van-hoa-ho-chi-minh-noi-bat-o-thanh-pho-mang-ten-bac\",\"author\":\"Bảo tàng Tôn Đức Thắng\",\"publisher\":\"Cổng TTĐT TP.HCM\",\"publishYear\":\"2026\",\"licenseInfo\":\"Tư liệu báo chí chính thống\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_03020b84-e",
+    "dossier_id": "dos_artifact_tdm_phuloi",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_artifact_tdm_phuloi\",\"title\":\"Di tích Nhà tù Phú Lợi & Không gian Văn hóa HCM Phường Thủ Dầu Một\",\"dossierType\":\"ARTIFACT\",\"categoryIds\":[\"cat_exhibit\",\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"Thủ Dầu Một\",\"Nhà tù Phú Lợi\",\"Hoa viên Bạch Đằng\",\"Di tích\"],\"audiences\":[\"Tham quan phổ thông\",\"Cán bộ & Đảng viên\",\"Đoàn viên & Học sinh\"],\"summary\":\"Kết nối giáo dục truyền thống cách mạng địa phương (Nhà tù Phú Lợi, Hoa viên Bạch Đằng) với 26 chi bộ và các khu phố Phường Thủ Dầu Một.\",\"content\":\"Không gian trưng bày tại phường Thủ Dầu Một kết hợp bảng ảnh mốc lịch sử, di tích cách mạng địa phương, tủ sách điện tử 15 tập Hồ Chí Minh Toàn tập và bảng mã QR để đảng viên, đoàn viên và người dân tra cứu thuận tiện.\",\"timelineDate\":\"1957–Nay\",\"location\":\"Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Mô hình Không gian Văn hóa HCM mở tại công viên khu dân cư.\",\"sourceName\":\"Ban Tuyên giáo & Dân vận Đảng ủy Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn/tin-tuc-khong-gian-van-hoa\",\"author\":\"Đảng ủy Phường Thủ Dầu Một\",\"publisher\":\"Tuyên giáo số Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Tài sản nội bộ Đảng ủy Phường Thủ Dầu Một\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_2f26c087-2",
+    "dossier_id": "dos_media_vtv24",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_media_vtv24\",\"title\":\"Phim tài liệu VTV24: Nguyễn Ái Quốc, Hồ Chí Minh — Hành trình đi tìm hình của Nước\",\"dossierType\":\"MEDIA\",\"categoryIds\":[\"cat_media\",\"cat_bio\"],\"topicId\":\"top_phim_audio\",\"tags\":[\"VTV24\",\"Phim tài liệu\",\"1911–1941\"],\"audiences\":[\"Tham quan phổ thông\",\"Đoàn viên & Học sinh\",\"Cán bộ & Đảng viên\"],\"summary\":\"Phim tài liệu truyền hình do VTV24 sản xuất, tái hiện 30 năm tìm đường cứu nước của Nguyễn Ái Quốc – Hồ Chí Minh.\",\"content\":\"Phục vụ trình chiếu tại các buổi sinh hoạt chi bộ định kỳ, sinh hoạt đoàn thanh niên và góc trải nghiệm Không gian Văn hóa Hồ Chí Minh trực tuyến.\",\"timelineDate\":\"1911–1941\",\"location\":\"Việt Nam — Pháp — Anh — Mỹ — Liên Xô\",\"imageUrl\":\"/assets/hcm-space/tieusu1-1911.png\",\"imageCaption\":\"Tư liệu hành trình 1911 — hochiminhcity.gov.vn.\",\"sourceName\":\"Đài Truyền hình Việt Nam (VTV24)\",\"sourceUrl\":\"https://www.youtube.com/watch?v=Pjpt7aGiY8E\",\"author\":\"Ban Truyền hình Đối ngoại — VTV24\",\"publisher\":\"Đài Truyền hình Việt Nam\",\"publishYear\":\"2024\",\"licenseInfo\":\"Video nhúng công khai chính thức VTV24 (youtube-nocookie)\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_3fad44b4-e",
+    "dossier_id": "dos_research_144",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_research_144\",\"title\":\"Nghiên cứu Chuyên đề: Thực hành Quy định 144-QĐ/TW tại Đảng bộ Phường Thủ Dầu Một\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_ideology\",\"cat_local\"],\"topicId\":\"top_144\",\"tags\":[\"Quy định 144-QĐ/TW\",\"Cần Kiệm Liêm Chính\",\"Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Nghiên cứu\"],\"summary\":\"Cụ thể hóa 5 chuẩn mực đạo đức cách mạng của Bộ Chính trị vào đánh giá xếp loại chi bộ và chất lượng phục vụ Nhân dân phường Thủ Dầu Một.\",\"content\":\"Kết hợp 5 tiêu chí Quy định 144-QĐ/TW với Bộ 5 Tiêu chí Không gian Văn hóa HCM (20 mục đánh giá) để đo lường thực chất mức độ chuyển biến nhận thức và hành động nêu gương của cán bộ, đảng viên.\",\"timelineDate\":\"09/05/2024 – Nay\",\"location\":\"Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/ueh-3d.jpg\",\"imageCaption\":\"Không gian học tập số 3D & Infographic chuyên đề.\",\"sourceName\":\"Quy định 144-QĐ/TW của Bộ Chính trị\",\"sourceUrl\":\"https://dangcongsan.vn\",\"author\":\"Ban Xây dựng Đảng — Phường Thủ Dầu Một\",\"publisher\":\"Ban Tuyên giáo & Dân vận\",\"publishYear\":\"2026\",\"licenseInfo\":\"Văn kiện hướng dẫn công tác Đảng\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.194Z"
+  },
+  {
+    "id": "ver_d2db49e7-e",
+    "dossier_id": "dos_loc_tu_sach_qr",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_loc_tu_sach_qr\",\"title\":\"Mô hình Tủ sách Bác Hồ số & Mã QR tra cứu tại 26 Chi bộ cơ sở\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\",\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"Tủ sách số\",\"Mã QR\",\"Chi bộ cơ sở\",\"Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Đoàn viên & Học sinh\",\"Tham quan phổ thông\"],\"summary\":\"Triển khai bảng mã QR tra cứu 15 tập Hồ Chí Minh Toàn tập và tài liệu học tập Chỉ thị 05, Quy định 144 tại 26 chi bộ trực thuộc.\",\"content\":\"Mô hình đưa công nghệ số vào sinh hoạt Đảng bộ cơ sở. Mỗi chi bộ, nhà văn hóa khu phố trang bị bảng mica A4 in mã QR dẫn đến Không gian Văn hóa Hồ Chí Minh số; đảng viên quét mã bằng điện thoại để nghiên cứu tài liệu trước mỗi kỳ sinh hoạt chi bộ.\",\"timelineDate\":\"20/11/2026\",\"location\":\"26 Chi bộ trực thuộc Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Góc Không gian Văn hóa Hồ Chí Minh & Tủ sách QR tại Nhà văn hóa Khu phố.\",\"sourceName\":\"Ban Tuyên giáo & Dân vận Đảng ủy Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn\",\"author\":\"Ban Tuyên giáo Đảng ủy Phường Thủ Dầu Một\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Tài liệu mô hình cơ sở Đảng bộ Phường Thủ Dầu Một\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "ver_1d0c6b5d-c",
+    "dossier_id": "dos_loc_dan_van_kheo",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_loc_dan_van_kheo\",\"title\":\"Mô hình Dân vận khéo: \\\"Gần dân, sát việc - Lắng nghe tiếng nói Nhân dân\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\",\"cat_ideology\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"Dân vận khéo\",\"Gần dân\",\"Lắng nghe dân\",\"Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Phương châm \\\"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\\\", định kỳ đối thoại trực tiếp và giải quyết kiến nghị trong 48h.\",\"content\":\"Cán bộ Khối Vận và Mặt trận trực tiếp xuống từng tổ dân phố lắng nghe ý kiến phản ánh, kiến nghị của người dân về trật tự đô thị, vệ sinh môi trường và an sinh xã hội. 100% ý kiến được ghi nhận và phản hồi thỏa đáng.\",\"timelineDate\":\"21/11/2026\",\"location\":\"Địa bàn các khu phố Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Hội nghị đối thoại trực tiếp giữa người đứng đầu cấp ủy, chính quyền với Nhân dân.\",\"sourceName\":\"Khối Dân vận & UBMTTQ Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn\",\"author\":\"Khối Dân vận Phường Thủ Dầu Một\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Mô hình Dân vận khéo cấp cơ sở\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "ver_744584ce-f",
+    "dossier_id": "dos_loc_nu_cuoi_cong_so",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_loc_nu_cuoi_cong_so\",\"title\":\"Mô hình \\\"Nụ cười công sở - Nâng cao đạo đức công vụ theo tư tưởng Hồ Chí Minh\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\",\"cat_ideology\"],\"topicId\":\"top_144\",\"tags\":[\"Đạo đức công vụ\",\"Nụ cười công sở\",\"Một cửa\",\"4 xin 4 luôn\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Cam kết \\\"4 xin, 4 luôn\\\" tại Bộ phận Một cửa: tỷ lệ giải quyết hồ sơ đúng và trước hạn đạt 99,8%, khảo sát hài lòng trên 99%.\",\"content\":\"Triển khai thực hiện Quy định 144-QĐ/TW gắn với văn hóa công vụ, nâng cao tinh thần trách nhiệm, thái độ hòa nhã, lịch thiệp và tận tụy phục vụ Nhân dân của đội ngũ cán bộ, công chức phường Thủ Dầu Một.\",\"timelineDate\":\"22/11/2026\",\"location\":\"Bộ phận Tiếp nhận & Trả kết quả Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/ueh-3d.jpg\",\"imageCaption\":\"Bộ phận Tiếp nhận và Trả kết quả hiện đại, văn minh tại UBND phường.\",\"sourceName\":\"UBND Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn\",\"author\":\"Chi bộ Cơ quan UBND Phường\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Mô hình cải cách hành chính vì dân\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "ver_3f6e17f4-8",
+    "dossier_id": "dos_loc_thanh_nien_so",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"dos_loc_thanh_nien_so\",\"title\":\"Mô hình \\\"Đội hình Thanh niên số lan tỏa tư tưởng Bác & Hỗ trợ dịch vụ công\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\",\"cat_media\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"Thanh niên\",\"Chuyển đổi số\",\"Địa chỉ đỏ\",\"VNeID\"],\"audiences\":[\"Đoàn viên & Học sinh\",\"Tham quan phổ thông\"],\"summary\":\"Tổ công nghệ số thanh niên hỗ trợ người dân cài đặt dịch vụ công và số hóa thuyết minh di tích lịch sử địa phương.\",\"content\":\"Đoàn viên thanh niên thành lập các tổ lưu động đến từng nhà dân hướng dẫn cài đặt chữ ký số, VNeID, dịch vụ công trực tuyến và gắn mã QR thuyết minh đa phương tiện tại các di tích lịch sử trên địa bàn phường.\",\"timelineDate\":\"22/11/2026\",\"location\":\"Nhà cộng đồng và các điểm di tích Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/duong-sach.jpg\",\"imageCaption\":\"Đoàn viên thanh niên hướng dẫn Nhân dân chuyển đổi số và tra cứu tư liệu.\",\"sourceName\":\"Đoàn TNCS Hồ Chí Minh Phường Thủ Dầu Một\",\"sourceUrl\":\"https://hochiminhcity.gov.vn\",\"author\":\"Ban Chấp hành Đoàn Phường Thủ Dầu Một\",\"publisher\":\"Đoàn Thanh niên Phường\",\"publishYear\":\"2026\",\"licenseInfo\":\"Mô hình phong trào thanh niên tình nguyện\",\"collectedAt\":\"2026-11-23T08:00:00Z\",\"verifiedAt\":\"2026-11-23T08:00:00Z\",\"verificationStatus\":\"VERIFIED\",\"publishStatus\":\"PUBLISHED\",\"isAiDraft\":false,\"duplicateOfId\":\"\",\"createdBy\":\"system-seed\",\"updatedBy\":\"system-seed\",\"verifiedBy\":\"Ban Biên tập Tuyên giáo\",\"approvedBy\":\"Đảng ủy Phường Thủ Dầu Một\",\"version\":1,\"missingFields\":[],\"createdAt\":\"2026-11-23T16:24:00.188Z\",\"updatedAt\":\"2026-11-23T16:24:00.188Z\"}",
+    "change_note": "Khởi tạo hồ sơ chuẩn có kiểm chứng nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.195Z"
+  },
+  {
+    "id": "ver_375a43fb-b",
+    "dossier_id": "legacy_ms_1911",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1911\",\"title\":\"Ra đi tìm đường cứu nước tại Bến Nhà Rồng\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Sài Gòn — TP. Hồ Chí Minh\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Người thanh niên Nguyễn Tất Thành rời bến cảng Nhà Rồng trên con tàu Đô đốc Latouche-Tréville, mở đầu hành trình 30 năm bôn ba tìm con đường giải phóng dân tộc.\",\"content\":\"Người thanh niên Nguyễn Tất Thành rời bến cảng Nhà Rồng trên con tàu Đô đốc Latouche-Tréville, mở đầu hành trình 30 năm bôn ba tìm con đường giải phóng dân tộc.\\n\\nTrích dẫn: \\\"Tự do cho đồng bào tôi, độc lập cho Tổ quốc tôi, đấy là tất cả những điều tôi muốn...\\\"\",\"timelineDate\":\"05/6/1911\",\"location\":\"Sài Gòn — TP. Hồ Chí Minh\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.196Z"
+  },
+  {
+    "id": "ver_b30fe789-0",
+    "dossier_id": "legacy_ms_1930",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1930\",\"title\":\"Sáng lập Đảng Cộng sản Việt Nam\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Cửu Long — Hương Cảng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Nguyễn Ái Quốc chủ trì Hội nghị hợp nhất các tổ chức cộng sản, thông qua Chính cương vắn tắt, Sách lược vắn tắt — bước ngoặt vĩ đại của cách mạng Việt Nam.\",\"content\":\"Nguyễn Ái Quốc chủ trì Hội nghị hợp nhất các tổ chức cộng sản, thông qua Chính cương vắn tắt, Sách lược vắn tắt — bước ngoặt vĩ đại của cách mạng Việt Nam.\\n\\nTrích dẫn: \\\"Đảng có vững cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy.\\\"\",\"timelineDate\":\"03/02/1930\",\"location\":\"Cửu Long — Hương Cảng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.197Z"
+  },
+  {
+    "id": "ver_50e9b76e-4",
+    "dossier_id": "legacy_ms_1941",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1941\",\"title\":\"Trở về Tổ quốc tại Pác Bó\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Pác Bó — Cao Bằng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Sau 30 năm hoạt động ở nước ngoài, Người trở về trực tiếp lãnh đạo phong trào cách mạng trong nước, sáng lập Mặt trận Việt Minh và Đội Việt Nam Tuyên truyền Giải phóng quân.\",\"content\":\"Sau 30 năm hoạt động ở nước ngoài, Người trở về trực tiếp lãnh đạo phong trào cách mạng trong nước, sáng lập Mặt trận Việt Minh và Đội Việt Nam Tuyên truyền Giải phóng quân.\\n\\nTrích dẫn: \\\"Non sông Việt Nam có trở nên tươi đẹp hay không... chính là nhờ một phần lớn ở công học tập của các em.\\\"\",\"timelineDate\":\"28/01/1941\",\"location\":\"Pác Bó — Cao Bằng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "ver_cced7cf0-b",
+    "dossier_id": "legacy_ms_1945",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1945\",\"title\":\"Đọc Tuyên ngôn Độc lập khai sinh nước Việt Nam Dân chủ Cộng hòa\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Quảng trường Ba Đình — Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Thay mặt Chính phủ lâm thời, Chủ tịch Hồ Chí Minh trịnh trọng tuyên bố nền độc lập tự do của dân tộc Việt Nam trước toàn thể quốc dân và thế giới.\",\"content\":\"Thay mặt Chính phủ lâm thời, Chủ tịch Hồ Chí Minh trịnh trọng tuyên bố nền độc lập tự do của dân tộc Việt Nam trước toàn thể quốc dân và thế giới.\\n\\nTrích dẫn: \\\"Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy.\\\"\",\"timelineDate\":\"02/9/1945\",\"location\":\"Quảng trường Ba Đình — Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_ev_1945\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_ev_1945)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "ver_641f086e-c",
+    "dossier_id": "legacy_ms_1954",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1954\",\"title\":\"Kháng chiến kiến quốc & Chiến thắng Điện Biên Phủ\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Chiến khu Việt Bắc — Điện Biên Phủ\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Lãnh đạo toàn dân, toàn quân thực hiện đường lối kháng chiến toàn dân, toàn diện, trường kỳ, tự lực cánh sinh, làm nên chiến thắng \\\"lừng lẫy năm châu, chấn động địa cầu\\\".\",\"content\":\"Lãnh đạo toàn dân, toàn quân thực hiện đường lối kháng chiến toàn dân, toàn diện, trường kỳ, tự lực cánh sinh, làm nên chiến thắng \\\"lừng lẫy năm châu, chấn động địa cầu\\\".\\n\\nTrích dẫn: \\\"Không có gì quý hơn độc lập, tự do.\\\"\",\"timelineDate\":\"1946–1954\",\"location\":\"Chiến khu Việt Bắc — Điện Biên Phủ\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.198Z"
+  },
+  {
+    "id": "ver_6b031dbc-5",
+    "dossier_id": "legacy_ms_1969",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_ms_1969\",\"title\":\"Bản Di chúc thiêng liêng của Chủ tịch Hồ Chí Minh\",\"dossierType\":\"EVENT\",\"categoryIds\":[\"cat_bio\"],\"topicId\":\"top_lap_dang\",\"tags\":[\"MILESTONE\",\"Phủ Chủ tịch — Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Kết tinh toàn bộ tư tưởng, đạo đức, tầm nhìn chiến lược về xây dựng Đảng cầm quyền trong sạch, vững mạnh và chăm lo đời sống hạnh phúc của Nhân dân.\",\"content\":\"Kết tinh toàn bộ tư tưởng, đạo đức, tầm nhìn chiến lược về xây dựng Đảng cầm quyền trong sạch, vững mạnh và chăm lo đời sống hạnh phúc của Nhân dân.\\n\\nTrích dẫn: \\\"Đầu tiên là công việc đối với con người... Bồi dưỡng thế hệ cách mạng cho đời sau là một việc rất quan trọng và rất cần thiết.\\\"\",\"timelineDate\":\"1965–1969\",\"location\":\"Phủ Chủ tịch — Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_work_dichuc\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_work_dichuc)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.199Z"
+  },
+  {
+    "id": "ver_7e19c341-d",
+    "dossier_id": "legacy_work_duong_kach_menh",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_duong_kach_menh\",\"title\":\"Đường Kách mệnh\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Quảng Châu\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tập hợp bài giảng huấn luyện cán bộ cách mạng tại Quảng Châu, nêu rõ 23 điều tư cách một người cách mạng: Cần, Kiệm, Liêm, Chính; tự mình phải gương mẫu trước Nhân dân.\",\"content\":\"Tập hợp bài giảng huấn luyện cán bộ cách mạng tại Quảng Châu, nêu rõ 23 điều tư cách một người cách mạng: Cần, Kiệm, Liêm, Chính; tự mình phải gương mẫu trước Nhân dân.\\n\\nTrích dẫn: \\\"Tự mình phải: Cần kiệm. Hòa mà không tư. Cả quyết sửa lỗi mình. Cẩn thận mà không nhút nhát.\\\"\",\"timelineDate\":\"Năm 1927\",\"location\":\"Quảng Châu\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.199Z"
+  },
+  {
+    "id": "ver_f0400ec0-0",
+    "dossier_id": "legacy_work_nhat_ky",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_nhat_ky\",\"title\":\"Ngục trung nhật ký (Nhật ký trong tù)\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Quảng Tây\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tập thơ gồm 133 bài bằng chữ Hán phản ánh ý chí kiên cường, tinh thần lạc quan cách mạng và phong thái nhân văn cao đẹp trong hoàn cảnh lao tù.\",\"content\":\"Tập thơ gồm 133 bài bằng chữ Hán phản ánh ý chí kiên cường, tinh thần lạc quan cách mạng và phong thái nhân văn cao đẹp trong hoàn cảnh lao tù.\\n\\nTrích dẫn: \\\"Thân thể ở trong lao / Tinh thần ở ngoài lao / Muốn nên sự nghiệp lớn / Tinh thần càng phải cao.\\\"\",\"timelineDate\":\"1942–1943\",\"location\":\"Quảng Tây\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "ver_e1a6f007-d",
+    "dossier_id": "legacy_work_tuyen_ngon",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_tuyen_ngon\",\"title\":\"Tuyên ngôn Độc lập\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Văn kiện lập quốc khẳng định quyền sống, quyền tự do và quyền mưu cầu hạnh phúc của dân tộc Việt Nam trước toàn thế giới tại Quảng trường Ba Đình.\",\"content\":\"Văn kiện lập quốc khẳng định quyền sống, quyền tự do và quyền mưu cầu hạnh phúc của dân tộc Việt Nam trước toàn thế giới tại Quảng trường Ba Đình.\\n\\nTrích dẫn: \\\"Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập.\\\"\",\"timelineDate\":\"02/9/1945\",\"location\":\"Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "ver_716f69a0-0",
+    "dossier_id": "legacy_work_sua_doi",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_sua_doi\",\"title\":\"Sửa đổi lối làm việc\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Việt Bắc\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tác phẩm nền tảng về xây dựng Đảng, nêu 5 đức tính của người cách mạng (Nhân, Nghĩa, Trí, Dũng, Liêm), chống bệnh quan liêu, chủ quan, hình thức.\",\"content\":\"Tác phẩm nền tảng về xây dựng Đảng, nêu 5 đức tính của người cách mạng (Nhân, Nghĩa, Trí, Dũng, Liêm), chống bệnh quan liêu, chủ quan, hình thức.\\n\\nTrích dẫn: \\\"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.\\\"\",\"timelineDate\":\"Năm 1947\",\"location\":\"Việt Bắc\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "ver_115ba5c8-d",
+    "dossier_id": "legacy_work_di_chuc",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_di_chuc\",\"title\":\"Di chúc của Chủ tịch Hồ Chí Minh\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Hà Nội\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Bảo vật quốc gia kết tinh tư tưởng, tình cảm suốt đời vì nước vì dân; căn dặn giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.\",\"content\":\"Bảo vật quốc gia kết tinh tư tưởng, tình cảm suốt đời vì nước vì dân; căn dặn giữ gìn sự đoàn kết thống nhất trong Đảng như giữ gìn con ngươi của mắt mình.\\n\\nTrích dẫn: \\\"Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư.\\\"\",\"timelineDate\":\"1965–1969\",\"location\":\"Hà Nội\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.200Z"
+  },
+  {
+    "id": "ver_4f9bfc97-d",
+    "dossier_id": "legacy_work_ban_an_thuc_dan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_ban_an_thuc_dan\",\"title\":\"Bản án chế độ thực dân Pháp (Le Procès de la colonisation française)\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Paris — Pháp\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tác phẩm chính luận đanh thép vạch trần bản chất tàn bạo, bóc lột của chủ nghĩa thực dân tại các thuộc địa; kêu gọi sự đoàn kết chiến đấu giữa giai cấp vô sản chính quốc và các dân tộc bị áp bức.\",\"content\":\"Tác phẩm chính luận đanh thép vạch trần bản chất tàn bạo, bóc lột của chủ nghĩa thực dân tại các thuộc địa; kêu gọi sự đoàn kết chiến đấu giữa giai cấp vô sản chính quốc và các dân tộc bị áp bức.\\n\\nTrích dẫn: \\\"Chủ nghĩa thực dân là một con đỉa hai vòi, một vòi bám vào giai cấp vô sản ở chính quốc và một vòi bám vào các dân tộc thuộc địa.\\\"\",\"timelineDate\":\"Năm 1925\",\"location\":\"Paris — Pháp\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "ver_ce6f0ff7-0",
+    "dossier_id": "legacy_work_dan_van",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_dan_van\",\"title\":\"Dân vận\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Báo Sự Thật số 120\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Cương lĩnh mẫu mực về công tác Dân vận của Đảng. Xác định bản chất: \\\"Nước ta là nước dân chủ. Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân.\\\" Nêu rõ phương châm: \\\"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\\\".\",\"content\":\"Cương lĩnh mẫu mực về công tác Dân vận của Đảng. Xác định bản chất: \\\"Nước ta là nước dân chủ. Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân.\\\" Nêu rõ phương châm: \\\"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\\\".\\n\\nTrích dẫn: \\\"Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.\\\"\",\"timelineDate\":\"15/10/1949\",\"location\":\"Báo Sự Thật số 120\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "ver_e8ac73ab-5",
+    "dossier_id": "legacy_work_dao_duc_cach_mang",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_work_dao_duc_cach_mang\",\"title\":\"Đạo đức cách mạng\",\"dossierType\":\"WORK\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_toan_tap\",\"tags\":[\"WORK\",\"Tạp chí Học tập số 12\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Tác phẩm khẳng định đạo đức cách mạng là nền tảng của người cán bộ. Muốn hoàn thành sự nghiệp vẻ vang, người cách mạng phải đặt lợi ích của Đảng, của Nhân dân lên trên hết, kiên quyết quét sạch chủ nghĩa cá nhân.\",\"content\":\"Tác phẩm khẳng định đạo đức cách mạng là nền tảng của người cán bộ. Muốn hoàn thành sự nghiệp vẻ vang, người cách mạng phải đặt lợi ích của Đảng, của Nhân dân lên trên hết, kiên quyết quét sạch chủ nghĩa cá nhân.\\n\\nTrích dẫn: \\\"Người cách mạng phải có đạo đức, không có đạo đức thì dù tài giỏi mấy cũng không lãnh đạo được nhân dân.\\\"\",\"timelineDate\":\"Tháng 12/1958\",\"location\":\"Tạp chí Học tập số 12\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.201Z"
+  },
+  {
+    "id": "ver_326b9032-4",
+    "dossier_id": "legacy_quote_dan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_dan\",\"title\":\"Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.\",\"content\":\"\",\"timelineDate\":\"Đạo đức công vụ & Gần dân\",\"location\":\"Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.202Z"
+  },
+  {
+    "id": "ver_b123a996-9",
+    "dossier_id": "legacy_quote_neu_guong",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_neu_guong\",\"title\":\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Hồ Chí Minh Toàn tập — về nêu gương cách mạng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\",\"content\":\"\",\"timelineDate\":\"Công tác Tuyên giáo & Cán bộ\",\"location\":\"Hồ Chí Minh Toàn tập — về nêu gương cách mạng\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.202Z"
+  },
+  {
+    "id": "ver_8a857fc7-6",
+    "dossier_id": "legacy_quote_doan_ket",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_doan_ket\",\"title\":\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Bài nói chuyện tại Hội nghị mở rộng Ủy ban Trung ương MTTQ Việt Nam (1962)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công.\",\"content\":\"\",\"timelineDate\":\"Đoàn kết dân tộc\",\"location\":\"Bài nói chuyện tại Hội nghị mở rộng Ủy ban Trung ương MTTQ Việt Nam (1962)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.203Z"
+  },
+  {
+    "id": "ver_29b556b7-e",
+    "dossier_id": "legacy_quote_144",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_144\",\"title\":\"1) Yêu nước, tôn trọng Nhân dân; 2) Bản lĩnh, đổi mới, sáng tạo; 3) Cần, kiệm, liêm, chính, chí công vô tư; 4) Đoàn kết, kỷ cương, tình thương, trách nhiệm; 5) Gương mẫu, khiêm tốn, tu dưỡng suốt đời.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Quy định 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"1) Yêu nước, tôn trọng Nhân dân; 2) Bản lĩnh, đổi mới, sáng tạo; 3) Cần, kiệm, liêm, chính, chí công vô tư; 4) Đoàn kết, kỷ cương, tình thương, trách nhiệm; 5) Gương mẫu, khiêm tốn, tu dưỡng suốt đời.\",\"content\":\"\",\"timelineDate\":\"Chuẩn mực Quy định 144-QĐ/TW (2024)\",\"location\":\"Quy định 144-QĐ/TW ngày 09/5/2024 của Bộ Chính trị\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.204Z"
+  },
+  {
+    "id": "ver_6230c21e-9",
+    "dossier_id": "legacy_quote_dan_van_kheo",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_dan_van_kheo\",\"title\":\"Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Tác phẩm \\\"Dân vận\\\" (15/10/1949)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.\",\"content\":\"\",\"timelineDate\":\"Công tác Dân vận cơ sở\",\"location\":\"Tác phẩm \\\"Dân vận\\\" (15/10/1949)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.204Z"
+  },
+  {
+    "id": "ver_1a3eeb38-e",
+    "dossier_id": "legacy_quote_hoc_suot_doi",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_hoc_suot_doi\",\"title\":\"Học để làm việc, làm người, làm cán bộ. Học để phụng sự Đoàn thể, giai cấp và nhân dân, Tổ quốc và nhân loại.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Huấn thị tại Lớp cán bộ Trung cấp (1949)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Học để làm việc, làm người, làm cán bộ. Học để phụng sự Đoàn thể, giai cấp và nhân dân, Tổ quốc và nhân loại.\",\"content\":\"\",\"timelineDate\":\"Mục đích học tập của người cách mạng\",\"location\":\"Huấn thị tại Lớp cán bộ Trung cấp (1949)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.205Z"
+  },
+  {
+    "id": "ver_eb26af3b-7",
+    "dossier_id": "legacy_quote_day_to_nhan_dan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_day_to_nhan_dan\",\"title\":\"Cán bộ là người đầy tớ của nhân dân, chứ không phải là \\\"quan cách mạng\\\" để đè đầu cưỡi cổ nhân dân.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Bài nói chuyện tại Đại hội Thanh niên tích cực (1956)\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Cán bộ là người đầy tớ của nhân dân, chứ không phải là \\\"quan cách mạng\\\" để đè đầu cưỡi cổ nhân dân.\",\"content\":\"\",\"timelineDate\":\"Đạo đức công vụ & Tinh thần phục vụ\",\"location\":\"Bài nói chuyện tại Đại hội Thanh niên tích cực (1956)\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.205Z"
+  },
+  {
+    "id": "ver_ea1ba60f-8",
+    "dossier_id": "legacy_quote_de_muoi_lan",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_quote_de_muoi_lan\",\"title\":\"Dễ mười lần không dân cũng chịu, khó trăm lần dân liệu cũng xong.\",\"dossierType\":\"RESEARCH\",\"categoryIds\":[\"cat_works\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"QUOTE\",\"Lời đúc kết của Chủ tịch Hồ Chí Minh về bài học dựa vào dân\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Dễ mười lần không dân cũng chịu, khó trăm lần dân liệu cũng xong.\",\"content\":\"\",\"timelineDate\":\"Sức mạnh to lớn của Nhân dân\",\"location\":\"Lời đúc kết của Chủ tịch Hồ Chí Minh về bài học dựa vào dân\",\"imageUrl\":\"\",\"imageCaption\":\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Thiếu hình ảnh minh họa\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "ver_adbb3bad-d",
+    "dossier_id": "legacy_model_tdm_tu_sach_qr",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_tu_sach_qr\",\"title\":\"Mô hình Tủ sách Bác Hồ số & Bản tin sinh hoạt chi bộ qua mã QR\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"26 Chi bộ trực thuộc Phường Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Triển khai bảng mã QR tra cứu 15 tập Hồ Chí Minh Toàn tập, tài liệu học tập Chỉ thị 05-CT/TW và Quy định 144-QĐ/TW tại văn phòng 26 chi bộ, điểm sinh hoạt khu phố và trường học trên địa bàn.\",\"content\":\"Triển khai bảng mã QR tra cứu 15 tập Hồ Chí Minh Toàn tập, tài liệu học tập Chỉ thị 05-CT/TW và Quy định 144-QĐ/TW tại văn phòng 26 chi bộ, điểm sinh hoạt khu phố và trường học trên địa bàn.\\n\\nTrích dẫn: \\\"Học để làm việc, làm người, làm cán bộ. Học để phụng sự Đoàn thể, giai cấp và nhân dân, Tổ quốc và nhân loại.\\\" — Hồ Chí Minh\",\"timelineDate\":\"Ban Tuyên giáo Đảng ủy & 26 Chi bộ cơ sở\",\"location\":\"26 Chi bộ trực thuộc Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Mô hình Tủ sách Bác Hồ số & Bản tin sinh hoạt chi bộ qua mã QR\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "ver_dd36df6c-f",
+    "dossier_id": "legacy_model_tdm_dan_van_kheo",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_dan_van_kheo\",\"title\":\"Mô hình Dân vận khéo: \\\"Gần dân, sát việc - Lắng nghe tiếng nói Nhân dân\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"Địa bàn các khu phố phường Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Thực hiện phương châm \\\"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\\\", định kỳ thứ Bảy hằng tuần cán bộ xuống từng khu phố đối thoại trực tiếp, giải quyết kịp thời phản ánh của Nhân dân trong 48 giờ.\",\"content\":\"Thực hiện phương châm \\\"Óc nghĩ, mắt trông, tai nghe, chân đi, miệng nói, tay làm\\\", định kỳ thứ Bảy hằng tuần cán bộ xuống từng khu phố đối thoại trực tiếp, giải quyết kịp thời phản ánh của Nhân dân trong 48 giờ.\\n\\nTrích dẫn: \\\"Dân vận kém thì việc gì cũng kém. Dân vận khéo thì việc gì cũng thành công.\\\" — Bài báo Dân vận (1949)\",\"timelineDate\":\"Khối Dân vận & Ủy ban MTTQ phường\",\"location\":\"Địa bàn các khu phố phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Mô hình Dân vận khéo: \\\"Gần dân, sát việc - Lắng nghe tiếng nói Nhân dân\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_loc_dan_van_kheo\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_dan_van_kheo)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "ver_0d68f963-7",
+    "dossier_id": "legacy_model_tdm_nu_cuoi_cong_so",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_nu_cuoi_cong_so\",\"title\":\"Mô hình \\\"Nụ cười công sở - Nâng cao đạo đức công vụ theo tư tưởng Hồ Chí Minh\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"Bộ phận Tiếp nhận & Trả kết quả Phường Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Xây dựng hình ảnh cán bộ, công chức chuẩn mực, văn minh, lịch sự; cam kết \\\"4 xin, 4 luôn\\\" (xin chào, xin lỗi, xin cảm ơn, xin phép; luôn mỉm cười, luôn nhẹ nhàng, luôn lắng nghe, luôn giúp đỡ); tỷ lệ giải quyết hồ sơ đúng và trước hạn đạt 99,8%.\",\"content\":\"Xây dựng hình ảnh cán bộ, công chức chuẩn mực, văn minh, lịch sự; cam kết \\\"4 xin, 4 luôn\\\" (xin chào, xin lỗi, xin cảm ơn, xin phép; luôn mỉm cười, luôn nhẹ nhàng, luôn lắng nghe, luôn giúp đỡ); tỷ lệ giải quyết hồ sơ đúng và trước hạn đạt 99,8%.\\n\\nTrích dẫn: \\\"Cán bộ là người đầy tớ của nhân dân, phải một lòng một dạ phục vụ nhân dân.\\\" — Hồ Chí Minh\",\"timelineDate\":\"Chi bộ Cơ quan UBND & Bộ phận Một cửa\",\"location\":\"Bộ phận Tiếp nhận & Trả kết quả Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/ueh-3d.jpg\",\"imageCaption\":\"Mô hình \\\"Nụ cười công sở - Nâng cao đạo đức công vụ theo tư tưởng Hồ Chí Minh\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_loc_nu_cuoi_cong_so\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_nu_cuoi_cong_so)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.206Z"
+  },
+  {
+    "id": "ver_2db3f5f5-e",
+    "dossier_id": "legacy_model_tdm_thanh_nien_chuyen_doi_so",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_thanh_nien_chuyen_doi_so\",\"title\":\"Mô hình \\\"Đội hình Thanh niên số lan tỏa tư tưởng Bác & Hỗ trợ dịch vụ công\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"Các điểm công cộng & Nhà sinh hoạt cộng đồng\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Đoàn viên thanh niên thành lập tổ lưu động hỗ trợ người dân kích hoạt tài khoản định danh điện tử, số hóa tư liệu lịch sử di tích Nhà tù Phú Lợi, tổ chức cuộc thi trực tuyến tìm hiểu lịch sử Đảng bộ và cuộc đời Bác.\",\"content\":\"Đoàn viên thanh niên thành lập tổ lưu động hỗ trợ người dân kích hoạt tài khoản định danh điện tử, số hóa tư liệu lịch sử di tích Nhà tù Phú Lợi, tổ chức cuộc thi trực tuyến tìm hiểu lịch sử Đảng bộ và cuộc đời Bác.\\n\\nTrích dẫn: \\\"Đâu cần thanh niên có, việc gì khó có thanh niên.\\\" — Lời căn dặn của Bác\",\"timelineDate\":\"Đoàn Thanh niên Cộng sản Hồ Chí Minh phường\",\"location\":\"Các điểm công cộng & Nhà sinh hoạt cộng đồng\",\"imageUrl\":\"/assets/hcm-space/duong-sach.jpg\",\"imageCaption\":\"Mô hình \\\"Đội hình Thanh niên số lan tỏa tư tưởng Bác & Hỗ trợ dịch vụ công\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"dos_loc_thanh_nien_so\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ (phát hiện gần trùng với dos_loc_thanh_nien_so)",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.207Z"
+  },
+  {
+    "id": "ver_28af7551-4",
+    "dossier_id": "legacy_model_tdm_tuyen_hem_van_minh",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_tuyen_hem_van_minh\",\"title\":\"Mô hình Tuyến hẻm tự quản \\\"Xanh - Sạch - Đẹp - An toàn nghĩa tình\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"Hẻm 42 & Hẻm 78 đường Cách Mạng Tháng Tám\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Vận động Nhân dân hiến đất mở rộng hẻm, lắp đặt hệ thống chiếu sáng năng lượng mặt trời, camera an ninh tự quản và vẽ tranh bích họa tuyên truyền bảo vệ môi trường, văn minh đô thị.\",\"content\":\"Vận động Nhân dân hiến đất mở rộng hẻm, lắp đặt hệ thống chiếu sáng năng lượng mặt trời, camera an ninh tự quản và vẽ tranh bích họa tuyên truyền bảo vệ môi trường, văn minh đô thị.\\n\\nTrích dẫn: \\\"Dễ mười lần không dân cũng chịu, khó trăm lần dân liệu cũng xong.\\\" — Hồ Chí Minh\",\"timelineDate\":\"Chi bộ Khu phố 1 & Chi bộ Khu phố 3\",\"location\":\"Hẻm 42 & Hẻm 78 đường Cách Mạng Tháng Tám\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Mô hình Tuyến hẻm tự quản \\\"Xanh - Sạch - Đẹp - An toàn nghĩa tình\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.208Z"
+  },
+  {
+    "id": "ver_6f6fffcb-0",
+    "dossier_id": "legacy_model_tdm_ong_ba_mau_muc",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_model_tdm_ong_ba_mau_muc\",\"title\":\"Mô hình \\\"Gia đình gương mẫu - Ông bà mẫu mực, con cháu thảo hiền gắn với Quy định 144\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"MODEL\",\"Toàn địa bàn phường Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Phát huy vai trò nêu gương của cán bộ hưu trí, cựu chiến binh trong giáo dục truyền thống yêu nước cho thế hệ trẻ; 100% hội viên đăng ký gia đình văn minh, không có tệ nạn xã hội.\",\"content\":\"Phát huy vai trò nêu gương của cán bộ hưu trí, cựu chiến binh trong giáo dục truyền thống yêu nước cho thế hệ trẻ; 100% hội viên đăng ký gia đình văn minh, không có tệ nạn xã hội.\\n\\nTrích dẫn: \\\"Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.\\\" — Hồ Chí Minh\",\"timelineDate\":\"Hội Cựu chiến binh & Hội Liên hiệp Phụ nữ phường\",\"location\":\"Toàn địa bàn phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Mô hình \\\"Gia đình gương mẫu - Ông bà mẫu mực, con cháu thảo hiền gắn với Quy định 144\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.210Z"
+  },
+  {
+    "id": "ver_86a61d11-5",
+    "dossier_id": "legacy_news_tdm_quy_dinh_144",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_news_tdm_quy_dinh_144\",\"title\":\"Đảng ủy phường tổ chức Hội nghị quán triệt Quy định 144-QĐ/TW gắn với xây dựng Không gian Văn hóa HCM\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"NEWS\",\"Hội trường Đảng ủy Phường Thủ Dầu Một\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Hơn 250 cán bộ, đảng viên tham dự hội nghị trực tiếp kết hợp trực tuyến, thảo luận sâu về 5 chuẩn mực đạo đức cách mạng của cán bộ cơ sở và ký cam kết hành động năm 2026.\",\"content\":\"Hơn 250 cán bộ, đảng viên tham dự hội nghị trực tiếp kết hợp trực tuyến, thảo luận sâu về 5 chuẩn mực đạo đức cách mạng của cán bộ cơ sở và ký cam kết hành động năm 2026.\\n\\nTrích dẫn: 100% chi bộ hoàn thành việc đưa chuẩn mực Quy định 144 vào tiêu chí đánh giá đảng viên định kỳ hằng tháng.\",\"timelineDate\":\"23/11/2026\",\"location\":\"Hội trường Đảng ủy Phường Thủ Dầu Một\",\"imageUrl\":\"/assets/hcm-space/banner-hoctap.png\",\"imageCaption\":\"Đảng ủy phường tổ chức Hội nghị quán triệt Quy định 144-QĐ/TW gắn với xây dựng Không gian Văn hóa HCM\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.210Z"
+  },
+  {
+    "id": "ver_6a7beb30-5",
+    "dossier_id": "legacy_news_tdm_toa_dam_dan_van",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_news_tdm_toa_dam_dan_van\",\"title\":\"Tọa đàm chuyên đề \\\"Khắc ghi lời Bác dạy về công tác Dân vận trong thời kỳ chuyển đổi số\\\"\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"NEWS\",\"Trung tâm Học tập Cộng đồng Phường\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Trao đổi 12 tham luận thực tiễn về ứng dụng công nghệ thông tin trong nắm bắt dư luận xã hội, tiếp nhận ý kiến Nhân dân qua Zalo/Portal và giải quyết thủ tục hành chính công.\",\"content\":\"Trao đổi 12 tham luận thực tiễn về ứng dụng công nghệ thông tin trong nắm bắt dư luận xã hội, tiếp nhận ý kiến Nhân dân qua Zalo/Portal và giải quyết thủ tục hành chính công.\\n\\nTrích dẫn: \\\"Lấy sự hài lòng và niềm tin của người dân làm thước đo cao nhất của công tác Dân vận cơ sở.\\\"\",\"timelineDate\":\"20/11/2026\",\"location\":\"Trung tâm Học tập Cộng đồng Phường\",\"imageUrl\":\"/assets/hcm-space/ueh-3d.jpg\",\"imageCaption\":\"Tọa đàm chuyên đề \\\"Khắc ghi lời Bác dạy về công tác Dân vận trong thời kỳ chuyển đổi số\\\"\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.211Z"
+  },
+  {
+    "id": "ver_5bc8bef1-f",
+    "dossier_id": "legacy_news_tdm_hoi_thi_theo_chan_bac",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_news_tdm_hoi_thi_theo_chan_bac\",\"title\":\"Khai mạc Hội thi trực tuyến \\\"Theo chân Bác - Sáng mãi niềm tin\\\" phường Thủ Dầu Một năm 2026\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"NEWS\",\"Nền tảng Tuyên giáo số trực tuyến\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Hội thi thu hút hơn 1.200 lượt dự thi của đoàn viên, thanh niên, hội viên các đoàn thể và Nhân dân trên địa bàn qua 12 câu hỏi trắc nghiệm tương tác và phần tự luận.\",\"content\":\"Hội thi thu hút hơn 1.200 lượt dự thi của đoàn viên, thanh niên, hội viên các đoàn thể và Nhân dân trên địa bàn qua 12 câu hỏi trắc nghiệm tương tác và phần tự luận.\\n\\nTrích dẫn: Giải nhất tuần 1 thuộc về Chi bộ Quân sự phường với 100% bài thi đạt điểm tuyệt đối.\",\"timelineDate\":\"15/11/2026\",\"location\":\"Nền tảng Tuyên giáo số trực tuyến\",\"imageUrl\":\"/assets/hcm-space/duong-sach.jpg\",\"imageCaption\":\"Khai mạc Hội thi trực tuyến \\\"Theo chân Bác - Sáng mãi niềm tin\\\" phường Thủ Dầu Một năm 2026\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.211Z"
+  },
+  {
+    "id": "ver_02172a3a-d",
+    "dossier_id": "legacy_news_tdm_khanh_thanh_tu_sach",
+    "version_num": 1,
+    "snapshot_json": "{\"id\":\"legacy_news_tdm_khanh_thanh_tu_sach\",\"title\":\"Khánh thành Không gian đọc sách mở và Tủ sách Bác Hồ tại Nhà văn hóa Khu phố 2\",\"dossierType\":\"LOCAL_ACTIVITY\",\"categoryIds\":[\"cat_local\"],\"topicId\":\"top_tdm_news\",\"tags\":[\"NEWS\",\"Nhà Văn hóa Khu phố 2\"],\"audiences\":[\"Cán bộ & Đảng viên\",\"Tham quan phổ thông\"],\"summary\":\"Trưng bày hơn 300 đầu sách về cuộc đời, sự nghiệp của Bác Hồ, hồi ký các nhà cách mạng tiền bối và hệ thống mã QR tra cứu sách điện tử miễn phí cho thanh thiếu nhi.\",\"content\":\"Trưng bày hơn 300 đầu sách về cuộc đời, sự nghiệp của Bác Hồ, hồi ký các nhà cách mạng tiền bối và hệ thống mã QR tra cứu sách điện tử miễn phí cho thanh thiếu nhi.\\n\\nTrích dẫn: Không gian văn hóa Hồ Chí Minh là nơi kết nối cộng đồng, bồi dưỡng nhân cách và tình yêu quê hương đất nước.\",\"timelineDate\":\"10/11/2026\",\"location\":\"Nhà Văn hóa Khu phố 2\",\"imageUrl\":\"/assets/hcm-space/khu-pho.jpg\",\"imageCaption\":\"Khánh thành Không gian đọc sách mở và Tủ sách Bác Hồ tại Nhà văn hóa Khu phố 2\",\"sourceName\":\"Di trú từ kho HCM Space cơ sở (hcm_cultural_entries)\",\"sourceUrl\":\"\",\"author\":\"\",\"publisher\":\"Đảng ủy Phường Thủ Dầu Một\",\"publishYear\":\"2026\",\"licenseInfo\":\"Dữ liệu di trú cần bổ sung nguồn tham chiếu chuẩn\",\"collectedAt\":\"2026-11-23T16:21:45.716Z\",\"verifiedAt\":\"\",\"verificationStatus\":\"NEEDS_VERIFICATION\",\"publishStatus\":\"APPROVED\",\"createdBy\":\"legacy-import\",\"updatedBy\":\"legacy-import\",\"verifiedBy\":\"\",\"approvedBy\":\"\",\"version\":1,\"isAiDraft\":false,\"duplicateOfId\":\"\",\"missingFields\":[\"Thiếu đường dẫn nguồn (URL)\",\"Cần kiểm chứng nội dung\"],\"createdAt\":\"2026-11-23T16:21:45.716Z\",\"updatedAt\":\"2026-11-23T16:21:45.716Z\"}",
+    "change_note": "Di trú từ bảng cũ — gắn nhãn Cần xác minh nguồn",
+    "actor_uid": "system-seed",
+    "actor_name": "Hệ thống Chuẩn hóa Tri thức",
+    "created_at": "2026-11-23T16:24:00.212Z"
+  }
+]
