@@ -51,6 +51,7 @@ import { hcmVoiceService } from '../services/hcmVoiceService';
 import { useApp } from '../AppContext';
 import { HcmSpotlightCard } from './HcmSpotlightCard';
 import { HcmSlidingPillTabs039 } from './HcmSlidingPillTabs039';
+import { HcmPhuCuongHeritage3DModel } from './HcmPhuCuongHeritage3DModel';
 import {
   EXEMPLARY_PEOPLE_LIST,
   type ExemplaryPerson,
@@ -1542,46 +1543,12 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </div>
             </div>
 
-            {/* Cột phải: Hình ảnh minh họa 3D VR nổi bật với khung kính viền đồng */}
-            <div
-              onClick={() => {
-                hcmSfx.playClick(900);
-                if (onOpenHeritage3D) {
-                  onOpenHeritage3D();
-                } else {
-                  onSelectTab('TDM_HOUSE');
-                }
-              }}
-              className="relative w-full lg:w-[420px] aspect-[4/3] rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl group cursor-pointer shrink-0"
-              title="Nhấp để vào chế độ Tham Quan Thực Tế Ảo 3D"
-            >
-              <img
-                src="/assets/hcm-space/ueh-3d.jpg"
-                alt="Phục dựng mô hình 3D Nhà truyền thống Thủ Dầu Một"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/hcm-space/ben-nha-rong-06.jpg';
-                }}
+            {/* Cột phải: Mô hình 3D Nhà Truyền Thống Số (Nhà Việc Phú Cường) TỰ XOAY TRÒN 360° */}
+            <div className="w-full lg:w-[480px] shrink-0 flex flex-col">
+              <HcmPhuCuongHeritage3DModel
+                onOpenHeritage3D={onOpenHeritage3D || (() => onSelectTab('TDM_HOUSE'))}
+                className="w-full aspect-[4/3] sm:aspect-[16/11]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-
-              <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/60 text-amber-300 text-xs font-bold flex items-center gap-1.5 shadow-md">
-                <RotateCw className="w-3.5 h-3.5 animate-spin" />
-                <span>360° VR Interactive</span>
-              </div>
-
-              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-300 flex items-center gap-1">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    Bản Thử Nghiệm Số Hóa 3D
-                  </span>
-                  <span className="text-[11px] text-rose-300 font-bold group-hover:underline">Bấm để khám phá →</span>
-                </div>
-                <p className="text-[11px] text-slate-300 mt-0.5 line-clamp-1">
-                  Nhà việc Phú Cường • 5 gian trưng bày hiện vật 3D
-                </p>
-              </div>
             </div>
           </div>
         </div>
