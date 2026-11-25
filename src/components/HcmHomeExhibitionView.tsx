@@ -54,6 +54,8 @@ import { HcmCitizenResumeBanner } from './HcmCitizenResumeBanner';
 import { GoogleIcon } from './GoogleIcon';
 import { HcmTraditionalQuoteCard } from './HcmTraditionalQuoteCard';
 import { hcmSfx } from '../services/hcmSoundEffects';
+import { HcmCitizenNominationModal } from './HcmCitizenNominationModal';
+import { HcmDatThuMiniQuizModal } from './HcmDatThuMiniQuizModal';
 
 interface HcmHomeExhibitionViewProps {
   activeTab?: SpaceTab;
@@ -109,6 +111,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
   const [fanpageSyncStatus, setFanpageSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle');
   const [fanpageSyncNotice, setFanpageSyncNotice] = useState<string | null>(null);
   const [selectedExemplaryTheme, setSelectedExemplaryTheme] = useState<string>('ALL');
+  const [isNominationModalOpen, setIsNominationModalOpen] = useState<boolean>(false);
+  const [isMiniQuizOpen, setIsMiniQuizOpen] = useState<boolean>(false);
 
   const handleSyncFanpage = async () => {
     try {
@@ -1125,6 +1129,183 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
           ))}
         </div>
       </section>
+
+      {/* ===================================================================== */}
+      {/* 4 CHIẾN DỊCH HÀNH ĐỘNG LAN TỎA KHÔNG GIAN VĂN HÓA HỒ CHÍ MINH       */}
+      {/* ===================================================================== */}
+      <section className="space-y-4 pt-2" aria-labelledby="action-campaigns-heading">
+        <div className="rounded-3xl border-2 border-rose-300 bg-gradient-to-r from-rose-900 via-rose-800 to-[#4C0519] p-6 text-white shadow-xl relative overflow-hidden">
+          {/* Decorative background glows */}
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-rose-500/20 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-rose-700/60 pb-5">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-amber-400 text-slate-950 px-2.5 py-0.5 text-[10.5px] font-black uppercase tracking-wider shadow-xs">
+                  ★ Chiến Dịch Cộng Đồng 2026
+                </span>
+                <span className="rounded-full bg-rose-700/80 border border-rose-400/40 text-amber-200 px-2.5 py-0.5 text-[10.5px] font-bold">
+                  Gắn kết 5 khu phố Thủ Dầu Một
+                </span>
+              </div>
+              <h2 id="action-campaigns-heading" className="text-xl sm:text-2xl font-black font-serif text-white tracking-tight">
+                4 Hành Động Lan Tỏa Không Gian Văn Hóa Hồ Chí Minh
+              </h2>
+              <p className="text-xs sm:text-sm text-rose-100/90 max-w-2xl leading-relaxed">
+                Không gian Văn hóa Hồ Chí Minh không chỉ nằm ở sách báo hay phòng trưng bày, mà sống động trong từng việc tử tế mỗi ngày, từng bài học lịch sử của học sinh và từng bước chân về nguồn của nhân dân Đất Thủ.
+              </p>
+            </div>
+
+            <div className="shrink-0 flex items-center gap-2">
+              <span className="text-[11px] font-medium text-amber-200/90 bg-black/30 border border-amber-400/30 rounded-xl px-3 py-2 flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+                <span>Mỗi ngày một việc tốt</span>
+              </span>
+            </div>
+          </div>
+
+          {/* 4 Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-5 relative z-10">
+            {/* Chiến dịch 1: Chuyện Đất Thủ Kể Bác */}
+            <div className="hcm-flat-card p-4 bg-white/95 text-slate-900 rounded-2xl flex flex-col justify-between space-y-3 hover:-translate-y-1 transition-all shadow-md border-2 border-rose-100">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-800 font-black text-xs flex items-center justify-center">
+                    01
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wide bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-md">
+                    Toàn Dân Đề Cử
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-sm text-slate-900 leading-snug">
+                  Chuyện Đất Thủ Kể Bác
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Đề cử gương người tốt việc tốt, tổ tự quản, mô hình bác ái xã hội tại 5 khu phố để vinh danh trên trang web.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setIsNominationModalOpen(true);
+                }}
+                className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold py-2 text-xs shadow-xs transition-colors cursor-pointer"
+              >
+                <Heart className="w-3.5 h-3.5 text-rose-200 fill-current" />
+                <span>Gửi Đề Cử Ngay</span>
+              </button>
+            </div>
+
+            {/* Chiến dịch 2: Em Học Sử Đất Thủ */}
+            <div className="hcm-flat-card p-4 bg-white/95 text-slate-900 rounded-2xl flex flex-col justify-between space-y-3 hover:-translate-y-1 transition-all shadow-md border-2 border-amber-200">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="w-8 h-8 rounded-xl bg-amber-100 text-amber-900 font-black text-xs flex items-center justify-center">
+                    02
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wide bg-amber-50 text-amber-800 border border-amber-300 px-2 py-0.5 rounded-md">
+                    Hội Thi Trực Tuyến
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-sm text-slate-900 leading-snug">
+                  Em Học Sử Đất Thủ
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Thi trắc nghiệm 10 câu hỏi tương tác về cụ Phó bảng Nguyễn Sinh Sắc, Bác Hồ và lịch sử Thủ Dầu Một; nhận Giấy khen có QR.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(750);
+                  setIsMiniQuizOpen(true);
+                }}
+                className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2 text-xs shadow-xs transition-colors cursor-pointer"
+              >
+                <Award className="w-3.5 h-3.5" />
+                <span>Thi Đố Vui Nhận Giấy Khen</span>
+              </button>
+            </div>
+
+            {/* Chiến dịch 3: Lời Bác Dạy Trong Tim */}
+            <div className="hcm-flat-card p-4 bg-white/95 text-slate-900 rounded-2xl flex flex-col justify-between space-y-3 hover:-translate-y-1 transition-all shadow-md border-2 border-emerald-100">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 font-black text-xs flex items-center justify-center">
+                    03
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wide bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md">
+                    Truyền Thông Số
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-sm text-slate-900 leading-snug">
+                  Tạo Thiệp Lời Bác Dạy
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Thiết kế thiệp danh ngôn chuẩn chữ ký và chân dung Bác Hồ, tải ảnh HD hoặc chia sẻ trực tiếp lên Zalo, Facebook cá nhân.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(650);
+                  if (onOpenQuoteCard) {
+                    onOpenQuoteCard();
+                  } else {
+                    onSelectTab('BOOKS');
+                  }
+                }}
+                className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2 text-xs shadow-xs transition-colors cursor-pointer"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Tạo Thiệp Chia Sẻ Zalo</span>
+              </button>
+            </div>
+
+            {/* Chiến dịch 4: Tuyến Đỏ Về Nguồn 5 Điểm */}
+            <div className="hcm-flat-card p-4 bg-white/95 text-slate-900 rounded-2xl flex flex-col justify-between space-y-3 hover:-translate-y-1 transition-all shadow-md border-2 border-indigo-100">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-800 font-black text-xs flex items-center justify-center">
+                    04
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wide bg-indigo-50 text-indigo-800 border border-indigo-200 px-2 py-0.5 rounded-md">
+                    Hành Trình Thực Tế
+                  </span>
+                </div>
+                <h3 className="font-extrabold text-sm text-slate-900 leading-snug">
+                  Tuyến Đỏ Về Nguồn 5 Điểm
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Hành trình di tích thực tế: Chùa Hội Khánh, Di tích Nhà việc Phú Cường, Chợ Thủ Dầu Một, Sông Sài Gòn và Bia chiến tích.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(700);
+                  if (onOpenRedTour) {
+                    onOpenRedTour();
+                  } else {
+                    onSelectTab('TDM_HOUSE');
+                  }
+                }}
+                className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 text-xs shadow-xs transition-colors cursor-pointer"
+              >
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Xem Tuyến Đỏ Về Nguồn</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="heritage-tools" aria-label="Tiện ích và trải nghiệm">
         <details>
           <summary><span><Sparkles aria-hidden="true" /><strong>Tiện ích & trải nghiệm</strong><span className="heritage-tools-hint">Học tập, tra cứu và sinh hoạt chi bộ</span></span><span className="heritage-tools-toggle">Xem các tiện ích <ChevronDown aria-hidden="true" /></span></summary>
@@ -2003,6 +2184,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             })}
         </div>
       </section>
+
+      {/* Modal Đề cử Gương sáng toàn dân */}
+      <HcmCitizenNominationModal
+        isOpen={isNominationModalOpen}
+        onClose={() => setIsNominationModalOpen(false)}
+      />
+
+      {/* Modal Hội thi Đố vui Em học sử Đất Thủ */}
+      <HcmDatThuMiniQuizModal
+        isOpen={isMiniQuizOpen}
+        onClose={() => setIsMiniQuizOpen(false)}
+      />
     </div>
   );
 };

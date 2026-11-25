@@ -49,6 +49,17 @@ export const HcmMultimediaMasterView: React.FC = () => {
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [showVideoVisual, setShowVideoVisual] = useState<boolean>(false);
 
+  // Tự động đồng bộ trạng thái khi activeSpeech hoặc isGlobalAudioPlaying thay đổi từ bên ngoài (Floating Mini Player)
+  useEffect(() => {
+    if (activeSpeech && activeSpeech.id !== selectedSpeech.id) {
+      setSelectedSpeech(activeSpeech);
+    }
+  }, [activeSpeech, selectedSpeech.id]);
+
+  useEffect(() => {
+    setIsVinylPlaying(isGlobalAudioPlaying);
+  }, [isGlobalAudioPlaying]);
+
   const safeSpeechIndex = useMemo(() => {
     const idx = HISTORICAL_SPEECHES_AUDIO.findIndex((s) => s.id === selectedSpeech.id);
     return idx >= 0 ? idx : 0;

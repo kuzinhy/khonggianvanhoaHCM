@@ -55,7 +55,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Quảng trường Ba Đình, Hà Nội',
     significance: 'Văn kiện lập quốc thiêng liêng, chấm dứt chế độ thực dân phong kiến, mở ra kỷ nguyên độc lập tự do cho dân tộc Việt Nam.',
     youtubeId: 'Pjpt7aGiY8E',
-    audioUrl: '/assets/audio/tuyen_ngon_1945.wav',
+    audioUrl: '/assets/audio/speech_01_tuyen_ngon_1945.mp3',
     transcript:
       'Hỡi đồng bào cả nước! Tất cả mọi người đều sinh ra có quyền bình đẳng. Tạo hóa cho họ những quyền không ai có thể xâm phạm được; trong những quyền ấy, có quyền được sống, quyền tự do và quyền mưu cầu hạnh phúc... Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do, độc lập. Toàn thể dân tộc Việt Nam quyết đem tất cả tinh thần và lực lượng, tính mạng và của cải để giữ vững quyền tự do, độc lập ấy!',
     keyQuotes: [
@@ -78,7 +78,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Làng Vạn Phúc, Hà Đông',
     significance: 'Lời hịch cứu nước hào hùng của non sông, hiệu triệu toàn thể 20 triệu đồng bào đứng lên quyết tử cho Tổ quốc quyết sinh.',
     youtubeId: 'RzTxaGZ4bTw',
-    audioUrl: '/assets/audio/speech_02_toan_quoc_khang_chien.webm',
+    audioUrl: '/assets/audio/speech_02_toan_quoc_khang_chien.mp3',
     transcript:
       'Hỡi đồng bào toàn quốc! Chúng ta muốn hòa bình, chúng ta phải nhân nhượng. Nhưng chúng ta càng nhân nhượng, thực dân Pháp càng lấn tới, vì chúng quyết tâm cướp nước ta lần nữa! Không! Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ. Hỡi đồng bào! Chúng ta phải đứng lên! Bất kỳ đàn ông, đàn bà, bất kỳ người già, người trẻ, không chia tôn giáo, đảng phái, dân tộc. Hễ là người Việt Nam thì phải đứng lên đánh thực dân Pháp để cứu Tổ quốc!',
     keyQuotes: [
@@ -101,7 +101,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Thủ đô Hà Nội',
     significance: 'Khẳng định chân lý thời đại, đúc kết ý chí sắt đá của toàn dân tộc Việt Nam quyết tâm đánh thắng giặc Mỹ xâm lược.',
     youtubeId: 'sloE3zmHDDc',
-    audioUrl: '/assets/audio/speech_03_khong_co_gi_quy_hon.webm',
+    audioUrl: '/assets/audio/speech_03_khong_co_gi_quy_hon.mp3',
     transcript:
       'Chiến tranh có thể kéo dài 5 năm, 10 năm, 20 năm hoặc lâu hơn nữa. Hà Nội, Hải Phòng và một số thành phố, xí nghiệp có thể bị tàn phá, song nhân dân Việt Nam quyết không sợ! Không có gì quý hơn độc lập, tự do! Đến ngày thắng lợi, nhân dân ta sẽ xây dựng lại đất nước ta đàng hoàng hơn, to đẹp hơn!',
     keyQuotes: [
@@ -124,7 +124,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Nhà sàn Bác Hồ, Phủ Chủ tịch, Hà Nội',
     significance: 'Bản ghi âm bài thơ chúc Tết cuối cùng của Bác Hồ gửi đồng bào và chiến sĩ cả nước trước lúc Người đi xa.',
     youtubeId: 'PF9M5F7nWtI',
-    audioUrl: '/assets/audio/speech_04_chuc_tet_ky_dau_1969.webm',
+    audioUrl: '/assets/audio/speech_04_chuc_tet_ky_dau_1969.mp3',
     transcript:
       'Năm qua thắng lợi vẻ vang / Năm nay tiền tuyến chắc càng thắng to / Vì độc lập, vì tự do / Đánh cho Mỹ cút, đánh cho ngụy nhào / Tiến lên! Chiến sĩ, đồng bào / Bắc – Nam sum họp, Xuân nào vui hơn!',
     keyQuotes: [
@@ -146,7 +146,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Hà Nội',
     significance: 'Lời căn dặn ân cần đối với thanh niên: Rường cột của nước nhà, xung kích trên mọi mặt trận kiến thiết đất nước.',
     youtubeId: '2wWpvV_wXQg',
-    audioUrl: '/assets/audio/speech_05_bac_ho_voi_thanh_nien.m4a',
+    audioUrl: '/assets/audio/speech_05_bac_ho_voi_thanh_nien.mp3',
     transcript:
       'Thanh niên là người chủ tương lai của nước nhà. Nước nhà thịnh hay suy, yếu hay mạnh một phần lớn là do các thanh niên. Thanh niên muốn làm người chủ tương lai cho xứng đáng thì ngay hiện tại phải rèn luyện tinh thần và lực lượng của mình, phải ra sức làm việc để chuẩn bị cái tương lai đó. Đâu cần thanh niên có, việc gì khó thanh niên đi đầu!',
     keyQuotes: [
@@ -169,7 +169,7 @@ export const HISTORICAL_SPEECHES_AUDIO: HistoricalSpeechAudio[] = [
     location: 'Nhà sàn Phủ Chủ tịch',
     significance: 'Bảo vật Quốc gia vô giá, kết tinh toàn bộ tư tưởng, đạo đức, tâm hồn và tình yêu bao la của Người đối với Đảng, Tổ quốc và nhân loại.',
     youtubeId: 'k32GOQDPWj0',
-    audioUrl: '/assets/audio/speech_06_di_chuc_bac_ho.webm',
+    audioUrl: '/assets/audio/speech_06_di_chuc_bac_ho.mp3',
     transcript:
       'Trước hết nói về Đảng: Nhờ đoàn kết chặt chẽ, một lòng một dạ phục vụ giai cấp, phục vụ nhân dân... Đoàn kết là một truyền thống cực kỳ quý báu của Đảng và của dân ta. Các đồng chí từ Trung ương đến các chi bộ cần phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình... Cuối cùng, tôi để lại muôn vàn tình thân yêu cho toàn dân, toàn Đảng, cho toàn thể bộ đội, cho các cháu thanh niên và nhi đồng.',
     keyQuotes: [
