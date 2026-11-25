@@ -113,7 +113,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     rendererRef.current = renderer;
 
     // 4. PROCEDURAL TEXTURES (VẬT LIỆU CHUẨN THỰC ĐỊA NHÀ TRUYỀN THỐNG ĐẤT THỦ)
-    // 4.1 Bảng hiệu "NHÀ TRUYỀN THỐNG THÀNH PHỐ THỦ DẦU MỘT"
+    // 4.1 Bảng hiệu "NHÀ TRUYỀN THỐNG phường Thủ Dầu Một"
     const createSignboardTexture = () => {
       const c = document.createElement('canvas');
       c.width = 512;
@@ -131,14 +131,14 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       ctx.strokeRect(12, 12, 488, 104);
       // Chữ "NHÀ TRUYỀN THỐNG" màu vàng đồng đậm có bóng đổ
       ctx.fillStyle = '#92400E';
-      ctx.font = 'bold 42px "Times New Roman", serif';
+      ctx.font = 'bold 44px "Times New Roman", serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('NHÀ TRUYỀN THỐNG', 256, 48);
-      // Dòng phụ "THÀNH PHỐ THỦ DẦU MỘT"
+      // Dòng phụ "phường Thủ Dầu Một"
       ctx.fillStyle = '#1F2937';
-      ctx.font = 'bold 22px "Segoe UI", sans-serif';
-      ctx.fillText('THÀNH PHỐ THỦ DẦU MỘT', 256, 92);
+      ctx.font = 'bold 26px "Times New Roman", serif';
+      ctx.fillText('phường Thủ Dầu Một', 256, 92);
       return new THREE.CanvasTexture(c);
     };
     const signboardTexture = createSignboardTexture();
@@ -849,7 +849,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       <div className="absolute top-3 left-3 flex flex-col gap-1 pointer-events-none z-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-amber-300/80 text-[#881337] text-xs font-bold shadow-md">
           <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '10s' }} />
-          <span>Mô Hình 3D Nhà Truyền Thống Đất Thủ</span>
+          <span>Mô Hình 3D Nhà Truyền Thống phường Thủ Dầu Một</span>
         </div>
         <span className="text-[10px] text-slate-700 font-semibold px-2 py-0.5 rounded-md bg-white/90 border border-amber-200/60 backdrop-blur-sm self-start shadow-2xs">
           Tốc độ xoay chậm êm · Kéo chuột để xoay 360°
@@ -936,7 +936,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
           <div className="min-w-0">
             <span className="text-xs font-extrabold text-[#881337] block truncate">
-              Nhà Truyền Thống Thành Phố Thủ Dầu Một
+              Nhà Truyền Thống phường Thủ Dầu Một
             </span>
             <span className="text-[10px] text-slate-600 block truncate font-medium">
               Biển hiệu chuẩn · Con sơn gỗ đỡ mái · Vòm cuốn Đông Dương &amp; Gốm xanh Đất Thủ
