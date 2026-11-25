@@ -399,7 +399,11 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
         </div>
       `;
 
-      marker.bindPopup(popupHtml, { maxWidth: 280 });
+      marker.bindPopup(popupHtml, {
+        maxWidth: 280,
+        autoPanPaddingTopLeft: L.point(15, 65),
+        autoPanPaddingBottomRight: L.point(15, 45),
+      });
 
       marker.on('click', () => {
         onSelectPoint(pt.id);
