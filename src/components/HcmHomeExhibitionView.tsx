@@ -383,13 +383,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 onSelectTab('FOYER');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`transition-colors cursor-pointer whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'FOYER'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-slate-900 font-semibold hover:text-[#BE123C] hover:bg-rose-50/50'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
-              Giới thiệu
+              <span>Giới thiệu</span>
             </a>
 
             <a
@@ -398,13 +398,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('EXHIBIT');
               }}
-              className={`hidden xl:inline-block transition-colors cursor-pointer whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'EXHIBIT'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-slate-900 hover:text-[#BE123C] hover:bg-rose-50/50 font-medium'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
-              Khám phá di sản
+              <span>Khám phá di sản</span>
             </a>
 
             <a
@@ -413,13 +413,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('BOOKS');
               }}
-              className={`transition-colors cursor-pointer whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'BOOKS'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-slate-900 hover:text-[#BE123C] hover:bg-rose-50/50 font-medium'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
-              Thư viện số
+              <span>Thư viện số</span>
             </a>
 
             <a
@@ -428,13 +428,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('NEWS');
               }}
-              className={`transition-colors cursor-pointer whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'NEWS'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-slate-900 hover:text-[#BE123C] hover:bg-rose-50/50 font-medium'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
-              Tin tức
+              <span>Tin tức</span>
             </a>
 
             <a
@@ -443,16 +443,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('PARTY_HISTORY');
               }}
-              className={`transition-colors cursor-pointer flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'PARTY_HISTORY'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-[#881337] hover:text-[#5B1522] hover:bg-rose-50/50 font-bold'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
               <span>Lịch sử Đảng bộ</span>
-              <span className="px-1.5 py-0.2 rounded text-[9.5px] bg-[#751D2C] text-amber-300 font-black leading-none">
-                600Tr
-              </span>
             </a>
 
             <a
@@ -461,16 +458,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('TDM_HOUSE');
               }}
-              className={`transition-colors cursor-pointer flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'TDM_HOUSE'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-[#881337] hover:text-[#5B1522] hover:bg-rose-50/50 font-semibold'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
               <span>Di tích Đất Thủ</span>
-              <span className="px-1 py-0.2 rounded text-[9.5px] bg-rose-600 text-white font-bold leading-none">
-                3D
-              </span>
             </a>
 
             <a
@@ -479,16 +473,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('TDM_CHRONOLOGY');
               }}
-              className={`transition-colors cursor-pointer flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'TDM_CHRONOLOGY'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-[#881337] hover:text-[#5B1522] hover:bg-rose-50/50 font-bold'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
               <span>Biên niên sử phường</span>
-              <span className="px-1.5 py-0.2 rounded text-[9.5px] bg-[#751D2C] text-amber-300 font-extrabold leading-none">
-                Từ 1/7/2025
-              </span>
             </a>
 
             <a
@@ -497,17 +488,13 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 e.preventDefault();
                 onSelectTab('EXEMPLARY_PEOPLE');
               }}
-              className={`transition-colors cursor-pointer flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg ${
+              className={`nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 ${
                 activeTab === 'EXEMPLARY_PEOPLE'
-                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
-                  : 'text-[#881337] hover:text-[#5B1522] hover:bg-rose-50/50 font-bold'
+                  ? 'text-[#881337] font-black bg-rose-50/90 shadow-2xs after:w-4/5'
+                  : 'text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>Gương sáng tiêu biểu</span>
-              <span className="px-1.5 py-0.2 rounded text-[9.5px] bg-rose-700 text-white font-extrabold leading-none">
-                Người tốt việc tốt
-              </span>
             </a>
 
             {onOpenGoldenBook && (
@@ -517,10 +504,9 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                   e.preventDefault();
                   onOpenGoldenBook();
                 }}
-                className="hover:text-[#BE123C] hover:bg-rose-50/50 transition-colors cursor-pointer font-medium flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg"
+                className="nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5"
               >
                 <span>Sổ vàng</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-600"></span>
               </a>
             )}
 
@@ -531,9 +517,9 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                   e.preventDefault();
                   onOpenRedMap();
                 }}
-                className="inline-flex hover:text-[#BE123C] hover:bg-rose-50/50 transition-colors cursor-pointer font-medium items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg"
+                className="nav-hover-item relative group px-2.5 py-1.5 rounded-xl text-xs sm:text-[13px] transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1 text-slate-800 font-semibold hover:text-[#881337] hover:bg-rose-50/70 hover:-translate-y-0.5"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#881337]" />
+                <MapPin className="w-3.5 h-3.5 text-[#881337] group-hover:scale-110 transition-transform" />
                 <span>Địa chỉ đỏ</span>
               </a>
             )}
@@ -597,7 +583,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               }}
               className="block w-full text-left py-2 font-semibold text-[#881337] border-b border-rose-200/80/30"
             >
-              Lịch sử Đảng bộ (600Tr)
+              Lịch sử Đảng bộ
             </a>
             <a
               href="/di-tich-dat-thu"
@@ -608,8 +594,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               }}
               className="w-full text-left py-2 font-semibold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
             >
-              <span>🏛️ Nhà truyền thống Thủ Dầu Một (3D)</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-rose-600 text-white rounded font-bold">VR 360°</span>
+              <span>🏛️ Di tích Đất Thủ</span>
             </a>
             <a
               href="/bien-nien-su-phuong"
@@ -620,8 +605,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               }}
               className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
             >
-              <span>📜 Biên niên sử phường Thủ Dầu Một</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-[#751D2C] text-amber-300 rounded font-bold">Từ 01/7/2025</span>
+              <span>📜 Biên niên sử phường</span>
             </a>
             <a
               href="/guong-sang-tieu-bieu"
@@ -632,8 +616,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               }}
               className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
             >
-              <span>🌟 Gương sáng người tốt việc tốt</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-rose-700 text-white rounded font-bold">Từ 01/7/2025</span>
+              <span>🌟 Gương sáng tiêu biểu</span>
             </a>
             {onOpenGoldenBook && (
               <a
