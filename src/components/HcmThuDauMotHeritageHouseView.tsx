@@ -36,6 +36,7 @@ import {
   Bookmark,
   TrendingUp,
   Landmark,
+  X,
 } from 'lucide-react';
 import { DongSonDrumIcon, HoaSenIcon } from './TraditionalMotifs';
 import { hcmVoiceService } from '../services/hcmVoiceService';
@@ -47,8 +48,10 @@ import {
   THU_DAU_MOT_TOUR_ROUTES,
   TDM_CITY_PARTY_HISTORY_PHASES,
   TDM_WARD_PARTY_CHRONOLOGY,
+  THU_DAU_MOT_HISTORICAL_ARTICLES,
   type ThuDauMotHeritageSite,
   type HeritageTourRoute,
+  type HistoricalArticleItem,
 } from '../data/hcmThuDauMotData';
 
 interface HeritageZone {
@@ -140,7 +143,7 @@ const HERITAGE_ZONES: HeritageZone[] = [
   },
 ];
 
-type SubTabKey = 'HERITAGE_MAP' | 'PARTY_HISTORY' | '3D_TOUR' | 'TECH_GUIDE';
+type SubTabKey = 'HERITAGE_MAP' | 'PARTY_HISTORY' | '3D_TOUR' | 'TECH_GUIDE' | 'ARTICLES';
 
 interface HcmThuDauMotHeritageHouseViewProps {
   onBackToFoyer?: () => void;
@@ -152,6 +155,10 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
   initialSubTab = 'HERITAGE_MAP',
 }) => {
   const [activeSubTab, setActiveSubTab] = useState<SubTabKey>(initialSubTab);
+  const [articleSearchQuery, setArticleSearchQuery] = useState('');
+  const [articleCategoryFilter, setArticleCategoryFilter] = useState<'ALL' | 'BÁC HỒ VỚI ĐẤT THỦ' | 'LỊCH SỬ CÁCH MẠNG' | 'XÂY DỰNG ĐẢNG' | 'DI SẢN VĂN HÓA'>('ALL');
+  const [readingArticle, setReadingArticle] = useState<HistoricalArticleItem | null>(null);
+  const [isPlayingArticleAudio, setIsPlayingArticleAudio] = useState(false);
 
   // Đồng bộ khi prop initialSubTab thay đổi từ bên ngoài (ví dụ nhấp nút Tham quan 3D từ trang chủ)
   React.useEffect(() => {
@@ -215,6 +222,22 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
       site.audioGuideText,
       () => setIsPlayingSiteAudio(false),
       () => setIsPlayingSiteAudio(false)
+    );
+  };
+
+  // Audio for Historical Article
+  const handleToggleArticleAudio = (article: HistoricalArticleItem) => {
+    if (isPlayingArticleAudio) {
+      hcmVoiceService.stop();
+      setIsPlayingArticleAudio(false);
+      return;
+    }
+    setIsPlayingArticleAudio(true);
+    const textToRead = `${article.title}. Tóm tắt: ${article.summary}. ${article.contentSections.map((s) => `${s.heading}. ${s.paragraphs.join(' ')}`).join(' ')}`;
+    hcmVoiceService.speak(
+      textToRead,
+      () => setIsPlayingArticleAudio(false),
+      () => setIsPlayingArticleAudio(false)
     );
   };
 
@@ -365,7 +388,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
                   : 'bg-rose-600/20 text-rose-800'
               }`}
             >
-              08 Di tích
+              12 Di tích
             </span>
           </button>
 
@@ -428,6 +451,29 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
             <Cpu className="w-4 h-4 text-rose-600" />
             <span>Tư Vấn Số Hóa 3D Thực Địa</span>
           </button>
+
+          {/* Sub-tab 5: Bài Viết & Chuyên Đề Lịch Sử */}
+          <button
+            type="button"
+            onClick={() => handleSwitchSubTab('ARTICLES')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+              activeSubTab === 'ARTICLES'
+                ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-sm ring-2 ring-[#751D2C]/20'
+                : 'bg-white border border-rose-200/80 text-slate-900 hover:border-rose-500'
+            }`}
+          >
+            <BookOpen className="w-4 h-4 text-rose-600" />
+            <span>Chuyên Đề &amp; Bài Viết Lịch Sử</span>
+            <span
+              className={`px-2 py-0.5 text-[10px] font-black rounded-md ${
+                activeSubTab === 'ARTICLES'
+                  ? 'bg-white/20 text-white'
+                  : 'bg-rose-100 text-rose-800'
+              }`}
+            >
+              05 Chuyên đề
+            </span>
+          </button>
         </div>
 
         <div className="text-xs text-slate-600 font-medium flex items-center gap-1.5">
@@ -447,7 +493,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
               <div className="flex items-center gap-2 text-rose-800">
                 <Route className="w-5 h-5 text-rose-600" />
                 <h3 className="font-serif font-bold text-base uppercase tracking-wider">
-                  03 Tuyến Tour Du Khảo Di Sản Gợi Ý Cho Khách Tham Quan
+                  04 Tuyến Tour Du Khảo Di Sản Gợi Ý Cho Khách Tham Quan
                 </h3>
               </div>
               <span className="text-xs text-slate-600 italic">
@@ -528,7 +574,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
             <div className="flex flex-wrap items-center gap-1.5 text-xs">
               <span className="font-bold text-rose-800 uppercase text-[11px] mr-1">Phân loại:</span>
               {[
-                { id: 'ALL', label: 'Tất cả (08 di tích)' },
+                { id: 'ALL', label: 'Tất cả (12 di tích)' },
                 { id: 'LỊCH SỬ CÁCH MẠNG', label: 'Lịch sử Cách mạng' },
                 { id: 'KIẾN TRÚC CỔ', label: 'Kiến trúc Cổ' },
                 { id: 'VĂN HÓA TÂM LINH', label: 'Văn hóa Tâm linh' },
@@ -1369,6 +1415,312 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
               3. <strong>Giai đoạn 3 (1 ngày):</strong> Nạp dữ liệu ảnh 360 thực tế vào component <code>HcmThuDauMotHeritageHouseView</code> sẵn có trên web — người dân toàn quốc có thể vào tham quan ngay lập tức!
             </p>
           </div>
+        </section>
+      )}
+
+
+      {/* =========================================================================
+          PHÂN HỆ 5: CÁC BÀI VIẾT & CHUYÊN ĐỀ LỊCH SỬ CHÍNH THỐNG
+          ========================================================================= */}
+      {activeSubTab === 'ARTICLES' && (
+        <section className="space-y-6">
+          {/* Header & Filter Controls */}
+          <div className="bg-white rounded-3xl border border-rose-200 p-6 sm:p-8 shadow-sm space-y-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-[#881337] text-xs font-bold uppercase tracking-wider">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>KHO TƯ LIỆU NGHIÊN CỨU &amp; BIÊN KHẢO LỊCH SỬ CHÍNH THỐNG</span>
+                </div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                  Chuyên Đề Lịch Sử Đất Thủ &amp; Tư Tưởng Hồ Chí Minh
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600 max-w-3xl">
+                  Tuyển tập các bài nghiên cứu sâu sắc về dấu ấn cụ Phó bảng Nguyễn Sinh Sắc, cội nguồn Chi bộ Lò Chén 1936, ngày toàn thắng tại Nhà việc Phú Cường và công tác xây dựng Không gian Văn hóa Hồ Chí Minh gắn với Quy định 144-QĐ/TW.
+                </p>
+              </div>
+
+              {/* Ô tìm kiếm bài viết */}
+              <div className="relative w-full md:w-72 shrink-0">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={articleSearchQuery}
+                  onChange={(e) => setArticleSearchQuery(e.target.value)}
+                  placeholder="Tìm chuyên đề, nhân vật..."
+                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-[#881337] bg-rose-50/30"
+                />
+              </div>
+            </div>
+
+            {/* Bộ lọc chuyên mục */}
+            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-rose-100">
+              {[
+                { id: 'ALL', label: 'Tất Cả Chuyên Đề (05)' },
+                { id: 'BÁC HỒ VỚI ĐẤT THỦ', label: 'Bác Hồ Với Đất Thủ' },
+                { id: 'LỊCH SỬ CÁCH MẠNG', label: 'Lịch Sử Cách Mạng' },
+                { id: 'XÂY DỰNG ĐẢNG', label: 'Xây Dựng Đảng & QĐ 144' },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => {
+                    hcmSfx.playClick(600);
+                    setArticleCategoryFilter(cat.id as any);
+                  }}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    articleCategoryFilter === cat.id
+                      ? 'bg-[#881337] text-white shadow-xs'
+                      : 'bg-rose-50/70 hover:bg-rose-100/70 text-slate-700'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Danh sách 5 bài viết chuyên đề */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {THU_DAU_MOT_HISTORICAL_ARTICLES.filter((art) => {
+              const matchCat = articleCategoryFilter === 'ALL' || art.category === articleCategoryFilter;
+              const matchQ =
+                !articleSearchQuery ||
+                art.title.toLowerCase().includes(articleSearchQuery.toLowerCase()) ||
+                art.summary.toLowerCase().includes(articleSearchQuery.toLowerCase()) ||
+                art.tags.some((t) => t.toLowerCase().includes(articleSearchQuery.toLowerCase()));
+              return matchCat && matchQ;
+            }).map((article) => (
+              <article
+                key={article.id}
+                className="bg-white rounded-3xl border border-rose-200/90 hover:border-rose-400 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-rose-100 text-[#881337]">
+                      {article.category}
+                    </span>
+                    <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      <span>{article.readTime}</span>
+                    </span>
+                  </div>
+
+                  <h3
+                    onClick={() => {
+                      hcmSfx.playClick(750);
+                      setReadingArticle(article);
+                    }}
+                    className="font-serif text-lg font-black text-slate-900 group-hover:text-[#881337] transition-colors leading-snug cursor-pointer line-clamp-2"
+                  >
+                    {article.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                    {article.summary}
+                  </p>
+
+                  {/* Trích dẫn kinh điển nếu có */}
+                  {article.keyQuotes && article.keyQuotes.length > 0 && (
+                    <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/70 text-[11px] text-amber-950 italic line-clamp-2">
+                      &ldquo;{article.keyQuotes[0]}&rdquo;
+                    </div>
+                  )}
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {article.tags.slice(0, 3).map((t) => (
+                      <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-rose-100 flex items-center justify-between">
+                  <div className="text-[11px] text-slate-500">
+                    <div>{article.author}</div>
+                    <div className="text-[10px] text-slate-400">{article.publishedDate}</div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => handleToggleArticleAudio(article)}
+                      title="Nghe giọng đọc chuyên đề"
+                      className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-[#881337] transition-colors cursor-pointer"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        hcmSfx.playClick(750);
+                        setReadingArticle(article);
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#881337] hover:bg-[#751D2C] text-white text-xs font-bold transition-all cursor-pointer shadow-xs"
+                    >
+                      <span>Đọc bài</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Modal / Drawer Đọc Toàn Văn Chuyên Đề */}
+          {readingArticle && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-xs animate-in fade-in">
+              <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-hidden flex flex-col shadow-2xl border-2 border-rose-300">
+                {/* Header Modal */}
+                <div className="p-5 sm:p-6 bg-gradient-to-r from-[#881337] via-[#9F1239] to-[#BE123C] text-white flex items-center justify-between shrink-0">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white/20 text-white uppercase tracking-wider">
+                      {readingArticle.category}
+                    </span>
+                    <h2 className="font-serif text-lg sm:text-2xl font-black text-white leading-tight">
+                      {readingArticle.title}
+                    </h2>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (isPlayingArticleAudio) {
+                        hcmVoiceService.stop();
+                        setIsPlayingArticleAudio(false);
+                      }
+                      setReadingArticle(null);
+                    }}
+                    className="p-2 rounded-full hover:bg-white/20 text-white transition-colors cursor-pointer shrink-0 ml-3"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* Body Article Reader */}
+                <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-slate-800 leading-relaxed font-sans">
+                  {/* Metadata bar */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-rose-100 text-xs text-slate-500">
+                    <div className="flex items-center gap-3">
+                      <span>Tác giả: <strong>{readingArticle.author}</strong></span>
+                      <span>•</span>
+                      <span>Ngày công bố: <strong>{readingArticle.publishedDate}</strong></span>
+                      <span>•</span>
+                      <span>Thời lượng: <strong>{readingArticle.readTime}</strong></span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleToggleArticleAudio(readingArticle)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        isPlayingArticleAudio
+                          ? 'bg-rose-700 text-white animate-pulse'
+                          : 'bg-rose-100 hover:bg-rose-200 text-[#881337]'
+                      }`}
+                    >
+                      {isPlayingArticleAudio ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                      <span>{isPlayingArticleAudio ? 'Dừng đọc' : 'Nghe giọng đọc toàn bài'}</span>
+                    </button>
+                  </div>
+
+                  {/* Summary Box */}
+                  <div className="p-4 rounded-2xl bg-rose-50/80 border-l-4 border-[#881337] text-sm text-slate-700 font-medium leading-relaxed">
+                    <strong>Tóm tắt nội dung:</strong> {readingArticle.summary}
+                  </div>
+
+                  {/* Trích dẫn nổi bật */}
+                  {readingArticle.keyQuotes && readingArticle.keyQuotes.map((q, idx) => (
+                    <blockquote key={idx} className="p-4 rounded-2xl bg-amber-50 border border-amber-300 text-amber-950 italic text-sm font-serif shadow-2xs">
+                      &ldquo;{q}&rdquo;
+                    </blockquote>
+                  ))}
+
+                  {/* Các phân mục chi tiết */}
+                  <div className="space-y-6">
+                    {readingArticle.contentSections.map((sec, idx) => (
+                      <div key={idx} className="space-y-3">
+                        <h3 className="font-serif text-lg font-bold text-[#881337] border-b border-rose-100 pb-1.5">
+                          {sec.heading}
+                        </h3>
+                        {sec.paragraphs.map((p, pIdx) => (
+                          <p key={pIdx} className="text-sm sm:text-[15px] text-slate-700 leading-relaxed text-justify">
+                            {p}
+                          </p>
+                        ))}
+                        {sec.calloutText && (
+                          <div className="p-3.5 rounded-xl bg-gradient-to-r from-rose-50 to-amber-50/60 border border-rose-200 text-xs sm:text-sm text-rose-950 font-semibold">
+                            💡 {sec.calloutText}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Di tích liên quan */}
+                  {readingArticle.relatedSiteIds && readingArticle.relatedSiteIds.length > 0 && (
+                    <div className="pt-4 border-t border-rose-100 space-y-2">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#881337] flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                        <span>Di Tích &amp; Địa Chỉ Đỏ Liên Quan Trực Tiếp</span>
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {readingArticle.relatedSiteIds.map((sId) => {
+                          const site = THU_DAU_MOT_HERITAGE_SITES.find((s) => s.id === sId);
+                          if (!site) return null;
+                          return (
+                            <button
+                              key={sId}
+                              type="button"
+                              onClick={() => {
+                                setReadingArticle(null);
+                                setActiveSite(site);
+                                setActiveSubTab('HERITAGE_MAP');
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-[#881337] text-xs font-bold border border-rose-200 transition-colors cursor-pointer"
+                            >
+                              <Compass className="w-3 h-3" />
+                              <span>{site.name}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Nguồn tài liệu đối chiếu */}
+                  <div className="pt-4 border-t border-rose-100 text-xs text-slate-500 space-y-1 bg-slate-50 p-4 rounded-2xl">
+                    <div className="font-bold text-slate-700">Tài liệu tham khảo &amp; kiểm chứng:</div>
+                    <ul className="list-disc list-inside space-y-0.5 text-[11px]">
+                      {readingArticle.referenceSources.map((src, sIdx) => (
+                        <li key={sIdx}>{src}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Footer Modal */}
+                <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
+                  <span className="text-xs text-slate-500">
+                    Ban Tuyên giáo Đảng ủy Phường Thủ Dầu Một • Không gian Văn hóa Hồ Chí Minh
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (isPlayingArticleAudio) {
+                        hcmVoiceService.stop();
+                        setIsPlayingArticleAudio(false);
+                      }
+                      setReadingArticle(null);
+                    }}
+                    className="px-5 py-2 rounded-xl bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold transition-all cursor-pointer"
+                  >
+                    Đóng bài đọc
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
       )}
 

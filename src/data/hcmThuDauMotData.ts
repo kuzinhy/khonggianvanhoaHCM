@@ -12,8 +12,8 @@
 export interface ThuDauMotHeritageSite {
   id: string;
   name: string;
-  category: 'LỊCH SỬ CÁCH MẠNG' | 'KIẾN TRÚC CỔ' | 'VĂN HÓA TÂM LINH' | 'DI SẢN ĐÔ THỊ';
-  rank: 'Di tích Quốc gia' | 'Di tích Cấp Tỉnh' | 'Công trình Di sản Đô thị' | 'Địa chỉ Đỏ Cơ sở';
+  category: 'LỊCH SỬ CÁCH MẠNG' | 'KIẾN TRÚC CỔ' | 'VĂN HÓA TÂM LINH' | 'DI SẢN ĐÔ THỊ' | string;
+  rank: 'Di tích Quốc gia' | 'Di tích Cấp Tỉnh' | 'Công trình Di sản Đô thị' | 'Địa chỉ Đỏ Cơ sở' | string;
   address: string;
   coords: { lat: number; lng: number };
   coordsText: string;
@@ -72,7 +72,7 @@ export interface WardChronologyEntry {
 }
 
 // =========================================================================
-// 1. HỆ THỐNG 08 DI TÍCH TRỌNG ĐIỂM TRÊN ĐỊA BÀN PHƯỜNG THỦ DẦU MỘT (MỚI)
+// 1. HỆ THỐNG 12 DI TÍCH TRỌNG ĐIỂM TRÊN ĐỊA BÀN PHƯỜNG THỦ DẦU MỘT (MỚI)
 // =========================================================================
 export const THU_DAU_MOT_HERITAGE_SITES: ThuDauMotHeritageSite[] = [
   {
@@ -318,10 +318,131 @@ export const THU_DAU_MOT_HERITAGE_SITES: ThuDauMotHeritageSite[] = [
     audioGuideText:
       'Di tích Chi bộ Lò Chén Tân Khánh Phú Cường là cội nguồn của Đảng bộ thành phố Thủ Dầu Một ngày nay, nơi ngọn cờ Đảng soi sáng cho giai cấp công nhân gốm sứ vươn lên đấu tranh giành độc lập.',
   },
+  {
+    id: 'site-nhatuphuloi',
+    name: 'Di Tích Lịch Sử Quốc Gia Nhà Tù Phú Lợi',
+    category: 'LỊCH SỬ CÁCH MẠNG',
+    rank: 'Di tích Quốc gia',
+    address: 'Đường 1 Tháng 12, P. Phú Lợi, TP. Thủ Dầu Một',
+    coords: { lat: 10.982222, lng: 106.680556 },
+    coordsText: '10°58\'56"N 106°40\'50"E',
+    googleMapsUrl: 'https://maps.app.goo.gl/354u4vTzJ4eJbX4J8',
+    establishedYear: '1957 (Thời kỳ chống Mỹ - Diệm)',
+    visitDuration: '1.5 – 2.0 giờ',
+    openingHours: '07:30 – 11:30 & 13:30 – 17:00 (Thứ 3 đến Chủ Nhật)',
+    ticketPrice: 'Miễn phí cho đoàn học tập truyền thống',
+    thumbnail: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+    summary:
+      'Được mệnh danh là "Địa ngục trần gian" miền Nam – Nơi giam cầm hàng ngàn chiến sĩ cách mạng và chứng tích vụ đầu độc tù nhân Phú Lợi ngày 01/12/1958 gây chấn động lương tri thế giới.',
+    historicalSignificance:
+      'Biểu tượng sáng ngời cho tinh thần bất khuất, kiên trung của các chiến sĩ cộng sản. Cuộc đấu tranh của tù nhân Phú Lợi đã trở thành ngọn cờ hiệu triệu toàn miền Nam nổi dậy trong phong trào Đồng Khởi 1960.',
+    architecturalHighlights: [
+      'Khu trại giam bằng tôn và dây thép gai kiên cố thời chiến tranh',
+      'Đài tưởng niệm các chiến sĩ cách mạng hy sinh ngày 1/12/1958',
+      'Nhà trưng bày hiện vật, hình ảnh tố cáo tội ác đế quốc và tay sai',
+      'Khu xà lim giam giữ biệt lập và các công sự phòng thủ xưa',
+    ],
+    visitorTips: [
+      'Dâng hương tại tượng đài tưởng niệm trước khi vào tham quan các gian trưng bày',
+      'Lắng nghe thuyết minh về bản anh hùng ca bất khuất của các nữ tù nhân và chiến sĩ cộng sản',
+    ],
+    audioGuideText:
+      'Di tích Lịch sử Quốc gia Nhà tù Phú Lợi là minh chứng hùng hồn cho tinh thần quả cảm kiên cường "Thà hy sinh chứ không chịu khuất phục" của những người con cách mạng Việt Nam anh dũng.',
+  },
+  {
+    id: 'site-loludaihung',
+    name: 'Di Tích Lịch Sử — Văn Hóa Cấp Tỉnh Lò Lu Đại Hưng',
+    category: 'DI SẢN ĐÔ THỊ',
+    rank: 'Di tích Cấp Tỉnh',
+    address: 'Ấp 1, Xã Tương Bình Hiệp, TP. Thủ Dầu Một',
+    coords: { lat: 11.011667, lng: 106.650833 },
+    coordsText: '11°00\'42"N 106°39\'03"E',
+    googleMapsUrl: 'https://maps.app.goo.gl/Ucm1qU8h7v9Vf2Lp7',
+    establishedYear: 'Khoảng thế kỷ 18 (Hơn 160 năm lịch sử)',
+    visitDuration: '45 – 60 phút',
+    openingHours: '07:30 – 17:00 hàng ngày',
+    ticketPrice: 'Miễn phí tham quan',
+    thumbnail: '/assets/hcm-space/card-khong-gian-3d.jpg',
+    summary:
+      'Lò gốm nung củi truyền thống có tuổi đời lâu đời nhất vùng Nam Bộ, lưu giữ trọn vẹn phương thức nung lu, hũ da lươn cổ truyền Đất Thủ.',
+    historicalSignificance:
+      'Đại diện cho văn hóa lao động cần cù, sáng tạo của cư dân bản địa kết hợp với thợ gốm người Hoa di cư, tạo nên dòng gốm Đại Hưng nức tiếng khắp Nam Kỳ lục tỉnh và giao thương quốc tế qua sông Sài Gòn.',
+    architecturalHighlights: [
+      'Hệ thống lò rồng (lò bao) dài hàng chục mét uốn lượn theo triền đồi',
+      'Khu chế tác đất sét, bàn xoay thủ công và hàng ngàn sản phẩm lu sành phơi nắng',
+      'Không gian làng nghề mộc mạc bên rặng tre và con rạch hiền hòa',
+    ],
+    visitorTips: [
+      'Trải nghiệm trực tiếp xoay vuốt đất sét trên bàn xoay thủ công cùng nghệ nhân',
+      'Gặp gỡ các nghệ nhân gốm lão thành chia sẻ về lửa lò Đại Hưng qua thế kỷ',
+    ],
+    audioGuideText:
+      'Lò lu Đại Hưng là bảo tàng sống của nghề gốm sứ Bình Dương, nơi giữ mãi ngọn lửa nghề truyền thống và hồn cốt văn hóa thủ công Đất Thủ qua hàng trăm năm.',
+  },
+  {
+    id: 'site-bendo-bachdang',
+    name: 'Bến Đò Bạch Đằng & Công Viên Di Sản Ven Sông',
+    category: 'DI SẢN ĐÔ THỊ',
+    rank: 'Công trình Di sản Đô thị',
+    address: 'Đường Bạch Đằng, P. Thủ Dầu Một',
+    coords: { lat: 10.9798, lng: 106.6521 },
+    coordsText: '10°58\'47"N 106°39\'08"E',
+    googleMapsUrl: 'https://maps.app.goo.gl/hVpC9hW5x9n1a2Kk6',
+    establishedYear: 'Hình thành từ thế kỷ 18 bên dòng sông Sài Gòn',
+    visitDuration: '1.0 – 1.5 giờ',
+    openingHours: 'Mở cửa tự do 24/7',
+    ticketPrice: 'Miễn phí',
+    thumbnail: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+    summary:
+      'Bến đò giao thương lịch sử bên sông Sài Gòn, chứng kiến ngày hội khởi nghĩa Tháng Tám 1945 và là không gian sinh hoạt văn hóa, lễ hội ven sông đặc sắc của Đất Thủ.',
+    historicalSignificance:
+      'Cửa ngõ đường thủy huyết mạch nối Thủ Dầu Một với Sài Gòn – Chợ Lớn và vùng Lục Tỉnh. Nơi các chiến sĩ biệt động và quần chúng cách mạng vượt sông làm nên những chiến công vang dội.',
+    architecturalHighlights: [
+      'Công viên hoa viên ven sông rợp bóng cây cổ thụ mát rượi',
+      'Tuyến đường đi bộ Bạch Đằng đón gió sông trong lành và ngắm hoàng hôn',
+      'Bến tàu du lịch kết nối các tour sinh thái đường sông Đất Thủ',
+    ],
+    visitorTips: [
+      'Thời điểm dạo mát đẹp nhất là bình minh hoặc chiều tà ngắm hoàng hôn buông trên sông Sài Gòn',
+      'Kết hợp tham quan Chợ cổ Thủ Dầu Một và Nhà truyền thống ven sông liền kề',
+    ],
+    audioGuideText:
+      'Bến Bạch Đằng không chỉ là tuyến giao thương thủy sầm uất xưa kia mà hôm nay đã trở thành công viên di sản văn hóa, nơi nhịp sống hiện đại hòa quyện cùng ký ức hào hùng của dòng sông lịch sử.',
+  },
+  {
+    id: 'site-dinhphuvan',
+    name: 'Đình Thần Phú Văn',
+    category: 'VĂN HÓA TÂM LINH',
+    rank: 'Di tích Cấp Tỉnh',
+    address: 'Khu phố 3, P. Phú Cường (nay thuộc P. Thủ Dầu Một)',
+    coords: { lat: 10.9855, lng: 106.6572 },
+    coordsText: '10°59\'08"N 106°39\'26"E',
+    googleMapsUrl: 'https://maps.app.goo.gl/d8Xv5M4zF8L1a3Kp8',
+    establishedYear: 'Đầu thế kỷ 19',
+    visitDuration: '30 – 45 phút',
+    openingHours: '07:30 – 17:00 hàng ngày',
+    ticketPrice: 'Miễn phí',
+    thumbnail: '/assets/hcm-space/card-tac-pham.jpg',
+    summary:
+      'Ngôi đình cổ mang đậm dấu ấn tín ngưỡng dân gian Nam Bộ, nơi thờ Thành hoàng Bổn cảnh và lưu giữ nhiều hiện vật điêu khắc gỗ tinh xảo.',
+    historicalSignificance:
+      'Trong những năm kháng chiến chống Pháp và chống Mỹ, đình là cơ sở bí mật nuôi giấu cán bộ cách mạng, điểm hội họp của các tổ chức thanh niên yêu nước Đất Thủ.',
+    architecturalHighlights: [
+      'Kiến trúc đình tam gian hai chái lợp ngói âm dương cổ kính',
+      'Các bức hoành phi, bao lam chạm khắc tứ linh, tứ quý sơn son thếp vàng đỉnh cao',
+      'Khu võ ca truyền thống nơi tổ chức hát bội trong các dịp lễ Kỳ yên hàng năm',
+    ],
+    visitorTips: [
+      'Trang phục lịch sự trang nghiêm khi viếng đình và thắp hương',
+      'Chiêm ngưỡng các mảng chạm khắc gỗ tinh xảo của thợ thủ công Đất Thủ xưa',
+    ],
+    audioGuideText:
+      'Đình thần Phú Văn là một góc bình yên giữa lòng đô thị, gìn giữ cội nguồn tâm linh và đạo lý uống nước nhớ nguồn của người dân Đất Thủ qua nhiều thế hệ.',
+  },
 ];
 
 // =========================================================================
-// 2. 03 TOUR DU KHẢO DI SẢN GỢI Ý (HERITAGE DISCOVERY ROUTES)
+// 2. 04 TOUR DU KHẢO DI SẢN GỢI Ý (HERITAGE DISCOVERY ROUTES)
 // =========================================================================
 export const THU_DAU_MOT_TOUR_ROUTES: HeritageTourRoute[] = [
   {
@@ -359,6 +480,18 @@ export const THU_DAU_MOT_TOUR_ROUTES: HeritageTourRoute[] = [
       'Hòa mình vào không gian thanh tịnh Chùa Hội Khánh, dâng hương Đình thần Phú Cường sắc phong 1852 và tìm hiểu Miếu Bà Thiên Hậu với nét đẹp lễ hội vì cộng đồng.',
     siteIds: ['site-chuahoikhanh', 'site-dinhphucuong', 'site-chuaba'],
     badgeColor: 'from-[#1E3A8A] to-[#1E293B]',
+  },
+  {
+    id: 'tour-diachi-do',
+    title: 'Tour 4: Địa Chỉ Đỏ Kháng Chiến & Vành Đai Cách Mạng Đất Thủ',
+    theme: 'Truyền thống yêu nước, tôi luyện ý chí & ký ức hào hùng',
+    duration: 'Cả ngày (khoảng 5.0 giờ)',
+    distance: '6.5 km',
+    recommendedTransport: 'Xe ô tô du lịch hoặc đoàn xe máy',
+    description:
+      'Tuyến hành trình về nguồn đặc biệt kết nối Di tích Nhà việc Phú Cường, Chi bộ Lò Chén 1936, Di tích Quốc gia Nhà tù Phú Lợi và Chùa Hội Khánh — dấu ấn lịch sử hào hùng của quân và dân Thủ Dầu Một.',
+    siteIds: ['site-nhatruyenthong', 'site-lochen', 'site-nhatuphuloi', 'site-chuahoikhanh'],
+    badgeColor: 'from-[#881337] to-[#991B1B]',
   },
 ];
 
@@ -699,5 +832,260 @@ export const TDM_WARD_PARTY_CHRONOLOGY: WardChronologyEntry[] = [
     leadingUnit: 'Đảng ủy Phường Thủ Dầu Một',
     documentRef: 'Quyết định vận hành chính thức',
     isHighlight: true,
+  },
+];
+
+
+// =========================================================================
+// 5. CÁC BÀI VIẾT & CHUYÊN ĐỀ LỊCH SỬ CHÍNH THỐNG VỀ ĐẤT THỦ & BÁC HỒ
+// =========================================================================
+export interface HistoricalArticleItem {
+  id: string;
+  title: string;
+  category: 'LỊCH SỬ CÁCH MẠNG' | 'BÁC HỒ VỚI ĐẤT THỦ' | 'XÂY DỰNG ĐẢNG' | 'DI SẢN VĂN HÓA';
+  summary: string;
+  author: string;
+  publishedDate: string;
+  readTime: string;
+  coverImage: string;
+  tags: string[];
+  keyQuotes?: string[];
+  contentSections: {
+    heading: string;
+    paragraphs: string[];
+    calloutText?: string;
+    subImage?: string;
+  }[];
+  relatedSiteIds?: string[];
+  referenceSources: string[];
+}
+
+export const THU_DAU_MOT_HISTORICAL_ARTICLES: HistoricalArticleItem[] = [
+  {
+    id: 'art-nguyen-sinh-sac',
+    title: 'Cụ Phó bảng Nguyễn Sinh Sắc và ngọn lửa yêu nước tại Chùa Hội Khánh',
+    category: 'BÁC HỒ VỚI ĐẤT THỦ',
+    summary:
+      'Tìm hiểu giai đoạn cụ Phó bảng Nguyễn Sinh Sắc — thân sinh Chủ tịch Hồ Chí Minh — dừng chân tại Thủ Dầu Một (1923 - 1926), sáng lập Hội Danh Dự yêu nước, gieo mầm tư tưởng cách mạng vào lòng nhân sĩ Đất Thủ.',
+    author: 'Ban Tuyên giáo & Hội Khoa học Lịch sử Tỉnh',
+    publishedDate: '19/05/2026',
+    readTime: '6 phút đọc',
+    coverImage: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+    tags: ['Cụ Nguyễn Sinh Sắc', 'Chùa Hội Khánh', 'Hội Danh Dự', 'Đất Thủ', 'Bác Hồ'],
+    keyQuotes: [
+      'Đại sự khởi ư tế, tích tiểu thành đại. Lòng yêu nước thương dân bắt đầu từ việc làm điều thiện, trừ điều ác cho đồng bào.',
+      'Dấu chân cụ Nguyễn Sinh Sắc tại Chùa Hội Khánh là sợi dây tâm linh và lịch sử thiêng liêng nối liền Đất Thủ với Bác Hồ kính yêu.',
+    ],
+    contentSections: [
+      {
+        heading: '1. Hành trình phương Nam và điểm dừng chân Chùa Hội Khánh',
+        paragraphs: [
+          'Sau khi từ quan, rời bỏ chốn quan trường thối nát của triều đình nhà Nguyễn, cụ Phó bảng Nguyễn Sinh Sắc đã bôn ba khắp các tỉnh Nam Bộ, hành nghề bốc thuốc chữa bệnh cứu người và tìm kiếm những bậc chí sĩ chung chí hướng cứu quốc.',
+          'Khoảng những năm 1923 – 1926, cụ Nguyễn Sinh Sắc đã nhiều lần lui tới và lưu lại chùa Hội Khánh (Thủ Dầu Một). Nơi đây, với sự che chở của Hòa thượng Từ Văn — một bậc cao tăng uyên thâm và có tinh thần dân tộc sâu sắc — cụ Sắc đã mở lớp dạy chữ Nho, bốc thuốc nam trị bệnh cho dân nghèo và đàm đạo việc nước với các nhân sĩ yêu nước địa phương.',
+        ],
+        calloutText: 'Tại chùa Hội Khánh, cụ Sắc đã cùng Hòa thượng Từ Văn và thầy giáo Som thành lập Hội Danh Dự — một tổ chức yêu nước kín đáo với tôn chỉ cổ vũ lòng tự hào dân tộc, giúp đỡ người hoạn nạn.',
+      },
+      {
+        heading: '2. Hoạt động của Hội Danh Dự và ảnh hưởng sâu rộng',
+        paragraphs: [
+          'Hội Danh Dự tuy hoạt động dưới vỏ bọc tương tế, thiện nguyện và chấn hưng văn hóa, nhưng thực chất là cái nôi giác ngộ tinh thần yêu nước cho tầng lớp thanh niên, thợ thủ công và trí thức Đất Thủ. Cụ Sắc thường dùng các câu chuyện lịch sử dân tộc, gương anh hùng dựng nước và giữ nước để khơi dậy ngọn lửa quật khởi trong lòng môn đệ.',
+          'Nhiều hội viên của Hội Danh Dự sau này đã trở thành những hạt nhân nòng cốt tham gia các phong trào đấu tranh cách mạng, gia nhập tổ chức Việt Nam Thanh niên Cách mạng Đồng chí Hội và sau đó là Đảng Cộng sản Việt Nam tại Thủ Dầu Một.',
+        ],
+      },
+      {
+        heading: '3. Di sản bất tử và niềm tự hào của Đảng bộ và Nhân dân',
+        paragraphs: [
+          'Ngày nay, gian nhà phía sau chùa Hội Khánh — nơi cụ Nguyễn Sinh Sắc từng ngồi bốc thuốc và giảng bài — đã được trùng tu, trở thành một không gian lưu niệm tôn nghiêm. Mỗi độ Tết đến, Xuân về hay vào dịp kỷ niệm ngày sinh Bác Hồ (19/5), các thế hệ cán bộ, đảng viên và người dân Thủ Dầu Một lại tề tựu về đây để tưởng niệm bậc thân sinh vĩ đại của Người.',
+        ],
+      },
+    ],
+    relatedSiteIds: ['site-chuahoikhanh', 'site-nhatruyenthong'],
+    referenceSources: [
+      'Lịch sử Đảng bộ tỉnh Bình Dương (1930 - 2020), NXB Chính trị Quốc gia Sự thật',
+      'Hồ sơ Di tích Lịch sử Chùa Hội Khánh, Sở Văn hóa - Thể thao và Du lịch tỉnh Bình Dương',
+      'Kỷ yếu Hội thảo Khoa học: Cụ Phó bảng Nguyễn Sinh Sắc với vùng đất Nam Bộ, 2019',
+    ],
+  },
+  {
+    id: 'art-chi-bo-lo-chen',
+    title: 'Chi bộ Lò Chén Phú Cường (1936) – Ngọn cờ đầu của phong trào công nhân Đất Thủ',
+    category: 'LỊCH SỬ CÁCH MẠNG',
+    summary:
+      'Sự ra đời của Chi bộ Lò Chén tháng 02/1936 đánh dấu bước ngoặt quyết định phong trào công nhân gốm sứ và nhân dân lao động Thủ Dầu Một bước vào quỹ đạo đấu tranh cách mạng có tổ chức dưới sự lãnh đạo của Đảng.',
+    author: 'Ban Tuyên giáo Đảng ủy Phường Thủ Dầu Một',
+    publishedDate: '03/02/2026',
+    readTime: '7 phút đọc',
+    coverImage: '/assets/hcm-space/card-cuoc-doi.jpg',
+    tags: ['Chi bộ Lò Chén', 'Phong trào công nhân', 'Lịch sử Đảng bộ', '1936', 'Phú Cường'],
+    keyQuotes: [
+      'Chi bộ Lò Chén là hạt giống đỏ đầu tiên nảy mầm trên mảnh đất Thủ Dầu Một kiên cường, nơi ngọn cờ Đảng soi rọi con đường giải phóng giai cấp và giải phóng dân tộc.',
+    ],
+    contentSections: [
+      {
+        heading: '1. Bối cảnh lịch sử và phong trào công nhân gốm sứ Đất Thủ',
+        paragraphs: [
+          'Vào những năm 1930, Thủ Dầu Một là trung tâm sản xuất gốm sứ thủ công mỹ nghệ lớn nhất Nam Kỳ với hàng chục lò gốm sứ, tập trung hàng ngàn thợ gốm, phu lò và thợ mộc sơn mài. Công nhân ở đây phải làm việc quần quật 12-14 giờ mỗi ngày trong điều kiện nóng bức, độc hại nhưng đồng lương rẻ mạt và bị giới chủ cúp phạt tàn nhẫn.',
+          'Dưới ảnh hưởng của cao trào cách mạng 1930 - 1931 và phong trào Mặt trận Dân chủ Đông Dương, tư tưởng Mác-Lênin đã lan truyền mạnh mẽ vào xưởng thợ. Các cán bộ Xứ ủy Nam Kỳ đã bí mật về Thủ Dầu Một để gầy dựng cơ sở cách mạng trong hàng ngũ công nhân lò gốm.',
+        ],
+      },
+      {
+        heading: '2. Sự ra đời của Chi bộ Lò Chén tháng 02/1936',
+        paragraphs: [
+          'Tháng 02/1936, tại một căn chòi nhỏ bên cạnh Lò gốm Tân Khánh – Phú Cường, Chi bộ Đảng Cộng sản đầu tiên của vùng Thủ Dầu Một chính thức được thành lập gồm 3 đảng viên trung kiên: đồng chí Trương Văn Bền, đồng chí Nguyễn Văn Tiết và đồng chí Hồ Văn Cống.',
+          'Ngay sau khi thành lập, Chi bộ đã nhanh chóng lãnh đạo công nhân lò gốm bãi công đòi tăng lương, giảm giờ làm, chống đánh đập và đòi tự do nghiệp đoàn. Cuộc bãi công của hơn 500 thợ gốm Phú Cường đã thắng lợi rực rỡ, buộc giới chủ phải nhượng bộ, tạo tiếng vang lớn khắp miền Đông Nam Bộ.',
+        ],
+        calloutText: 'Từ đốm lửa Lò Chén, tổ chức Đảng đã phát triển rộng khắp ra các đồn điền cao su Dầu Tiếng, các xưởng mộc Chợ Thủ và nông thôn các xã lân cận, chuẩn bị lực lượng cho cuộc Cách mạng Tháng Tám 1945.',
+      },
+      {
+        heading: '3. Bài học về sự gắn bó máu thịt với giai cấp công nhân và nhân dân',
+        paragraphs: [
+          'Thực tiễn 90 năm lịch sử đã chứng minh: Chi bộ Lò Chén thành công là nhờ các đảng viên luôn "ba cùng" với người lao động, thấu hiểu tâm tư, bảo vệ quyền lợi chính đáng của quần chúng. Đây là bài học vô giá đối với công tác xây dựng chỉnh đốn Đảng tại Đảng bộ phường Thủ Dầu Một hôm nay.',
+        ],
+      },
+    ],
+    relatedSiteIds: ['site-lochen', 'site-loludaihung', 'site-nhatruyenthong'],
+    referenceSources: [
+      'Lịch sử Đảng bộ TP. Thủ Dầu Một (1930 - 2025), Ban Tuyên giáo Thành ủy',
+      'Lịch sử phong trào công nhân và Công đoàn tỉnh Bình Dương, NXB Lao Động',
+      'Hồ sơ lưu trữ Chi bộ Lò Chén Phú Cường, Bảo tàng tỉnh Bình Dương',
+    ],
+  },
+  {
+    id: 'art-khoi-nghia-nha-viec',
+    title: 'Khởi nghĩa Tháng Tám 1945 và Mùa Xuân 1975 toàn thắng tại Nhà việc Phú Cường',
+    category: 'LỊCH SỬ CÁCH MẠNG',
+    summary:
+      'Nhà việc Phú Cường (nay là Nhà truyền thống Thủ Dầu Một) — chứng nhân lịch sử của hai mốc son rực rỡ: ngày 25/8/1945 giành chính quyền về tay nhân dân và sáng ngày 30/4/1975 lá cờ chiến thắng tung bay giải phóng hoàn toàn Đất Thủ.',
+    author: 'Hội Cựu Chiến binh & Đoàn Thanh niên Phường',
+    publishedDate: '30/04/2026',
+    readTime: '8 phút đọc',
+    coverImage: '/assets/hcm-space/card-dong-thoi-gian.jpg',
+    tags: ['Nhà việc Phú Cường', 'Khởi nghĩa 1945', 'Giải phóng 1975', 'Nhà truyền thống', 'Thủ Dầu Một'],
+    keyQuotes: [
+      'Sáng 25/8/1945, rừng cờ đỏ sao vàng rực rỡ bên bờ sông Sài Gòn. Tiếng reo hò dậy đất của hàng vạn đồng bào tại Nhà việc Phú Cường đã chôn vùi chế độ thực dân phong kiến.',
+      'Sáng 30/4/1975, cờ Mặt trận Dân tộc Giải phóng tung bay trên nóc Tòa Tỉnh trưởng và Nhà việc Phú Cường, non sông thu về một mối.',
+    ],
+    contentSections: [
+      {
+        heading: '1. Vị trí chiến lược của Nhà việc Phú Cường xưa',
+        paragraphs: [
+          'Nhà việc Phú Cường (Nhà Làng Phú Cường) được xây dựng từ thời thuộc Pháp ven ngã ba sông Sài Gòn, vốn là trung tâm quyền lực hành chính của bộ máy cai trị thực dân tại tỉnh lỵ Thủ Dầu Một. Nơi đây kiểm soát chặt chẽ cả đường bộ lẫn tuyến giao thông đường thủy huyết mạch nối miền Đông với Sài Gòn.',
+          'Chính vì tính chất trọng yếu đó, Nhà việc Phú Cường luôn là mục tiêu tiến công hàng đầu trong các kế hoạch khởi nghĩa giải phóng của quân và dân cách mạng.',
+        ],
+      },
+      {
+        heading: '2. Ngày 25/8/1945: Khởi nghĩa rung chuyển bờ sông Bạch Đằng',
+        paragraphs: [
+          'Thực hiện Lệnh khởi nghĩa của Xứ ủy Nam Kỳ, sáng sớm ngày 25/8/1945, dưới sự chỉ đạo của Tỉnh ủy lâm thời Thủ Dầu Một, hàng vạn công nhân cao su Dầu Tiếng, thợ gốm Phú Cường, thợ mộc Chợ Thủ cùng đông đảo nông dân mang gậy gộc, giáo mác, súng tự tạo rầm rộ kéo về thị xã.',
+          'Đoàn biểu tình đã bao vây chặt Nhà việc Phú Cường và Dinh Tỉnh trưởng, buộc tỉnh trưởng ngụy quyền phải đầu hàng vô điều kiện và trao nộp toàn bộ vũ khí, ấn tín. Lần đầu tiên trong lịch sử, lá cờ đỏ sao vàng kiêu hãnh tung bay trên nóc Nhà việc Phú Cường trong tiếng vỗ tay rền vang của biển người.',
+        ],
+        calloutText: 'Cuộc khởi nghĩa giành chính quyền tại Nhà việc Phú Cường ngày 25/8/1945 đã diễn ra nhanh gọn, triệt để và không đổ máu, thể hiện sự mưu trí, quả cảm và sức mạnh đại đoàn kết dân tộc.',
+      },
+      {
+        heading: '3. Đại thắng Mùa Xuân 30/4/1975 và diện mạo Nhà Truyền Thống hôm nay',
+        paragraphs: [
+          'Ba mươi năm sau, trong Chiến dịch Hồ Chí Minh lịch sử, vào lúc 10 giờ 30 phút ngày 30/4/1975, các mũi tiến công của quân giải phóng phối hợp với lực lượng biệt động nội thành đã chiếm lĩnh toàn bộ thị xã Thủ Dầu Một, cắm cờ chiến thắng tại Nhà việc Phú Cường, đập tan sào huyệt cuối cùng của chế độ Sài Gòn.',
+          'Hôm nay, trên nền di tích xưa, Đảng bộ và chính quyền đã xây dựng Nhà truyền thống Thủ Dầu Một khang trang, phục dựng số hóa 3D VR hiện đại, trở thành "địa chỉ đỏ" giáo dục truyền thống cách mạng cho muôn đời sau.',
+        ],
+      },
+    ],
+    relatedSiteIds: ['site-nhatruyenthong', 'site-bendo-bachdang', 'site-chothudaumot'],
+    referenceSources: [
+      'Bình Dương – Lịch sử 30 năm kháng chiến chống Mỹ cứu nước (1954 - 1975)',
+      'Hồi ký cách mạng của các tướng lĩnh và lão thành cách mạng Đất Thủ',
+      'Tài liệu lịch sử Đảng bộ Phường Thủ Dầu Một, 2025',
+    ],
+  },
+  {
+    id: 'art-kgvh-hcm-dat-thu',
+    title: 'Xây dựng Không gian Văn hóa Hồ Chí Minh – Động lực phát triển văn hóa, con người Thủ Dầu Một',
+    category: 'XÂY DỰNG ĐẢNG',
+    summary:
+      'Quán triệt Nghị quyết Đại hội Đảng các cấp, Phường Thủ Dầu Một triển khai toàn diện Không gian Văn hóa Hồ Chí Minh cả về vật thể, phi vật thể và trên không gian số, tạo sức lan tỏa sâu rộng trong đời sống nhân dân.',
+    author: 'Ban Chỉ đạo Xây dựng Không gian Văn hóa HCM Phường',
+    publishedDate: '15/05/2026',
+    readTime: '6 phút đọc',
+    coverImage: '/assets/hcm-space/card-khong-gian-3d.jpg',
+    tags: ['Không gian văn hóa Hồ Chí Minh', 'Thủ Dầu Một', 'Đô thị văn minh', 'Chuyển đổi số', 'Con người Đất Thủ'],
+    keyQuotes: [
+      'Không gian Văn hóa Hồ Chí Minh không chỉ là những phòng trưng bày cố định, mà phải hiện hữu sống động trong từng nếp nghĩ, lời ăn tiếng nói, tinh thần tương thân tương ái nghĩa tình của người dân Thủ Dầu Một.',
+    ],
+    contentSections: [
+      {
+        heading: '1. Ý nghĩa chiến lược của Không gian Văn hóa Hồ Chí Minh tại cơ sở',
+        paragraphs: [
+          'Thủ Dầu Một là vùng đất giàu truyền thống yêu nước và cách mạng, nơi lưu dấu ấn của cụ Phó bảng Nguyễn Sinh Sắc và phong trào công nhân quật khởi. Việc xây dựng Không gian Văn hóa Hồ Chí Minh là vinh dự và trách nhiệm thiêng liêng của toàn thể hệ thống chính trị.',
+          'Không gian văn hóa này bao gồm 3 trụ cột đồng bộ: (1) Không gian văn hóa vật thể tại các công sở, trường học, di tích; (2) Không gian văn hóa phi vật thể thấm sâu vào văn hóa ứng xử, đạo đức lối sống "Nghĩa tình Đất Thủ"; và (3) Không gian văn hóa số trên môi trường mạng phục vụ nhân dân tương tác 24/7.',
+        ],
+      },
+      {
+        heading: '2. Những kết quả nổi bật sau ngày sáp nhập phường mới (01/07/2025)',
+        paragraphs: [
+          'Sau khi thực hiện sắp xếp đơn vị hành chính mới, Đảng ủy Phường Thủ Dầu Một đã phát động phong trào thi đua "Mỗi chi bộ một công trình văn hóa Hồ Chí Minh". Đến nay, 100% chi bộ khu phố, trường học, trạm y tế đã hoàn thành tủ sách Bác Hồ, vách gỗ 5 Điều Bác dạy cho thiếu nhi.',
+          'Đặc biệt, Cổng thông tin Không gian Văn hóa Hồ Chí Minh trực tuyến tích hợp mô hình 3D VR Nhà việc Phú Cường, 600 trang lịch sử Đảng bộ số hóa, kho 120 mẩu chuyện kể có giọng đọc AI truyền cảm đã thu hút hàng trăm ngàn lượt người truy cập học tập.',
+        ],
+        calloutText: 'Mô hình "Bếp cơm nghĩa tình 0 đồng", "Tủ sách trao tay", "Hòm thư báo công dâng Bác" đã biến việc học Bác thành hành động cụ thể, giản dị mà chan chứa tình người.',
+      },
+      {
+        heading: '3. Phương hướng tiếp tục lan tỏa trong kỷ nguyên mới',
+        paragraphs: [
+          'Thời gian tới, phường tiếp tục đầu tư số hóa toàn diện 12 địa chỉ đỏ, tổ chức các hội thi "Chúng em kể chuyện Bác Hồ", giải thưởng "Công dân trẻ tiêu biểu làm theo lời Bác", quyết tâm xây dựng Thủ Dầu Một thành đô thị văn minh, thông minh, giàu đẹp và nghĩa tình.',
+        ],
+      },
+    ],
+    relatedSiteIds: ['site-nhatruyenthong', 'site-chuahoikhanh'],
+    referenceSources: [
+      'Nghị quyết Đại hội Đảng bộ Phường Thủ Dầu Một nhiệm kỳ 2025 - 2030',
+      'Đề án Xây dựng Nếp sống văn hóa, văn minh đô thị TP. Thủ Dầu Một',
+      'Chỉ thị số 05-CT/TW và Kết luận số 01-KL/TW của Bộ Chính trị',
+    ],
+  },
+  {
+    id: 'art-hoc-tap-quy-dinh-144',
+    title: 'Chuẩn mực đạo đức cách mạng của cán bộ, đảng viên theo Quy định 144-QĐ/TW gắn với học Bác',
+    category: 'XÂY DỰNG ĐẢNG',
+    summary:
+      'Phân tích sâu 5 chuẩn mực đạo đức cách mạng của cán bộ, đảng viên trong giai đoạn mới theo Quy định số 144-QĐ/TW của Bộ Chính trị, soi chiếu qua tấm gương mẫu mực cần, kiệm, liêm, chính của Chủ tịch Hồ Chí Minh.',
+    author: 'Ủy ban Kiểm tra & Ban Tổ chức Đảng ủy Phường',
+    publishedDate: '10/06/2026',
+    readTime: '7 phút đọc',
+    coverImage: '/assets/hcm-space/card-tac-pham.jpg',
+    tags: ['Quy định 144-QĐ/TW', 'Chuẩn mực đạo đức', 'Cần kiệm liêm chính', 'Cán bộ đảng viên', 'Học tập Bác'],
+    keyQuotes: [
+      'Đạo đức cách mạng không phải trên trời sa xuống. Nó do đấu tranh, rèn luyện bền bỉ hàng ngày mà phát triển và củng cố. Cũng như ngọc càng mài càng sáng, vàng càng luyện càng trong.',
+      'Cán bộ là cái gốc của mọi công việc. Muốn nhân dân tin, cán bộ phải làm gương trước: việc gì có lợi cho dân phải hết sức làm, việc gì có hại cho dân phải hết sức tránh.',
+    ],
+    contentSections: [
+      {
+        heading: '1. Tầm quan trọng của Quy định 144-QĐ/TW trong tình hình hiện nay',
+        paragraphs: [
+          'Ngày 09/05/2024, Bộ Chính trị ban hành Quy định số 144-QĐ/TW về "Chuẩn mực đạo đức cách mạng của cán bộ, đảng viên trong giai đoạn mới". Đây là văn kiện đặc biệt quan trọng nhằm xây dựng đội ngũ cán bộ vừa "hồng" vừa "chuyên", có đủ phẩm chất, năng lực và uy tín ngang tầm nhiệm vụ.',
+          'Quy định 144 kế thừa trọn vẹn tư tưởng Hồ Chí Minh về đạo đức cách mạng, cụ thể hóa thành 5 chuẩn mực cô đọng, rõ ràng, là tấm gương soi hàng ngày cho mỗi cán bộ, đảng viên tự soi, tự sửa.',
+        ],
+      },
+      {
+        heading: '2. Năm chuẩn mực đạo đức cốt lõi soi chiếu qua cuộc đời Bác Hồ',
+        paragraphs: [
+          'Điều 1: Yêu nước, tôn trọng Nhân dân, tuyệt đối trung thành với Đảng, với Tổ quốc. Bác Hồ từng căn dặn: "Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân". Phụng sự Tổ quốc là mục tiêu tối thượng.',
+          'Điều 2: Bản lĩnh, đổi mới, sáng tạo, hội nhập. Bác luôn dám nghĩ, dám làm, dám vượt qua những lối mòn để tìm ra con đường cứu nước đúng đắn cho dân tộc.',
+          'Điều 3: Cần, kiệm, liêm, chính, chí công vô tư. Bác suốt đời sống thanh bạch, đôi dép lốp, bộ quần áo kaki sờn vai, chiếc nhà sàn mộc mạc, không mảy may tơ hào của công.',
+          'Điều 4: Đoàn kết, kỷ cương, tình thương, trách nhiệm. Đoàn kết trong Đảng là hạt nhân của khối đại đoàn kết toàn dân tộc.',
+          'Điều 5: Gương mẫu, khiêm tốn, tu dưỡng rèn luyện, học tập suốt đời.',
+        ],
+        calloutText: 'Tại Đảng bộ Phường Thủ Dầu Một, mỗi cán bộ, đảng viên đều ký cam kết tu dưỡng 5 chuẩn mực đạo đức Quy định 144, lấy sự hài lòng của người dân làm thước đo cao nhất của hiệu quả công tác.',
+      },
+      {
+        heading: '3. Đưa chuẩn mực đạo đức vào nền nếp sinh hoạt Chi bộ',
+        paragraphs: [
+          'Thông qua Không gian Văn hóa Hồ Chí Minh số và ứng dụng "Sổ tay Đảng viên điện tử", các chi bộ phường tổ chức sinh hoạt chuyên đề định kỳ, biểu dương kịp thời những tấm gương liêm chính, tận tụy, đồng thời kiên quyết đấu tranh phòng chống suy thoái, "tự diễn biến", "tự chuyển hóa".',
+        ],
+      },
+    ],
+    relatedSiteIds: ['site-nhatruyenthong', 'site-lochen'],
+    referenceSources: [
+      'Quy định số 144-QĐ/TW ngày 09/05/2024 của Bộ Chính trị',
+      'Hồ Chí Minh Toàn tập, Tập 5, Tập 15, NXB Chính trị Quốc gia Sự thật',
+      'Hướng dẫn số 159-HD/BTGTW của Ban Tuyên giáo Trung ương thực hiện Quy định 144-QĐ/TW',
+    ],
   },
 ];

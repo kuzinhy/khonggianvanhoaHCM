@@ -262,7 +262,7 @@ export const HcmRedHeritageMapModal: React.FC<{
             <div className="flex items-center gap-2 font-medium">
               <Sparkles className="w-4 h-4 text-rose-600 shrink-0" />
               <span>
-                Bạn đang tìm hiểu di tích tại địa phương? Khám phá <strong>Bản đồ số 08 Di tích &amp; Biên niên sử Đảng bộ Phường Thủ Dầu Một mới (từ 01/07/2025)</strong>:
+                Bạn đang tìm hiểu di tích tại địa phương? Khám phá <strong>Bản đồ số 12 Di tích &amp; Biên niên sử Đảng bộ Phường Thủ Dầu Một mới (từ 01/07/2025)</strong>:
               </span>
             </div>
             <button
