@@ -35,6 +35,10 @@ import {
   Square,
   Trophy,
   RotateCcw,
+  Search,
+  Filter,
+  Bookmark,
+  Check,
 } from 'lucide-react';
 import {
   FIVE_TEACHINGS_DATA,
@@ -89,6 +93,82 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
   const [selectedSite, setSelectedSite] = useState<HistoricalSiteItem | null>(null);
   const [selectedStory, setSelectedStory] = useState<MoralStoryItem>(MORAL_STORIES[0]);
   const [selectedSong, setSelectedSong] = useState<ChildrenSongItem>(CHILDREN_SONGS[0]);
+
+  // Bộ lọc thông minh cho Tuyển tập 15 truyện kể chính thống
+  const [storyTeachingFilter, setStoryTeachingFilter] = useState<'ALL' | 'DIEU_1' | 'DIEU_2' | 'DIEU_3' | 'DIEU_4' | 'DIEU_5'>('ALL');
+  const [storyGradeFilter, setStoryGradeFilter] = useState<'ALL' | 'Lớp 1 – 3' | 'Lớp 4 – 5' | 'THCS'>('ALL');
+  const [storySearchTerm, setStorySearchTerm] = useState('');
+  const [storyFontSize, setStoryFontSize] = useState<'sm' | 'base' | 'lg'>('base');
+
+  // Trắc nghiệm tương tác đọc hiểu sau mỗi câu chuyện (Gamification Búp Sen Vàng)
+  const [storyQuizSelection, setStoryQuizSelection] = useState<number | null>(null);
+  const [storyQuizSubmitted, setStoryQuizSubmitted] = useState<boolean>(false);
+  const [storyQuizFeedback, setStoryQuizFeedback] = useState<'CORRECT' | 'WRONG' | null>(null);
+  const [storyQuizCompletedMap, setStoryQuizCompletedMap] = useState<Record<string, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem('hcm_kids_story_quiz_completed');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {};
+  });
+  const [lotusPoints, setLotusPoints] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('hcm_kids_lotus_points');
+      if (saved) return parseInt(saved, 10);
+    } catch {}
+    return 5; // Tặng ngay 5 Búp Sen Vàng khởi điểm cho bé
+  });
+
+  // Reset quiz selection khi chọn truyện khác
+  useEffect(() => {
+    setStoryQuizSelection(null);
+    setStoryQuizSubmitted(false);
+    setStoryQuizFeedback(null);
+  }, [selectedStory.id]);
+
+  const handleAnswerStoryQuiz = (optionIndex: number) => {
+    if (storyQuizSubmitted || !selectedStory.interactiveQuiz) return;
+    setStoryQuizSelection(optionIndex);
+    setStoryQuizSubmitted(true);
+    if (optionIndex === selectedStory.interactiveQuiz.correctAnswer) {
+      hcmSfx.playSuccess();
+      setStoryQuizFeedback('CORRECT');
+      if (!storyQuizCompletedMap[selectedStory.id]) {
+        const updatedMap = { ...storyQuizCompletedMap, [selectedStory.id]: true };
+        setStoryQuizCompletedMap(updatedMap);
+        const updatedPoints = lotusPoints + 1;
+        setLotusPoints(updatedPoints);
+        try {
+          localStorage.setItem('hcm_kids_story_quiz_completed', JSON.stringify(updatedMap));
+          localStorage.setItem('hcm_kids_lotus_points', updatedPoints.toString());
+        } catch {}
+      }
+    } else {
+      hcmSfx.playClick(400);
+      setStoryQuizFeedback('WRONG');
+    }
+  };
+
+  // Lọc 15 mẩu chuyện thông minh theo 5 Điều Bác dạy, cấp học và từ khóa tìm kiếm
+  const filteredStories = MORAL_STORIES.filter((story) => {
+    if (storyTeachingFilter !== 'ALL' && story.teachingGroup !== storyTeachingFilter) {
+      return false;
+    }
+    if (storyGradeFilter !== 'ALL' && story.gradeCategory !== storyGradeFilter && story.gradeCategory !== 'Tất cả') {
+      return false;
+    }
+    if (storySearchTerm.trim()) {
+      const term = storySearchTerm.toLowerCase();
+      const matchTitle = story.title.toLowerCase().includes(term);
+      const matchContent = story.content.toLowerCase().includes(term);
+      const matchLesson = story.lesson.toLowerCase().includes(term);
+      const matchPeriod = story.historicalPeriod.toLowerCase().includes(term);
+      if (!matchTitle && !matchContent && !matchLesson && !matchPeriod) {
+        return false;
+      }
+    }
+    return true;
+  });
 
   // Audio / Story narration TTS state
   const [isReadingStory, setIsReadingStory] = useState(false);
@@ -213,7 +293,8 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
     }
 
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(selectedStory.content);
+    const textToRead = `${selectedStory.title}. ${selectedStory.lesson}. Chi tiết vàng của Bác: ${selectedStory.goldenQuote}. Nội dung câu chuyện: ${selectedStory.content}. Bài học rút ra cho chúng em: ${selectedStory.moralLesson}`;
+    const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = 'vi-VN';
     utterance.rate = 0.9;
     utterance.pitch = 1.05;
@@ -377,7 +458,7 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
           {[
             { id: 'WALL', label: 'Bức Tường Bác Hồ (Mô hình)', icon: Flag },
             { id: 'TEACHINGS', label: '5 Điều Bác Dạy (Tự rèn luyện)', icon: Heart },
-            { id: 'STORIES', label: '10 Truyện Kể Đạo Đức', icon: BookOpen },
+            { id: 'STORIES', label: '15 Truyện Kể Về Bác', icon: BookOpen },
             { id: 'SONGS', label: '8 Bài Hát Tuổi Thơ', icon: Music },
             { id: 'QUIZ', label: 'Đố Vui Nhận Giấy Khen', icon: Trophy },
             { id: 'DIARY', label: 'Sổ Tay Hoa Việc Tốt', icon: Sparkles },
@@ -1034,120 +1115,462 @@ export const HcmKidsSpaceView: React.FC<HcmKidsSpaceViewProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* PHÂN HỆ 3: 10 TRUYỆN KỂ ĐẠO ĐỨC VỀ BÁC HỒ (CÓ GIỌNG KỂ TTS)               */}
+      {/* PHÂN HỆ 3: 15 TRUYỆN KỂ CHÍNH THỐNG VỀ BÁC HỒ (CHUẨN 5 ĐIỀU BÁC DẠY & AUDIO) */}
       {/* ========================================================================= */}
       {activeSubTab === 'STORIES' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* List 10 truyện bên trái */}
-            <div className="md:col-span-4 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-amber-600" />
-                  <span>10 Truyện Kể Bác Hồ</span>
-                </h3>
-                <span className="text-xs text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded-full">
-                  10 câu chuyện
-                </span>
+          {/* Banner giới thiệu phân hệ truyện & Búp Sen Vàng */}
+          <div className="rounded-3xl bg-gradient-to-r from-amber-700 via-rose-800 to-amber-900 text-white p-5 sm:p-6 shadow-xl border-2 border-amber-400/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-xs">
+                <span>📚 Tủ Sách Đạo Đức Thiếu Nhi</span>
               </div>
+              <h3 className="text-xl sm:text-2xl font-black font-serif text-amber-200">
+                15 Mẩu Chuyện Kể Về Bác Hồ Cho Thiếu Nhi
+              </h3>
+              <p className="text-xs sm:text-sm text-rose-100 max-w-2xl leading-relaxed">
+                Tư liệu chính thống từ Nhà xuất bản Kim Đồng, Bảo tàng Hồ Chí Minh và Bộ GD&ĐT. Phân loại theo 5 Điều Bác dạy, tích hợp giọng đọc truyền cảm và câu đố đọc hiểu rinh Búp Sen Vàng.
+              </p>
+            </div>
 
-              <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
-                {MORAL_STORIES.map((story) => {
-                  const active = selectedStory.id === story.id;
+            {/* Khung thành tích Búp Sen Vàng */}
+            <div className="flex items-center gap-3 bg-black/30 backdrop-blur-xs p-3 sm:p-4 rounded-2xl border border-amber-300/40 shrink-0">
+              <span className="text-3xl animate-bounce">🪷</span>
+              <div>
+                <div className="text-[11px] uppercase tracking-wider text-amber-200 font-bold">
+                  Búp Sen Vàng Của Bé
+                </div>
+                <div className="text-xl sm:text-2xl font-black text-amber-300 flex items-center gap-1.5">
+                  <span>{lotusPoints}</span>
+                  <span className="text-xs font-normal text-white">bông sen</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bộ lọc thông minh 2 tầng */}
+          <div className="rounded-2xl bg-white border border-rose-200/80 p-4 shadow-sm space-y-3.5">
+            {/* Tầng 1: Lọc theo 5 Điều Bác Hồ dạy */}
+            <div className="space-y-1.5">
+              <div className="text-xs font-bold text-slate-700 flex items-center gap-2">
+                <Filter className="w-3.5 h-3.5 text-rose-600" />
+                <span>Phân loại theo 5 Điều Bác Hồ Dạy:</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                {[
+                  { id: 'ALL', label: 'Tất cả (15)', icon: '⭐', color: 'border-slate-300 hover:border-amber-500' },
+                  { id: 'DIEU_1', label: 'Điều 1: Yêu Tổ quốc, đồng bào (3)', icon: '❤️', color: 'border-rose-300 hover:border-rose-500' },
+                  { id: 'DIEU_2', label: 'Điều 2: Học tốt, lao động tốt (3)', icon: '📚', color: 'border-blue-300 hover:border-blue-500' },
+                  { id: 'DIEU_3', label: 'Điều 3: Đoàn kết, kỷ luật (4)', icon: '🤝', color: 'border-amber-300 hover:border-amber-500' },
+                  { id: 'DIEU_4', label: 'Điều 4: Giữ gìn vệ sinh (2)', icon: '🌿', color: 'border-emerald-300 hover:border-emerald-500' },
+                  { id: 'DIEU_5', label: 'Điều 5: Khiêm tốn, thật thà, dũng cảm (3)', icon: '🎖️', color: 'border-purple-300 hover:border-purple-500' },
+                ].map((item) => {
+                  const active = storyTeachingFilter === item.id;
                   return (
-                    <div
-                      key={story.id}
+                    <button
+                      key={item.id}
+                      type="button"
                       onClick={() => {
                         hcmSfx.playClick(600);
-                        setSelectedStory(story);
+                        setStoryTeachingFilter(item.id as any);
                       }}
-                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-all border ${
                         active
-                          ? 'border-amber-500 bg-amber-50 shadow-md ring-2 ring-amber-300/50'
-                          : 'border-slate-200 bg-white hover:border-amber-300'
+                          ? 'bg-rose-700 text-white border-rose-800 shadow-xs scale-102'
+                          : `bg-slate-50 text-slate-700 ${item.color} hover:bg-rose-50/50`
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{story.icon}</span>
-                        <h4 className="font-bold text-xs sm:text-sm text-slate-900 leading-snug">
-                          {story.title}
-                        </h4>
-                      </div>
-                      <p className="text-[11px] text-slate-500 line-clamp-1 pt-1">{story.lesson}</p>
-                      <div className="flex items-center gap-2 pt-1 text-[10px] text-slate-400">
-                        <span>{story.suitableAge}</span>
-                        <span>•</span>
-                        <span>{story.readingTime}</span>
-                      </div>
-                    </div>
+                      <span>{item.icon}</span>
+                      <span>{item.label}</span>
+                    </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* Chi tiết nội dung truyện bên phải */}
-            <div className="md:col-span-8 rounded-3xl border-2 border-amber-300 bg-white p-6 shadow-md space-y-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">
-                    Truyện kể đạo đức thiếu nhi
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black font-serif text-slate-900 flex items-center gap-2">
-                    <span>{selectedStory.icon}</span>
-                    <span>{selectedStory.title}</span>
-                  </h3>
-                  <p className="text-xs text-rose-700 font-bold">
-                    Bài học: {selectedStory.lesson}
-                  </p>
-                </div>
-
-                {/* Nút bấm nghe giọng đọc kể chuyện */}
-                <button
-                  type="button"
-                  onClick={handleToggleReadStory}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-bold shadow-xs transition-all cursor-pointer ${
-                    isReadingStory
-                      ? 'bg-rose-600 text-white animate-pulse'
-                      : 'bg-amber-500 hover:bg-amber-600 text-slate-950 font-black'
-                  }`}
-                >
-                  {isReadingStory ? (
-                    <>
-                      <VolumeX className="w-4 h-4" />
-                      <span>Dừng đọc truyện</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="w-4 h-4" />
-                      <span>🔊 Nghe cô kể chuyện</span>
-                    </>
-                  )}
-                </button>
+            {/* Tầng 2: Lọc theo Cấp học & Tìm kiếm từ khóa */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-slate-100">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-xs font-medium text-slate-500">Lứa tuổi:</span>
+                {[
+                  { id: 'ALL', label: 'Tất cả cấp học' },
+                  { id: 'Lớp 1 – 3', label: 'Khối Lớp 1 – 3' },
+                  { id: 'Lớp 4 – 5', label: 'Khối Lớp 4 – 5' },
+                  { id: 'THCS', label: 'Khối THCS' },
+                ].map((grade) => {
+                  const active = storyGradeFilter === grade.id;
+                  return (
+                    <button
+                      key={grade.id}
+                      type="button"
+                      onClick={() => {
+                        hcmSfx.playClick(500);
+                        setStoryGradeFilter(grade.id as any);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
+                        active
+                          ? 'bg-amber-500 text-slate-950 font-black'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {grade.label}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Toàn văn truyện */}
-              <div className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line font-serif bg-amber-50/30 p-5 rounded-2xl border border-amber-100">
+              {/* Ô tìm kiếm từ khóa */}
+              <div className="relative min-w-[220px]">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={storySearchTerm}
+                  onChange={(e) => setStorySearchTerm(e.target.value)}
+                  placeholder="Tìm mẩu chuyện, địa danh..."
+                  className="w-full pl-8 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-rose-400 focus:ring-2 focus:ring-rose-200/50 bg-slate-50/50"
+                />
+                {storySearchTerm && (
+                  <button
+                    type="button"
+                    onClick={() => setStorySearchTerm('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Lưới 2 Cột: Danh sách bên trái & Nội dung chi tiết bên phải */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Cột 1: Danh sách câu chuyện (col-span-4) */}
+            <div className="lg:col-span-4 space-y-2.5">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
+                  <Bookmark className="w-4 h-4 text-rose-700" />
+                  <span>Danh Sách Truyện</span>
+                </span>
+                <span className="text-[11px] text-rose-800 font-bold bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">
+                  {filteredStories.length} câu chuyện
+                </span>
+              </div>
+
+              <div className="space-y-2 max-h-[720px] overflow-y-auto pr-1 scrollbar-thin">
+                {filteredStories.length === 0 ? (
+                  <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-slate-300 space-y-2">
+                    <span className="text-3xl">🔍</span>
+                    <p className="text-xs text-slate-500 font-medium">
+                      Không tìm thấy câu chuyện nào khớp với bộ lọc hiện tại.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStoryTeachingFilter('ALL');
+                        setStoryGradeFilter('ALL');
+                        setStorySearchTerm('');
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-bold text-xs cursor-pointer hover:bg-amber-500"
+                    >
+                      Đặt lại bộ lọc
+                    </button>
+                  </div>
+                ) : (
+                  filteredStories.map((story) => {
+                    const active = selectedStory.id === story.id;
+                    const isCompleted = storyQuizCompletedMap[story.id];
+                    return (
+                      <div
+                        key={story.id}
+                        onClick={() => {
+                          hcmSfx.playPageTurn();
+                          setSelectedStory(story);
+                        }}
+                        className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all ${
+                          active
+                            ? 'border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-300/60 -translate-y-0.5'
+                            : 'border-slate-200 bg-white hover:border-amber-300 hover:bg-amber-50/20'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xl shrink-0">{story.icon}</span>
+                            <div>
+                              <h4 className="font-bold text-xs sm:text-[13px] text-slate-900 leading-snug line-clamp-1">
+                                {story.title}
+                              </h4>
+                              {story.subtitle && (
+                                <p className="text-[10.5px] text-rose-700 font-medium line-clamp-1">
+                                  {story.subtitle}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          {isCompleted && (
+                            <span className="shrink-0 text-amber-500 text-sm" title="Bé đã trả lời đúng câu đố nhận Búp Sen Vàng">
+                              🪷
+                            </span>
+                          )}
+                        </div>
+
+                        <p className="text-[11px] text-slate-500 line-clamp-1 pt-1.5 italic">
+                          {story.lesson}
+                        </p>
+
+                        <div className="flex flex-wrap items-center justify-between gap-1.5 pt-2 border-t border-slate-100 mt-2 text-[10px] text-slate-500 font-medium">
+                          <span className="px-1.5 py-0.5 rounded bg-rose-50 text-rose-800 font-bold">
+                            {story.historicalPeriod.split('•')[0].trim()}
+                          </span>
+                          <span className="text-slate-400">•</span>
+                          <span>{story.gradeCategory}</span>
+                          <span className="text-slate-400">•</span>
+                          <span className="flex items-center gap-0.5 text-amber-800 font-bold">
+                            <Clock className="w-3 h-3" />
+                            {story.readingTime}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+
+            {/* Cột 2: Không gian đọc & Nhà hát kể chuyện (col-span-8) */}
+            <div className="lg:col-span-8 rounded-3xl border-2 border-amber-300 bg-white p-5 sm:p-7 shadow-lg space-y-6">
+              {/* Header chi tiết câu chuyện */}
+              <div className="border-b border-slate-100 pb-4 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full shadow-2xs">
+                      {selectedStory.teachingGroupTitle}
+                    </span>
+                    <span className="text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">
+                      Phù hợp: {selectedStory.suitableAge}
+                    </span>
+                  </div>
+
+                  {/* Thanh điều khiển: Cỡ chữ & Giọng đọc */}
+                  <div className="flex items-center gap-2">
+                    {/* Nút cỡ chữ */}
+                    <div className="flex items-center bg-slate-100 rounded-xl p-0.5 border border-slate-200 text-xs">
+                      <button
+                        type="button"
+                        onClick={() => setStoryFontSize('sm')}
+                        className={`px-2 py-0.5 rounded-lg font-bold cursor-pointer ${storyFontSize === 'sm' ? 'bg-white text-rose-700 shadow-xs' : 'text-slate-600'}`}
+                        title="Chữ nhỏ"
+                      >
+                        A-
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setStoryFontSize('base')}
+                        className={`px-2 py-0.5 rounded-lg font-bold cursor-pointer ${storyFontSize === 'base' ? 'bg-white text-rose-700 shadow-xs' : 'text-slate-600'}`}
+                        title="Chữ vừa"
+                      >
+                        A
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setStoryFontSize('lg')}
+                        className={`px-2 py-0.5 rounded-lg font-bold cursor-pointer ${storyFontSize === 'lg' ? 'bg-white text-rose-700 shadow-xs' : 'text-slate-600'}`}
+                        title="Chữ to dễ đọc"
+                      >
+                        A+
+                      </button>
+                    </div>
+
+                    {/* Nút nghe kể chuyện TTS */}
+                    <button
+                      type="button"
+                      onClick={handleToggleReadStory}
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black shadow-xs transition-all cursor-pointer ${
+                        isReadingStory
+                          ? 'bg-rose-600 text-white animate-pulse'
+                          : 'bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 shadow-2xs'
+                      }`}
+                    >
+                      {isReadingStory ? (
+                        <>
+                          <VolumeX className="w-4 h-4" />
+                          <span>Dừng đọc</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-4 h-4" />
+                          <span>🔊 Nghe cô kể</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-black font-serif text-slate-900 flex items-center gap-2.5">
+                    <span className="text-3xl">{selectedStory.icon}</span>
+                    <span>{selectedStory.title}</span>
+                  </h3>
+                  {selectedStory.subtitle && (
+                    <p className="text-sm font-semibold text-rose-800 mt-1">
+                      {selectedStory.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                {/* Căn cước lịch sử & Nguồn trích dẫn chính thống */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-[11px] text-slate-600">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-[#881337]">🏛️ Bối cảnh lịch sử:</span>
+                    <span className="text-slate-800 font-semibold">{selectedStory.historicalPeriod}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-amber-900">📜 Nguồn tư liệu:</span>
+                    <span className="text-slate-700">{selectedStory.historicalSource}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Khung Chi tiết vàng của Bác (The Golden Moment) */}
+              <div className="relative rounded-2xl p-4 sm:p-5 bg-gradient-to-br from-amber-50 via-rose-50/50 to-amber-100/40 border-2 border-amber-300/80 shadow-xs">
+                <Quote className="w-8 h-8 text-amber-400/40 absolute top-2 left-2 rotate-180" />
+                <div className="relative z-10 pl-6 space-y-1">
+                  <div className="text-[11px] font-black uppercase tracking-wider text-rose-800 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                    <span>Chi Tiết Vàng &amp; Lời Bác Dặn</span>
+                  </div>
+                  <p className="text-sm sm:text-base font-serif italic font-bold text-slate-900 leading-relaxed">
+                    "{selectedStory.goldenQuote}"
+                  </p>
+                </div>
+              </div>
+
+              {/* Toàn văn câu chuyện */}
+              <div
+                className={`text-slate-800 leading-relaxed whitespace-pre-line font-serif bg-amber-50/20 p-5 sm:p-6 rounded-2xl border border-amber-200/60 transition-all ${
+                  storyFontSize === 'sm'
+                    ? 'text-xs sm:text-[13px] leading-6'
+                    : storyFontSize === 'lg'
+                    ? 'text-base sm:text-lg leading-8'
+                    : 'text-sm sm:text-[15px] leading-7'
+                }`}
+              >
                 {selectedStory.content}
               </div>
 
-              {/* Bài học rút ra */}
-              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-1">
+              {/* Hộp 1: Bài học rút ra cho chúng em */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 space-y-1.5 shadow-xs">
                 <span className="text-xs font-black text-emerald-900 uppercase flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-emerald-700" />
                   Bài học rút ra cho chúng em
                 </span>
-                <p className="text-xs text-slate-700 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-sans">
                   {selectedStory.moralLesson}
                 </p>
               </div>
 
-              {/* Câu hỏi tương tác thảo luận */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              {/* Hộp 2: Hành động của em hôm nay */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-amber-50 border-2 border-amber-300 space-y-1.5 shadow-xs">
+                <span className="text-xs font-black text-amber-950 uppercase flex items-center gap-1.5">
+                  <Heart className="w-4 h-4 text-rose-600 fill-current" />
+                  Hành động của em hôm nay (Thực hành 5 Điều Bác dạy)
+                </span>
+                <p className="text-xs sm:text-sm text-slate-900 font-semibold leading-relaxed font-sans">
+                  👉 {selectedStory.dailyActionPledge}
+                </p>
+              </div>
+
+              {/* Hộp 3: Thử thách đọc hiểu 60 giây — Rinh Búp Sen Vàng */}
+              {selectedStory.interactiveQuiz && (
+                <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-purple-50/40 to-amber-50 border-2 border-indigo-200 space-y-3.5 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase text-indigo-950 flex items-center gap-2">
+                      <Trophy className="w-4 h-4 text-amber-500" />
+                      <span>Thử Thách Đọc Hiểu 60 Giây — Rinh Búp Sen Vàng</span>
+                    </span>
+                    <span className="text-[11px] font-black bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full">
+                      +1 Búp Sen Vàng 🪷
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">
+                    ❓ {selectedStory.interactiveQuiz.question}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    {selectedStory.interactiveQuiz.options.map((opt, idx) => {
+                      const isSelected = storyQuizSelection === idx;
+                      const isCorrect = idx === selectedStory.interactiveQuiz!.correctAnswer;
+                      let btnStyle = 'bg-white border-slate-200 text-slate-800 hover:border-amber-400 hover:bg-amber-50/40';
+
+                      if (storyQuizSubmitted) {
+                        if (isCorrect) {
+                          btnStyle = 'bg-emerald-500 text-white border-emerald-600 font-black shadow-xs';
+                        } else if (isSelected && !isCorrect) {
+                          btnStyle = 'bg-rose-500 text-white border-rose-600 font-bold';
+                        } else {
+                          btnStyle = 'bg-slate-100 text-slate-400 border-slate-200 opacity-60';
+                        }
+                      }
+
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleAnswerStoryQuiz(idx)}
+                          disabled={storyQuizSubmitted}
+                          className={`p-3 rounded-xl border text-left text-xs transition-all cursor-pointer flex items-center gap-2.5 ${btnStyle}`}
+                        >
+                          <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center font-bold text-[11px] shrink-0">
+                            {['A', 'B', 'C', 'D'][idx]}
+                          </span>
+                          <span className="leading-snug">{opt}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Phản hồi sau khi trả lời */}
+                  {storyQuizFeedback === 'CORRECT' && (
+                    <div className="p-3.5 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs space-y-1 animate-in fade-in">
+                      <div className="font-black flex items-center gap-1.5 text-emerald-900">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                        <span>Xuất sắc! Bé đã trả lời chính xác và được tặng +1 Búp Sen Vàng! 🪷</span>
+                      </div>
+                      <p className="text-[11.5px] text-emerald-800 leading-relaxed font-sans">
+                        💡 {selectedStory.interactiveQuiz.explanation}
+                      </p>
+                    </div>
+                  )}
+
+                  {storyQuizFeedback === 'WRONG' && (
+                    <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs flex items-center justify-between animate-in fade-in">
+                      <div className="flex items-center gap-2">
+                        <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                        <span>Chưa đúng rồi! Bé hãy đọc kỹ lại câu chuyện và thử lại nhé.</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setStoryQuizSubmitted(false);
+                          setStoryQuizSelection(null);
+                          setStoryQuizFeedback(null);
+                        }}
+                        className="px-2.5 py-1 rounded-lg bg-rose-600 text-white font-bold text-[11px] cursor-pointer"
+                      >
+                        Thử lại
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Hộp 4: Câu hỏi thảo luận trong giờ sinh hoạt Đội */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
                 <span className="text-xs font-black text-slate-900 uppercase flex items-center gap-1.5">
                   <HelpCircle className="w-4 h-4 text-amber-600" />
                   Câu hỏi thảo luận trong giờ sinh hoạt Đội / Sao Nhi đồng:
                 </span>
-                <ol className="space-y-1.5 list-decimal list-inside text-xs text-slate-700">
+                <ol className="space-y-1.5 list-decimal list-inside text-xs text-slate-700 leading-relaxed">
                   {selectedStory.questions.map((q, i) => (
                     <li key={i}>{q}</li>
                   ))}

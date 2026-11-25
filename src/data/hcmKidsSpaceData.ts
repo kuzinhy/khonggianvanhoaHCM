@@ -49,14 +49,28 @@ export interface HistoricalSiteItem {
 export interface MoralStoryItem {
   id: string;
   title: string;
+  subtitle?: string;
   lesson: string;
   suitableAge: string;
+  gradeCategory: 'Lớp 1 – 3' | 'Lớp 4 – 5' | 'THCS' | 'Tất cả';
+  teachingGroup: 'DIEU_1' | 'DIEU_2' | 'DIEU_3' | 'DIEU_4' | 'DIEU_5'; // Phân loại theo 5 Điều Bác Hồ dạy
+  teachingGroupTitle: string;
   readingTime: string;
   icon: string;
+  historicalPeriod: string; // Năm & Bối cảnh lịch sử có thật
+  historicalSource: string; // Nguồn trích dẫn chính thống
+  goldenQuote: string; // Chi tiết vàng hoặc lời nói xúc động của Bác
   content: string;
   moralLesson: string;
+  dailyActionPledge: string; // Việc tốt bé thực hành hôm nay
   questions: string[];
   audioGuide?: string;
+  interactiveQuiz?: {
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation: string;
+  };
 }
 
 export interface ChildrenSongItem {
@@ -401,176 +415,562 @@ export const HISTORICAL_SITES: HistoricalSiteItem[] = [
 ];
 
 // 4. TUYỂN TẬP 10 TRUYỆN KỂ ĐẠO ĐỨC VỀ BÁC HỒ CHO THIẾU NHI (CHUẨN BỘ GD&ĐT)
+// 4. TUYỂN TẬP 15 TRUYỆN KỂ ĐẠO ĐỨC CHÍNH THỐNG VỀ BÁC HỒ (CHUẨN 5 ĐIỀU BÁC DẠY & BỘ GD&ĐT)
 export const MORAL_STORIES: MoralStoryItem[] = [
   {
     id: 'story_01',
     title: 'Ai ngoan sẽ được thưởng',
+    subtitle: 'Lòng dũng cảm nhận lỗi của bạn Tộ',
     lesson: 'Thật thà, dũng cảm nhận lỗi là đức tính đáng quý nhất',
     suitableAge: 'Tiểu học (Lớp 1 – 5)',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_5',
+    teachingGroupTitle: 'Điều 5: Khiêm tốn, thật thà, dũng cảm',
     readingTime: '3 phút',
     icon: '🍬',
+    historicalPeriod: 'Năm 1946 • Trại Nhi đồng Hà Nội',
+    historicalSource: 'Theo sách "Bác Hồ kính yêu" — Nhà xuất bản Kim Đồng',
+    goldenQuote: 'Cháu biết nhận lỗi thế là dũng cảm lắm! Người dũng cảm nhận khuyết điểm cũng là người ngoan, cháu xứng đáng được nhận phần kẹo này.',
     content:
-      'Một buổi sáng, Bác Hồ đến thăm một trại nhi đồng. Vừa thấy Bác, các em nhỏ đã reo vang, ùa ra đón Bác. Bác dắt tay hai em nhỏ nhất đi vào lớp. Bác đi thăm phòng ngủ, phòng ăn, nhà bếp rồi trở lại phòng họp. Bác hỏi các em:\n- Các cháu chơi có vui không?\n- Thưa Bác, vui lắm ạ!\n- Các cháu ăn có no không?\n- No lắm ạ!\n- Các cô có mắng phạt các cháu không?\n- Không ạ!\nBác cười hiền từ: "Thế thì tốt lắm! Bây giờ Bác chia kẹo cho các cháu. Cháu nào ngoan thì được thưởng, cháu nào không ngoan thì không được thưởng. Các cháu có đồng ý không?"\n- Đồng ý ạ! — Cả phòng đồng thanh reo lên.\nCác em nhỏ xếp hàng lần lượt đến nhận kẹo từ tay Bác. Đến lượt bạn Tộ, Tộ đứng nép vào góc và lí nhí: "Thưa Bác, hôm nay cháu chưa ngoan, cháu đã làm vỡ bát, cháu không dám nhận kẹo của Bác đâu ạ!"\nBác mỉm cười ân cần xoa đầu Tộ và nói: "Cháu biết nhận lỗi thế là dũng cảm lắm! Người dũng cảm nhận khuyết điểm cũng là người ngoan, cháu xứng đáng được nhận phần kẹo này."\nTộ xúc động nhận lấy chiếc kẹo Bác trao, trong lòng ngập tràn niềm vui và tự hứa từ nay sẽ cẩn thận và chăm ngoan hơn nữa.',
+      'Một buổi sáng mùa thu, Bác Hồ đến thăm một trại nhi đồng ở Thủ đô Hà Nội. Vừa thấy Bác, các em nhỏ đã reo vang, ùa ra đón Bác như đón người ông kính yêu đi xa về. Bác dắt tay hai em nhỏ nhất đi vào lớp. Bác ân cần đi thăm phòng ngủ, phòng ăn, nhà bếp rồi trở lại phòng họp. Bác hỏi các em:\n- Các cháu chơi có vui không?\n- Thưa Bác, vui lắm ạ!\n- Các cháu ăn có no không?\n- No lắm ạ!\n- Các cô có mắng phạt các cháu không?\n- Không ạ!\nBác cười hiền từ: "Thế thì tốt lắm! Bây giờ Bác chia kẹo cho các cháu. Cháu nào ngoan thì được thưởng, cháu nào không ngoan thì không được thưởng. Các cháu có đồng ý không?"\n- Đồng ý ạ! — Cả phòng đồng thanh reo lên trong tiếng vỗ tay rộn rã.\nCác em nhỏ xếp hàng ngay ngắn lần lượt đến nhận kẹo từ tay Bác. Đến lượt bạn Tộ, Tộ đứng nép vào góc tường, hai tay nắm chặt vạt áo và lí nhí: "Thưa Bác, hôm nay cháu chưa ngoan, cháu đã làm vỡ bát ăn cơm, cháu không dám nhận kẹo của Bác đâu ạ!"\nCả phòng im phăng phắc. Bác Hồ mỉm cười ân cần, bước lại gần xoa đầu Tộ và nói dịu dàng: "Cháu biết nhận lỗi thế là dũng cảm lắm! Người dũng cảm nhận khuyết điểm cũng là người ngoan, cháu xứng đáng được nhận phần kẹo này."\nTộ xúc động nghẹn ngào đón lấy chiếc kẹo Bác trao, trong lòng ngập tràn niềm vui và tự hứa từ nay sẽ luôn cẩn thận, chăm ngoan hơn nữa.',
     moralLesson:
-      'Ai cũng có thể mắc sai lầm, nhưng điều quan trọng nhất là phải thật thà, dũng cảm nhận lỗi và sửa chữa. Sự trung thực luôn được mọi người tôn trọng và yêu quý.',
+      'Trong học tập và cuộc sống, ai cũng có thể mắc sai lầm. Điều quan trọng nhất là phải thật thà, dũng cảm nhận lỗi để sửa chữa. Lòng trung thực luôn mang lại sự thanh thản và được mọi người tin yêu, tôn trọng.',
+    dailyActionPledge:
+      'Hôm nay em sẽ dũng cảm nói thật với thầy cô hoặc cha mẹ nếu trót làm sai điều gì, tuyệt đối không đổ lỗi cho bạn bè.',
     questions: [
-      'Tại sao bạn Tộ ban đầu không dám nhận kẹo của Bác?',
-      'Bác Hồ đã nói gì khi bạn Tộ thật thà nhận lỗi?',
-      'Em rút ra được bài học gì cho bản thân khi trót mắc khuyết điểm?',
+      'Tại sao bạn Tộ ban đầu không dám xếp hàng nhận kẹo của Bác Hồ?',
+      'Bác Hồ đã nói gì và có thái độ như thế nào khi bạn Tộ thật thà nhận lỗi?',
+      'Em rút ra được bài học gì cho bản thân khi trót làm hỏng đồ dùng ở lớp hoặc ở nhà?',
     ],
+    interactiveQuiz: {
+      question: 'Vì sao bạn Tộ vẫn được Bác Hồ thưởng kẹo dù đã trót làm vỡ chiếc bát ăn cơm?',
+      options: [
+        'Vì bạn Tộ là học sinh nhỏ tuổi nhất trong trại nhi đồng',
+        'Vì bạn Tộ đã dũng cảm, thật thà nhận lỗi lầm của mình',
+        'Vì chiếc bát vỡ không có giá trị gì đáng kể',
+        'Vì Bác Hồ còn thừa nhiều kẹo nên chia hết cho cả lớp',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác Hồ dạy: "Người dũng cảm nhận khuyết điểm cũng là người ngoan", lòng trung thực và dũng cảm nhận lỗi là đức tính cao quý nhất.',
+    },
   },
   {
     id: 'story_02',
     title: 'Bát chè sẻ đôi',
-    lesson: 'Tinh thần sẻ chia, đồng cam cộng khổ với mọi người',
+    subtitle: 'Chia ngọt sẻ bùi giữa núi rừng Việt Bắc',
+    lesson: 'Tinh thần sẻ chia, đồng cam cộng khổ với đồng chí, đồng đội',
     suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_3',
+    teachingGroupTitle: 'Điều 3: Đoàn kết tốt, kỷ luật tốt',
     readingTime: '3 phút',
     icon: '🥣',
+    historicalPeriod: 'Năm 1950 • Chiến khu Định Hóa, Việt Bắc',
+    historicalSource: 'Lời kể của chiến sĩ cần vụ cơ quan Trung ương Đảng — Khu Di tích Phủ Chủ tịch',
+    goldenQuote: 'Kháng chiến gian khổ, cán bộ chiến sĩ ta cùng chịu đói chịu rét, có bát chè ngọt thì Bác cháu ta cùng chia nhau ăn mới vui!',
     content:
-      'Thời kỳ ở chiến khu Việt Bắc, đồng chí phục vụ nấu được một bát chè đỗ đen rất ngon mang lên cho Bác Hồ bồi dưỡng vì thấy Bác dạo này gầy và mệt mỏi.\nBác nhìn bát chè thơm phức rồi quay sang hỏi đồng chí phục vụ:\n- Chú đã ăn chè chưa?\n- Dạ thưa Bác, chè chỉ đủ nấu một bát riêng cho Bác thôi ạ.\nBác mỉm cười, cầm chiếc thìa cẩn thận chia bát chè làm hai phần bằng nhau rồi nói:\n- Nào, chú một nửa, Bác một nửa. Kháng chiến gian khổ, cán bộ chiến sĩ ta cùng chịu đói chịu rét, có bát chè ngọt thì Bác cháu ta cùng chia nhau ăn mới vui!\nNgười phục vụ nghẹn ngào nhìn Bác, cảm nhận được tình thương bao la của vị lãnh tụ vĩ đại luôn nghĩ đến người khác trước khi nghĩ đến mình.',
+      'Thời kỳ ở chiến khu Việt Bắc, đời sống vô cùng thiếu thốn, gian khổ. Một hôm, đồng chí phục vụ cơ quan kiếm được ít đỗ đen và chút đường hiếm hoi, bèn nấu một bát chè thơm ngon mang lên cho Bác Hồ bồi dưỡng vì thấy mấy ngày nay Bác gầy đi nhiều và thức khuya làm việc.\nBác nhìn bát chè thơm phức bốc khói nhẹ rồi ngẩng lên hỏi ân cần:\n- Chú đã ăn chè chưa?\n- Dạ thưa Bác, chè ít lắm, chỉ đủ nấu một bát riêng để Bác bồi dưỡng sức khỏe thôi ạ.\nBác mỉm cười hiền hậu, cầm chiếc thìa cẩn thận chia bát chè thành hai phần thật đều nhau trong sự ngỡ ngàng của đồng chí phục vụ, rồi Bác nói:\n- Nào, chú một nửa, Bác một nửa. Kháng chiến gian khổ, cán bộ chiến sĩ ta cùng chịu đói chịu rét, có bát chè ngọt thì Bác cháu ta cùng chia nhau ăn mới vui! Chú không ăn thì Bác cũng không ăn đâu.\nNgười phục vụ nghẹn ngào nhìn Bác, mắt rưng rưng xúc động. Anh bưng nửa bát chè mà cảm nhận được tình thương bao la của vị Cha già dân tộc luôn nghĩ đến người khác trước khi nghĩ đến bản thân mình.',
     moralLesson:
-      'Sống trong tập thể phải biết chia ngọt sẻ bùi, không mưu cầu đặc quyền cho riêng mình. Tinh thần sẻ chia làm cho tình bạn, tình đồng chí thêm ấm áp, bền chặt.',
+      'Sống trong tập thể gia đình và trường lớp phải biết chia ngọt sẻ bùi, không mưu cầu đặc quyền cho riêng mình. Tinh thần đoàn kết, sẻ chia chân thành làm cho tình bạn thêm gắn bó, ấm áp.',
+    dailyActionPledge:
+      'Hôm nay em sẽ sẵn sàng chia sẻ nửa chiếc bánh hoặc hộp bút màu cho bạn cùng bàn khi bạn gặp khó khăn.',
     questions: [
-      'Khi nhận bát chè, Bác Hồ đã làm gì đầu tiên?',
-      'Câu nói nào của Bác thể hiện tinh thần sẻ chia sâu sắc?',
-      'Ở trường, em đã chia sẻ đồ dùng hoặc giúp đỡ bạn bè như thế nào?',
+      'Khi nhận được bát chè đỗ đen bồi dưỡng, câu hỏi đầu tiên của Bác Hồ là gì?',
+      'Bác Hồ đã xử lý bát chè như thế nào để đồng chí phục vụ cùng được thưởng thức?',
+      'Hành động chia bát chè của Bác thể hiện phẩm chất đạo đức cao đẹp nào?',
     ],
+    interactiveQuiz: {
+      question: 'Câu nói nào của Bác Hồ thể hiện sâu sắc tinh thần sẻ chia gian khổ với đồng chí, đồng đội?',
+      options: [
+        'Bác thích ăn chè đỗ đen hơn các món ăn khác',
+        'Có bát chè ngọt thì Bác cháu ta cùng chia nhau ăn mới vui!',
+        'Để ngày mai Bác ăn cũng chưa muộn đâu chú',
+        'Chú mang bát chè này về cho gia đình chú nhé',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác luôn tâm niệm: Kháng chiến gian khổ thì cùng chịu đói chịu rét, có ngọt bùi thì cùng san sẻ với nhau.',
+    },
   },
   {
     id: 'story_03',
     title: 'Bác Hồ với cây vú sữa miền Nam',
+    subtitle: 'Nỗi nhớ thương máu thịt hướng về miền Nam',
     lesson: 'Tình cảm sắt son, thủy chung hướng về miền Nam ruột thịt',
-    suitableAge: 'Tiểu học & THCS',
+    suitableAge: 'Tất cả (Lớp 1 – 9)',
+    gradeCategory: 'Lớp 4 – 5',
+    teachingGroup: 'DIEU_1',
+    teachingGroupTitle: 'Điều 1: Yêu Tổ quốc, yêu đồng bào',
     readingTime: '4 phút',
     icon: '🌳',
+    historicalPeriod: 'Năm 1954 • Phủ Chủ tịch, Hà Nội',
+    historicalSource: 'Khu Di tích Chủ tịch Hồ Chí Minh tại Phủ Chủ tịch & Lịch sử Đội TNTP',
+    goldenQuote: 'Bác chăm cây vú sữa này cũng như Bác ngày đêm nhớ về đồng bào và các cháu thiếu nhi miền Nam ruột thịt!',
     content:
-      'Năm 1954, sau Hiệp định Giơ-ne-vơ, đồng bào miền Nam gửi tặng Bác Hồ một cây vú sữa nhỏ tượng trưng cho tấm lòng son sắt của nhân dân miền Nam đối với Bác.\nBác mừng lắm, tự tay Bác chọn mảnh đất tốt nhất cạnh nhà làm việc để trồng cây vú sữa. Hàng ngày, sau giờ làm việc, Bác tự tay tưới nước, bắt sâu, vun gốc cho cây. Những ngày mùa đông giá rét, Bác lấy rơm rạ quấn quanh thân cây để giữ ấm cho cây khỏi chết cóng.\nMỗi lần đón các đoàn cán bộ, chiến sĩ hay thiếu nhi miền Nam ra thăm miền Bắc, Bác đều dẫn ra xem cây vú sữa và nói: "Bác chăm cây vú sữa này cũng như Bác ngày đêm nhớ về đồng bào và các cháu thiếu nhi miền Nam ruột thịt!"',
+      'Cuối năm 1954, sau khi Hiệp định Giơ-ne-vơ được ký kết, đồng bào và chiến sĩ miền Nam tập kết ra Bắc mang theo một món quà vô cùng đặc biệt dâng tặng Bác Hồ: một cây vú sữa nhỏ của quê hương miền Nam ruột thịt.\nNhận được cây, Bác xúc động vô cùng. Bác tự tay chọn vị trí đất tốt nhất ngay sát ngôi nhà làm việc trong Phủ Chủ tịch để trồng cây. Chiều nào cũng vậy, sau giờ làm việc bận rộn với việc nước, Bác lại dành thời gian tự tay xách từng thùng nước tưới cho cây vú sữa, vun xới gốc và bắt từng con sâu nhỏ.\nVào những ngày mùa đông miền Bắc rét buốt thấu xương, sợ cây vú sữa miền Nam quen nắng ấm không chịu nổi gió bấc, Bác lấy rơm rạ quấn cẩn thận quanh thân cây và làm hàng rào che chắn gió rét cho cây.\nMỗi lần có các đoàn đại biểu, cán bộ, chiến sĩ hay các cháu thiếu nhi miền Nam ra thăm Thủ đô, Bác đều dẫn ra bên cây vú sữa xanh tốt. Bác vỗ về cây và nói bằng giọng nghẹn ngào: "Bác chăm cây vú sữa này cũng như Bác ngày đêm nhớ về đồng bào và các cháu thiếu nhi miền Nam ruột thịt. Miền Nam luôn ở trong trái tim tôi!"',
     moralLesson:
-      'Lòng thủy chung, son sắt và tình yêu thương đất nước là sợi dây thiêng liêng gắn kết mọi miền Tổ quốc Bắc – Trung – Nam một nhà.',
+      'Lòng yêu nước bắt nguồn từ tình yêu đồng bào, tình nghĩa gắn bó máu thịt Bắc – Trung – Nam một nhà. Lòng thủy chung son sắt là đạo lý ngàn đời của dân tộc Việt Nam.',
+    dailyActionPledge:
+      'Hôm nay em sẽ chăm sóc tưới nước cho cây xanh ở trường hoặc ở nhà, và tìm hiểu về các bạn thiếu nhi ở hải đảo xa xôi.',
     questions: [
-      'Cây vú sữa miền Nam do ai gửi tặng Bác Hồ?',
-      'Bác Hồ đã chăm sóc cây vú sữa như thế nào?',
-      'Cây vú sữa tượng trưng cho điều gì trong trái tim Bác?',
+      'Cây vú sữa miền Nam được trao tặng Bác Hồ vào thời gian và hoàn cảnh nào?',
+      'Bác Hồ đã tự tay chăm sóc và bảo vệ cây vú sữa trong mùa đông như thế nào?',
+      'Hình ảnh cây vú sữa tượng trưng cho điều thiêng liêng gì trong trái tim Bác Hồ?',
     ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã làm gì để bảo vệ cây vú sữa miền Nam khỏi bị chết cóng trong mùa đông giá rét?',
+      options: [
+        'Đem cây trồng vào trong phòng làm việc ấm áp',
+        'Lấy rơm rạ quấn quanh thân cây và làm rào che chắn gió lạnh',
+        'Thắp đèn sưởi ấm liên tục suốt ngày đêm',
+        'Nhờ các nhà khoa học nước ngoài sang chăm sóc',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác cẩn thận lấy rơm rạ bọc quanh thân cây như người mẹ quấn áo ấm cho con, nâng niu tình cảm của đồng bào miền Nam.',
+    },
   },
   {
     id: 'story_04',
     title: 'Thời gian quý báu lắm',
+    subtitle: 'Bài học đúng giờ và phép tính 500 phút',
     lesson: 'Tôn trọng giờ giấc, quý trọng thời gian của mình và của người khác',
     suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'Lớp 4 – 5',
+    teachingGroup: 'DIEU_3',
+    teachingGroupTitle: 'Điều 3: Đoàn kết tốt, kỷ luật tốt',
     readingTime: '3 phút',
     icon: '⏰',
+    historicalPeriod: 'Năm 1953 • Chiến khu Việt Bắc',
+    historicalSource: 'Tuyển tập "Bác Hồ với phong trào thi đua yêu nước" — NXB Chính trị Quốc gia',
+    goldenQuote: 'Thời gian quý báu lắm các chú ạ. Bác đến muộn 10 phút thì 50 đồng chí ngồi đây cộng lại là mất toi 500 phút quý báu của kháng chiến rồi!',
     content:
-      'Bác Hồ là người quý trọng thời gian nhất. Bác không bao giờ để ai phải đợi mình một phút nào. Một lần, Bác có hẹn đi họp với một đoàn cán bộ vào lúc 8 giờ sáng. Trời mưa tầm tã, đường sá sình lầy lội, xe của Bác gặp sự cố. Bác liền xuống xe, cùng đồng chí bảo vệ xắn quần đi bộ qua bãi bùn để kịp đến đúng giờ.\nKhi Bác bước vào phòng họp, đồng hồ điểm đúng 8 giờ. Quần áo Bác ướt sũng nước mưa, nhưng nụ cười Bác vẫn rạng rỡ. Bác nói với hội nghị:\n- Thời gian quý báu lắm các chú ạ. Bác đến muộn 10 phút thì 50 đồng chí ngồi đây cộng lại là mất toi 500 phút quý báu của kháng chiến rồi!',
+      'Bác Hồ là người coi trọng thời gian và giữ kỷ luật giờ giấc chuẩn xác nhất. Suốt cả cuộc đời, Bác không bao giờ để bất kỳ ai phải chờ đợi mình dù chỉ một phút.\nMột lần, Bác có lịch hẹn chủ trì buổi họp quan trọng với 50 cán bộ lãnh đạo tại chiến khu vào đúng 8 giờ sáng. Không may, đêm trước trời đổ mưa tầm tã làm đường rừng lầy lội, nước suối dâng cao. Chiếc xe chở Bác bị chết máy giữa bãi lầy lội cách địa điểm họp gần hai cây số.\nĐồng chí lái xe lo lắng toát mồ hôi, nhưng Bác đã dứt khoát bảo: "Không thể để các đồng chí đợi được!". Nói rồi, Bác xắn cao quần, cởi giày dép đưa cho đồng chí bảo vệ cầm hộ, rồi cùng xăm xắn lội qua bùn đất trơn trượt để đi bộ cho kịp.\nĐồng hồ điểm đúng 8 giờ vang lên cũng là lúc Bác bước vào phòng họp. Ống quần Bác còn lấm tấm vết bùn đỏ, áo ướt đẫm mồ hôi nhưng nụ cười của Bác vẫn vô cùng rạng rỡ. Bác tươi cười chào mọi người rồi thân mật nhắc nhở:\n- Các chú thấy đấy, thời gian quý báu lắm. Bác làm Chủ tịch nước mà đến muộn 10 phút, thì 50 đồng chí ngồi đây nhân lên là mất đứt 500 phút quý báu của công cuộc kháng chiến rồi! Giữ đúng giờ là tôn trọng chính mình và tôn trọng đồng đội.',
     moralLesson:
-      'Đúng giờ thể hiện sự tôn trọng chính mình và tôn trọng người khác. Thời gian trôi qua không bao giờ lấy lại được, vì vậy học sinh phải biết quý trọng từng phút giây học tập.',
+      'Đúng giờ là thước đo của văn hóa và lòng tự trọng. Thời gian đã trôi qua thì ngàn vàng cũng không mua lại được. Người học sinh có kỷ luật tốt phải luôn đi học đúng giờ và nộp bài đúng hạn.',
+    dailyActionPledge:
+      'Hôm nay em sẽ tự giác đi ngủ sớm và thức dậy đúng giờ, đến lớp trước 15 phút để chuẩn bị bài học thật chu đáo.',
     questions: [
-      'Bác Hồ đã làm cách nào để đến buổi họp đúng giờ dù trời mưa to?',
-      'Bác đã làm phép tính gì để nhắc nhở mọi người về giá trị thời gian?',
-      'Em rèn luyện thói quen đúng giờ trong việc học như thế nào?',
+      'Bác Hồ đã làm thế nào để đến buổi họp đúng giờ dù xe gặp sự cố giữa đường sình lầy?',
+      'Bác Hồ đã làm phép tính 500 phút như thế nào để nhắc nhở mọi người về giá trị thời gian?',
+      'Em đã rèn luyện thói quen đúng giờ trong việc học tập và sinh hoạt hàng ngày như thế nào?',
     ],
+    interactiveQuiz: {
+      question: 'Phép tính "500 phút quý báu" của Bác Hồ nhắc nhở bài học đạo đức sâu sắc nào?',
+      options: [
+        'Muốn họp nhanh thì phải chuẩn bị trước đồng hồ',
+        'Đến muộn của một cá nhân sẽ làm lãng phí thời gian quý giá của cả tập thể',
+        'Đường rừng lầy lội thì không nên đi họp đúng giờ',
+        'Chỉ có người đứng đầu mới cần phải tính toán thời gian',
+      ],
+      correctAnswer: 1,
+      explanation: 'Nếu 1 người đến muộn 10 phút trong phòng họp 50 người, tổng số thời gian lãng phí là 500 phút của tập thể.',
+    },
   },
   {
     id: 'story_05',
     title: 'Chiếc áo ấm đêm đông',
+    subtitle: 'Chiếc áo trấn thủ Bác trao tặng chú lính gác',
     lesson: 'Tình yêu thương bao la và sự quan tâm sâu sắc tới chiến sĩ',
     suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_1',
+    teachingGroupTitle: 'Điều 1: Yêu Tổ quốc, yêu đồng bào',
     readingTime: '3 phút',
     icon: '🧥',
+    historicalPeriod: 'Mùa đông 1951 • Rừng Định Hóa, Thái Nguyên',
+    historicalSource: 'Theo hồi ký của các chiến sĩ cảnh vệ bảo vệ Bác Hồ — Viện Lịch sử Đảng',
+    goldenQuote: 'Bác ngồi trong nhà còn đỡ lạnh, chú đứng gác ngoài trời gió bấc thế này rét lắm. Chú mặc vào để giữ sức khỏe mà bảo vệ cơ quan!',
     content:
-      'Mùa đông năm 1951 ở chiến khu Việt Bắc, gió bấc thổi từng cơn lạnh buốt thấu xương. Bác Hồ đang ngồi làm việc khuya bên ngọn đèn dầu. Nhìn ra ngoài hiên, Bác thấy chú chiến sĩ cảnh vệ đứng gác dưới mưa phùn, người run lên từng chặp vì giá rét.\nBác liền đứng dậy, cởi chiếc áo trấn thủ bông ấm áp của mình, đi nhẹ nhàng ra cửa và khoác lên vai chú lính gác. Chú xúc động rơi nước mắt: "Thưa Bác, Bác mặc cho ấm ạ, cháu trẻ cháu chịu được!"\nBác vỗ vai chú trìu mến: "Bác ngồi trong nhà còn đỡ lạnh, chú đứng gác ngoài trời gió bấc thế này rét lắm. Chú mặc vào để giữ sức khỏe mà bảo vệ cơ quan!"',
+      'Một đêm mùa đông năm 1951 ở chiến khu Việt Bắc, gió mùa đông bắc tràn về từng cơn rít qua khe núi buốt thấu xương. Bác Hồ vẫn miệt mài thức khuya làm việc bên ngọn đèn dầu nhỏ trong lán tranh.\nNgước nhìn qua khung cửa sổ, Bác thấy người chiến sĩ cảnh vệ trẻ tuổi đang bồng súng đứng gác dưới màn mưa phùn giá buốt. Chú chiến sĩ chỉ mặc một chiếc áo mỏng, đôi hàm răng đánh vào nhau lập cập, hai bờ vai run lên từng chặp vì cái rét cắt da cắt thịt.\nBác Hồ đứng dậy, lặng lẽ đi tới góc giường, cầm lấy chiếc áo trấn thủ chần bông ấm áp của mình. Bác bước nhẹ nhàng ra cửa lán, đến bên chú chiến sĩ và ân cần khoác chiếc áo lên đôi vai gầy đang run rẩy của chú.\nNgười chiến sĩ giật mình quay lại, thấy Bác thì xúc động trào nước mắt, nghẹn ngào thưa: "Bác ơi, Bác mặc cho ấm ạ! Cháu còn trẻ, cháu chịu đựng được rét, Bác mà bị ốm thì toàn dân lo lắm ạ!".\nBác Hồ vỗ vai chú trìu mến, ánh mắt sáng ngời tình thương bao la: "Bác ngồi trong nhà còn đỡ lạnh, chú đứng gác ngoài trời gió bấc thế này rét buốt lắm. Chú mặc vào để giữ ấm cơ thể mà bảo vệ cơ quan kháng chiến!".',
     moralLesson:
-      'Tình yêu thương con người bắt đầu từ những hành động quan tâm nhỏ bé, chân thành nhất đối với những người xung quanh.',
+      'Tình yêu thương con người không nằm ở những lời nói hoa mỹ mà thể hiện ở sự thấu hiểu, quan tâm chân thành từ những hành động nhỏ bé và giản dị nhất.',
+    dailyActionPledge:
+      'Hôm nay em sẽ quan tâm hỏi thăm sức khỏe ông bà, cha mẹ hoặc giúp đỡ một bạn nhỏ có hoàn cảnh khó khăn trong lớp.',
     questions: [
-      'Bác Hồ đã làm gì khi thấy chú lính gác đứng dưới gió rét?',
-      'Hành động của Bác thể hiện phẩm chất cao quý nào?',
-      'Em có thể làm gì để chia sẻ sự ấm áp với những người khó khăn?',
+      'Bác Hồ đã nhìn thấy điều gì khi ngước mắt nhìn qua khung cửa sổ giữa đêm đông giá rét?',
+      'Tại sao chú chiến sĩ cảnh vệ ban đầu không dám nhận chiếc áo bông của Bác trao?',
+      'Câu chuyện gợi cho em cảm xúc gì về tình yêu thương của Bác đối với bộ đội cụ Hồ?',
     ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã trao tặng vật gì cho chú chiến sĩ cảnh vệ đứng gác dưới mưa phùn rét buốt?',
+      options: [
+        'Một đôi găng tay len mới',
+        'Chiếc áo trấn thủ chần bông ấm áp của chính Bác',
+        'Một chiếc chăn bông hoa rực rỡ',
+        'Một ngọn đèn dầu đang cháy sáng',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác cởi chính chiếc áo trấn thủ bông ấm áp của mình để khoác lên vai chú chiến sĩ gác đêm đông.',
+    },
   },
   {
     id: 'story_06',
     title: 'Hai bàn tay trắng',
+    subtitle: 'Ý chí kiên cường và câu nói bất hủ năm 1911',
     lesson: 'Ý chí tự lập, không ngại gian khó để theo đuổi lý tưởng lớn',
-    suitableAge: 'THCS (Lớp 6 – 9)',
+    suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'THCS',
+    teachingGroup: 'DIEU_2',
+    teachingGroupTitle: 'Điều 2: Học tập tốt, lao động tốt',
     readingTime: '4 phút',
     icon: '🤝',
+    historicalPeriod: 'Tháng 6/1911 • Thương cảng Sài Gòn — Bến Nhà Rồng',
+    historicalSource: 'Tác phẩm "Búp sen xanh" — Nhà văn Sơn Tùng & Lịch sử Đảng bộ TP',
+    goldenQuote: 'Đây, tiền ở đây! Chúng ta có hai bàn tay, chúng ta sẽ làm việc. Chúng ta sẽ làm bất cứ việc gì để sống và để đi cứu nước!',
     content:
-      'Trước khi rời Tổ quốc ra đi tìm đường cứu nước năm 1911, anh thanh niên Nguyễn Tất Thành rủ người bạn thân là anh Lê cùng đi. Anh Lê hỏi:\n- Chúng ta lấy đâu ra tiền mà đi?\nAnh Thành xòe hai bàn tay ra và dứt khoát nói:\n- Đây, tiền ở đây! Chúng ta có hai bàn tay, chúng ta sẽ làm việc. Chúng ta sẽ làm bất cứ việc gì để sống và để đi!\nSau đó, anh Thành đã xuống tàu Đô đốc Latouche-Tréville nhận làm phụ bếp, gánh than, quét dọn vô cùng cực nhọc nhưng ý chí không hề lay chuyển.',
+      'Năm 1911, khi nhân dân ta còn chìm đắm trong ách áp bức lầm than của thực dân Pháp, người thanh niên yêu nước Nguyễn Tất Thành tròn 21 tuổi đã ấp ủ quyết tâm cháy bỏng ra đi tìm con đường giải phóng cho dân tộc.\nTrước ngày lên đường, anh Thành đến tìm một người bạn thân là anh Lê để rủ cùng đi. Nghe anh Thành nói về kế hoạch sang tận các nước phương Tây để xem người ta làm thế nào rồi trở về giúp đồng bào, anh Lê ngỡ ngàng hỏi:\n- Chúng ta lấy đâu ra tiền mà đi hả Thành? Chuyến đi xa xôi vạn dặm tốn kém lắm!\nAnh Thành nhìn bạn với đôi mắt sáng ngời niềm tin, rồi từ từ giơ hai bàn tay rắn rỏi của mình ra phía trước và dứt khoát nói:\n- Đây, tiền ở đây! Chúng ta có hai bàn tay, chúng ta sẽ làm việc. Chúng ta sẽ làm bất cứ việc gì để sống và để đi!\nSau đó, anh Thành với tên gọi Văn Ba đã xin xuống làm phụ bếp trên con tàu buôn Đô đốc Latouche-Tréville. Hàng ngày, anh phải dậy từ 4 giờ sáng, cào than, quét dọn hầm tàu, bưng bê những chiếc chảo gang nặng trịch dưới đáy tàu nóng hầm hập. Dù lao động vô cùng cực nhọc nhưng ý chí giải phóng non sông của Người không bao giờ lung lay.',
     moralLesson:
-      'Bàn tay và khối óc là tài sản quý giá nhất. Chỉ cần có ý chí kiên định và lòng dũng cảm, con người có thể vượt qua mọi chông gai để vươn tới thành công.',
+      'Bàn tay lao động chân chính và ý chí nghị lực là tài sản quý giá nhất của con người. Tuổi trẻ có ước mơ lớn phải biết tự lập, dám dấn thân vượt qua mọi gian khổ để vươn tới thành công.',
+    dailyActionPledge:
+      'Hôm nay em sẽ tự giác hoàn thành toàn bộ bài tập về nhà và tự tay dọn dẹp phòng học của mình mà không cần ai nhắc nhở.',
     questions: [
-      'Anh Thành đã trả lời bạn mình bằng hành động và câu nói gì?',
-      'Trên con tàu sang Pháp, anh Thành đã làm những công việc gì?',
-      'Bài học về đôi bàn tay gợi cho em suy nghĩ gì về tính tự lập?',
+      'Khi người bạn hỏi về tiền bạc để đi sang phương Tây, anh Nguyễn Tất Thành đã trả lời thế nào?',
+      'Trên con tàu bôn ba cứu nước, anh Văn Ba đã làm những công việc vất vả gì?',
+      'Ý nghĩa của hình ảnh "Hai bàn tay trắng" giúp em hiểu thế nào về tinh thần tự lập?',
     ],
+    interactiveQuiz: {
+      question: 'Khi được người bạn hỏi: "Chúng ta lấy đâu ra tiền mà đi?", anh Thành đã trả lời bằng hành động nào?',
+      options: [
+        'Chỉ tay vào chiếc túi vải đựng đầy tiền tiết kiệm',
+        'Xòe hai bàn tay của mình ra và nói: "Đây, tiền ở đây!"',
+        'Nói rằng sẽ đi vay tiền của các nhà hảo tâm',
+        'Bảo bạn hãy chờ gia đình gửi tiền trợ cấp',
+      ],
+      correctAnswer: 1,
+      explanation: 'Anh Thành tin tưởng tuyệt đối vào sức lao động của đôi bàn tay và khối óc của chính mình.',
+    },
   },
   {
     id: 'story_07',
     title: 'Chiếc đồng hồ và bài học phân công',
+    subtitle: 'Kim giờ, kim phút và chiếc bánh xe thầm lặng',
     lesson: 'Tinh thần trách nhiệm và sự phối hợp nhịp nhàng trong tập thể',
     suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'Lớp 4 – 5',
+    teachingGroup: 'DIEU_3',
+    teachingGroupTitle: 'Điều 3: Đoàn kết tốt, kỷ luật tốt',
     readingTime: '3 phút',
     icon: '⏱️',
+    historicalPeriod: 'Năm 1954 • Lớp chỉnh huấn cán bộ tại Việt Bắc',
+    historicalSource: 'Giáo trình Đạo đức Đội Thiếu niên Tiền phong Hồ Chí Minh & NXB Giáo Dục',
+    goldenQuote: 'Trong chiếc đồng hồ, bánh xe, lò xo nằm kín bên trong, nếu đòi ra mặt số như kim thì đồng hồ chạy sao được? Công việc nào phục vụ nhân dân cũng đều vẻ vang!',
     content:
-      'Tại một lớp học chính trị, Bác Hồ rút trong túi áo ra một chiếc đồng hồ quả quýt bằng kim loại sáng bóng. Bác hỏi cán bộ:\n- Trong chiếc đồng hồ này, các chú thấy bộ phận nào quan trọng?\nCó người nói kim giờ, có người nói kim phút, có người nói quả lắc, bánh xe.\nBác mỉm cười nói: "Đúng vậy, mỗi bộ phận đều có nhiệm vụ riêng. Kim chỉ giờ, kim chỉ phút chạy trên mặt số, ai cũng nhìn thấy. Nhưng bánh xe, lò xo nằm kín bên trong, nếu nó đòi ra ngoài mặt số như kim thì đồng hồ có chạy được không?\nTrong cách mạng và học tập cũng vậy, mỗi người một nhiệm vụ, công việc nào cũng vẻ vang nếu hoàn thành tốt."',
+      'Vào mùa thu năm 1954, chuẩn bị về tiếp quản Thủ đô Hà Nội, Bác Hồ đến nói chuyện tại một lớp tập huấn cán bộ. Lúc bấy giờ, một số đồng chí có tâm lý muốn xin chuyển sang làm các công tác ở trung tâm, nổi bật hơn mà không muốn ở lại làm nhiệm vụ thầm lặng ở vùng sâu vùng xa.\nBác bước lên bục, không phê bình ai mà nhẹ nhàng rút trong túi áo ra một chiếc đồng hồ quả quýt bằng kim loại sáng bóng. Bác mỉm cười giơ chiếc đồng hồ lên và hỏi:\n- Trong chiếc đồng hồ này, các chú thấy bộ phận nào là quan trọng nhất?\nNgười thì bảo kim giờ, người bảo kim phút, người lại nói quả lắc hoặc lò xo dây cót. Bác gật đầu bảo:\n- Các chú nói đều có phần đúng. Nhưng nếu kim giờ đòi nhảy sang làm kim phút, kim giây đòi to như kim giờ, hay chiếc bánh xe nằm kín mít bên trong đòi nhảy ra mặt số để ai cũng nhìn thấy, thì chiếc đồng hồ này có chạy được không?\nCả hội trường đồng thanh đáp: "Dạ thưa Bác, đồng hồ sẽ hỏng ngay ạ!".\nBác liền kết luận thật sâu sắc: "Đúng vậy! Trong một cỗ máy cũng như trong tập thể cách mạng, mỗi người được phân công một nhiệm vụ riêng. Kim chỉ giờ chỉ phút chạy trên mặt số thì ai cũng thấy, nhưng bánh xe nằm sâu bên trong cũng quan trọng không kém. Đã làm việc phục vụ nhân dân thì công việc nào cũng vẻ vang nếu mình hoàn thành xuất sắc!".',
     moralLesson:
-      'Tập thể vững mạnh khi mỗi cá nhân biết tôn trọng nhiệm vụ của mình và của bạn bè, không ghen tị hay tranh giành vị trí nổi bật.',
+      'Tập thể vững mạnh khi mỗi thành viên biết tôn trọng nhiệm vụ của mình và của bạn bè. Không nên so bì, ghen tị hay tranh giành vị trí nổi bật, mà hãy tận tâm hoàn thành tốt phần việc được giao.',
+    dailyActionPledge:
+      'Hôm nay em sẽ làm thật tốt phần việc trực nhật hoặc bài tập nhóm được phân công, không so đo tị nạnh với các bạn.',
     questions: [
-      'Bác Hồ đã mượn hình ảnh chiếc đồng hồ để dạy bài học gì?',
-      'Nếu bánh xe đòi nhảy lên mặt số thì điều gì sẽ xảy ra?',
-      'Trong lớp học, em thấy các bạn lớp trưởng, tổ trưởng, học sinh cần phối hợp thế nào?',
+      'Bác Hồ đã mượn hình ảnh cỗ máy chiếc đồng hồ để dạy cho cán bộ bài học gì?',
+      'Điều gì sẽ xảy ra nếu các bánh xe bên trong đòi nhảy ra ngoài mặt số như kim đồng hồ?',
+      'Ở lớp học, các bạn cán bộ lớp và các tổ viên cần phối hợp như thế nào để lớp tiến bộ?',
     ],
+    interactiveQuiz: {
+      question: 'Qua câu chuyện "Chiếc đồng hồ", Bác Hồ muốn gửi gắm thông điệp gì đến chúng ta?',
+      options: [
+        'Mỗi học sinh đều phải mua một chiếc đồng hồ quả quýt',
+        'Mỗi bộ phận, mỗi công việc đều có giá trị vẻ vang khi hoàn thành tốt nhiệm vụ',
+        'Chỉ có những người làm ở vị trí nổi bật mới đóng góp cho xã hội',
+        'Chiếc kim đồng hồ quan trọng gấp trăm lần các bánh xe bên trong',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác dạy: Mọi công việc phục vụ tập thể đều vẻ vang và bình đẳng như nhau, quan trọng là làm tròn trách nhiệm.',
+    },
   },
   {
     id: 'story_08',
     title: 'Nước nóng, nước nguội',
+    subtitle: 'Nghệ thuật kiềm chế cảm xúc và lời nói hòa nhã',
     lesson: 'Bài học về kiềm chế cảm xúc, điềm tĩnh khi xử lý công việc',
-    suitableAge: 'THCS (Lớp 6 – 9)',
+    suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'THCS',
+    teachingGroup: 'DIEU_5',
+    teachingGroupTitle: 'Điều 5: Khiêm tốn, thật thà, dũng cảm',
     readingTime: '3 phút',
     icon: '🍵',
+    historicalPeriod: 'Năm 1952 • Phủ Chủ tịch thời chiến',
+    historicalSource: 'Theo lời kể của đồng chí Tạ Quang Chiến (người được Bác đặt tên)',
+    goldenQuote: 'Khi chú nóng giận, lời nói chú như cốc nước sôi vậy, cấp dưới làm sao nuốt trôi? Điềm tĩnh, dịu dàng như cốc nước mát này thì ai cũng lắng nghe.',
     content:
-      'Một đồng chí cán bộ trung đoàn có tính nóng nảy, hay mắng mỏ cấp dưới được Bác gọi lên Phủ Chủ tịch. Khi đồng chí bước vào, trời nắng gắt, mồ hôi nhễ nhại. Trên bàn Bác đặt sẵn hai cốc nước: một cốc nước sôi bốc khói nghi ngút và một cốc nước mát trong lành.\nBác chỉ cốc nước sôi nói:\n- Chú uống đi!\nĐồng chí ngạc nhiên: "Thưa Bác, nước nóng quá, làm sao uống được ạ!"\nBác cười hiền hậu: "Đúng rồi! Nước nóng chú không uống được. Cũng như khi chú nổi giận, lời nói chú như cốc nước sôi vậy, cấp dưới làm sao nuốt trôi? Điềm tĩnh, dịu dàng như cốc nước mát này thì ai cũng lắng nghe."',
+      'Một đồng chí cán bộ trung đoàn có tính tình rất nóng nảy, mỗi khi cấp dưới phạm lỗi thì thường hay quát mắng gay gắt khiến anh em chiến sĩ hoang mang, nội bộ thiếu hòa khí. Bác Hồ biết chuyện liền cho gọi đồng chí ấy lên gặp Bác.\nTrưa hôm ấy trời nắng chang chang như đổ lửa. Đồng chí cán bộ đi bộ qua quãng đường rừng dài, mồ hôi nhễ nhại, vừa mệt vừa khát nước. Bước vào phòng làm việc của Bác, đồng chí thấy trên bàn Bác đã để sẵn hai chiếc cốc:\nMột cốc nước sôi bốc khói nghi ngút, và một cốc nước đun sôi để nguội trong vắt, mát lành.\nSau lời chào thân mật, Bác chỉ tay vào cốc nước đang bốc khói và bảo:\n- Chú đang khát nước, chú uống cốc này đi!\nĐồng chí cán bộ bối rối thưa: "Thưa Bác, nước đang sôi nóng bỏng thế này, làm sao cháu uống ngay được ạ!".\nBác Hồ mỉm cười hiền hậu, đưa cốc nước mát cho đồng chí rồi ân cần bảo:\n- Chú nói rất đúng! Nước nóng thế thì ai mà uống cho được. Lúc chú nóng giận, lời nói của chú cũng gay gắt bỏng rát như cốc nước sôi kia vậy, người khác nghe làm sao mà lọt tai được? Chi bằng chú hãy điềm tĩnh, hòa nhã như cốc nước nguội mát lành này, chỉ rõ cái sai để anh em sửa chữa, có phải ai cũng vui vẻ lắng nghe không?',
     moralLesson:
-      'Khi nóng giận, lời nói có thể làm tổn thương người khác. Hãy học cách hít thở sâu, giữ bình tĩnh để tìm ra cách giải quyết đúng đắn nhất.',
+      'Khi nóng giận, lời nói thiếu suy nghĩ có thể làm tổn thương sâu sắc người khác. Học sinh phải rèn luyện đức tính điềm tĩnh, biết lắng nghe và nói năng hòa nhã, lịch sự trong mọi hoàn cảnh.',
+    dailyActionPledge:
+      'Hôm nay khi gặp chuyện không như ý hoặc bất đồng ý kiến với bạn bè, em sẽ hít thở sâu 3 giây và nói chuyện nhẹ nhàng.',
     questions: [
-      'Hai cốc nước trên bàn Bác có gì khác nhau?',
-      'Bác Hồ khuyên vị cán bộ điều gì qua hình ảnh cốc nước nóng?',
-      'Khi gặp chuyện bực mình ở trường, em làm thế nào để giữ bình tĩnh?',
+      'Hai cốc nước đặt trên bàn làm việc của Bác Hồ có điểm gì khác nhau?',
+      'Bác Hồ đã khuyên vị cán bộ điều gì qua hình ảnh so sánh giữa cốc nước sôi và cốc nước nguội?',
+      'Khi em cảm thấy bực tức ở trường hay ở nhà, em làm cách nào để kiềm chế cơn giận dữ?',
     ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã so sánh lời nói lúc nóng giận với hình ảnh nào?',
+      options: [
+        'Như cốc nước đá lạnh buốt xương',
+        'Như cốc nước sôi bỏng rát, người khác không thể nào nuốt trôi',
+        'Như dòng suối mát lành chảy qua rừng cây',
+        'Như một cơn mưa rào mùa hạ',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác dạy: Khi nóng giận lời nói như nước sôi gây bỏng rát, người nghe không tiếp nhận được; điềm tĩnh như nước mát thì ai cũng thấu hiểu.',
+    },
   },
   {
     id: 'story_09',
     title: 'Ba chiếc ba lô',
-    lesson: 'Tính bình đẳng, công bằng, không mưu cầu đặc quyền',
+    subtitle: 'Gánh vác gian khổ đồng đều, không màng đặc quyền',
+    lesson: 'Tính bình đẳng, công bằng, không mưu cầu đặc quyền cho bản thân',
     suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'Lớp 4 – 5',
+    teachingGroup: 'DIEU_3',
+    teachingGroupTitle: 'Điều 3: Đoàn kết tốt, kỷ luật tốt',
     readingTime: '3 phút',
     icon: '🎒',
+    historicalPeriod: 'Năm 1948 • Trên đường hành quân chiến dịch',
+    historicalSource: 'Báo Thiếu niên Tiền phong & Tuyển tập Chuyện kể Bác Hồ',
+    goldenQuote: 'Bác cháu ta cùng đi đường xa gian khổ như nhau. Phải chia đều đồ đạc ra ba phần bằng nhau, cùng gánh vác trách nhiệm thì mới bình đẳng!',
     content:
-      'Trong một chuyến công tác băng rừng lội suối, đoàn của Bác gồm có Bác và hai đồng chí bảo vệ. Đồng chí bảo vệ thấy Bác tuổi cao nên chuẩn bị ba chiếc ba lô: chiếc to nặng nhất dành cho mình, chiếc vừa cho bạn, còn chiếc ba lô nhỏ nhẹ nhất dành cho Bác.\nĐi được một quãng, Bác cho đoàn dừng chân nghỉ và hỏi:\n- Chú mở ba lô ra cho Bác xem trong đó có những gì nào?\nThấy ba lô của các chú đựng toàn gạo, tài liệu nặng trịch, còn ba lô của Bác chỉ có chiếc khăn mặt và bộ quần áo, Bác không đồng ý. Bác nói:\n- Bác cháu ta cùng đi đường xa gian khổ như nhau. Phải chia đều đồ đạc ra ba phần bằng nhau, cùng gánh vác trách nhiệm thì mới bình đẳng!',
+      'Trong một chuyến công tác băng rừng lội suối kéo dài nhiều ngày, đoàn của Bác Hồ gồm có Bác và hai đồng chí bảo vệ trẻ tuổi. Vì lo lắng Bác đã cao tuổi, sức khỏe quý giá, hai đồng chí bàn nhau chuẩn bị ba chiếc ba lô với trọng lượng rất khác nhau:\nChiếc ba lô to nặng nhất đựng gạo và xoong nồi dành cho đồng chí to khỏe; chiếc ba lô vừa đựng tài liệu dành cho đồng chí kia; còn chiếc ba lô nhỏ và nhẹ nhất chỉ đựng vài bộ quần áo lụa và chiếc khăn mặt thì để dành riêng cho Bác đeo.\nĐoàn hành quân được một chặng đường dài, mồ hôi ướt đẫm lưng áo. Khi đến một con suối mát, Bác cho đoàn dừng chân nghỉ ngơi. Nhìn thấy chiếc ba lô của hai chú căng phồng nặng trĩu, còn chiếc của mình xẹp lép, Bác liền bảo:\n- Nào, các chú mở cả ba chiếc ba lô ra cho Bác xem trong đó có những gì nào!\nSau khi kiểm tra, Bác nghiêm nét mặt và nói:\n- Các chú thương Bác là tốt, nhưng Bác cháu ta cùng đi đường xa gian khổ như nhau. Chú gánh nặng, Bác gánh nhẹ thì không công bằng. Phải dồn đồ đạc lại và chia đều thành ba phần bằng nhau, mỗi người gánh vác một phần trách nhiệm thì đi đường mới bền sức và vui vẻ được!\nHai đồng chí bảo vệ nhìn nhau cảm phục, lập tức chia lại đồ đạc theo đúng lời Bác dạy.',
     moralLesson:
-      'Người lãnh đạo chân chính luôn san sẻ khó khăn với mọi người, không bao giờ dùng chức vụ để mưu cầu sự an nhàn cho riêng mình.',
+      'Người lãnh đạo chân chính luôn san sẻ khó khăn với mọi người, không bao giờ dùng cương vị để hưởng thụ an nhàn cho riêng mình. Tinh thần công bằng, bình đẳng là nền tảng của tình đồng đội.',
+    dailyActionPledge:
+      'Hôm nay em sẽ chủ động giúp đỡ cha mẹ việc nhà và chia sẻ đồ đạc công bằng khi sinh hoạt cùng bạn bè.',
     questions: [
-      'Vì sao các chú bảo vệ chuẩn bị cho Bác chiếc ba lô nhẹ nhất?',
-      'Bác Hồ đã yêu cầu sắp xếp lại ba lô như thế nào?',
-      'Em học được bài học gì về sự công bằng trong làm việc nhóm?',
+      'Vì sao hai đồng chí bảo vệ lại chuẩn bị chiếc ba lô nhẹ nhất cho Bác Hồ?',
+      'Thái độ của Bác Hồ như thế nào khi phát hiện ra sự chênh lệch giữa ba chiếc ba lô?',
+      'Bài học về ba chiếc ba lô gợi cho em suy nghĩ gì về sự công bằng trong làm việc nhóm?',
     ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã yêu cầu sắp xếp lại ba chiếc ba lô hành quân như thế nào?',
+      options: [
+        'Để hai đồng chí bảo vệ gánh hết toàn bộ đồ đạc cho Bác',
+        'Chia đều đồ đạc thành ba phần bằng nhau để mỗi người cùng gánh vác',
+        'Bỏ bớt gạo và tài liệu lại dọc đường để đi cho nhanh',
+        'Thuê người dân địa phương gánh hộ đồ đạc',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác yêu cầu chia đều đồ đạc làm ba phần bằng nhau để cùng gánh vác trách nhiệm và đảm bảo tính công bằng, bình đẳng.',
+    },
   },
   {
     id: 'story_10',
     title: 'Đôi dép cao su của Bác',
+    subtitle: 'Di vật thiêng liêng và bài học cần kiệm',
     lesson: 'Lối sống giản dị, cần kiệm, gắn bó máu thịt với nhân dân',
     suitableAge: 'Tiểu học (Lớp 1 – 5)',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_2',
+    teachingGroupTitle: 'Điều 2: Học tập tốt, lao động tốt',
     readingTime: '3 phút',
     icon: '🩴',
+    historicalPeriod: '1947 – 1969 • Từ Chiến khu Việt Bắc về Thủ đô Hà Nội',
+    historicalSource: 'Bảo tàng Hồ Chí Minh — Di vật đôi dép cao su lịch sử',
+    goldenQuote: 'Dép còn đóng quai đi tốt, chưa hỏng, mua đôi mới tốn tiền của nhân dân!',
     content:
-      'Đôi dép cao su của Bác được làm từ một chiếc lốp ô tô quân sự cũ từ năm 1947. Đôi dép ấy đã theo chân Bác đi khắp chiến khu Việt Bắc, sang tận nước ngoài và về lại Thủ đô Hà Nội.\nNhiều lần quai dép bị đứt, các đồng chí bảo vệ đề nghị Bác thay đôi dép mới, nhưng Bác đều bảo:\n- Dép còn đóng quai đi tốt, chưa hỏng, mua đôi mới tốn tiền của nhân dân!\nĐôi dép lốp giản dị đã trở thành biểu tượng thiêng liêng của một vị Chủ tịch nước sống cả cuộc đời thanh bạch, vì dân vì nước.',
+      'Đôi dép cao su của Bác Hồ được làm từ một chiếc lốp ô tô quân sự cũ của thực dân Pháp bị quân ta bắt được từ chiến dịch năm 1947. Đôi dép có hai quai trước bắt chéo, hai quai sau song song, đế được cắt vừa vặn bàn chân Bác.\nĐôi dép lốp giản dị ấy đã cùng Bác lội suối, trèo đèo suốt những năm tháng kháng chiến trường kỳ ở chiến khu Việt Bắc, theo Bác về Thủ đô Hà Nội, và cùng Bác đi thăm các nước bạn bè trên thế giới.\nNhiều lần quai dép bị tụt chốt, mòn vẹt đế, các đồng chí phục vụ cơ quan nhiều lần đề nghị Bác cho thay một đôi dép da mới trang trọng hơn. Nhưng lần nào Bác cũng cười từ chối và bảo:\n- Dép này của Bác còn đi tốt lắm, chỉ cần đóng lại cái quai là dùng được rồi. Mua đôi mới tốn tiền của Nhà nước, tốn mồ hôi nước mắt của nhân dân đóng thuế!\nCho đến tận những ngày tháng cuối cùng của cuộc đời, đôi dép cao su mộc mạc ấy vẫn luôn ở bên Người, trở thành biểu tượng bất tử về nhân cách thanh cao, giản dị tuyệt vời của một vị Chủ tịch nước.',
     moralLesson:
-      'Thực hành tiết kiệm từ những vật dụng nhỏ nhất là phẩm chất đáng quý của người học sinh văn minh.',
+      'Thực hành tiết kiệm từ những vật dụng nhỏ bé nhất là phẩm chất đạo đức cao đẹp. Tiết kiệm không phải là bủn xỉn mà là biết trân trọng mồ hôi công sức lao động của cha mẹ và nhân dân.',
+    dailyActionPledge:
+      'Hôm nay em sẽ giữ gìn sách vở thật cẩn thận, không lãng phí giấy trắng và dùng bút chì đến hết ruột.',
     questions: [
-      'Đôi dép của Bác Hồ được làm từ vật liệu gì?',
-      'Vì sao Bác không chịu đổi đôi dép mới khi quai dép bị tuột?',
-      'Em đã thực hành tiết kiệm đồ dùng học tập và quần áo như thế nào?',
+      'Đôi dép cao su của Bác Hồ được làm từ vật liệu gì và có từ năm nào?',
+      'Vì sao Bác Hồ nhiều lần từ chối thay đôi dép mới dù đôi dép cũ đã mòn vẹt quai?',
+      'Em đã thực hành thói quen tiết kiệm đồ dùng học tập và quần áo của mình như thế nào?',
     ],
+    interactiveQuiz: {
+      question: 'Lý do Bác Hồ không muốn thay đôi dép cao su mới là gì?',
+      options: [
+        'Vì Bác không tìm được đôi dép nào vừa cỡ chân',
+        'Vì đôi dép còn dùng tốt, mua mới sẽ tốn tiền của nhân dân đóng thuế',
+        'Vì Bác sợ mang dép da bị trơn trượt khi đi mưa',
+        'Vì không có cửa hàng nào bán dép da ở Hà Nội',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác luôn tâm niệm: Tiết kiệm từng đồng tiền thuế của nhân dân là đạo đức cách mạng của người lãnh đạo.',
+    },
+  },
+  {
+    id: 'story_11',
+    title: 'Bác Hồ học tiếng nước ngoài trên đường bôn ba',
+    subtitle: 'Viết từ mới lên cánh tay và nghị lực tự học phi thường',
+    lesson: 'Tinh thần tự học bền bỉ, kiên trì trau dồi tri thức mỗi ngày',
+    suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'THCS',
+    teachingGroup: 'DIEU_2',
+    teachingGroupTitle: 'Điều 2: Học tập tốt, lao động tốt',
+    readingTime: '4 phút',
+    icon: '📖',
+    historicalPeriod: '1912 – 1920 • Anh quốc và Pháp',
+    historicalSource: 'Tác phẩm "Những mẩu chuyện về đời hoạt động của Hồ Chủ tịch" — Trần Dân Tiên',
+    goldenQuote: 'Mỗi ngày học thuộc mười từ mới. Viết lên cánh tay, vừa làm việc vừa nhẩm lại, tối về viết lại ra giấy cho kỳ nhớ mới thôi!',
+    content:
+      'Để tìm hiểu bản chất của chủ nghĩa thực dân và tìm đường cứu nước, Bác Hồ biết rằng điều quan trọng bậc nhất là phải thông thạo tiếng nói của các nước. Người đã tự học tiếng Pháp, tiếng Anh và nhiều ngoại ngữ khác trong điều kiện vô cùng thiếu thốn.\nThời kỳ làm phụ bếp trên con tàu biển vượt đại dương, mỗi sáng sớm khi quét dọn boong tàu, Bác tìm những tờ báo cũ của hành khách bỏ lại. Bác cẩn thận cắt những mẩu tin nhỏ, gặp từ nào mới thì hỏi các thủy thủ người Pháp hoặc tra cứu từ điển.\nBác có một phương pháp học vô cùng độc đáo: Mỗi sáng, Bác viết khoảng 10 từ mới lên cánh tay của mình. Suốt cả ngày, vừa gánh than, bưng đồ ăn, Bác vừa nhìn vào cánh tay để nhẩm đi nhẩm lại từng từ một. Đến tối, sau khi xong mọi việc mệt lả, Bác dùng que diêm thắp sáng và chép lại những từ đó vào một cuốn sổ nhỏ cho đến khi thuộc làu làu.\nNhờ tinh thần tự học kiên trì phi thường ấy, sau này Bác Hồ đã nói và viết thông thạo gần 10 ngoại ngữ khác nhau, có thể viết báo bằng tiếng Pháp, dịch tài liệu tiếng Anh, tiếng Nga và đối thoại trôi chảy với các nguyên thủ quốc gia.',
+    moralLesson:
+      'Không có khó khăn nào ngăn nổi bước chân của người có ý chí tự học. Tự học là chiếc chìa khóa vạn năng mở ra kho tàng tri thức của nhân loại.',
+    dailyActionPledge:
+      'Hôm nay em sẽ ghi nhớ ít nhất 5 từ vựng tiếng Anh mới và dán lên góc bàn học để ôn tập.',
+    questions: [
+      'Khi làm việc trên con tàu vượt đại dương, Bác Hồ đã tự học ngoại ngữ bằng cách nào?',
+      'Cách Bác viết từ mới lên cánh tay dạy cho em bài học gì về việc tận dụng thời gian học tập?',
+      'Em có kế hoạch rèn luyện môn Ngoại ngữ hoặc môn học yêu thích như thế nào?',
+    ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã áp dụng phương pháp độc đáo nào để học thuộc từ vựng ngoại ngữ mỗi ngày?',
+      options: [
+        'Thuê gia sư riêng dạy kèm mỗi tối',
+        'Viết từ mới lên cánh tay để vừa làm việc vừa nhẩm thuộc',
+        'Chỉ học ngữ pháp mà không cần học từ vựng',
+        'Chờ đến khi có thời gian rảnh rỗi mới mở sách học',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác viết từ mới lên cánh tay để tranh thủ từng giây phút lao động vừa làm vừa học, tối về viết lại ra giấy cho kỳ thuộc.',
+    },
+  },
+  {
+    id: 'story_12',
+    title: 'Ngăn nắp, sạch sẽ từ căn nhà sàn đơn sơ',
+    subtitle: 'Nếp sống khoa học và sạch sẽ của Người',
+    lesson: 'Rèn luyện thói quen ngăn nắp, giữ gìn vệ sinh nơi ở và học tập',
+    suitableAge: 'Tiểu học (Lớp 1 – 5)',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_4',
+    teachingGroupTitle: 'Điều 4: Giữ gìn vệ sinh thật tốt',
+    readingTime: '3 phút',
+    icon: '🏡',
+    historicalPeriod: '1958 – 1969 • Nhà sàn Bác Hồ tại Phủ Chủ tịch',
+    historicalSource: 'Ban Quản lý Khu Di tích Phủ Chủ tịch & Báo Thiếu niên Tiền phong',
+    goldenQuote: 'Nơi ở và làm việc sạch sẽ, ngăn nắp thì tinh thần mới sảng khoái, làm việc mới hiệu quả và ít ốm đau.',
+    content:
+      'Bất kỳ ai từng có vinh dự đến thăm ngôi nhà sàn của Bác Hồ tại Phủ Chủ tịch đều vô cùng xúc động trước nếp sống thanh bạch, ngăn nắp và sạch sẽ đến mẫu mực của Người.\nCăn phòng ngủ và phòng làm việc của Bác chỉ rộng hơn chục mét vuông, đồ đạc vô cùng đơn sơ: một chiếc giường đơn trải chiếu cói, một chiếc bàn làm việc bằng gỗ mộc, chiếc quạt lá cọ và ngọn đèn bàn nhỏ.\nĐiều đặc biệt là mọi đồ vật đều được Bác sắp đặt hết sức gọn gàng, trật tự. Những cuốn sách Bác đang đọc được xếp ngay ngắn theo từng chủ đề; chiếc bút mực, lọ mực, hộp diêm đều đặt đúng vị trí quy định để khi cần, dù trong đêm tối cúp điện, Bác đưa tay ra là lấy được ngay mà không cần tìm kiếm.\nBuổi sáng sau khi thức dậy và tập thể dục, Bác tự tay gấp chăn màn vuông vắn như viên gạch, quét dọn căn phòng sạch bóng rồi mới bắt đầu làm việc. Bác thường nhắc nhở cán bộ và các cháu thiếu nhi: "Nơi ở và góc học tập sạch sẽ, ngăn nắp thì tinh thần mới sảng khoái, làm việc mới hiệu quả và bảo vệ được sức khỏe!".',
+    moralLesson:
+      'Giữ gìn vệ sinh thân thể và nơi ở gọn gàng là biểu hiện của nếp sống văn minh. Người học sinh chăm ngoan phải luôn giữ cho góc học tập và lớp học của mình sạch đẹp mỗi ngày.',
+    dailyActionPledge:
+      'Hôm nay em sẽ tự tay dọn dẹp bàn học của mình thật sạch sẽ và gấp chăn màn ngay sau khi thức dậy.',
+    questions: [
+      'Đồ đạc trong căn nhà sàn của Bác Hồ được bài trí và sắp xếp như thế nào?',
+      'Vì sao Bác Hồ dù bận trăm công nghìn việc vẫn tự tay quét dọn và gấp chăn màn ngăn nắp?',
+      'Em đã tự giác sắp xếp góc học tập ở nhà và ngăn bàn ở lớp học ra sao?',
+    ],
+    interactiveQuiz: {
+      question: 'Bác Hồ dạy cán bộ và thiếu nhi điều gì về việc giữ gìn nơi ở sạch sẽ, ngăn nắp?',
+      options: [
+        'Chỉ cần dọn dẹp khi có khách quý đến thăm nhà',
+        'Nơi ở sạch sẽ, ngăn nắp thì tinh thần sảng khoái, làm việc hiệu quả và ít ốm đau',
+        'Gọn gàng là việc của người lớn, học sinh không cần bận tâm',
+        'Nên sắm nhiều đồ đạc đắt tiền để trang trí phòng',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác dạy nếp sống ngăn nắp, khoa học giúp rèn luyện tính kỷ luật và mang lại sức khỏe dồi dào.',
+    },
+  },
+  {
+    id: 'story_13',
+    title: 'Bài học rửa tay sạch trước khi ăn kẹo',
+    subtitle: 'Lời nhắc nhở ân cần về vệ sinh thân thể',
+    lesson: 'Ý thức giữ gìn vệ sinh cá nhân, phòng bệnh và bảo vệ sức khỏe',
+    suitableAge: 'Mầm non & Tiểu học (Lớp 1 – 3)',
+    gradeCategory: 'Lớp 1 – 3',
+    teachingGroup: 'DIEU_4',
+    teachingGroupTitle: 'Điều 4: Giữ gìn vệ sinh thật tốt',
+    readingTime: '3 phút',
+    icon: '🧼',
+    historicalPeriod: 'Năm 1956 • Bác Hồ đón các cháu mẫu giáo tại Phủ Chủ tịch',
+    historicalSource: 'Báo Nhi Đồng — Tuyển tập Bác Hồ với thiếu niên nhi đồng',
+    goldenQuote: 'Bác có kẹo ngon cho các cháu đây. Nhưng trước khi ăn kẹo, các cháu hãy chìa hai bàn tay ra xem tay ai sạch nhất nào!',
+    content:
+      'Nhân dịp Tết Trung thu năm 1956, Bác Hồ mời một đoàn các em nhỏ mẫu giáo và nhi đồng Thủ đô vào Phủ Chủ tịch vui liên hoan phá cỗ cùng Bác.\nCác em nhỏ tung tăng chạy nhảy quanh vườn hoa, chơi đùa bắt bướm ríu rít như đàn chim non. Khi các cháu tập hợp lại quanh bàn tiệc có kẹo thơm và bánh nướng, Bác Hồ mỉm cười trìu mến bước ra với một túi kẹo lớn trên tay.\nCác em nhỏ háo hức xoe tròn đôi mắt ngước nhìn Bác. Bác chưa vội chia kẹo ngay mà dịu dàng bảo:\n- Bác có rất nhiều kẹo ngon chia cho các cháu đây! Nhưng trước khi nhận kẹo, Bác muốn xem bạn nào có bàn tay sạch nhất nào. Các cháu hãy giơ hai bàn tay ra phía trước cho Bác xem!\nCác em nhỏ liền xòe hai bàn tay ra. Bác đi từng hàng, cúi xuống ngắm nghía từng bàn tay nhỏ. Có bạn tay sạch hồng hào được Bác khen, nhưng cũng có vài bạn vừa mải mê nghịch đất cát dưới gốc cây nên bàn tay còn lấm lem bụi bẩn.\nBác ân cần dẫn các em ấy lại bên vòi nước sạch, tự tay Bác lấy xà phòng hướng dẫn các cháu xoa đều lòng bàn tay, mu bàn tay và từng kẽ ngón tay rồi rửa lại dưới làn nước trong vắt. Sau khi lau tay khô ráo, Bác mới chia kẹo cho từng cháu và ân cần căn dặn:\n- Bàn tay chúng ta làm việc, cầm bút, cầm phấn rất dễ dính vi khuẩn. Các cháu phải luôn nhớ rửa tay sạch bằng xà phòng trước khi ăn cơm và sau khi đi vệ sinh để khỏi bị đau bụng, ốm đau nhé!',
+    moralLesson:
+      'Giữ gìn vệ sinh đôi bàn tay là bước đơn giản nhưng quan trọng nhất để bảo vệ sức khỏe cho chính mình và cộng đồng. Phòng bệnh hơn chữa bệnh.',
+    dailyActionPledge:
+      'Hôm nay em sẽ thực hiện đúng quy trình 6 bước rửa tay bằng xà phòng trước khi ăn cơm và sau khi chơi thể thao.',
+    questions: [
+      'Trước khi chia kẹo cho các em nhỏ, Bác Hồ đã yêu cầu các em làm điều gì?',
+      'Bác Hồ đã xử lý như thế nào đối với các bạn nhỏ có bàn tay còn dính bụi bẩn?',
+      'Tại sao việc rửa tay bằng xà phòng trước khi ăn lại vô cùng quan trọng đối với học sinh?',
+    ],
+    interactiveQuiz: {
+      question: 'Bác Hồ đã ân cần nhắc nhở các em nhỏ điều gì về việc rửa tay sạch sẽ?',
+      options: [
+        'Chỉ cần rửa tay một lần mỗi tuần là đủ',
+        'Rửa tay sạch bằng xà phòng trước khi ăn và sau khi đi vệ sinh để phòng tránh bệnh tật',
+        'Rửa tay bằng nước ngọt có ga cho thơm',
+        'Không cần rửa tay nếu thấy tay vẫn còn trắng',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác dạy thói quen vệ sinh khoa học: Luôn rửa sạch tay bằng xà phòng trước khi ăn để vi khuẩn không xâm nhập vào cơ thể.',
+    },
+  },
+  {
+    id: 'story_14',
+    title: 'Bác Hồ với các dũng sĩ tí hon miền Nam',
+    subtitle: 'Vòng tay ấm áp đón dũng sĩ Hồ Văn Mến (Bình Dương)',
+    lesson: 'Lòng yêu nước, căm thù giặc và ý chí kiên cường vì độc lập dân tộc',
+    suitableAge: 'Tiểu học & THCS',
+    gradeCategory: 'THCS',
+    teachingGroup: 'DIEU_1',
+    teachingGroupTitle: 'Điều 1: Yêu Tổ quốc, yêu đồng bào',
+    readingTime: '4 phút',
+    icon: '🎖️',
+    historicalPeriod: 'Tháng 2/1969 • Phủ Chủ tịch, Hà Nội',
+    historicalSource: 'Gặp gỡ Đoàn thiếu nhi dũng sĩ miền Nam — Bảo tàng Lịch sử Quân sự Việt Nam',
+    goldenQuote: 'Các cháu tuy nhỏ tuổi nhưng chí khí không nhỏ! Bác cháu ta cùng chung một dòng máu Lạc Hồng, Nam Bắc nhất định sum họp một nhà!',
+    content:
+      'Đầu năm 1969, Trung ương Đảng và Bác Hồ đón một đoàn đại biểu đặc biệt ra thăm miền Bắc: Đoàn thiếu nhi dũng sĩ diệt Mỹ miền Nam. Trong đoàn có em Hồ Văn Mến — người thiếu niên dũng sĩ kiên cường quê ở An Sơn (vùng đất Lái Thiêu, Thủ Dầu Một, Bình Dương), cùng các bạn Đoàn Văn Luyện, Huỳnh Thị Kiểng...\nKhi đoàn bước vào phòng khách Phủ Chủ tịch, Bác Hồ và Bác Tôn Đức Thắng đã đứng đợi sẵn từ cửa. Nhìn các dũng sĩ tí hon người gầy guộc, trên mình còn mang những vết sẹo thương tật vì bom đạn kẻ thù, đôi mắt Bác Hồ ngân ngấn lệ.\nBác ôm ghì từng cháu vào lòng, hôn lên trán, lên má các em. Bác ân cần hỏi thăm quê hương Bình Dương kiên cường đánh giặc ra sao, gia đình các cháu thế nào, vết thương ở chân của Hồ Văn Mến có còn nhức nhối khi trái gió trở trời không.\nBác cầm tay em Hồ Văn Mến và xúc động nói:\n- Các cháu tuy nhỏ tuổi nhưng chí khí không hề nhỏ! Tuổi trẻ miền Nam đã làm rạng danh non sông đất nước. Bác luôn tự hào về các cháu thiếu nhi miền Nam anh hùng!\nBác dặn dò các cháu phải cố gắng học tập văn hóa thật tốt, rèn luyện sức khỏe để sau này khi miền Nam hoàn toàn giải phóng, non sông thu về một mối, các cháu sẽ là những kỹ sư, bác sĩ, thầy giáo tài ba xây dựng lại quê hương đàng hoàng hơn, to đẹp hơn.',
+    moralLesson:
+      'Tuổi nhỏ chí lớn, lòng yêu nước nồng nàn không phân biệt lứa tuổi. Thiếu nhi Bình Dương và thiếu nhi cả nước luôn tự hào tiếp bước truyền thống anh hùng của cha anh.',
+    dailyActionPledge:
+      'Hôm nay em sẽ tìm hiểu và kể cho bạn bè nghe về gương anh hùng dũng sĩ thiếu nhi Hồ Văn Mến của quê hương Bình Dương Đất Thủ.',
+    questions: [
+      'Trong đoàn thiếu nhi dũng sĩ miền Nam ra thăm Bác Hồ năm 1969, dũng sĩ Hồ Văn Mến quê ở đâu?',
+      'Thái độ và cử chỉ của Bác Hồ khi gặp gỡ các dũng sĩ tí hon miền Nam thể hiện tình cảm gì?',
+      'Bác Hồ đã căn dặn các dũng sĩ nhỏ tuổi nhiệm vụ quan trọng gì cho tương lai mai sau?',
+    ],
+    interactiveQuiz: {
+      question: 'Dũng sĩ thiếu nhi Hồ Văn Mến trong đoàn dũng sĩ miền Nam ra thăm Bác Hồ là người con của quê hương nào?',
+      options: [
+        'Vùng đất Thừa Thiên Huế',
+        'Vùng đất Lái Thiêu — Thủ Dầu Một (Bình Dương)',
+        'Quê hương đất thép Củ Chi',
+        'Quê hương Đồng Tháp Mười',
+      ],
+      correctAnswer: 1,
+      explanation: 'Dũng sĩ Hồ Văn Mến sinh ra tại An Sơn (Lái Thiêu, Bình Dương), lập nhiều chiến công hiển hách khi tuổi đời còn rất nhỏ và vinh dự được gặp Bác Hồ năm 1969.',
+    },
+  },
+  {
+    id: 'story_15',
+    title: 'Không ai được vào trước',
+    subtitle: 'Bài học bình đẳng và tự giác xếp hàng của vị Chủ tịch nước',
+    lesson: 'Tôn trọng kỷ luật chung, khiêm tốn, bình đẳng, không nhận quyền ưu tiên',
+    suitableAge: 'Tất cả (Lớp 1 – 9)',
+    gradeCategory: 'Lớp 4 – 5',
+    teachingGroup: 'DIEU_5',
+    teachingGroupTitle: 'Điều 5: Khiêm tốn, thật thà, dũng cảm',
+    readingTime: '3 phút',
+    icon: '🎟️',
+    historicalPeriod: 'Năm 1961 • Chùa Một Cột, Hà Nội',
+    historicalSource: 'Theo hồi ký các chiến sĩ cảnh vệ bảo vệ Bác Hồ & Ban Tuyên giáo Trung ương',
+    goldenQuote: 'Bác là Chủ tịch nước nhưng khi đi tham quan cũng là một người công dân. Đã là công dân thì phải xếp hàng mua vé như mọi người, không được chen ngang!',
+    content:
+      'Vào một ngày nghỉ cuối tuần năm 1961, Bác Hồ cùng các đồng chí cảnh vệ đi dạo và ghé thăm di tích Chùa Một Cột ở Thủ đô Hà Nội. Hôm ấy là ngày rằm, nhân dân và các cháu học sinh đến viếng cảnh chùa rất đông, xếp thành một hàng dài trước cổng soát vé.\nThấy Bác Hồ đến, đồng chí phụ trách bảo vệ di tích liền vội vã chạy ra mở rộng cánh cổng phụ và cung kính mời:\n- Dạ thưa Bác, mời Bác và các đồng chí đi cửa này vào trước ạ để khỏi phải chờ đợi!\nBác Hồ dừng bước, lắc đầu từ chối và nghiêm nghị nói:\n- Không được đâu chú! Ai đến trước thì vào trước, ai đến sau thì vào sau. Bác là Chủ tịch nước nhưng khi đi tham quan cũng là một người công dân bình thường như mọi người. Đã là công dân thì phải có kỷ luật, phải xếp hàng theo thứ tự, không được nhận quyền ưu tiên chen ngang làm gương xấu cho nhân dân và các cháu nhỏ!\nNói rồi, Bác hòa mình vào dòng người, vui vẻ đứng xếp hàng kiên nhẫn từng bước một cho đến khi tới lượt mình mua vé vào cửa.\nNhìn thấy vị lãnh tụ kính yêu sống mẫu mực, khiêm nhường đến từng cử chỉ nhỏ, đồng bào ai nấy đều rưng rưng xúc động và tự giác noi theo trật tự.',
+    moralLesson:
+      'Kỷ luật và sự công bằng tạo nên một xã hội văn minh. Không ai được phép tự cho mình đứng trên quy định chung của tập thể. Học sinh cần rèn luyện thói quen tự giác xếp hàng nơi công cộng.',
+    dailyActionPledge:
+      'Hôm nay em sẽ tự giác xếp hàng ngay ngắn khi vào lớp, khi mua đồ ăn ở căng-tin và khi tham gia giao thông.',
+    questions: [
+      'Khi người phụ trách mời Bác đi cửa ưu tiên để vào chùa trước, Bác Hồ đã phản ứng ra sao?',
+      'Câu nói của Bác về tư cách người công dân bình thường dạy cho chúng ta bài học đạo đức gì?',
+      'Em thể hiện văn hóa xếp hàng nơi công cộng (trường học, siêu thị, khu vui chơi) như thế nào?',
+    ],
+    interactiveQuiz: {
+      question: 'Khi đi tham quan Chùa Một Cột, Bác Hồ đã làm gương việc gì trước nhân dân?',
+      options: [
+        'Nhận lời đi cửa phụ ưu tiên để vào nhanh hơn',
+        'Tự giác đứng xếp hàng mua vé theo thứ tự như mọi người công dân bình thường',
+        'Yêu cầu ban quản lý đóng cửa chùa để Bác tham quan một mình',
+        'Nhờ người khác xếp hàng mua vé hộ mình',
+      ],
+      correctAnswer: 1,
+      explanation: 'Bác dạy: Dù ở cương vị nào thì trước pháp luật và kỷ luật công cộng, mọi công dân đều bình đẳng và phải tự giác xếp hàng.',
+    },
   },
 ];
 
