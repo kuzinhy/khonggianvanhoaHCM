@@ -46,6 +46,14 @@ import {
   setVisitorStats,
   type HcmActor,
 } from './hcmDossierRepository';
+import {
+  listDatThuExemplaryItems,
+  addManualDatThuItem,
+  triggerFanpageSync,
+  getFanpageConnectionStatus,
+  likeDatThuItem,
+  type ExemplaryTheme,
+} from './datThuFanpageConnector';
 
 function extractActor(req: any): HcmActor {
   const u = req.apiActor || req.authUser || req.user || {};
@@ -1124,6 +1132,120 @@ export function createHcmSpaceRouter(dbPath?: string): Router {
       res.json({ success: true, data: stats, message: 'Đã cập nhật mốc số liệu thống kê thành công.' });
     } catch (err: any) {
       res.status(500).json({ success: false, error: err?.message || 'Không thể cập nhật mốc số liệu.' });
+    }
+  });
+
+  // =========================================================================
+  // KẾT NỐI FANPAGE ĐẤT THỦ QUÊ HƯƠNG TÔI & QUẢN LÝ GƯƠNG SÁNG THỦ CÔNG
+  // =========================================================================
+
+  // 1. Lấy danh sách bài viết gương sáng & mô hình an sinh
+  router.get('/fanpage-dat-thu/items', (req, res) => {
+    try {
+      const { theme, source, khuPho, query } = req.query;
+      const items = listDatThuExemplaryItems({
+        theme: theme ? String(theme) : undefined,
+        source: source ? String(source) : undefined,
+        khuPho: khuPho ? String(khuPho) : undefined,
+        query: query ? String(query) : undefined,
+      });
+      res.json({ success: true, count: items.length, data: items });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể lấy dữ liệu gương sáng.' });
+    }
+  });
+
+  // 2. Kích hoạt đồng bộ tức thời từ Fanpage Đất Thủ Quê Hương Tôi
+  router.post('/fanpage-dat-thu/sync', async (_req, res) => {
+    try {
+      const result = await triggerFanpageSync();
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể đồng bộ từ Fanpage.' });
+    }
+  });
+
+  // 3. Thêm mới / Cập nhật thủ công gương người tốt việc tốt hoặc mô hình an sinh
+  router.post('/fanpage-dat-thu/manual', (req, res) => {
+    try {
+      const {
+        title,
+        fullName,
+        birthYear,
+        gender,
+        khuPho,
+        role,
+        unit,
+        theme,
+        category,
+        honorTitle,
+        avatarUrl,
+        goodDeedSummary,
+        storyContent,
+        communityImpact,
+        quoteOrMotto,
+        hcmLessonApplied,
+        sourceUrl,
+        tags,
+        postDate,
+      } = req.body || {};
+
+      if (!fullName || !goodDeedSummary || !storyContent) {
+        return res.status(400).json({
+          success: false,
+          error: 'Vui lòng điền đầy đủ: Họ tên, Tóm tắt việc tốt và Toàn văn câu chuyện.',
+        });
+      }
+
+      const item = addManualDatThuItem({
+        title: title || `Gương sáng người tốt việc tốt: ${fullName}`,
+        fullName,
+        birthYear: birthYear ? Number(birthYear) : undefined,
+        gender: gender || 'NAM',
+        khuPho: khuPho || 'Toàn phường',
+        role: role || 'Quần chúng nhân dân',
+        unit: unit || 'Phường Thủ Dầu Một',
+        theme: (theme as ExemplaryTheme) || 'NGUOI_TOT_VIEC_TOT',
+        category: category || 'QUAN_CHUNG_NHAN_DAN',
+        honorTitle: honorTitle || 'Gương người tốt việc tốt Phường Thủ Dầu Một',
+        avatarUrl,
+        goodDeedSummary,
+        storyContent,
+        communityImpact: communityImpact || 'Lan tỏa tinh thần sống đẹp trong nhân dân.',
+        quoteOrMotto: quoteOrMotto || 'Học tập và làm theo tấm gương đạo đức Bác Hồ.',
+        hcmLessonApplied: hcmLessonApplied || 'Nêu cao tinh thần trách nhiệm, tương thân tương ái vì cộng đồng.',
+        sourceUrl,
+        tags,
+        postDate,
+      });
+
+      res.status(201).json({
+        success: true,
+        message: 'Đã cập nhật thủ công gương người tốt việc tốt thành công vào cơ sở dữ liệu!',
+        data: item,
+      });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể lưu gương sáng thủ công.' });
+    }
+  });
+
+  // 4. Lấy trạng thái kết nối Fanpage
+  router.get('/fanpage-dat-thu/status', (_req, res) => {
+    try {
+      const status = getFanpageConnectionStatus();
+      res.json({ success: true, data: status });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể lấy trạng thái Fanpage.' });
+    }
+  });
+
+  // 5. Bày tỏ tri ân (like / tim)
+  router.post('/fanpage-dat-thu/:id/like', (req, res) => {
+    try {
+      const result = likeDatThuItem(req.params.id);
+      res.json({ success: true, data: result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể ghi nhận lượt tương tác.' });
     }
   });
 

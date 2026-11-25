@@ -7,20 +7,29 @@ export type ExemplaryCategory =
   | 'GIAO_DUC_Y_TE'
   | 'QUAN_CHUNG_NHAN_DAN';
 
+export type ExemplaryTheme = 'NGUOI_TOT_VIEC_TOT' | 'AN_SINH_XA_HOI' | 'HOC_TAP_LAM_THEO_BAC';
+export type ExemplarySource = 'FANPAGE_DAT_THU' | 'MANUAL_LOCAL';
+
 export interface ExemplaryPerson {
   id: string;
+  title?: string;
   fullName: string;
-  birthYear: number;
-  gender: 'NAM' | 'NU';
-  khuPho: 'Khu phố 1' | 'Khu phố 2' | 'Khu phố 3' | 'Khu phố 4' | 'Khu phố 5';
+  birthYear?: number;
+  gender?: 'NAM' | 'NU';
+  khuPho: 'Khu phố 1' | 'Khu phố 2' | 'Khu phố 3' | 'Khu phố 4' | 'Khu phố 5' | 'Toàn phường';
   role: string;
   unit: string;
+  theme: ExemplaryTheme;
+  themeLabel: string;
   category: ExemplaryCategory;
   categoryLabel: string;
-  recognitionDate: string; // ISO date / Month (All from 01/07/2025 to present)
+  source: ExemplarySource;
+  sourceLabel: string;
+  sourceUrl?: string; // Link bài viết gốc trên Fanpage Đất Thủ Quê Hương Tôi hoặc Báo chí
+  recognitionDate: string; // ISO date / Month (Tất cả từ sau 01/07/2025 đến nay)
   periodLabel: string;
-  honorTitle: string; // e.g. "Gương Dân vận khéo tiêu biểu", "Chiến sĩ thi đua", "Người tốt việc tốt 2025"
-  avatarUrl: string;
+  honorTitle: string; // e.g. "Gương Dân vận khéo tiêu biểu", "Mô hình an sinh xã hội", "Người tốt việc tốt 2025"
+  avatarUrl?: string;
   goodDeedSummary: string;
   storyContent: string;
   communityImpact: string;
@@ -28,14 +37,43 @@ export interface ExemplaryPerson {
   hcmLessonApplied: string;
   likesCount: number;
   tags: string[];
+  isSyncedFromFanpage?: boolean;
 }
+
+export const FANPAGE_DAT_THU_INFO = {
+  name: 'Đất Thủ Quê Hương Tôi',
+  handle: '@datthuquehuongtoi',
+  url: 'https://www.facebook.com/datthuquehuongtoi',
+  description: 'Trang thông tin, tuyên truyền chính thống về quê hương Thủ Dầu Một — Bình Dương',
+  managedBy: 'Ban Tuyên giáo & Truyền thông TP. Thủ Dầu Một — Phường Thủ Dầu Một',
+};
+
+export const EXEMPLARY_THEMES_CONFIG: {
+  key: ExemplaryTheme | 'ALL';
+  label: string;
+  badgeColor: string;
+}[] = [
+  { key: 'ALL', label: 'Tất cả chủ đề', badgeColor: 'bg-rose-100 text-rose-800' },
+  { key: 'NGUOI_TOT_VIEC_TOT', label: 'Gương người tốt việc tốt', badgeColor: 'bg-emerald-100 text-emerald-800' },
+  { key: 'AN_SINH_XA_HOI', label: 'Mô hình an sinh xã hội', badgeColor: 'bg-blue-100 text-blue-800' },
+  { key: 'HOC_TAP_LAM_THEO_BAC', label: 'Học tập & làm theo Bác', badgeColor: 'bg-amber-100 text-amber-800' },
+];
+
+export const EXEMPLARY_SOURCES_CONFIG: {
+  key: ExemplarySource | 'ALL';
+  label: string;
+}[] = [
+  { key: 'ALL', label: 'Tất cả nguồn' },
+  { key: 'FANPAGE_DAT_THU', label: 'Fanpage Đất Thủ Quê Hương Tôi' },
+  { key: 'MANUAL_LOCAL', label: 'Ban Tuyên giáo Phường ghi nhận' },
+];
 
 export const EXEMPLARY_CATEGORIES_CONFIG: {
   key: ExemplaryCategory | 'ALL';
   label: string;
   iconName: string;
 }[] = [
-  { key: 'ALL', label: 'Tất cả gương sáng', iconName: 'Sparkles' },
+  { key: 'ALL', label: 'Tất cả đối tượng', iconName: 'Sparkles' },
   { key: 'CAN_BO_DANG_VIEN', label: 'Cán bộ — Đảng viên', iconName: 'Award' },
   { key: 'THANH_NIEN', label: 'Đoàn viên — Thanh niên', iconName: 'Zap' },
   { key: 'PHU_NU', label: 'Phụ nữ đảm đang', iconName: 'Heart' },
@@ -47,119 +85,248 @@ export const EXEMPLARY_CATEGORIES_CONFIG: {
 
 export const EXEMPLARY_PEOPLE_LIST: ExemplaryPerson[] = [
   {
-    id: 'exp_01_nguyen_van_an',
-    fullName: 'Nguyễn Văn An',
+    id: 'dt_fanpage_01_bep_com_nghia_tinh',
+    title: 'Ấm lòng "Bếp cơm nghĩa tình 0 đồng" ven sông Bạch Đằng sau ngày thành lập Phường mới',
+    fullName: 'Bà Lê Thị Mai & Chi hội Phụ nữ KP3',
+    birthYear: 1974,
+    gender: 'NU',
+    khuPho: 'Khu phố 3',
+    role: 'Chi hội trưởng Chi hội Phụ nữ Khu phố 3',
+    unit: 'Chi hội Phụ nữ Khu phố 3, Phường Thủ Dầu Một',
+    theme: 'AN_SINH_XA_HOI',
+    themeLabel: 'Mô hình an sinh xã hội',
+    category: 'PHU_NU',
+    categoryLabel: 'Phụ nữ đảm đang',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/bep-com-nghia-tinh-thu-dau-mot-2025',
+    recognitionDate: '2025-09-12',
+    periodLabel: 'Tháng 9/2025',
+    honorTitle: 'Mô hình An sinh Xã hội tiêu biểu cấp Phường năm 2025',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-le-thi-mai.jpg',
+    goodDeedSummary:
+      'Duy trì đều đặn hơn 350 suất cơm chay miễn phí mỗi tuần gửi tới bà con bán vé số, lao động nghèo và người già neo đơn dọc tuyến bờ sông Bạch Đằng.',
+    storyContent:
+      'Được trang Fanpage Đất Thủ Quê Hương Tôi lan tỏa vào trung tuần tháng 9/2025, mô hình "Bếp cơm nghĩa tình 0 đồng" do bà Lê Thị Mai khởi xướng đã trở thành điểm tựa ấm áp cho hàng trăm mảnh đời khó khăn. Từ khi Phường Thủ Dầu Một chính thức đi vào hoạt động sau sáp nhập 01/7/2025, bếp ăn vận động tiểu thương chợ Thủ và các nhà hảo tâm ủng hộ rau củ sạch, gạo và gia vị, tổ chức nấu nướng đảm bảo vệ sinh an toàn thực phẩm.',
+    communityImpact:
+      'Đã trao tặng hơn 14.000 suất ăn nóng sốt, gắn kết tinh thần tương thân tương ái giữa nhân dân các khu phố, tạo sự đồng thuận cao trong cộng đồng dân cư mới.',
+    quoteOrMotto:
+      'Làm việc thiện không đợi giàu có, chỉ cần có một tấm lòng thơm thảo biết sẻ chia với đồng bào.',
+    hcmLessonApplied: 'Học Bác tinh thần tương thân tương ái, thương yêu đồng bào như ruột thịt.',
+    likesCount: 528,
+    tags: ['Bếp ăn 0 đồng', 'An sinh xã hội', 'Bạch Đằng', 'Khu phố 3', 'Fanpage Đất Thủ'],
+    isSyncedFromFanpage: true,
+  },
+  {
+    id: 'dt_fanpage_02_hien_dat_bach_dang',
+    title: 'Gương sáng Dân vận khéo: Người Bí thư Chi bộ gương mẫu đi đầu hiến đất mở hẻm',
+    fullName: 'Đ/c Nguyễn Văn An',
     birthYear: 1968,
     gender: 'NAM',
     khuPho: 'Khu phố 1',
     role: 'Bí thư Chi bộ kiêm Trưởng Ban Công tác Mặt trận',
     unit: 'Chi bộ Khu phố 1, Phường Thủ Dầu Một',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
     category: 'CAN_BO_DANG_VIEN',
     categoryLabel: 'Cán bộ — Đảng viên',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/bi-thu-chi-bo-nguyen-van-an-hien-dat',
     recognitionDate: '2025-08-19',
     periodLabel: 'Tháng 8/2025',
-    honorTitle: 'Điển hình “Dân vận khéo” cấp Phường năm 2025',
+    honorTitle: 'Điển hình “Dân vận khéo” học tập và làm theo Bác năm 2025',
     avatarUrl: '/assets/hcm-space/nguoi-tot-nguyen-van-an.jpg',
     goodDeedSummary:
-      'Đi đầu hiến 45m² đất gia đình và kiên trì vận động 100% hộ dân hiến hơn 420m² đất mở rộng hẻm ven sông Bạch Đằng, xây dựng tuyến đường cờ Tổ quốc sáng - xanh - sạch - đẹp.',
+      'Gia đình đi đầu hiến 45m² đất mặt tiền và vận động 100% hộ dân hiến hơn 420m² đất mở rộng đường hẻm liên thông rạch Bạch Đằng.',
     storyContent:
-      'Ngay sau khi thành lập phường mới từ 01/7/2025, đồng chí Nguyễn Văn An đã bắt tay ngay vào rà soát các tuyến hẻm nhỏ hẹp ven sông Sài Gòn. Bằng sự tận tụy, “miệng nói, tay làm, tai lắng nghe”, đồng chí cùng gia đình gương mẫu tự nguyện tháo dỡ tường rào, hiến 45m² đất mặt tiền trị giá hàng trăm triệu đồng để mở rộng đường. Noi gương người Bí thư Chi bộ, 32 hộ dân dọc tuyến hẻm đồng lòng hiến đất và góp ngày công bê tông hóa 100% tuyến đường, lắp đặt hệ thống đèn năng lượng mặt trời và giá treo cờ Tổ quốc đồng bộ.',
+      'Bài viết trên Fanpage "Đất Thủ Quê Hương Tôi" ngày 19/8/2025 biểu dương đồng chí Nguyễn Văn An - Bí thư Chi bộ Khu phố 1. Để giải quyết nút thắt giao thông và phòng cháy chữa cháy tại hẻm rạch ven sông, đồng chí đã tiên phong tháo dỡ bờ rào kiên cố, hiến đất nhà làm gương. Hành động trách nhiệm của người đảng viên đã thuyết phục 32 hộ dân cùng hiến đất, tạo nên con đường hoa rực rỡ.',
     communityImpact:
-      'Tuyến hẻm từ 2m được mở rộng lên 5m, xe cứu hỏa và ô tô ra vào thuận tiện, diện mạo đô thị khu phố 1 khang trang, sạch đẹp rõ rệt, trở thành tuyến đường kiểu mẫu sau sáp nhập phường.',
+      'Hẻm được mở rộng từ 2m lên 5m, bê tông hóa hoàn chỉnh, có đèn chiếu sáng năng lượng mặt trời và cờ Tổ quốc phấp phới.',
     quoteOrMotto:
       'Muốn dân tin, dân theo thì đảng viên phải đi trước. Lời Bác dạy “Dễ trăm lần không dân cũng chịu, khó vạn lần dân liệu cũng xong” luôn là kim chỉ nam trong từng việc làm.',
-    hcmLessonApplied: 'Học tập phong cách dân vận của Bác: Tôn trọng dân, gần dân, gương mẫu đi đầu.',
-    likesCount: 342,
-    tags: ['Hiến đất làm đường', 'Dân vận khéo', 'Khu phố 1', 'Bạch Đằng'],
+    hcmLessonApplied: 'Chuẩn mực 144-QĐ/TW: Gương mẫu, tận tụy, nói đi đôi với làm vì lợi ích của nhân dân.',
+    likesCount: 890,
+    tags: ['Hiến đất làm đường', 'Dân vận khéo', 'Khu phố 1', 'Đất Thủ Quê Hương Tôi'],
+    isSyncedFromFanpage: true,
   },
   {
-    id: 'exp_02_le_thi_mai',
-    fullName: 'Lê Thị Mai',
-    birthYear: 1974,
-    gender: 'NU',
-    khuPho: 'Khu phố 3',
-    role: 'Chủ tịch Hội Liên hiệp Phụ nữ',
-    unit: 'Hội LHPN Phường Thủ Dầu Một',
-    category: 'PHU_NU',
-    categoryLabel: 'Phụ nữ đảm đang',
-    recognitionDate: '2025-09-10',
-    periodLabel: 'Tháng 9/2025',
-    honorTitle: 'Gương phụ nữ Thủ Dầu Một “Giỏi việc nước, đảm việc nhà”',
-    avatarUrl: '/assets/hcm-space/nguoi-tot-le-thi-mai.jpg',
-    goodDeedSummary:
-      'Sáng lập và duy trì mô hình “Bếp ăn Nghĩa tình Bác Hồ”, nấu và phát miễn phí hơn 350 suất cơm dinh dưỡng mỗi tuần cho người lao động nghèo và thân nhân bệnh nhân có hoàn cảnh khó khăn.',
-    storyContent:
-      'Từ ngày 01/7/2025 khi đơn vị hành chính phường mới đi vào hoạt động, bà Lê Thị Mai đã chủ động kết nối các tiểu thương chợ truyền thống, các nhà hảo tâm và chị em phụ nữ trên địa bàn để thành lập “Bếp ăn Nghĩa tình Bác Hồ”. Đều đặn vào thứ Ba và thứ Sáu hàng tuần, từ 4 giờ sáng, gian bếp tại Nhà văn hóa khu phố đã đỏ lửa. Từng phần cơm nóng hổi, đầy đủ dinh dưỡng được trao tận tay các cô chú bán vé số, công nhân vệ sinh và người nhà bệnh nhân tại Bệnh viện Đa khoa tỉnh.',
-    communityImpact:
-      'Đã trao tặng hơn 6.000 suất cơm nghĩa tình và 120 phần quà trị giá hơn 200 triệu đồng, lan tỏa sâu rộng tinh thần “Tương thân tương ái, lá lành đùm lá rách” trên toàn địa bàn phường.',
-    quoteOrMotto:
-      'Mỗi suất cơm gửi trao không chỉ là vật chất, mà là hơi ấm tình người, là sự sẻ chia theo tinh thần Bác dạy suốt đời vì nhân dân cần lao.',
-    hcmLessonApplied: 'Học tập lòng nhân ái, tình thương yêu bao la của Bác đối với đồng bào nghèo.',
-    likesCount: 428,
-    tags: ['Bếp ăn nghĩa tình', 'Từ thiện', 'Phụ nữ', 'Cơm 0 đồng'],
-  },
-  {
-    id: 'exp_03_tran_minh_quan',
-    fullName: 'Trần Minh Quân',
-    birthYear: 1996,
+    id: 'dt_fanpage_03_cuu_nguoi_va_vneid',
+    title: 'Hành động dũng cảm cứu người đuối nước và sự tận tụy của người chiến sĩ Công an Đất Thủ',
+    fullName: 'Trung úy Trần Minh Quân',
+    birthYear: 1997,
     gender: 'NAM',
-    khuPho: 'Khu phố 2',
-    role: 'Trung úy, Cán bộ Cảnh sát khu vực',
+    khuPho: 'Khu phố 1',
+    role: 'Cán bộ Cảnh sát khu vực',
     unit: 'Công an Phường Thủ Dầu Một',
+    theme: 'NGUOI_TOT_VIEC_TOT',
+    themeLabel: 'Gương người tốt việc tốt',
     category: 'LUC_LUONG_VU_TRANG',
     categoryLabel: 'Lực lượng vũ trang',
-    recognitionDate: '2025-10-15',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/trung-uy-tran-minh-quan-cuu-nguoi-vneid',
+    recognitionDate: '2025-10-05',
     periodLabel: 'Tháng 10/2025',
-    honorTitle: 'Chiến sĩ Công an nhân dân dũng cảm, vì nước quên thân, vì dân phục vụ',
+    honorTitle: 'Gương sáng Dũng cảm & Vì nhân dân phục vụ',
     avatarUrl: '/assets/hcm-space/nguoi-tot-tran-minh-quan.jpg',
     goodDeedSummary:
-      'Dũng cảm lao mình xuống dòng nước xiết ven sông Sài Gòn cứu sống 2 em nhỏ đuối nước; đồng thời tích cực đi đầu trong chiến dịch số hóa định danh điện tử VNeID lưu động tận nhà cho người già neo đơn.',
+      'Kịp thời lao xuống dòng nước sông Sài Gòn cứu vớt nam thanh niên chới với, đồng thời tận tụy đến từng nhà kích hoạt VNeID cho hơn 400 cụ già neo đơn.',
     storyContent:
-      'Chiều ngày 28/8/2025, trong lúc tuần tra đảm bảo an ninh trật tự ven công viên Bạch Đằng, nghe tiếng tri hô cứu người, Trung úy Trần Minh Quân không ngần ngại cởi bỏ sắc phục, lao thẳng xuống dòng sông sâu nước đang chảy xiết, tiếp cận và lần lượt đưa 2 em nhỏ bị trượt chân đuối nước lên bờ an toàn, kịp thời hô hấp nhân tạo cứu sống các cháu. Không dừng lại ở hành động dũng cảm, trong công tác chuyên môn, Trung úy Quân còn tình nguyện mang máy móc đến tận giường bệnh, nhà dân neo đơn để kích hoạt định danh VNeID mức 2 cho hơn 400 cụ già.',
+      'Hình ảnh Trung úy Trần Minh Quân ướt đẫm sau khi cứu sống người đuối nước tại bờ kè Bạch Đằng đã nhận được hàng nghìn lượt chia sẻ và bình luận khen ngợi từ cộng đồng Fanpage Đất Thủ Quê Hương Tôi. Không chỉ dũng cảm trong tình huống khẩn nguy, đồng chí còn chủ động mang máy tính đến tận nhà các cụ già trên 80 tuổi, bệnh nhân tai biến để hỗ trợ cấp tài khoản định danh số.',
     communityImpact:
-      'Được Giám đốc Công an Tỉnh tặng Giấy khen đột xuất về gương dũng cảm; củng cố niềm tin vững chắc, làm đẹp thêm hình ảnh người chiến sĩ Công an nhân dân trong lòng bà con Đất Thủ.',
+      'Góp phần giúp Phường Thủ Dầu Một dẫn đầu toàn thành phố về tỷ lệ kích hoạt định danh mức 2 cho người cao tuổi, củng cố hình ảnh đẹp của người chiến sĩ Công an nhân dân.',
     quoteOrMotto:
-      'Khi nhân dân cần, người chiến sĩ Công an phải có mặt ngay. Cứu người là mệnh lệnh từ trái tim, là chuẩn mực danh dự của lực lượng CAND học tập 6 điều Bác Hồ dạy.',
-    hcmLessonApplied: 'Thực hiện 6 điều Bác Hồ dạy Công an nhân dân: Tận tụy vì dân, dũng cảm mưu trí.',
-    likesCount: 512,
-    tags: ['Cứu người đuối nước', 'Công an dũng cảm', 'VNeID', 'Khu phố 2'],
+      'Niềm vui lớn nhất của người chiến sĩ công an là nhân dân được bình yên và an lòng.',
+    hcmLessonApplied: 'Học Bác 6 điều dạy Công an nhân dân: Tận tụy phục vụ, kính trọng lễ phép với nhân dân.',
+    likesCount: 1450,
+    tags: ['Cứu người', 'VNeID', 'Công an nhân dân', 'Vì dân phục vụ'],
+    isSyncedFromFanpage: true,
   },
   {
-    id: 'exp_04_dang_huu_tai',
+    id: 'dt_fanpage_04_nha_tro_van_minh',
+    title: 'Mô hình an sinh xã hội: "Khu nhà trọ văn minh - nghĩa tình" đồng hành cùng công nhân lao động',
+    fullName: 'Bà Hoàng Thị Cúc',
+    birthYear: 1965,
+    gender: 'NU',
+    khuPho: 'Khu phố 4',
+    role: 'Chủ nhà trọ văn minh Khu phố 4',
+    unit: 'Hội Liên hiệp Phụ nữ Phường Thủ Dầu Một',
+    theme: 'AN_SINH_XA_HOI',
+    themeLabel: 'Mô hình an sinh xã hội',
+    category: 'PHU_NU',
+    categoryLabel: 'Phụ nữ đảm đang',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/khu-nha-tro-van-minh-nghia-tinh-thu-dau-mot',
+    recognitionDate: '2025-11-20',
+    periodLabel: 'Tháng 11/2025',
+    honorTitle: 'Khu nhà trọ Xanh - Sạch - Nghĩa tình tiêu biểu cấp Tỉnh',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-hoang-thi-cuc.jpg',
+    goodDeedSummary:
+      'Không tăng giá phòng suốt 3 năm, miễn giảm 30% tiền thuê cho lao động mang thai và bệnh tật, lắp đặt wifi miễn phí và tủ sách pháp luật cho 65 phòng trọ.',
+    storyContent:
+      'Bài viết trên Fanpage "Đất Thủ Quê Hương Tôi" kể về câu chuyện đầy xúc động của bà Hoàng Thị Cúc tại Khu phố 4. Xem người thuê trọ như con cháu trong nhà, bà định kỳ tổ chức sinh nhật chung, tặng bánh chưng và vé xe cho công nhân về quê đón Tết, đồng thời phối hợp Mặt trận Phường tổ chức khám bệnh phụ khoa và tư vấn pháp luật miễn phí.',
+    communityImpact:
+      'Xây dựng môi trường sống an ninh trật tự, đoàn kết giữa người dân địa phương và người lao động nhập cư, không phát sinh tệ nạn xã hội.',
+    quoteOrMotto:
+      'Sống thơm thảo, nhường cơm sẻ áo thì phước đức ở đời tự khắc bền lâu.',
+    hcmLessonApplied: 'Học tập đạo đức nhân ái, vị tha, nâng đỡ những người yếu thế trong xã hội.',
+    likesCount: 672,
+    tags: ['Nhà trọ nghĩa tình', 'An sinh công nhân', 'Khu phố 4', 'Đất Thủ'],
+    isSyncedFromFanpage: true,
+  },
+  {
+    id: 'dt_fanpage_05_hoc_sinh_nhat_tien',
+    title: 'Bông hoa nhỏ việc tốt: Cậu học trò lớp 9 nhặt được 25 triệu đồng mang nộp Công an',
+    fullName: 'Em Nguyễn Hoàng Nam',
+    birthYear: 2011,
+    gender: 'NAM',
+    khuPho: 'Khu phố 2',
+    role: 'Học sinh lớp 9 Trường THCS Phú Cường',
+    unit: 'Liên đội THCS Phú Cường, Phường Thủ Dầu Một',
+    theme: 'NGUOI_TOT_VIEC_TOT',
+    themeLabel: 'Gương người tốt việc tốt',
+    category: 'THANH_NIEN',
+    categoryLabel: 'Đoàn viên — Thanh niên',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/hoc-sinh-nhat-tien-tra-lai-nguoi-danh-roi',
+    recognitionDate: '2025-12-10',
+    periodLabel: 'Tháng 12/2025',
+    honorTitle: 'Huy hiệu "Tuổi trẻ dũng cảm - Nghìn việc tốt" năm 2025',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-nguyen-hoang-nam.jpg',
+    goodDeedSummary:
+      'Nhặt được bọc tiền 25 triệu đồng cùng nhiều giấy tờ tùy thân của người buôn bán nhỏ đánh rơi gần Chợ Thủ, ngay lập tức đem đến Công an Phường bàn giao trả lại.',
+    storyContent:
+      'Trên đường đi học về qua đường Trần Hưng Đạo, em Nam phát hiện túi xách đánh rơi chứa nhiều tiền mặt. Dù hoàn cảnh gia đình không mấy khá giả, em không hề do dự mà lập tức đạp xe đến trụ sở Công an Phường Thủ Dầu Một để nhờ tìm chủ nhân. Người nhận lại là một tiểu thương bán rau nghèo mừng rơi nước mắt vì đó là toàn bộ vốn liếng cả năm.',
+    communityImpact:
+      'Câu chuyện được biểu dương dưới cờ toàn trường và lan tỏa rộng rãi trên mạng xã hội, khích lệ phong trào thiếu nhi Đất Thủ làm nghìn việc tốt theo 5 điều Bác Hồ dạy.',
+    quoteOrMotto:
+      'Thầy cô và cha mẹ luôn dặn em không bao giờ được tham của rơi. Trả lại được tiền cho cô bán rau em thấy rất vui.',
+    hcmLessonApplied: 'Thực hiện lời dạy của Bác: Khiêm tốn, thật thà, dũng cảm.',
+    likesCount: 1820,
+    tags: ['Nhặt được của rơi', 'Nghìn việc tốt', 'Học sinh Thủ Dầu Một', 'THCS Phú Cường'],
+    isSyncedFromFanpage: true,
+  },
+  {
+    id: 'dt_fanpage_06_tui_thuoc_nghia_tinh',
+    title: 'Mô hình y tế nhân ái: "Túi thuốc nghĩa tình" đến tận giường bệnh Mẹ Việt Nam Anh hùng',
+    fullName: 'Bác sĩ Phạm Hoàng Long & Đội Y tế Lưu động',
+    birthYear: 1988,
+    gender: 'NAM',
+    khuPho: 'Khu phố 5',
+    role: 'Trưởng Trạm Y tế Phường Thủ Dầu Một',
+    unit: 'Trạm Y tế Phường Thủ Dầu Một',
+    theme: 'AN_SINH_XA_HOI',
+    themeLabel: 'Mô hình an sinh xã hội',
+    category: 'GIAO_DUC_Y_TE',
+    categoryLabel: 'Giáo dục & Y tế',
+    source: 'FANPAGE_DAT_THU',
+    sourceLabel: 'Fanpage Đất Thủ Quê Hương Tôi',
+    sourceUrl: 'https://www.facebook.com/datthuquehuongtoi/posts/tui-thuoc-nghia-tinh-tram-y-te-thu-dau-mot',
+    recognitionDate: '2026-02-27',
+    periodLabel: 'Tháng 2/2026',
+    honorTitle: 'Thầy thuốc tiêu biểu Học tập và làm theo lời Bác dạy năm 2026',
+    avatarUrl: '/assets/hcm-space/nguoi-tot-pham-hoang-long.jpg',
+    goodDeedSummary:
+      'Khám bệnh, phát thuốc bổ định kỳ và lập hồ sơ sức khỏe điện tử tại nhà cho 100% Mẹ VNAH, thương bệnh binh nặng và người già neo đơn trên toàn phường.',
+    storyContent:
+      'Kỷ niệm ngày Thầy thuốc Việt Nam 27/2/2026, Fanpage Đất Thủ Quê Hương Tôi đã đăng tải phóng sự về mô hình "Túi thuốc nghĩa tình". Đều đặn mỗi thứ Bảy, bác sĩ Long cùng đồng nghiệp mang theo máy đo huyết áp, máy xét nghiệm đường huyết lưu động đến từng gia đình có công với cách mạng và hộ nghèo để chăm sóc y tế chu đáo.',
+    communityImpact:
+      'Giúp người già yếu không phải di chuyển vất vả, phát hiện sớm các nguy cơ tim mạch và đột quỵ, thể hiện sâu sắc đạo lý "Uống nước nhớ nguồn" của chính quyền địa phương.',
+    quoteOrMotto:
+      'Mỗi nụ cười và ánh mắt thanh thản của các Mẹ là phần thưởng thiêng liêng nhất đối với người thầy thuốc áo trắng.',
+    hcmLessonApplied: 'Khắc ghi lời dạy bất hủ của Bác Hồ: "Lương y phải như từ mẫu".',
+    likesCount: 940,
+    tags: ['Túi thuốc nghĩa tình', 'Thầy thuốc như từ mẫu', 'Đền ơn đáp nghĩa', 'Khu phố 5'],
+    isSyncedFromFanpage: true,
+  },
+  {
+    id: 'exp_manual_01_dang_huu_tai',
     fullName: 'Đặng Hữu Tài',
     birthYear: 1952,
     gender: 'NAM',
     khuPho: 'Khu phố 4',
-    role: 'Thương binh 4/4, Chi hội trưởng Chi hội Cựu chiến binh',
-    unit: 'Chi hội Cựu chiến binh Khu phố 4',
+    role: 'Chi hội trưởng Chi hội Cựu chiến binh',
+    unit: 'Hội Cựu chiến binh Phường Thủ Dầu Một',
+    theme: 'AN_SINH_XA_HOI',
+    themeLabel: 'Mô hình an sinh xã hội',
     category: 'CUU_CHIEN_BINH',
     categoryLabel: 'Cựu chiến binh gương mẫu',
-    recognitionDate: '2025-11-20',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
+    recognitionDate: '2025-11-18',
     periodLabel: 'Tháng 11/2025',
-    honorTitle: 'Gương Cựu chiến binh tiêu biểu “Học tập và làm theo Bác”',
+    honorTitle: 'Cựu chiến binh gương mẫu học tập và làm theo Bác năm 2025',
     avatarUrl: '/assets/hcm-space/nguoi-tot-dang-huu-tai.jpg',
     goodDeedSummary:
-      'Trích tiền trợ cấp thương binh nhận đỡ đầu học phí dài hạn cho 5 em học sinh nghèo mồ côi; xây dựng “Tủ sách Bác Hồ và lịch sử Đất Thủ” với hơn 600 đầu sách tại nhà sinh hoạt cộng đồng.',
+      'Trích lương hưu đỡ đầu thường xuyên 3 học sinh mồ côi nghèo vượt khó đến trường, đồng thời vận động xây dựng Tủ sách Bác Hồ tại văn phòng khu phố.',
     storyContent:
-      'Trở về đời thường với vết thương trên cơ thể, người cựu chiến binh Đặng Hữu Tài luôn khắc ghi lời dạy “Thương binh tàn nhưng không phế”. Sau khi phường Thủ Dầu Một sáp nhập đơn vị hành chính mới, ông đã chủ động trích từ phần phụ cấp thương binh hàng tháng để nhận nuôi, hỗ trợ học phí cho 5 em học sinh mồ côi, có nguy cơ bỏ học. Đồng thời, ông tự tay đóng kệ gỗ, kêu gọi con cháu và đồng đội quyên góp hơn 600 cuốn sách tư liệu lịch sử, sách về Bác Hồ để thành lập không gian đọc sách miễn phí cho thanh thiếu nhi trong khu phố.',
+      'Là thương binh 3/4 từng vào sinh ra tử trong chiến tranh bảo vệ Tổ quốc, trở về đời thường, ông Đặng Hữu Tài luôn giữ vững phẩm chất cao đẹp của “Bộ đội Cụ Hồ”. Sau ngày thành lập phường 01/7/2025, chứng kiến trên địa bàn khu phố còn nhiều cháu nhỏ mồ côi cha mẹ do dịch bệnh, ông bàn với gia đình trích 2 triệu đồng/tháng từ lương hưu hỗ trợ học phí, sách vở cho 3 em. Không chỉ giúp đỡ vật chất, ông còn là người thầy, người ông tận tụy dạy dỗ các em nên người.',
     communityImpact:
-      'Giúp 5 em học sinh tiếp tục đến trường và đạt danh hiệu học sinh giỏi; tủ sách cộng đồng thu hút bình quân 40 lượt thanh thiếu niên đến đọc và tìm hiểu truyền thống mỗi tuần.',
+      'Lan tỏa phong tràu “Cựu chiến binh gương mẫu nâng bước em đến trường” trên toàn phường, giúp các em học sinh có điểm tựa vươn lên đạt danh hiệu học sinh giỏi.',
     quoteOrMotto:
-      'Còn sống là còn cống hiến cho quê hương. Nuôi dạy thế hệ trẻ nên người chính là tiếp nối ngọn lửa cách mạng mà Bác Hồ và đồng đội đã dày công gìn giữ.',
-    hcmLessonApplied: 'Học tập ý chí kiên trung, tinh thần trách nhiệm trọn đời với thế hệ tương lai.',
+      'Học Bác lòng nhân ái, sự sẻ chia. Còn sức khỏe, còn hơi thở thì còn cống hiến cho thế hệ mai sau.',
+    hcmLessonApplied: 'Học tập tấm lòng yêu thương thế hệ trẻ và tinh thần “thương người như thể thương thân” của Bác.',
     likesCount: 389,
     tags: ['Đỡ đầu học sinh nghèo', 'Cựu chiến binh', 'Tủ sách Bác Hồ', 'Khu phố 4'],
+    isSyncedFromFanpage: false,
   },
   {
-    id: 'exp_05_phan_quynh_nhu',
+    id: 'exp_manual_02_phan_quynh_nhu',
     fullName: 'Phan Quỳnh Như',
     birthYear: 2004,
     gender: 'NU',
     khuPho: 'Khu phố 2',
     role: 'Bí thư Đoàn trường, Trưởng nhóm Chuyển đổi số thanh niên',
     unit: 'Đoàn Thanh niên Cộng sản Hồ Chí Minh Phường Thủ Dầu Một',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
     category: 'THANH_NIEN',
     categoryLabel: 'Đoàn viên — Thanh niên',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
     recognitionDate: '2025-12-05',
     periodLabel: 'Tháng 12/2025',
     honorTitle: 'Thanh niên tiên tiến làm theo lời Bác năm 2025',
@@ -175,17 +342,22 @@ export const EXEMPLARY_PEOPLE_LIST: ExemplaryPerson[] = [
     hcmLessonApplied: 'Học tập tinh thần xung kích, sáng tạo, ứng dụng công nghệ phụng sự nhân dân.',
     likesCount: 467,
     tags: ['Chuyển đổi số', 'Áo xanh tình nguyện', 'Thanh niên tiên tiến', 'Dịch vụ công'],
+    isSyncedFromFanpage: false,
   },
   {
-    id: 'exp_06_nguyen_van_thuan',
+    id: 'exp_manual_03_nguyen_van_thuan',
     fullName: 'Nguyễn Văn Thuận',
     birthYear: 1958,
     gender: 'NAM',
     khuPho: 'Khu phố 5',
     role: 'Nghệ nhân gốm truyền thống',
     unit: 'Lò gốm cổ Đại Hưng, Khu phố 5',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
     category: 'QUAN_CHUNG_NHAN_DAN',
     categoryLabel: 'Quần chúng nhân dân',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
     recognitionDate: '2026-01-12',
     periodLabel: 'Tháng 1/2026',
     honorTitle: 'Nghệ nhân giữ hồn di sản văn hóa Đất Thủ năm 2026',
@@ -201,17 +373,22 @@ export const EXEMPLARY_PEOPLE_LIST: ExemplaryPerson[] = [
     hcmLessonApplied: 'Học tập Bác ý thức trân trọng, gìn giữ và phát huy bản sắc văn hóa truyền thống.',
     likesCount: 376,
     tags: ['Gốm Đại Hưng', 'Nghệ nhân di sản', 'Khuyến học', 'Khu phố 5'],
+    isSyncedFromFanpage: false,
   },
   {
-    id: 'exp_07_tran_thi_anh_tuyet',
+    id: 'exp_manual_04_tran_thi_anh_tuyet',
     fullName: 'Trần Thị Ánh Tuyết',
     birthYear: 1985,
     gender: 'NU',
     khuPho: 'Khu phố 4',
     role: 'Giáo viên Tổng phụ trách Đội',
     unit: 'Trường Tiểu học Nguyễn Du, Phường Thủ Dầu Một',
+    theme: 'HOC_TAP_LAM_THEO_BAC',
+    themeLabel: 'Học tập & làm theo Bác',
     category: 'GIAO_DUC_Y_TE',
     categoryLabel: 'Giáo dục & Y tế',
+    source: 'MANUAL_LOCAL',
+    sourceLabel: 'Ban Tuyên giáo Phường ghi nhận thủ công',
     recognitionDate: '2026-02-27',
     periodLabel: 'Tháng 2/2026',
     honorTitle: 'Gương giáo viên tiêu biểu “Viên phấn vàng Thủ Dầu Một”',
@@ -227,31 +404,6 @@ export const EXEMPLARY_PEOPLE_LIST: ExemplaryPerson[] = [
     hcmLessonApplied: 'Học tập tấm lòng yêu thương thiếu niên, nhi đồng và tâm huyết trồng người của Bác.',
     likesCount: 395,
     tags: ['Giáo viên giỏi', 'Trồng người', 'Kể chuyện Bác Hồ', 'Thiếu nhi'],
-  },
-  {
-    id: 'exp_08_pham_hoang_long',
-    fullName: 'Phạm Hoàng Long',
-    birthYear: 1980,
-    gender: 'NAM',
-    khuPho: 'Khu phố 1',
-    role: 'Bác sĩ CKII, Trưởng Trạm Y tế',
-    unit: 'Trạm Y tế Phường Thủ Dầu Một',
-    category: 'GIAO_DUC_Y_TE',
-    categoryLabel: 'Giáo dục & Y tế',
-    recognitionDate: '2026-03-08',
-    periodLabel: 'Tháng 3/2026',
-    honorTitle: 'Thầy thuốc tiêu biểu “Lương y như từ mẫu” cấp Tỉnh',
-    avatarUrl: '/assets/hcm-space/nguoi-tot-pham-hoang-long.jpg',
-    goodDeedSummary:
-      'Khởi xướng chương trình “Thầy thuốc tình nguyện vì sức khỏe cộng đồng”, định kỳ khám bệnh, phát thuốc tận nhà vào thứ Bảy cho các Mẹ VNAH, thương binh nặng và người già neo đơn.',
-    storyContent:
-      'Dưới sự điều hành tận tụy của Bác sĩ Long, Trạm Y tế phường Thủ Dầu Một sau sáp nhập đã nâng cấp toàn diện chất lượng chăm sóc sức khỏe ban đầu cho người dân. Hiểu được nỗi khó khăn của các cụ già neo đơn, thương bệnh binh đi lại khó khăn, Bác sĩ Long đã vận động các y bác sĩ tình nguyện mang máy đo điện tim, máy thử đường huyết, cơ số thuốc đến tận từng gia đình. Đã có hơn 380 lượt người cao tuổi được chăm sóc chu đáo, phát hiện và can thiệp kịp thời nhiều ca bệnh tim mạch nguy hiểm.',
-    communityImpact:
-      'Được người dân tin yêu trìu mến gọi là “Bác sĩ của người nghèo”; tỷ lệ người dân tham gia bảo hiểm y tế và lập hồ sơ sức khỏe điện tử tại phường đạt 98,5%.',
-    quoteOrMotto:
-      'Hạnh phúc của người thầy thuốc là nhìn thấy nụ cười bình an của người bệnh. Lời dạy “Lương y phải như từ mẫu” là lương tâm nghề nghiệp tôi giữ trọn suốt đời.',
-    hcmLessonApplied: 'Thực hiện lời Bác dạy ngành y tế: Tận tâm, chu đáo, hết lòng vì sinh mệnh nhân dân.',
-    likesCount: 450,
-    tags: ['Bác sĩ nhân ái', 'Khám bệnh tại nhà', 'Chăm lo sức khỏe', 'Lương y từ mẫu'],
+    isSyncedFromFanpage: false,
   },
 ];
