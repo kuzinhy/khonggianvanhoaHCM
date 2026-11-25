@@ -39,6 +39,7 @@ import {
   CheckCircle2,
   ThumbsUp,
   RotateCw,
+  Smile,
 } from 'lucide-react';
 import type { SpaceTab } from './ProfessionalNavbar';
 import { hcmVoiceService } from '../services/hcmVoiceService';
@@ -1302,6 +1303,48 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 <span>Xem Tuyến Đỏ Về Nguồn</span>
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* KHÔNG GIAN THIẾU NHI & HỌC SINH — VÂNG LỜI BÁC DẠY                    */}
+      {/* ===================================================================== */}
+      <section className="space-y-4 pt-2" aria-labelledby="kids-space-heading">
+        <div className="rounded-3xl border-2 border-amber-300 bg-gradient-to-r from-amber-500 via-rose-600 to-rose-700 p-6 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-5 relative overflow-hidden">
+          {/* Decorative glow */}
+          <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+
+          <div className="space-y-2 max-w-2xl relative z-10">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-amber-300 text-slate-950 px-2.5 py-0.5 text-[10.5px] font-black uppercase tracking-wider shadow-xs">
+                ★ Dành Riêng Cho Thiếu Nhi &amp; Học Sinh
+              </span>
+              <span className="rounded-full bg-black/25 text-white border border-white/20 px-2.5 py-0.5 text-[10.5px] font-bold">
+                Mô hình trường học Thủ Dầu Một
+              </span>
+            </div>
+            <h2 id="kids-space-heading" className="text-xl sm:text-2xl font-black font-serif text-white tracking-tight">
+              Không Gian Văn Hóa Hồ Chí Minh Dành Cho Thiếu Nhi
+            </h2>
+            <p className="text-xs sm:text-sm text-rose-100/95 leading-relaxed">
+              Mô hình trực quan bức tường gỗ trường học, 5 Điều Bác dạy, 10 truyện kể đạo đức, kho âm nhạc tuổi thơ và Sổ tay "Bông hoa nghìn việc tốt" dành cho học sinh Tiểu học &amp; THCS.
+            </p>
+          </div>
+
+          <div className="shrink-0 flex items-center gap-3 relative z-10">
+            <button
+              type="button"
+              onClick={() => {
+                hcmSfx.playClick(800);
+                onSelectTab('KIDS');
+              }}
+              className="inline-flex items-center gap-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-5 py-3 text-sm shadow-md transition-all cursor-pointer hover:scale-105"
+            >
+              <Smile className="w-4 h-4 text-rose-800" />
+              <span>Vào Không Gian Thiếu Nhi</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>

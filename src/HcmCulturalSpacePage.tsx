@@ -113,6 +113,7 @@ import { HcmDynamicHeritageMapModal } from './components/HcmDynamicHeritageMapMo
 import { HcmPartyHistoryFullView } from './components/HcmPartyHistoryFullView';
 import { HcmThuDauMotChronologyView } from './components/HcmThuDauMotChronologyView';
 import { HcmExemplaryPeopleView } from './components/HcmExemplaryPeopleView';
+import { HcmKidsSpaceView } from './components/HcmKidsSpaceView';
 import { HcmFloatingMiniPlayer } from './components/HcmFloatingMiniPlayer';
 import { hcmSfx } from './services/hcmSoundEffects';
 
@@ -1240,6 +1241,13 @@ export const HcmCulturalSpacePage: React.FC = () => {
 
       {activeTab === 'EXEMPLARY_PEOPLE' && (
         <HcmExemplaryPeopleView onBackToFoyer={() => setActiveTab('FOYER')} />
+      )}
+
+      {activeTab === 'KIDS' && (
+        <HcmKidsSpaceView
+          onBackToFoyer={() => handleSelectTab('FOYER')}
+          onOpenMiniQuiz={() => setIsTwentyOneDayOpen(true)}
+        />
       )}
 
       {activeTab === 'PARTY_HISTORY' && (

@@ -21,6 +21,7 @@ import {
   Pause,
   Flag,
   History,
+  Smile,
 } from 'lucide-react';
 
 export type SpaceTab =
@@ -29,6 +30,7 @@ export type SpaceTab =
   | 'TDM_HOUSE'
   | 'TDM_CHRONOLOGY'
   | 'EXEMPLARY_PEOPLE'
+  | 'KIDS'
   | 'NEWS'
   | 'BIO'
   | 'TIMELINE'
@@ -106,6 +108,13 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       icon: Sparkles,
       badge: 'Người tốt việc tốt',
       badgeCls: 'bg-gradient-to-r from-rose-600 to-[#881337] text-white font-bold',
+    },
+    {
+      id: 'KIDS',
+      label: 'Không Gian Thiếu Nhi',
+      icon: Smile,
+      badge: '5 Điều Bác Dạy',
+      badgeCls: 'bg-amber-400 text-slate-950 font-black',
     },
     {
       id: 'NEWS',

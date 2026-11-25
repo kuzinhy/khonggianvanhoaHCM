@@ -71,6 +71,13 @@ export const HCM_DOMAINS: Record<HcmDomainKey, HcmDomainInfo> = {
     label: 'Gương sáng tiêu biểu',
     title: 'Gương Sáng Tiêu Biểu & Người Tốt Việc Tốt Phường Thủ Dầu Một (Từ 01/07/2025 Đến Nay)',
   },
+  KIDS: {
+    key: 'KIDS',
+    path: '/thieu-nhi',
+    slug: 'thieu-nhi',
+    label: 'Thiếu nhi & Trường học',
+    title: 'Không Gian Văn Hóa Hồ Chí Minh Dành Cho Thiếu Nhi & Học Sinh',
+  },
   GOLDEN_BOOK: {
     key: 'GOLDEN_BOOK',
     path: '/so-vang',
