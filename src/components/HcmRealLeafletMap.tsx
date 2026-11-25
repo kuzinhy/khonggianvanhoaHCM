@@ -18,11 +18,11 @@ import {
 import { type ThuDauMotMapPoint } from '../data/hcmDynamicMapData';
 
 export type TdmMapLayerKey =
-  | 'google-roadmap'
-  | 'google-satellite'
-  | 'google-terrain'
-  | 'google-traffic'
-  | 'osm';
+  | 'carto-voyager'
+  | 'carto-light'
+  | 'osm'
+  | 'esri-imagery'
+  | 'esri-topo';
 
 export interface TdmMapLayerConfig {
   key: TdmMapLayerKey;
@@ -35,50 +35,50 @@ export interface TdmMapLayerConfig {
 }
 
 export const TDM_MAP_LAYERS: Record<TdmMapLayerKey, TdmMapLayerConfig> = {
-  'google-roadmap': {
-    key: 'google-roadmap',
-    label: 'Google Bản đồ',
+  'carto-voyager': {
+    key: 'carto-voyager',
+    label: 'Bản Đồ Đường Phố (Voyager)',
     shortLabel: 'Đường phố',
-    url: 'https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-    subdomains: ['0', '1', '2', '3'],
-    maxZoom: 21,
-    attribution: '&copy; Google Maps',
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    subdomains: ['a', 'b', 'c', 'd'],
+    maxZoom: 20,
+    attribution: '&copy; CartoDB &copy; OpenStreetMap contributors',
   },
-  'google-satellite': {
-    key: 'google-satellite',
-    label: 'Google Vệ tinh',
-    shortLabel: 'Vệ tinh',
-    url: 'https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
-    subdomains: ['0', '1', '2', '3'],
-    maxZoom: 21,
-    attribution: '&copy; Google Maps Vệ tinh',
-  },
-  'google-terrain': {
-    key: 'google-terrain',
-    label: 'Địa hình',
-    shortLabel: 'Địa hình',
-    url: 'https://mt{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-    subdomains: ['0', '1', '2', '3'],
-    maxZoom: 21,
-    attribution: '&copy; Google Maps Địa hình',
-  },
-  'google-traffic': {
-    key: 'google-traffic',
-    label: 'Giao thông',
-    shortLabel: 'Giao thông',
-    url: 'https://mt{s}.google.com/vt/lyrs=m,traffic&x={x}&y={y}&z={z}',
-    subdomains: ['0', '1', '2', '3'],
-    maxZoom: 21,
-    attribution: '&copy; Google Maps Giao thông',
+  'carto-light': {
+    key: 'carto-light',
+    label: 'Nền Sáng Tối Giản (Positron)',
+    shortLabel: 'Nền sáng',
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    subdomains: ['a', 'b', 'c', 'd'],
+    maxZoom: 20,
+    attribution: '&copy; CartoDB &copy; OpenStreetMap contributors',
   },
   'osm': {
     key: 'osm',
-    label: 'OpenStreetMap',
+    label: 'Bản Đồ Mở (OpenStreetMap)',
     shortLabel: 'OSM',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     subdomains: ['a', 'b', 'c'],
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap contributors',
+  },
+  'esri-imagery': {
+    key: 'esri-imagery',
+    label: 'Ảnh Vệ Tinh GIS (Esri)',
+    shortLabel: 'Vệ tinh',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    subdomains: [],
+    maxZoom: 19,
+    attribution: '&copy; Esri World Imagery',
+  },
+  'esri-topo': {
+    key: 'esri-topo',
+    label: 'Bản Đồ Địa Hình GIS (Esri)',
+    shortLabel: 'Địa hình',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+    subdomains: [],
+    maxZoom: 19,
+    attribution: '&copy; Esri Topo',
   },
 };
 
@@ -101,7 +101,7 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
   const activeTileLayerRef = useRef<L.TileLayer | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
 
-  const [activeLayerKey, setActiveLayerKey] = useState<TdmMapLayerKey>('google-roadmap');
+  const [activeLayerKey, setActiveLayerKey] = useState<TdmMapLayerKey>('carto-voyager');
   const [isLocating, setIsLocating] = useState<boolean>(false);
 
   // Tọa độ trung tâm Phường Thủ Dầu Một
@@ -514,15 +514,11 @@ export const HcmRealLeafletMap: React.FC<HcmRealLeafletMapProps> = ({
                 }`}
                 title={`Chuyển lớp: ${layer.label}`}
               >
-                {layer.key === 'google-roadmap' && <Map className="w-3.5 h-3.5" />}
-                {layer.key === 'google-satellite' && (
-                  <Satellite className="w-3.5 h-3.5 text-blue-400" />
-                )}
-                {layer.key === 'google-terrain' && (
-                  <Mountain className="w-3.5 h-3.5 text-emerald-500" />
-                )}
-                {layer.key === 'google-traffic' && <Car className="w-3.5 h-3.5 text-amber-500" />}
+                {layer.key === 'carto-voyager' && <Map className="w-3.5 h-3.5 text-rose-600" />}
+                {layer.key === 'carto-light' && <Sparkles className="w-3.5 h-3.5 text-amber-500" />}
                 {layer.key === 'osm' && <Globe className="w-3.5 h-3.5 text-indigo-500" />}
+                {layer.key === 'esri-imagery' && <Satellite className="w-3.5 h-3.5 text-blue-500" />}
+                {layer.key === 'esri-topo' && <Mountain className="w-3.5 h-3.5 text-emerald-500" />}
                 <span>{layer.shortLabel}</span>
               </button>
             );

@@ -94,8 +94,8 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
   const [isPlayingAutoTour, setIsPlayingAutoTour] = useState(false);
   const [activeIslandModal, setActiveIslandModal] = useState<SovereigntyIsland | null>(null);
 
-  // Global Center for the World Map
-  const CENTER_WORLD: [number, number] = [22, 45];
+  // Global Center for the World Map (optimally balanced across Europe, Africa, Asia & Vietnam islands)
+  const CENTER_WORLD: [number, number] = [20, 52];
 
   // 1. Initialize Thematic Heritage Leaflet Map
   useEffect(() => {
@@ -526,7 +526,11 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           </div>
         `;
 
-        marker.bindPopup(popupHtml);
+        marker.bindPopup(popupHtml, {
+          maxWidth: 260,
+          autoPanPaddingTopLeft: L.point(20, 75),
+          autoPanPaddingBottomRight: L.point(20, 50),
+        });
         marker.on('click', () => {
           if (onSelectUsshPoint) onSelectUsshPoint(pt.id);
         });
@@ -641,7 +645,11 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           </div>
         `;
 
-        marker.bindPopup(popupHtml);
+        marker.bindPopup(popupHtml, {
+          maxWidth: 260,
+          autoPanPaddingTopLeft: L.point(20, 75),
+          autoPanPaddingBottomRight: L.point(20, 50),
+        });
         marker.on('click', () => {
           onSelectPoint(pt.id);
         });
@@ -870,15 +878,15 @@ export const HcmWorldLeafletMap: React.FC<HcmWorldLeafletMapProps> = ({
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
         </span>
-        <span className="font-bold text-rose-900 text-[11px]">
+        <span className="font-bold text-rose-900 text-[11px] whitespace-nowrap">
           Biển Đông, Hoàng Sa &amp; Trường Sa là của Việt Nam
         </span>
       </div>
 
-      {/* Floating Source Tag Bottom-Left */}
-      <div className="hidden sm:flex absolute bottom-2.5 left-12 z-[400] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-lg border border-slate-200/80 text-[10px] text-slate-600 items-center gap-1.5 select-none">
-        <ShieldCheck className="w-3 h-3 text-rose-600" />
-        <span>Bản đồ chuyên đề di sản · Dữ liệu tự nhiên Natural Earth (Public Domain) · UNCLOS 1982</span>
+      {/* Floating Source Tag Bottom-Left (hidden on smaller widths to prevent overlap) */}
+      <div className="hidden lg:flex absolute bottom-2.5 left-14 z-[400] bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-slate-200/80 text-[10px] text-slate-600 items-center gap-1.5 select-none">
+        <ShieldCheck className="w-3 h-3 text-rose-600 shrink-0" />
+        <span className="truncate max-w-[280px]">Bản đồ Di sản · Dữ liệu tự nhiên Natural Earth · UNCLOS 1982</span>
       </div>
 
       <style>{`

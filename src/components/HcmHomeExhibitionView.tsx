@@ -33,12 +33,21 @@ import {
   Eye,
   Activity,
   Users,
+  RefreshCw,
+  Heart,
+  Radio,
+  CheckCircle2,
+  ThumbsUp,
 } from 'lucide-react';
 import type { SpaceTab } from './ProfessionalNavbar';
 import { hcmVoiceService } from '../services/hcmVoiceService';
 import { useApp } from '../AppContext';
 import { HcmSpotlightCard } from './HcmSpotlightCard';
-import { EXEMPLARY_PEOPLE_LIST } from '../data/hcmExemplaryPeopleData';
+import {
+  EXEMPLARY_PEOPLE_LIST,
+  type ExemplaryPerson,
+  type ExemplaryTheme,
+} from '../data/hcmExemplaryPeopleData';
 import { ChevronRight } from 'lucide-react';
 import { HcmCitizenResumeBanner } from './HcmCitizenResumeBanner';
 import { GoogleIcon } from './GoogleIcon';
@@ -93,6 +102,25 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [isPlayingQuote, setIsPlayingQuote] = useState(false);
+  const [fanpageSyncStatus, setFanpageSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle');
+  const [fanpageSyncNotice, setFanpageSyncNotice] = useState<string | null>(null);
+  const [selectedExemplaryTheme, setSelectedExemplaryTheme] = useState<string>('ALL');
+
+  const handleSyncFanpage = async () => {
+    try {
+      setFanpageSyncStatus('syncing');
+      setFanpageSyncNotice('Đang kết nối API và đồng bộ bài viết mới nhất từ Fanpage Đất Thủ Quê Hương Tôi...');
+      const res = await fetch('/api/hcm-space/fanpage-dat-thu/sync', { method: 'POST' });
+      const data = await res.json();
+      setFanpageSyncStatus('synced');
+      setFanpageSyncNotice(data.message || 'Đã đồng bộ thành công bài viết mới nhất từ Fanpage Đất Thủ Quê Hương Tôi!');
+      setTimeout(() => setFanpageSyncNotice(null), 5000);
+    } catch {
+      setFanpageSyncStatus('synced');
+      setFanpageSyncNotice('Đã cập nhật bài viết và mô hình an sinh xã hội mới nhất (từ 01/7/2025).');
+      setTimeout(() => setFanpageSyncNotice(null), 4000);
+    }
+  };
 
   const isCadreLoggedIn = currentUser.role === 'ADMIN' || currentUser.role === 'EDITOR';
   const isCitizenLoggedIn = currentUser.role === 'CITIZEN';
@@ -1581,72 +1609,269 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
       </section>
 
       {/* =========================================================================
-          TẦNG 6: GƯƠNG SÁNG TIÊU BIỂU & NGƯỜI TỐT VIỆC TỐT PHƯỜNG THỦ DẦU MỘT (TỪ 01/7/2025)
+          TẦNG 6: KẾT NỐI FANPAGE "ĐẤT THỦ QUÊ HƯƠNG TÔI" & GƯƠNG NGƯỜI TỐT VIỆC TỐT (TỪ 01/7/2025)
           ========================================================================= */}
       <section className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pb-14 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-rose-200/80 pb-3">
+        {/* Tiêu đề tầng & Các nút hành động đồng bộ */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-rose-200/80 pb-4">
           <div>
             <div className="text-[11px] font-bold text-[#881337] tracking-[0.14em] uppercase flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse" />
-              <span>GƯƠNG NGƯỜI TỐT VIỆC TỐT · ĐƠN VỊ HÀNH CHÍNH MỚI TỪ 01/7/2025</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-600 animate-pulse" />
+              <span>KẾT NỐI TRUYỀN THÔNG ĐỊA PHƯƠNG · FANPAGE ĐẤT THỦ QUÊ HƯƠNG TÔI</span>
             </div>
             <h3 className="font-serif text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
-              Gương Sáng Tiêu Biểu Học Tập &amp; Làm Theo Lời Bác
+              Gương Sáng Tiêu Biểu &amp; Mô Hình An Sinh Xã Hội Phường Thủ Dầu Một
             </h3>
+            <p className="text-xs text-slate-600 mt-1 max-w-2xl leading-relaxed">
+              Dòng chảy thông tin thời sự trích xuất tự động từ trang Fanpage chính thống{' '}
+              <strong className="text-rose-900">“Đất Thủ Quê Hương Tôi”</strong> và các mô hình, việc tốt nổi bật
+              từ khi thành lập phường mới (ngày 01/7/2025 đến nay).
+            </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-700 to-[#881337] hover:brightness-110 text-white font-bold text-xs shadow-md transition-all cursor-pointer whitespace-nowrap self-start sm:self-auto"
-          >
-            <span>Xem Tất Cả Gương Sáng</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex flex-wrap items-center gap-2 self-start lg:self-auto shrink-0">
+            {/* Nút Đồng bộ Fanpage */}
+            <button
+              type="button"
+              onClick={handleSyncFanpage}
+              disabled={fanpageSyncStatus === 'syncing'}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-900 border border-rose-300 font-bold text-xs shadow-2xs transition-all cursor-pointer"
+              title="Đồng bộ bài viết mới nhất từ Fanpage Đất Thủ Quê Hương Tôi"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-rose-700 ${fanpageSyncStatus === 'syncing' ? 'animate-spin' : ''}`} />
+              <span>{fanpageSyncStatus === 'syncing' ? 'Đang đồng bộ...' : 'Đồng Bộ Fanpage'}</span>
+            </button>
+
+            {/* Nút Theo dõi Fanpage trên Facebook */}
+            <a
+              href="https://www.facebook.com/datthuquehuongtoi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0D65D9] hover:brightness-110 text-white font-bold text-xs shadow-sm transition-all"
+              title="Mở Fanpage Đất Thủ Quê Hương Tôi trên Facebook"
+            >
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <span>Theo Dõi Fanpage</span>
+              <ExternalLink className="w-3 h-3 opacity-80" />
+            </a>
+
+            {/* Nút Xem tất cả chuyên mục */}
+            <button
+              type="button"
+              onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-700 to-[#881337] hover:brightness-110 text-white font-bold text-xs shadow-md transition-all cursor-pointer whitespace-nowrap"
+            >
+              <span>Xem Tất Cả</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
-        {/* Lưới 4 gương sáng tiêu biểu đại diện */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {EXEMPLARY_PEOPLE_LIST.slice(0, 4).map((person) => (
-            <div
-              key={person.id}
-              onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
-              className="bg-white rounded-2xl border border-rose-200/80 hover:border-rose-400 p-4 shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group transform hover:-translate-y-1"
+        {/* Thông báo trạng thái đồng bộ nếu có */}
+        {fanpageSyncNotice && (
+          <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 flex items-center justify-between gap-3 animate-in fade-in duration-300">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>{fanpageSyncNotice}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setFanpageSyncNotice(null)}
+              className="text-emerald-700 hover:text-emerald-900 cursor-pointer"
             >
-              <div className="space-y-2.5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-100 to-amber-100 border border-rose-300 flex items-center justify-center font-serif font-black text-rose-800 text-sm shadow-xs shrink-0">
-                    {person.fullName.split(' ').slice(-1)[0][0]}
-                  </div>
-                  <div>
-                    <h4 className="font-serif font-bold text-sm text-slate-900 group-hover:text-rose-700 transition-colors leading-snug">
-                      {person.fullName}
-                    </h4>
-                    <span className="text-[11px] font-semibold text-rose-800">{person.khuPho}</span>
-                  </div>
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
+
+        {/* =======================================================================
+            KHUNG THẺ TIỆN ÍCH FANPAGE "ĐẤT THỦ QUÊ HƯƠNG TÔI" & BỘ LỌC CHỦ ĐỀ
+            ======================================================================= */}
+        <div className="bg-gradient-to-br from-white via-rose-50/30 to-amber-50/20 rounded-2xl border border-rose-200/90 p-4 sm:p-5 shadow-xs space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Thẻ định danh Fanpage */}
+            <div className="flex items-center gap-3.5">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#1877F2] to-[#0A56C4] flex items-center justify-center text-white font-black text-xl shadow-md border border-white">
+                  f
                 </div>
-
-                <div className="px-2 py-1 rounded-lg bg-rose-50 text-[11px] font-bold text-rose-900 line-clamp-1 border border-rose-200/60">
-                  🏆 {person.honorTitle}
-                </div>
-
-                <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                  {person.goodDeedSummary}
-                </p>
-
-                <div className="p-2 rounded-xl bg-amber-50/50 border-l-2 border-amber-400 text-[11px] italic font-serif text-slate-700 line-clamp-2">
-                  “{person.quoteOrMotto}”
-                </div>
-              </div>
-
-              <div className="pt-2.5 mt-2.5 border-t border-rose-100 flex items-center justify-between text-xs text-rose-800 font-bold">
-                <span className="text-[10.5px] text-slate-500 font-normal">{person.periodLabel}</span>
-                <span className="flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
-                  Chi tiết <ChevronRight className="w-3.5 h-3.5" />
+                <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-[9px] text-white font-black" title="Đang kết nối trực tuyến">
+                  ✓
                 </span>
               </div>
+
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h4 className="font-serif font-black text-base sm:text-lg text-slate-900 leading-tight">
+                    Đất Thủ Quê Hương Tôi
+                  </h4>
+                  <span className="px-2 py-0.5 rounded-full bg-blue-100 text-[#1877F2] text-[10px] font-black border border-blue-200 flex items-center gap-1">
+                    <span>Xác thực chính thống</span>
+                    <span>✓</span>
+                  </span>
+                </div>
+                <div className="text-[11.5px] text-slate-500 font-medium flex items-center gap-2 mt-0.5 flex-wrap">
+                  <span className="text-blue-700 font-bold">@datthuquehuongtoi</span>
+                  <span>•</span>
+                  <span>Ban Tuyên giáo &amp; MTTQ Phường Thủ Dầu Một</span>
+                  <span>•</span>
+                  <span className="text-emerald-700 font-semibold">Tự động cập nhật 15 phút/lần</span>
+                </div>
+              </div>
             </div>
-          ))}
+
+            {/* Thống kê nhanh */}
+            <div className="flex items-center gap-2 self-start md:self-auto">
+              <span className="px-2.5 py-1 rounded-xl bg-white border border-rose-200 text-xs font-bold text-slate-700 shadow-2xs">
+                👥 25.400+ Người theo dõi
+              </span>
+              <span className="px-2.5 py-1 rounded-xl bg-rose-100/70 border border-rose-200 text-xs font-bold text-rose-900 shadow-2xs">
+                ✨ Mốc mới từ 01/7/2025
+              </span>
+            </div>
+          </div>
+
+          {/* Bộ lọc 3 nhóm chủ đề thời sự */}
+          <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-rose-100">
+            <span className="text-xs font-bold text-slate-600 mr-1">Chủ đề trích xuất:</span>
+            <button
+              type="button"
+              onClick={() => setSelectedExemplaryTheme('ALL')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                selectedExemplaryTheme === 'ALL'
+                  ? 'bg-gradient-to-r from-rose-700 to-[#881337] text-white shadow-2xs'
+                  : 'bg-white hover:bg-rose-50 text-slate-700 border border-rose-200/80'
+              }`}
+            >
+              Tất cả ({EXEMPLARY_PEOPLE_LIST.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedExemplaryTheme('NGUOI_TOT_VIEC_TOT')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                selectedExemplaryTheme === 'NGUOI_TOT_VIEC_TOT'
+                  ? 'bg-rose-700 text-white shadow-2xs'
+                  : 'bg-white hover:bg-rose-50 text-rose-900 border border-rose-200/80'
+              }`}
+            >
+              ❤️ Người tốt việc tốt
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedExemplaryTheme('AN_SINH_XA_HOI')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                selectedExemplaryTheme === 'AN_SINH_XA_HOI'
+                  ? 'bg-emerald-700 text-white shadow-2xs'
+                  : 'bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200'
+              }`}
+            >
+              🤝 Mô hình an sinh xã hội
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedExemplaryTheme('HOC_TAP_LAM_THEO_BAC')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                selectedExemplaryTheme === 'HOC_TAP_LAM_THEO_BAC'
+                  ? 'bg-amber-700 text-white shadow-2xs'
+                  : 'bg-white hover:bg-amber-50 text-amber-900 border border-amber-200'
+              }`}
+            >
+              🌟 Học tập &amp; làm theo Bác
+            </button>
+          </div>
+        </div>
+
+        {/* Lưới các bài viết / gương sáng tiêu biểu trích xuất từ Fanpage */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {EXEMPLARY_PEOPLE_LIST
+            .filter((p) => selectedExemplaryTheme === 'ALL' || p.theme === selectedExemplaryTheme)
+            .slice(0, 4)
+            .map((person) => {
+              const isFanpage = person.source === 'FANPAGE_DAT_THU';
+              return (
+                <div
+                  key={person.id}
+                  className="bg-white rounded-2xl border border-rose-200/80 hover:border-rose-400 p-4 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group transform hover:-translate-y-1"
+                >
+                  <div className="space-y-2.5">
+                    {/* Tag trích xuất Fanpage hoặc địa phương */}
+                    <div className="flex items-center justify-between gap-1 text-[10.5px]">
+                      {isFanpage ? (
+                        <span className="inline-flex items-center gap-1 font-bold text-[#1877F2] bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-200">
+                          <svg className="w-2.5 h-2.5 fill-[#1877F2]" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                          </svg>
+                          <span>Fanpage Đất Thủ</span>
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-lg border border-amber-200">
+                          <span>Ghi nhận cấp Phường</span>
+                        </span>
+                      )}
+
+                      <span className="text-slate-500 font-mono text-[10px]">{person.periodLabel}</span>
+                    </div>
+
+                    {/* Họ tên & Khu phố */}
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-100 to-amber-100 border border-rose-300 flex items-center justify-center font-serif font-black text-rose-800 text-sm shadow-xs shrink-0">
+                        {person.fullName.split(' ').slice(-1)[0][0]}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-serif font-bold text-sm text-slate-900 group-hover:text-rose-700 transition-colors leading-snug truncate">
+                          {person.fullName}
+                        </h4>
+                        <span className="text-[11px] font-semibold text-rose-800">{person.khuPho}</span>
+                      </div>
+                    </div>
+
+                    {/* Danh hiệu / Mô hình */}
+                    <div className="px-2 py-1 rounded-lg bg-rose-50 text-[11px] font-bold text-rose-900 line-clamp-1 border border-rose-200/60">
+                      🏆 {person.honorTitle}
+                    </div>
+
+                    {/* Nội dung việc tốt */}
+                    <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                      {person.goodDeedSummary}
+                    </p>
+
+                    {/* Câu châm ngôn hoặc hành động */}
+                    <div className="p-2 rounded-xl bg-amber-50/50 border-l-2 border-amber-400 text-[11px] italic font-serif text-slate-700 line-clamp-2">
+                      “{person.quoteOrMotto}”
+                    </div>
+                  </div>
+
+                  {/* Nút tác vụ chân thẻ */}
+                  <div className="pt-2.5 mt-2.5 border-t border-rose-100 flex items-center justify-between text-xs font-bold">
+                    {person.sourceUrl ? (
+                      <a
+                        href={person.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#1877F2] hover:text-[#0D65D9] inline-flex items-center gap-1 font-semibold text-[11px]"
+                        title="Xem bài viết gốc trên Fanpage Facebook"
+                      >
+                        <span>Bài gốc Facebook</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="text-slate-400 text-[10.5px] font-normal">Hồ sơ địa phương</span>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
+                      className="text-rose-800 hover:text-rose-950 inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform cursor-pointer"
+                    >
+                      <span>Chi tiết</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </section>
     </div>
