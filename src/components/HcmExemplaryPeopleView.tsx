@@ -359,7 +359,7 @@ export const HcmExemplaryPeopleView: React.FC<HcmExemplaryPeopleViewProps> = ({
                     </p>
 
                     {/* Câu nói / Tâm niệm */}
-                    <div className="p-2 rounded-xl bg-amber-50/60 border-l-2 border-amber-500 text-[11px] italic font-serif text-slate-800 line-clamp-2">
+                    <div className="p-2.5 rounded-xl bg-amber-50/80 border-l-3 border-amber-500 text-[11.5px] italic font-serif text-slate-800 leading-normal line-clamp-2">
                       “{person.quoteOrMotto}”
                     </div>
                   </div>
