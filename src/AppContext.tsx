@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { hcmVisitorService, type VisitorStats } from './services/hcmVisitorService';
 import { formatFirebaseUser, logoutUser } from './services/hcmAuthService';
+import { type HistoricalSpeechAudio, HISTORICAL_SPEECHES_AUDIO } from './data/hcmMultimediaData';
 
 export interface CurrentUser {
   id: string;
@@ -35,6 +36,10 @@ interface AppContextType {
   markStageCompleted: (stageId: string) => void;
   logout: () => void;
   visitorStats: VisitorStats;
+  activeSpeech: HistoricalSpeechAudio | null;
+  setActiveSpeech: React.Dispatch<React.SetStateAction<HistoricalSpeechAudio | null>>;
+  isGlobalAudioPlaying: boolean;
+  setIsGlobalAudioPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const defaultUser: CurrentUser = {
@@ -59,9 +64,15 @@ const AppContext = createContext<AppContextType>({
   markStageCompleted: () => {},
   logout: () => {},
   visitorStats: defaultStats,
+  activeSpeech: null,
+  setActiveSpeech: () => {},
+  isGlobalAudioPlaying: false,
+  setIsGlobalAudioPlaying: () => {},
 });
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [activeSpeech, setActiveSpeech] = useState<HistoricalSpeechAudio | null>(null);
+  const [isGlobalAudioPlaying, setIsGlobalAudioPlaying] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<CurrentUser>(() => {
     try {
       const saved = localStorage.getItem('hcm_logged_user');
@@ -173,7 +184,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   }, []);
 
   return (
-    <AppContext.Provider value={{ currentUser, setCurrentUser, updateCitizenProgress, markStageCompleted, logout, visitorStats }}>
+    <AppContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        updateCitizenProgress,
+        markStageCompleted,
+        logout,
+        visitorStats,
+        activeSpeech,
+        setActiveSpeech,
+        isGlobalAudioPlaying,
+        setIsGlobalAudioPlaying,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

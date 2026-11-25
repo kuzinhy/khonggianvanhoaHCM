@@ -30,17 +30,21 @@ import {
 import { VIDEO_DOCUMENTARIES_11, type VideoDocumentaryItem } from '../hcmCoreDataset';
 import { LucianVinylAudioPlayer } from './LucianVinylAudioPlayer';
 import { LucianQrShareModal } from './LucianQrShareModal';
+import { useApp } from '../AppContext';
+import { hcmSfx } from '../services/hcmSoundEffects';
 
 export const HcmMultimediaMasterView: React.FC = () => {
+  const { activeSpeech, setActiveSpeech, isGlobalAudioPlaying, setIsGlobalAudioPlaying } = useApp();
+
   // Main multimedia tabs: AUDIO (Âm vang lời Bác) | SHORTS (Video ngắn sáng tạo) | CINEMA (Phim tư liệu)
   const [activeMediaTab, setActiveMediaTab] = useState<'AUDIO' | 'SHORTS' | 'CINEMA'>('AUDIO');
 
   // --- AUDIO PLAYER STATE ---
-  const [selectedSpeech, setSelectedSpeech] = useState<HistoricalSpeechAudio>(
-    HISTORICAL_SPEECHES_AUDIO[0]
-  );
+  const [selectedSpeech, setSelectedSpeech] = useState<HistoricalSpeechAudio>(() => {
+    return activeSpeech || HISTORICAL_SPEECHES_AUDIO[0];
+  });
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [isVinylPlaying, setIsVinylPlaying] = useState<boolean>(false);
+  const [isVinylPlaying, setIsVinylPlaying] = useState<boolean>(() => isGlobalAudioPlaying);
   const [isQrModalOpen, setIsQrModalOpen] = useState<boolean>(false);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [showVideoVisual, setShowVideoVisual] = useState<boolean>(false);
@@ -50,6 +54,28 @@ export const HcmMultimediaMasterView: React.FC = () => {
     return idx >= 0 ? idx : 0;
   }, [selectedSpeech.id]);
 
+  // Đồng bộ với AppContext
+  const handleSelectSpeech = (speech: HistoricalSpeechAudio) => {
+    hcmSfx.playNeedleDrop();
+    setSelectedSpeech(speech);
+    setIsVinylPlaying(true);
+    setActiveSpeech(speech);
+    setIsGlobalAudioPlaying(true);
+  };
+
+  const handleToggleVinylPlaying = (playing: boolean) => {
+    if (playing) {
+      hcmSfx.playNeedleDrop();
+    } else {
+      hcmSfx.playClick(500);
+    }
+    setIsVinylPlaying(playing);
+    setIsGlobalAudioPlaying(playing);
+    if (!activeSpeech) {
+      setActiveSpeech(selectedSpeech);
+    }
+  };
+
   // --- SHORTS VIDEO STATE ---
   const [selectedShort, setSelectedShort] = useState<YouthShortVideo>(YOUTH_SHORT_VIDEOS[0]);
   const [shortCategory, setShortCategory] = useState<string>('ALL');
@@ -58,11 +84,6 @@ export const HcmMultimediaMasterView: React.FC = () => {
   // --- CINEMA STATE ---
   const [selectedFilm, setSelectedFilm] = useState<VideoDocumentaryItem>(VIDEO_DOCUMENTARIES_11[0]);
   const [filmTopic, setFilmTopic] = useState<string>('Tất cả');
-
-  const handleSelectSpeech = (speech: HistoricalSpeechAudio) => {
-    setSelectedSpeech(speech);
-    setIsVinylPlaying(true);
-  };
 
   const handleToggleShortLike = (id: string) => {
     setShortLikes((prev) => ({
@@ -257,10 +278,12 @@ export const HcmMultimediaMasterView: React.FC = () => {
                   speeches={HISTORICAL_SPEECHES_AUDIO}
                   currentIndex={safeSpeechIndex}
                   onSelectIndex={(idx) => {
-                    setSelectedSpeech(HISTORICAL_SPEECHES_AUDIO[idx]);
+                    const next = HISTORICAL_SPEECHES_AUDIO[idx];
+                    setSelectedSpeech(next);
+                    setActiveSpeech(next);
                   }}
                   isPlaying={isVinylPlaying}
-                  onTogglePlay={setIsVinylPlaying}
+                  onTogglePlay={handleToggleVinylPlaying}
                   onShareQr={() => setIsQrModalOpen(true)}
                   playbackRate={playbackRate}
                   onPlaybackRateChange={setPlaybackRate}
@@ -404,46 +427,66 @@ export const HcmMultimediaMasterView: React.FC = () => {
             </div>
           </div>
 
-          {/* List of 6 Historical Speeches Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {/* List of 6 Historical Speeches Cards - Flat Modern UI with Equalizer */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             {HISTORICAL_SPEECHES_AUDIO.map((sp) => {
               const active = sp.id === selectedSpeech.id;
               return (
                 <div
                   key={sp.id}
                   onClick={() => handleSelectSpeech(sp)}
-                  className={`rounded-2xl border p-4 transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`hcm-flat-card p-4 cursor-pointer flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
                     active
-                      ? 'border-amber-400 bg-amber-50/70 shadow-sm ring-2 ring-amber-300'
-                      : 'border-slate-200 bg-white hover:border-amber-300 hover:shadow-2xs'
+                      ? 'border-rose-400 bg-gradient-to-br from-rose-50/90 via-white to-amber-50/40 shadow-md ring-2 ring-rose-400/80 -translate-y-1'
+                      : 'border-slate-200/90 bg-white hover:border-rose-300 hover:shadow-md'
                   }`}
                 >
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-[10.5px]">
-                      <span className="rounded-md bg-rose-50 border border-rose-200 px-2 py-0.5 font-bold text-rose-800">
+                  {/* Subtle top indicator on active card */}
+                  {active && (
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-600 via-rose-500 to-amber-400" />
+                  )}
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="rounded-lg bg-rose-50 border border-rose-200/80 px-2.5 py-0.5 font-bold text-rose-800 flex items-center gap-1 shadow-2xs">
+                        <Clock className="w-3 h-3 text-rose-600" />
                         {sp.year} · {sp.duration}
                       </span>
-                      <span className="text-slate-500">{sp.date}</span>
+                      <span className="text-slate-500 font-medium text-[10.5px]">{sp.date}</span>
                     </div>
-                    <h4 className="text-sm font-bold text-slate-900 line-clamp-2">
+
+                    <h4 className="text-[13px] font-bold text-slate-900 group-hover:text-rose-900 transition-colors line-clamp-2 leading-snug">
                       {sp.title}
                     </h4>
-                    <p className="text-xs text-slate-600 line-clamp-2 italic font-serif">
+
+                    <p className="text-xs text-slate-600 line-clamp-2 italic font-serif leading-relaxed">
                       "{sp.transcript}"
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 mt-2 border-t border-slate-100 text-[11px]">
-                    <span className="text-amber-900 font-bold flex items-center gap-1">
-                      <Radio className="h-3 w-3 text-rose-700" /> Giọng gốc VOV
+                  <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-100 text-[11px]">
+                    <span className="text-slate-700 font-semibold flex items-center gap-1.5">
+                      <Radio className="h-3.5 w-3.5 text-rose-600 animate-pulse" />
+                      <span>Giọng gốc VOV</span>
                     </span>
-                    <span
-                      className={`inline-flex items-center gap-1 font-black ${
-                        active ? 'text-rose-700' : 'text-blue-700'
-                      }`}
-                    >
-                      {active ? '● Đang nghe' : 'Chọn nghe giọng Bác'}
-                    </span>
+
+                    <div className="flex items-center gap-2">
+                      {active && isVinylPlaying && (
+                        <div className="flex items-end gap-0.5 h-3.5" title="Đang phát âm thanh">
+                          <span className="w-0.5 bg-rose-600 rounded-full animate-eq-1 h-3" />
+                          <span className="w-0.5 bg-rose-600 rounded-full animate-eq-2 h-3.5" />
+                          <span className="w-0.5 bg-rose-600 rounded-full animate-eq-3 h-2" />
+                          <span className="w-0.5 bg-rose-600 rounded-full animate-eq-4 h-3" />
+                        </div>
+                      )}
+                      <span
+                        className={`inline-flex items-center gap-1 font-bold ${
+                          active ? 'text-rose-700' : 'text-slate-600 group-hover:text-rose-700'
+                        }`}
+                      >
+                        {active ? (isVinylPlaying ? 'Đang phát...' : 'Đã chọn') : 'Nghe giọng Bác'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               );

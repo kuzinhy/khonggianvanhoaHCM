@@ -1,6 +1,7 @@
 // <!-- Lucian UX/UI Prompt #055 · MIT License (c) 2026 Seokwoooo · https://lucianlabs.dev/uxui-prompt/#055 -->
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { type HistoricalSpeechAudio } from '../data/hcmMultimediaData';
+import { hcmSfx } from '../services/hcmSoundEffects';
 
 export interface LucianVinylAudioPlayerProps {
   speeches: HistoricalSpeechAudio[];
@@ -62,9 +63,14 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
   const currentTheme = VINYL_THEMES[currentIndex % VINYL_THEMES.length] || VINYL_THEMES[0];
   const totalDuration = actualDuration > 0 ? actualDuration : currentTheme.durationSec;
 
-  // Handle play/pause toggle
+  // Handle play/pause toggle with needle drop sound effect
   const togglePlay = () => {
     const next = !isPlaying;
+    if (next) {
+      hcmSfx.playNeedleDrop();
+    } else {
+      hcmSfx.playClick(500);
+    }
     if (onTogglePlay) {
       onTogglePlay(next);
     } else {
@@ -74,6 +80,7 @@ export const LucianVinylAudioPlayer: React.FC<LucianVinylAudioPlayerProps> = ({
 
   // Skip track
   const skip = (dir: number) => {
+    hcmSfx.playClick(750);
     const nextIdx = (currentIndex + dir + speeches.length) % speeches.length;
     setPos(0);
     onSelectIndex(nextIdx);

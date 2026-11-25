@@ -113,6 +113,8 @@ import { HcmDynamicHeritageMapModal } from './components/HcmDynamicHeritageMapMo
 import { HcmPartyHistoryFullView } from './components/HcmPartyHistoryFullView';
 import { HcmThuDauMotChronologyView } from './components/HcmThuDauMotChronologyView';
 import { HcmExemplaryPeopleView } from './components/HcmExemplaryPeopleView';
+import { HcmFloatingMiniPlayer } from './components/HcmFloatingMiniPlayer';
+import { hcmSfx } from './services/hcmSoundEffects';
 
 interface EntryFormState {
   editingId: string | null;
@@ -221,6 +223,16 @@ export const HcmCulturalSpacePage: React.FC = () => {
   const [isHandwritingZoomOpen, setIsHandwritingZoomOpen] = useState(false);
   const [isRedTourOpen, setIsRedTourOpen] = useState(false);
   const [isHeritageAnalyticsOpen, setIsHeritageAnalyticsOpen] = useState(false);
+  const [isPageNavigating, setIsPageNavigating] = useState(false);
+
+  const handleSelectTab = (tab: SpaceTab) => {
+    hcmSfx.playClick();
+    setIsPageNavigating(true);
+    setActiveTab(tab);
+    setTimeout(() => {
+      setIsPageNavigating(false);
+    }, 380);
+  };
 
   const isFirstMountRef = useRef(true);
 
@@ -616,6 +628,9 @@ export const HcmCulturalSpacePage: React.FC = () => {
 
   return (
     <div className={`min-h-screen bg-gradient-to-b from-[#FDF7F8] via-[#FAF5F2] to-[#FCF6F7] flex flex-col font-sans selection:bg-[#751D2C] selection:text-white ${fontSizeClass}`}>
+      {/* Nano Loading Bar khi chuyển tab hoặc tải dữ liệu */}
+      {isPageNavigating && <div className="hcm-nano-progress" />}
+
       {/* Hiệu ứng Load trang trang trọng & mượt mà */}
       <HcmPageLoader minDurationMs={600} />
 
@@ -624,7 +639,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
         <HcmHomeExhibitionView
           activeTab={activeTab}
           onSelectTab={(tab) => {
-            setActiveTab(tab);
+            handleSelectTab(tab);
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           onOpenSearch={() => setSearchOpen(true)}
@@ -663,7 +678,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
             fontSizeLevel={fontSizeLevel}
             onCycleFontSize={() => setFontSizeLevel((prev) => (prev + 1) % 3)}
             isBackendConnected={syncedFromServer}
-            onSelectTab={setActiveTab}
+            onSelectTab={handleSelectTab}
             activeTab={activeTab}
             isResearchMode={isResearchMode}
             onToggleResearchMode={() => setIsResearchMode((prev) => !prev)}
@@ -693,7 +708,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
           <ProfessionalNavbar
             activeTab={activeTab}
             onSelectTab={(tab) => {
-              setActiveTab(tab);
+              handleSelectTab(tab);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             canEdit={canEdit}
@@ -1593,7 +1608,16 @@ export const HcmCulturalSpacePage: React.FC = () => {
         onClose={() => setGuidedJourneyOpen(false)}
         onNavigateToTab={(tab) => {
           setGuidedJourneyOpen(false);
-          setActiveTab(tab);
+          handleSelectTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
+
+      {/* Trình phát đĩa than thu nhỏ nổi góc màn hình (Floating Mini Player) */}
+      <HcmFloatingMiniPlayer
+        currentTab={activeTab}
+        onOpenMultimedia={() => {
+          handleSelectTab('MEDIA');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       />
