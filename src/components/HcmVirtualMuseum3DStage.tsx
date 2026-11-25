@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Award,
+  Box,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
@@ -31,6 +32,8 @@ import {
   type VideoDocumentaryItem,
 } from '../hcmCoreDataset';
 import { HcmSpatial3DMinimap } from './HcmSpatial3DMinimap';
+import { HcmMetastepsVirtualSpace } from './HcmMetastepsVirtualSpace';
+import { hcmSfx } from '../services/hcmSoundEffects';
 
 export interface VirtualMuseumZone {
   id: string;
@@ -178,6 +181,7 @@ export const HcmVirtualMuseum3DStage: React.FC<{
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMinimapHudOpen, setIsMinimapHudOpen] = useState(false);
   const [isAutoTour, setIsAutoTour] = useState(false);
+  const [vrMode, setVrMode] = useState<'METASTEPS_VR' | 'PANORAMA_8_ZONES'>('METASTEPS_VR');
 
   useEffect(() => {
     if (typeof initialZoneIndex === 'number' && initialZoneIndex >= 0 && initialZoneIndex < VIRTUAL_MUSEUM_8_ZONES.length) {
@@ -328,13 +332,63 @@ export const HcmVirtualMuseum3DStage: React.FC<{
 
   return (
     <div className="space-y-4">
-      {/* Main 3D Virtual Museum Stage Container (styled after baotanghochiminh.baotangao.com) */}
-      <div
-        ref={stageRef}
-        className={`relative overflow-hidden border border-amber-300/60 bg-[#1A1612] text-white shadow-xl select-none ${
-          isFullscreen ? 'h-screen w-screen rounded-none' : 'h-[540px] sm:h-[620px] rounded-3xl'
-        }`}
-      >
+      {/* Cụm Chuyển Đổi Mô Hình Thực Tế Ảo 3D */}
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-gradient-to-r from-rose-950 via-slate-900 to-rose-950 border border-amber-400/50 shadow-xl select-none">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              hcmSfx.playClick(850);
+              setVrMode('METASTEPS_VR');
+            }}
+            className={`px-3.5 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer ${
+              vrMode === 'METASTEPS_VR'
+                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black shadow-lg border border-amber-300 ring-2 ring-amber-400/30'
+                : 'text-slate-300 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <Box className="w-4 h-4 text-amber-200 animate-spin-slow" />
+            <span>Không Gian Thực Tế Ảo 3D (VR 360°)</span>
+            <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-rose-600 text-white font-black animate-pulse">
+              CHUẨN MỚI
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              hcmSfx.playClick(650);
+              setVrMode('PANORAMA_8_ZONES');
+            }}
+            className={`px-3.5 py-2 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer ${
+              vrMode === 'PANORAMA_8_ZONES'
+                ? 'bg-gradient-to-r from-rose-700 to-rose-800 text-white font-black shadow-lg border border-rose-400 ring-2 ring-rose-400/30'
+                : 'text-slate-300 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <Layers className="w-4 h-4 text-rose-300" />
+            <span>Trưng Bày Chuyên Đề 08 Gian</span>
+          </button>
+        </div>
+
+        <div className="text-[11px] font-bold text-amber-300/90 hidden lg:flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span>Sảnh tưởng niệm Bác, 2 cột khẩu hiệu đỏ, avatar 3D &amp; vách video tương tác</span>
+        </div>
+      </div>
+
+      {vrMode === 'METASTEPS_VR' ? (
+        <HcmMetastepsVirtualSpace
+          onOpenHeritageMap={onOpenMinimap}
+        />
+      ) : (
+        /* Main 3D Virtual Museum Stage Container (styled after baotanghochiminh.baotangao.com) */
+        <div
+          ref={stageRef}
+          className={`relative overflow-hidden border border-amber-300/60 bg-[#1A1612] text-white shadow-xl select-none ${
+            isFullscreen ? 'h-screen w-screen rounded-none' : 'h-[540px] sm:h-[620px] rounded-3xl'
+          }`}
+        >
         {/* 3D Perspective Panorama Canvas */}
         <div
           className="relative h-full w-full overflow-hidden cursor-grab active:cursor-grabbing"
@@ -1040,6 +1094,7 @@ export const HcmVirtualMuseum3DStage: React.FC<{
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

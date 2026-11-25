@@ -469,6 +469,29 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                       <span className="bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">2026</span>
                     </div>
                     <a
+                      href="/kham-pha-di-san"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(850);
+                        onSelectTab('EXHIBIT');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50/90 via-amber-50/60 to-rose-50/90 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-amber-300/80 shadow-2xs cursor-pointer transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-700 to-amber-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                          <Box className="w-4 h-4 text-amber-200" />
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-[#881337] flex items-center gap-1.5">
+                            <span>Không Gian Văn Hóa HCM (3D VR)</span>
+                            <span className="text-[9px] bg-rose-600 text-white px-1 py-0.1 rounded font-black">MỚI</span>
+                          </div>
+                          <div className="text-[10px] text-slate-500 font-normal">Sảnh tưởng niệm Bác, avatar 3D &amp; 4 cánh lịch sử</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a
                       href="/di-tich-dat-thu"
                       onClick={(e) => {
                         e.preventDefault();
@@ -476,7 +499,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                         onSelectTab('TDM_HOUSE');
                         setOpenNavCluster(null);
                       }}
-                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50/80 to-amber-50/50 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200/60 shadow-2xs cursor-pointer transition-all"
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer transition-all"
                     >
                       <div className="flex items-center gap-2.5">
                         <div className="w-7 h-7 rounded-lg bg-rose-700 text-white flex items-center justify-center shrink-0">
@@ -487,22 +510,6 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           <div className="text-[10px] text-slate-500 font-normal">Tham quan 360°, hiện vật quý ven sông Bạch Đằng</div>
                         </div>
                       </div>
-                    </a>
-                    <a
-                      href="/kham-pha-di-san"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        hcmSfx.playClick(700);
-                        onSelectTab('EXHIBIT');
-                        setOpenNavCluster(null);
-                      }}
-                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Box className="w-4 h-4 text-rose-700" />
-                        <span>Tham Quan Không Gian 3D &amp; Sa Bàn</span>
-                      </div>
-                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">VR 3D</span>
                     </a>
                     {onOpenRedMap && (
                       <a

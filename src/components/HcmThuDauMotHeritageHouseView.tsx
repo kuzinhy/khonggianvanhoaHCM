@@ -41,6 +41,7 @@ import { DongSonDrumIcon, HoaSenIcon } from './TraditionalMotifs';
 import { hcmVoiceService } from '../services/hcmVoiceService';
 import { hcmSfx } from '../services/hcmSoundEffects';
 import { HcmDynamicHeritageMapModal } from './HcmDynamicHeritageMapModal';
+import { HcmMetastepsVirtualSpace } from './HcmMetastepsVirtualSpace';
 import {
   THU_DAU_MOT_HERITAGE_SITES,
   THU_DAU_MOT_TOUR_ROUTES,
@@ -169,6 +170,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
   const [activeHotspot, setActiveHotspot] = useState<HeritageZone['hotspots'][0] | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isAutoTour, setIsAutoTour] = useState(false);
+  const [vrTourMode, setVrTourMode] = useState<'METASTEPS_VR' | 'HERITAGE_PANORAMA'>('METASTEPS_VR');
 
   // States for Heritage Map
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -1034,7 +1036,7 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
           ========================================================================= */}
       {activeSubTab === '3D_TOUR' && (
         <div className="space-y-6">
-          {/* Banner Nổi Bật Công Trình Trọng Điểm */}
+          {/* Banner Nổi Bật Công Trình Trọng Điểm & Bộ Chuyển Đổi Không Gian 3D */}
           <div className="rounded-2xl bg-gradient-to-r from-amber-50 via-rose-50 to-amber-50/80 border-2 border-amber-300 p-4 shadow-xs flex flex-wrap items-center justify-between gap-3 select-none">
             <div className="flex items-center gap-3">
               <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-700 to-rose-900 text-white flex items-center justify-center shadow-md">
@@ -1055,10 +1057,47 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
               </div>
             </div>
 
-            <div className="text-xs text-slate-600 italic">
-              Nhấp vào các gian bên dưới để chuyển đổi phòng trưng bày • Bấm các điểm nhấp nháy trên ảnh để xem hiện vật
+            {/* Nút chuyển đổi chế độ xem 3D */}
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-white border border-rose-200 shadow-2xs">
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(850);
+                  setVrTourMode('METASTEPS_VR');
+                }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  vrTourMode === 'METASTEPS_VR'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                }`}
+              >
+                <Box className="w-3.5 h-3.5" />
+                <span>Không Gian Văn Hóa HCM (3D VR)</span>
+                <span className="text-[9px] px-1 py-0.2 rounded bg-rose-700 text-white font-black">Mới</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(650);
+                  setVrTourMode('HERITAGE_PANORAMA');
+                }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  vrTourMode === 'HERITAGE_PANORAMA'
+                    ? 'bg-rose-700 text-white font-black shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                }`}
+              >
+                <Building2 className="w-3.5 h-3.5" />
+                <span>Nhà Việc Phú Cường (5 Gian)</span>
+              </button>
             </div>
           </div>
+
+          {vrTourMode === 'METASTEPS_VR' ? (
+            <HcmMetastepsVirtualSpace />
+          ) : (
+            <div className="space-y-6">
 
           {/* Lưới chọn 5 phân khu tham quan */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
@@ -1238,6 +1277,8 @@ export const HcmThuDauMotHeritageHouseView: React.FC<HcmThuDauMotHeritageHouseVi
               </div>
             </div>
           </div>
+          </div>
+          )}
         </div>
       )}
 
