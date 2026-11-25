@@ -78,6 +78,13 @@ export const HCM_DOMAINS: Record<HcmDomainKey, HcmDomainInfo> = {
     label: 'Thiếu nhi & Trường học',
     title: 'Không Gian Văn Hóa Hồ Chí Minh Dành Cho Thiếu Nhi & Học Sinh',
   },
+  STORIES_LEARNING: {
+    key: 'STORIES_LEARNING',
+    path: '/chuyen-ke-hoc-bac',
+    slug: 'chuyen-ke-hoc-bac',
+    label: 'Chuyện kể học Bác',
+    title: '120 Mẩu Chuyện Kể Về Bác Ngắn, Hay & Ý Nghĩa Nhất · Học Tập & Làm Theo Bác',
+  },
   GOLDEN_BOOK: {
     key: 'GOLDEN_BOOK',
     path: '/so-vang',

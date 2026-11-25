@@ -439,103 +439,103 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               <span>Sảnh Trung Tâm</span>
             </a>
 
-            {/* 2. Nhà Truyền Thống Số 3D (Cửa ngõ 1 chuyển thành menu chính) */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('VR_HERITAGE')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 2. Nhà Truyền Thống Số 3D */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'VR_HERITAGE' ? null : 'VR_HERITAGE')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'VR_HERITAGE' ? null : 'VR_HERITAGE');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
                   ['TDM_HOUSE', 'EXHIBIT'].includes(activeTab) || openNavCluster === 'VR_HERITAGE'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
                 }`}
               >
                 <Box className="w-3.5 h-3.5 text-rose-700" />
-                <span>Nhà Truyền Thống Số 3D</span>
-                <span className="text-[9.5px] px-1.5 py-0.2 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
+                <span>Nhà Truyền Thống 3D</span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
                   VR 360°
                 </span>
                 <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'VR_HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'VR_HERITAGE' && (
-                <div className="absolute top-full left-0 mt-1 w-80 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
-                    <span>Công Trình Số Hóa 3D Trọng Điểm</span>
-                    <span className="bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">2026</span>
-                  </div>
-                  <a
-                    href="/di-tich-dat-thu"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(750);
-                      onSelectTab('TDM_HOUSE');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50/80 to-amber-50/50 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200/60 shadow-2xs cursor-pointer transition-all"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-rose-700 text-white flex items-center justify-center shrink-0">
-                        <Building2 className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="font-extrabold text-[#881337]">Nhà Việc Phú Cường &amp; 05 Gian Số</div>
-                        <div className="text-[10px] text-slate-500 font-normal">Tham quan 360°, hiện vật quý ven sông Bạch Đằng</div>
-                      </div>
+                <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
+                      <span>Công Trình Số Hóa 3D Trọng Điểm</span>
+                      <span className="bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">2026</span>
                     </div>
-                  </a>
-                  <a
-                    href="/kham-pha-di-san"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(700);
-                      onSelectTab('EXHIBIT');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Box className="w-4 h-4 text-rose-700" />
-                      <span>Tham Quan Không Gian 3D &amp; Sa Bàn</span>
-                    </div>
-                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">VR 3D</span>
-                  </a>
-                  {onOpenRedMap && (
                     <a
-                      href="/dia-chi-do"
+                      href="/di-tich-dat-thu"
                       onClick={(e) => {
                         e.preventDefault();
-                        hcmSfx.playClick(600);
-                        onOpenRedMap();
+                        hcmSfx.playClick(750);
+                        onSelectTab('TDM_HOUSE');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50/80 to-amber-50/50 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200/60 shadow-2xs cursor-pointer transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-rose-700 text-white flex items-center justify-center shrink-0">
+                          <Building2 className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-[#881337]">Nhà Việc Phú Cường &amp; 05 Gian Số</div>
+                          <div className="text-[10px] text-slate-500 font-normal">Tham quan 360°, hiện vật quý ven sông Bạch Đằng</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/kham-pha-di-san"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(700);
+                        onSelectTab('EXHIBIT');
                         setOpenNavCluster(null);
                       }}
                       className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
                     >
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-rose-700" />
-                        <span>Bản Đồ 10 Địa Chỉ Đỏ &amp; Di Tích</span>
+                        <Box className="w-4 h-4 text-rose-700" />
+                        <span>Tham Quan Không Gian 3D &amp; Sa Bàn</span>
                       </div>
-                      <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">10 Chặng</span>
+                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">VR 3D</span>
                     </a>
-                  )}
+                    {onOpenRedMap && (
+                      <a
+                        href="/dia-chi-do"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          hcmSfx.playClick(600);
+                          onOpenRedMap();
+                          setOpenNavCluster(null);
+                        }}
+                        className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-rose-700" />
+                          <span>Bản Đồ 10 Địa Chỉ Đỏ &amp; Di Tích</span>
+                        </div>
+                        <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">10 Chặng</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* 3. Không Gian Thiếu Nhi (Cửa ngõ 2 chuyển thành menu chính) */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('KIDS_SPACE')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 3. Không Gian Thiếu Nhi */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'KIDS_SPACE' ? null : 'KIDS_SPACE')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'KIDS_SPACE' ? null : 'KIDS_SPACE');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
                   activeTab === 'KIDS' || openNavCluster === 'KIDS_SPACE'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -543,101 +543,205 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <Smile className="w-3.5 h-3.5 text-amber-600 fill-current" />
                 <span>Không Gian Thiếu Nhi</span>
-                <span className="text-[9.5px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
-                  5 Điều Bác Dạy
+                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
+                  5 Điều Bác
                 </span>
                 <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'KIDS_SPACE' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'KIDS_SPACE' && (
-                <div className="absolute top-full left-0 mt-1 w-80 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
-                    <span>Góc Học Tập &amp; Rèn Luyện Thiếu Nhi</span>
-                    <span className="bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Trường Học</span>
+                <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
+                      <span>Góc Học Tập &amp; Rèn Luyện Thiếu Nhi</span>
+                      <span className="bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Trường Học</span>
+                    </div>
+                    <a
+                      href="/thieu-nhi"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(750);
+                        onSelectTab('KIDS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-amber-50 to-rose-50 hover:from-amber-100 hover:to-rose-100 text-rose-950 border border-amber-300 shadow-2xs cursor-pointer transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center shrink-0">
+                          <Smile className="w-4 h-4 fill-current" />
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-[#881337]">Không Gian Thiếu Nhi Đất Thủ</div>
+                          <div className="text-[10px] text-slate-600 font-normal">Vách gỗ 5 Điều Bác Dạy, 15 truyện &amp; đố vui</div>
+                        </div>
+                      </div>
+                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">VÀO GÓC</span>
+                    </a>
+                    <a
+                      href="/thieu-nhi"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(700);
+                        onSelectTab('KIDS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Heart className="w-4 h-4 text-rose-600 fill-current" />
+                        <span>Mô Hình Vách Gỗ &amp; 5 Điều Bác Dạy</span>
+                      </div>
+                      <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Mô Hình 3D</span>
+                    </a>
+                    <a
+                      href="/thieu-nhi"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('KIDS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-4 h-4 text-amber-700" />
+                        <span>15 Mẩu Chuyện Kể Bác Hồ Có Giọng Đọc</span>
+                      </div>
+                      <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Audio AI</span>
+                    </a>
+                    <a
+                      href="/thieu-nhi"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('KIDS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-emerald-600" />
+                        <span>Hội Thi Búp Sen Vàng (Đố Vui)</span>
+                      </div>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">Chứng Nhận</span>
+                    </a>
                   </div>
-                  <a
-                    href="/thieu-nhi"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(750);
-                      onSelectTab('KIDS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-amber-50 to-rose-50 hover:from-amber-100 hover:to-rose-100 text-rose-950 border border-amber-300 shadow-2xs cursor-pointer transition-all"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center shrink-0">
-                        <Smile className="w-4 h-4 fill-current" />
-                      </div>
-                      <div>
-                        <div className="font-extrabold text-[#881337]">Không Gian Thiếu Nhi Đất Thủ</div>
-                        <div className="text-[10px] text-slate-600 font-normal">Vách gỗ 5 Điều Bác Dạy, truyện kể &amp; đố vui</div>
-                      </div>
-                    </div>
-                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">VÀO GÓC</span>
-                  </a>
-                  <a
-                    href="/thieu-nhi"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(700);
-                      onSelectTab('KIDS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Heart className="w-4 h-4 text-rose-600 fill-current" />
-                      <span>Mô Hình Vách Gỗ &amp; 5 Điều Bác Dạy</span>
-                    </div>
-                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Mô Hình 3D</span>
-                  </a>
-                  <a
-                    href="/thieu-nhi"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(650);
-                      onSelectTab('KIDS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <BookOpen className="w-4 h-4 text-amber-700" />
-                      <span>10 Truyện Kể Bác Hồ Có Giọng Đọc</span>
-                    </div>
-                    <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Audio AI</span>
-                  </a>
-                  <a
-                    href="/thieu-nhi"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(650);
-                      onSelectTab('KIDS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Award className="w-4 h-4 text-emerald-600" />
-                      <span>Hội Thi Đố Vui Nhận Giấy Chứng Nhận</span>
-                    </div>
-                    <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">Có Thưởng</span>
-                  </a>
                 </div>
               )}
             </div>
 
-            {/* 4. Lịch Sử Đảng Bộ TP (Cửa ngõ 3 chuyển thành menu chính) */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('PARTY_HISTORY')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 4. Chuyện Kể Học Bác (Mới - Chuyên mục 120 mẩu chuyện học tập theo Bác áp dụng cho mọi đối tượng) */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'PARTY_HISTORY' ? null : 'PARTY_HISTORY')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'STORIES_LEARNING' ? null : 'STORIES_LEARNING');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
+                  activeTab === 'STORIES_LEARNING' || openNavCluster === 'STORIES_LEARNING'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
+                    : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
+                }`}
+              >
+                <BookOpen className="w-3.5 h-3.5 text-rose-700" />
+                <span>Chuyện Kể Học Bác</span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
+                  120 Chuyện
+                </span>
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'STORIES_LEARNING' ? 'rotate-180 text-rose-700' : ''}`} />
+              </button>
+
+              {openNavCluster === 'STORIES_LEARNING' && (
+                <div className="absolute top-full left-0 pt-2 w-84 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
+                      <span>120 Mẩu Chuyện Học Tập Theo Bác</span>
+                      <span className="bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mọi Đối Tượng</span>
+                    </div>
+                    <a
+                      href="/chuyen-ke-hoc-bac"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(750);
+                        onSelectTab('STORIES_LEARNING');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50 to-amber-50/60 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200 shadow-2xs cursor-pointer transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-[#751D2C] text-white flex items-center justify-center shrink-0">
+                          <BookOpen className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-[#881337]">Toàn Bộ 120 Mẩu Chuyện Về Bác</div>
+                          <div className="text-[10px] text-slate-600 font-normal">Chính thống, truyền cảm hứng &amp; có audio đọc</div>
+                        </div>
+                      </div>
+                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">XEM TẤT CẢ</span>
+                    </a>
+                    <a
+                      href="/chuyen-ke-hoc-bac"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('STORIES_LEARNING');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-rose-700" />
+                        <span>Cán Bộ, Đảng Viên (Quy định 144-QĐ/TW)</span>
+                      </div>
+                      <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Cần Kiệm</span>
+                    </a>
+                    <a
+                      href="/chuyen-ke-hoc-bac"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('STORIES_LEARNING');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-amber-600" />
+                        <span>Đoàn Viên, Thanh Niên (Rèn Đức Luyện Tài)</span>
+                      </div>
+                      <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Khát Vọng</span>
+                    </a>
+                    <a
+                      href="/chuyen-ke-hoc-bac"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('STORIES_LEARNING');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Heart className="w-4 h-4 text-emerald-600" />
+                        <span>Toàn Thể Nhân Dân (Đời Sống &amp; Gia Đình)</span>
+                      </div>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">Thực Tiễn</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 5. Lịch Sử Đảng Bộ TP */}
+            <div className="relative shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'PARTY_HISTORY' ? null : 'PARTY_HISTORY');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
                   ['PARTY_HISTORY', 'TDM_CHRONOLOGY', 'FOOTPRINTS'].includes(activeTab) || openNavCluster === 'PARTY_HISTORY'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -645,84 +749,85 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <Flag className="w-3.5 h-3.5 text-rose-700" />
                 <span>Lịch Sử Đảng Bộ TP</span>
-                <span className="text-[9.5px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
+                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
                   600 Trang
                 </span>
                 <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'PARTY_HISTORY' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'PARTY_HISTORY' && (
-                <div className="absolute top-full left-0 mt-1 w-80 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
-                    <span>Lịch Sử Đảng Bộ TP. Thủ Dầu Một</span>
-                    <span className="bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">1930 — Nay</span>
+                <div className="absolute top-full left-0 pt-2 w-80 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100 flex items-center justify-between">
+                      <span>Lịch Sử Đảng Bộ TP. Thủ Dầu Một</span>
+                      <span className="bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">1930 — Nay</span>
+                    </div>
+                    <a
+                      href="/lich-su-dang-bo"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('PARTY_HISTORY');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50 to-amber-50/60 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200 shadow-2xs cursor-pointer transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-[#751D2C] text-white flex items-center justify-center shrink-0">
+                          <Flag className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="font-extrabold text-[#881337]">Toàn Văn Pho Sử 600 Trang</div>
+                          <div className="text-[10px] text-slate-600 font-normal">Lật sách điện tử tương tác 3D và tra cứu mốc son</div>
+                        </div>
+                      </div>
+                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">600Tr</span>
+                    </a>
+                    <a
+                      href="/bien-nien-su-phuong"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onSelectTab('TDM_CHRONOLOGY');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <History className="w-4 h-4 text-rose-700" />
+                        <span>Biên Niên Sử Phường (Từ 01/7/2025)</span>
+                      </div>
+                      <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mới Nhất</span>
+                    </a>
+                    <a
+                      href="/dau-an-bac-ho"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onSelectTab('FOOTPRINTS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Bookmark className="w-4 h-4 text-rose-700" />
+                        <span>Dấu Ấn Cụ Phó Bảng &amp; Đất Thủ</span>
+                      </div>
+                    </a>
                   </div>
-                  <a
-                    href="/lich-su-dang-bo"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(650);
-                      onSelectTab('PARTY_HISTORY');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2.5 rounded-xl text-xs font-bold flex items-center justify-between bg-gradient-to-r from-rose-50 to-amber-50/60 hover:from-rose-100 hover:to-amber-100 text-rose-950 border border-rose-200 shadow-2xs cursor-pointer transition-all"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-[#751D2C] text-white flex items-center justify-center shrink-0">
-                        <Flag className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="font-extrabold text-[#881337]">Toàn Văn Pho Sử 600 Trang</div>
-                        <div className="text-[10px] text-slate-600 font-normal">Lật sách điện tử tương tác 3D và tra cứu mốc son</div>
-                      </div>
-                    </div>
-                    <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">600Tr</span>
-                  </a>
-                  <a
-                    href="/bien-nien-su-phuong"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('TDM_CHRONOLOGY');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <History className="w-4 h-4 text-rose-700" />
-                      <span>Biên Niên Sử Phường (Từ 01/7/2025)</span>
-                    </div>
-                    <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mới Nhất</span>
-                  </a>
-                  <a
-                    href="/dau-an-bac-ho"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('FOOTPRINTS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Bookmark className="w-4 h-4 text-rose-700" />
-                      <span>Dấu Ấn Cụ Phó Bảng &amp; Đất Thủ</span>
-                    </div>
-                  </a>
                 </div>
               )}
             </div>
 
-            {/* 5. Di Sản Hồ Chí Minh */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('HERITAGE')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 6. Di Sản Hồ Chí Minh */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'HERITAGE' ? null : 'HERITAGE')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'HERITAGE' ? null : 'HERITAGE');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
                   ['BIO', 'TIMELINE', 'BOOKS', 'QUOTES', 'MEDIA'].includes(activeTab) || openNavCluster === 'HERITAGE'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -734,85 +839,86 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'HERITAGE' && (
-                <div className="absolute top-full left-0 mt-1 w-72 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
-                    Kho Tàng Tư Liệu Bác Hồ
+                <div className="absolute top-full left-0 pt-2 w-72 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                      Kho Tàng Tư Liệu Bác Hồ
+                    </div>
+                    <a
+                      href="/bien-nien-su"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onSelectTab('TIMELINE');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-rose-700" />
+                        <span>08 Thời Kỳ Cuộc Đời Bác</span>
+                      </div>
+                    </a>
+                    <a
+                      href="/thu-vien-so"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(650);
+                        onSelectTab('BOOKS');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <BookMarked className="w-4 h-4 text-rose-700" />
+                        <span>Hồ Chí Minh Toàn Tập</span>
+                      </div>
+                      <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">15 Tập</span>
+                    </a>
+                    <a
+                      href="/trich-dan"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onSelectTab('QUOTES');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-amber-600" />
+                        <span>Lời Bác Dạy &amp; Thẻ Trích Dẫn</span>
+                      </div>
+                    </a>
+                    <a
+                      href="/tu-lieu-am-thanh"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        hcmSfx.playClick(600);
+                        onSelectTab('MEDIA');
+                        setOpenNavCluster(null);
+                      }}
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Radio className="w-4 h-4 text-rose-700" />
+                        <span>Giọng Đọc &amp; Âm Thanh Lịch Sử VOV</span>
+                      </div>
+                    </a>
                   </div>
-                  <a
-                    href="/bien-nien-su"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('TIMELINE');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-rose-700" />
-                      <span>08 Thời Kỳ Cuộc Đời Bác</span>
-                    </div>
-                  </a>
-                  <a
-                    href="/thu-vien-so"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(650);
-                      onSelectTab('BOOKS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <BookMarked className="w-4 h-4 text-rose-700" />
-                      <span>Hồ Chí Minh Toàn Tập</span>
-                    </div>
-                    <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">15 Tập</span>
-                  </a>
-                  <a
-                    href="/trich-dan"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('QUOTES');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-amber-600" />
-                      <span>Lời Bác Dạy &amp; Thẻ Trích Dẫn</span>
-                    </div>
-                  </a>
-                  <a
-                    href="/tu-lieu-am-thanh"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('MEDIA');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Radio className="w-4 h-4 text-rose-700" />
-                      <span>Giọng Đọc &amp; Âm Thanh Lịch Sử VOV</span>
-                    </div>
-                  </a>
                 </div>
               )}
             </div>
 
-            {/* 6. Rèn Luyện & Đời Sống */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('COMMUNITY')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 7. Rèn Luyện & Đời Sống */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'COMMUNITY' ? null : 'COMMUNITY')}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'COMMUNITY' ? null : 'COMMUNITY');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
                   ['EXEMPLARY_PEOPLE', 'MODELS', 'EVALUATION'].includes(activeTab) || openNavCluster === 'COMMUNITY'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -824,74 +930,75 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'COMMUNITY' && (
-                <div className="absolute top-full right-0 mt-1 w-76 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
-                    Học Tập &amp; Làm Theo Bác
-                  </div>
-                  <a
-                    href="/guong-sang-tieu-bieu"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('EXEMPLARY_PEOPLE');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-rose-700" />
-                      <span>Gương Sáng Tiêu Biểu 5 Khu Phố</span>
+                <div className="absolute top-full right-0 pt-2 w-76 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                      Học Tập &amp; Làm Theo Bác
                     </div>
-                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Người Tốt</span>
-                  </a>
-                  {onOpenTwentyOneDayChallenge && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        hcmSfx.playClick(600);
-                        onOpenTwentyOneDayChallenge();
-                        setOpenNavCluster(null);
-                      }}
-                      className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
-                    >
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                        <span>Chiến Dịch 21 Ngày Học Bác</span>
-                      </div>
-                      <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">Thử Thách</span>
-                    </button>
-                  )}
-                  {onOpenGoldenBook && (
                     <a
-                      href="/so-vang"
+                      href="/guong-sang-tieu-bieu"
                       onClick={(e) => {
                         e.preventDefault();
                         hcmSfx.playClick(600);
-                        onOpenGoldenBook();
+                        onSelectTab('EXEMPLARY_PEOPLE');
                         setOpenNavCluster(null);
                       }}
                       className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
                     >
                       <div className="flex items-center gap-2">
-                        <Award className="w-4 h-4 text-amber-600" />
-                        <span>Sổ Vàng Truyền Thống Số</span>
+                        <Sparkles className="w-4 h-4 text-rose-700" />
+                        <span>Gương Sáng Tiêu Biểu 5 Khu Phố</span>
                       </div>
+                      <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">Người Tốt</span>
                     </a>
-                  )}
+                    {onOpenTwentyOneDayChallenge && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onOpenTwentyOneDayChallenge();
+                          setOpenNavCluster(null);
+                        }}
+                        className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
+                      >
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          <span>Chiến Dịch 21 Ngày Học Bác</span>
+                        </div>
+                        <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-bold">Thử Thách</span>
+                      </button>
+                    )}
+                    {onOpenGoldenBook && (
+                      <a
+                        href="/so-vang"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          hcmSfx.playClick(600);
+                          onOpenGoldenBook();
+                          setOpenNavCluster(null);
+                        }}
+                        className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Award className="w-4 h-4 text-amber-600" />
+                          <span>Sổ Vàng Truyền Thống Số</span>
+                        </div>
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* 7. Tin Tức & Tiện Ích */}
-            <div
-              className="relative shrink-0"
-              onMouseEnter={() => setOpenNavCluster('UTILITIES')}
-              onMouseLeave={() => setOpenNavCluster(null)}
-            >
+            {/* 8. Tin Tức & Tiện Ích */}
+            <div className="relative shrink-0">
               <button
                 type="button"
-                onClick={() => setOpenNavCluster(openNavCluster === 'UTILITIES' ? null : 'UTILITIES')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                onClick={() => {
+                  hcmSfx.playClick(600);
+                  setOpenNavCluster(openNavCluster === 'UTILITIES' ? null : 'UTILITIES');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
                   activeTab === 'NEWS' || openNavCluster === 'UTILITIES'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -903,58 +1010,60 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'UTILITIES' && (
-                <div className="absolute top-full right-0 mt-1 w-64 rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
-                    Báo Chí &amp; Tiện Ích Số
-                  </div>
-                  <a
-                    href="/tin-tuc"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      hcmSfx.playClick(600);
-                      onSelectTab('NEWS');
-                      setOpenNavCluster(null);
-                    }}
-                    className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-rose-700" />
-                      <span>Tin Tức 4 Nguồn Báo Chí</span>
+                <div className="absolute top-full right-0 pt-2 w-64 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="rounded-2xl bg-white border border-rose-200 shadow-2xl p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black uppercase text-rose-800 border-b border-slate-100">
+                      Báo Chí &amp; Tiện Ích Số
                     </div>
-                    <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">4 Nguồn</span>
-                  </a>
-                  {onOpenHandwritingZoom && (
-                    <button
-                      type="button"
-                      onClick={() => {
+                    <a
+                      href="/tin-tuc"
+                      onClick={(e) => {
+                        e.preventDefault();
                         hcmSfx.playClick(600);
-                        onOpenHandwritingZoom();
+                        onSelectTab('NEWS');
                         setOpenNavCluster(null);
                       }}
-                      className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
+                      className="p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer"
                     >
                       <div className="flex items-center gap-2">
-                        <Search className="w-4 h-4 text-stone-700" />
-                        <span>Soi Bút Tích Di Chúc 3D</span>
+                        <FileText className="w-4 h-4 text-rose-700" />
+                        <span>Tin Tức 4 Nguồn Báo Chí</span>
                       </div>
-                    </button>
-                  )}
-                  {onOpenHeritageAnalytics && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        hcmSfx.playClick(600);
-                        onOpenHeritageAnalytics();
-                        setOpenNavCluster(null);
-                      }}
-                      className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Activity className="w-4 h-4 text-blue-700" />
-                        <span>Thống Kê Dữ Liệu Di Sản</span>
-                      </div>
-                    </button>
-                  )}
+                      <span className="text-[9px] bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded font-bold">4 Nguồn</span>
+                    </a>
+                    {onOpenHandwritingZoom && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onOpenHandwritingZoom();
+                          setOpenNavCluster(null);
+                        }}
+                        className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Search className="w-4 h-4 text-stone-700" />
+                          <span>Soi Bút Tích Di Chúc 3D</span>
+                        </div>
+                      </button>
+                    )}
+                    {onOpenHeritageAnalytics && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onOpenHeritageAnalytics();
+                          setOpenNavCluster(null);
+                        }}
+                        className="w-full p-2 rounded-xl text-xs font-bold flex items-center justify-between hover:bg-rose-50 text-slate-900 cursor-pointer text-left"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Activity className="w-4 h-4 text-blue-700" />
+                          <span>Thống Kê Dữ Liệu Di Sản</span>
+                        </div>
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -1007,6 +1116,30 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               className="block w-full text-left py-2 font-medium text-slate-900 border-b border-rose-200/80/30"
             >
               Tin tức
+            </a>
+            <a
+              href="/thieu-nhi"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectTab('KIDS');
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left py-2 font-bold text-amber-700 border-b border-rose-200/80/30 flex items-center justify-between"
+            >
+              <span>🎒 Không Gian Thiếu Nhi Đất Thủ</span>
+              <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">5 Điều Bác</span>
+            </a>
+            <a
+              href="/chuyen-ke-hoc-bac"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectTab('STORIES_LEARNING');
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
+            >
+              <span>📖 120 Mẩu Chuyện Học Bác</span>
+              <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mọi Đối Tượng</span>
             </a>
             <a
               href="/lich-su-dang-bo"
@@ -1295,7 +1428,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
           ========================================================================= */}
       {openNavCluster && (
         <div
-          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 transition-opacity duration-300 animate-in fade-in cursor-pointer"
+          className="fixed inset-0 bg-slate-950/50 backdrop-blur-[2px] z-40 transition-opacity duration-200 animate-in fade-in cursor-pointer"
           onClick={() => {
             hcmSfx.playClick(500);
             setOpenNavCluster(null);
@@ -1544,6 +1677,71 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                 alt="Không gian trưng bày 3D thực tế ảo"
                 className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-300 ease-out"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          CHUYÊN MỤC ĐẶC BIỆT: 120 MẨU CHUYỆN HỌC TẬP THEO BÁC (ÁP DỤNG CHO MỌI ĐỐI TƯỢNG)
+          ========================================================================= */}
+      <section className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pb-10 sm:pb-14">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#751D2C] via-[#851E32] to-[#4A101A] p-6 sm:p-8 lg:p-10 text-white shadow-xl border border-rose-300/30">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
+            <div className="space-y-3 max-w-2xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-200 text-xs font-bold uppercase tracking-wider">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>CHUYÊN MỤC TRỌNG ĐIỂM · NGUỒN CHÍNH THỐNG</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-black text-amber-100 tracking-tight leading-tight">
+                120 Mẩu Chuyện Kể Về Bác Hồ
+              </h3>
+              <p className="text-sm sm:text-base text-rose-100/90 leading-relaxed font-sans">
+                Kho tư liệu quý giá với các câu chuyện ngắn gọn, xúc động, đúc kết bài học thực hành cụ thể cho <strong>Cán bộ, Đảng viên (Quy định 144-QĐ/TW)</strong>, <strong>Đoàn viên Thanh niên</strong> và <strong>Toàn thể Nhân dân</strong>. Có tích hợp giọng đọc truyền cảm.
+              </p>
+              
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
+                <span className="text-xs px-3 py-1 rounded-lg bg-black/30 border border-white/10 text-white font-medium">
+                  ⚖️ Cần Kiệm Liêm Chính
+                </span>
+                <span className="text-xs px-3 py-1 rounded-lg bg-black/30 border border-white/10 text-white font-medium">
+                  🤝 Gần Dân, Vì Dân
+                </span>
+                <span className="text-xs px-3 py-1 rounded-lg bg-black/30 border border-white/10 text-white font-medium">
+                  ⏱️ Kỷ Luật &amp; Giữ Chữ Tín
+                </span>
+                <span className="text-xs px-3 py-1 rounded-lg bg-black/30 border border-white/10 text-white font-medium">
+                  ❤️ Tình Đồng Chí Yêu Thương
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0">
+              <a
+                href="/chuyen-ke-hoc-bac"
+                onClick={(e) => {
+                  e.preventDefault();
+                  hcmSfx.playClick(750);
+                  onSelectTab('STORIES_LEARNING');
+                }}
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black text-sm shadow-lg hover:shadow-amber-500/30 transition-all cursor-pointer group"
+              >
+                <span>Khám Phá 120 Mẩu Chuyện</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  hcmSfx.playClick(650);
+                  onSelectTab('KIDS');
+                }}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs transition-all cursor-pointer"
+              >
+                <Smile className="w-4 h-4 text-amber-300" />
+                <span>Không Gian Thiếu Nhi Đất Thủ</span>
+              </button>
             </div>
           </div>
         </div>

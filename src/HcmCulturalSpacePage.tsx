@@ -114,6 +114,7 @@ import { HcmPartyHistoryFullView } from './components/HcmPartyHistoryFullView';
 import { HcmThuDauMotChronologyView } from './components/HcmThuDauMotChronologyView';
 import { HcmExemplaryPeopleView } from './components/HcmExemplaryPeopleView';
 import { HcmKidsSpaceView } from './components/HcmKidsSpaceView';
+import { HcmGeneralStoriesView } from './components/HcmGeneralStoriesView';
 import { HcmFloatingMiniPlayer } from './components/HcmFloatingMiniPlayer';
 import { hcmSfx } from './services/hcmSoundEffects';
 
@@ -1247,6 +1248,12 @@ export const HcmCulturalSpacePage: React.FC = () => {
         <HcmKidsSpaceView
           onBackToFoyer={() => handleSelectTab('FOYER')}
           onOpenMiniQuiz={() => setIsTwentyOneDayOpen(true)}
+        />
+      )}
+
+      {activeTab === 'STORIES_LEARNING' && (
+        <HcmGeneralStoriesView
+          onBackToFoyer={() => handleSelectTab('FOYER')}
         />
       )}
 

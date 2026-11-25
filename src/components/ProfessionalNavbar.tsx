@@ -33,6 +33,7 @@ export type SpaceTab =
   | 'TDM_CHRONOLOGY'
   | 'EXEMPLARY_PEOPLE'
   | 'KIDS'
+  | 'STORIES_LEARNING'
   | 'NEWS'
   | 'BIO'
   | 'TIMELINE'
