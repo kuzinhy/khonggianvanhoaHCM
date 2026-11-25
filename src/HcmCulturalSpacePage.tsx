@@ -112,6 +112,7 @@ import { HcmGuidedJourneyModal } from './components/HcmGuidedJourneyModal';
 import { HcmDynamicHeritageMapModal } from './components/HcmDynamicHeritageMapModal';
 import { HcmPartyHistoryFullView } from './components/HcmPartyHistoryFullView';
 import { HcmThuDauMotChronologyView } from './components/HcmThuDauMotChronologyView';
+import { HcmExemplaryPeopleView } from './components/HcmExemplaryPeopleView';
 
 interface EntryFormState {
   editingId: string | null;
@@ -283,6 +284,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
         EXHIBIT: 'Bảo tàng & Hiện vật 3D',
         TDM_HOUSE: 'Nhà truyền thống & Di tích Đất Thủ',
         TDM_CHRONOLOGY: 'Biên Niên Sử Phường Thủ Dầu Một (Từ 01/7/2025 Đến Nay)',
+        EXEMPLARY_PEOPLE: 'Gương Sáng Tiêu Biểu & Người Tốt Việc Tốt (Từ 01/7/2025)',
         FOOTPRINTS: 'Bản Đồ Di Sản (10 Chặng Bôn Ba & Địa Chỉ Đỏ TP.HCM)',
         MEDIA: 'Đa Phương Tiện: Giọng Nói VOV, Video Trẻ TikTok & Phim Tư Liệu',
         IDEOLOGY: 'Tư tưởng & Trắc nghiệm Di sản',
@@ -1207,6 +1209,10 @@ export const HcmCulturalSpacePage: React.FC = () => {
 
       {activeTab === 'TDM_CHRONOLOGY' && (
         <HcmThuDauMotChronologyView onBackToFoyer={() => setActiveTab('FOYER')} />
+      )}
+
+      {activeTab === 'EXEMPLARY_PEOPLE' && (
+        <HcmExemplaryPeopleView onBackToFoyer={() => setActiveTab('FOYER')} />
       )}
 
       {activeTab === 'PARTY_HISTORY' && (

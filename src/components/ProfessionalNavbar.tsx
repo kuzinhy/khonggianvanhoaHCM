@@ -28,6 +28,7 @@ export type SpaceTab =
   | 'PARTY_HISTORY'
   | 'TDM_HOUSE'
   | 'TDM_CHRONOLOGY'
+  | 'EXEMPLARY_PEOPLE'
   | 'NEWS'
   | 'BIO'
   | 'TIMELINE'
@@ -98,6 +99,13 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       icon: History,
       badge: 'Từ 01/7/2025',
       badgeCls: 'bg-amber-400 text-slate-950 font-black',
+    },
+    {
+      id: 'EXEMPLARY_PEOPLE',
+      label: 'Gương Sáng Tiêu Biểu',
+      icon: Sparkles,
+      badge: 'Người tốt việc tốt',
+      badgeCls: 'bg-gradient-to-r from-rose-600 to-[#881337] text-white font-bold',
     },
     {
       id: 'NEWS',

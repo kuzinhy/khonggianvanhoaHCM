@@ -38,6 +38,8 @@ import type { SpaceTab } from './ProfessionalNavbar';
 import { hcmVoiceService } from '../services/hcmVoiceService';
 import { useApp } from '../AppContext';
 import { HcmSpotlightCard } from './HcmSpotlightCard';
+import { EXEMPLARY_PEOPLE_LIST } from '../data/hcmExemplaryPeopleData';
+import { ChevronRight } from 'lucide-react';
 import { HcmCitizenResumeBanner } from './HcmCitizenResumeBanner';
 import { GoogleIcon } from './GoogleIcon';
 import { HcmTraditionalQuoteCard } from './HcmTraditionalQuoteCard';
@@ -489,6 +491,25 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </span>
             </a>
 
+            <a
+              href="/guong-sang-tieu-bieu"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectTab('EXEMPLARY_PEOPLE');
+              }}
+              className={`transition-colors cursor-pointer flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-lg ${
+                activeTab === 'EXEMPLARY_PEOPLE'
+                  ? 'text-[#881337] font-black border-b-2 border-[#BE123C] bg-rose-50/80'
+                  : 'text-[#881337] hover:text-[#5B1522] hover:bg-rose-50/50 font-bold'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Gương sáng tiêu biểu</span>
+              <span className="px-1.5 py-0.2 rounded text-[9.5px] bg-rose-700 text-white font-extrabold leading-none">
+                Người tốt việc tốt
+              </span>
+            </a>
+
             {onOpenGoldenBook && (
               <a
                 href="/so-vang"
@@ -601,6 +622,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             >
               <span>📜 Biên niên sử phường Thủ Dầu Một</span>
               <span className="px-1.5 py-0.5 text-[10px] bg-[#751D2C] text-amber-300 rounded font-bold">Từ 01/7/2025</span>
+            </a>
+            <a
+              href="/guong-sang-tieu-bieu"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectTab('EXEMPLARY_PEOPLE');
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
+            >
+              <span>🌟 Gương sáng người tốt việc tốt</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-rose-700 text-white rounded font-bold">Từ 01/7/2025</span>
             </a>
             {onOpenGoldenBook && (
               <a
@@ -1561,6 +1594,76 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          TẦNG 6: GƯƠNG SÁNG TIÊU BIỂU & NGƯỜI TỐT VIỆC TỐT PHƯỜNG THỦ DẦU MỘT (TỪ 01/7/2025)
+          ========================================================================= */}
+      <section className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pb-14 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-rose-200/80 pb-3">
+          <div>
+            <div className="text-[11px] font-bold text-[#881337] tracking-[0.14em] uppercase flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse" />
+              <span>GƯƠNG NGƯỜI TỐT VIỆC TỐT · ĐƠN VỊ HÀNH CHÍNH MỚI TỪ 01/7/2025</span>
+            </div>
+            <h3 className="font-serif text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
+              Gương Sáng Tiêu Biểu Học Tập &amp; Làm Theo Lời Bác
+            </h3>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-700 to-[#881337] hover:brightness-110 text-white font-bold text-xs shadow-md transition-all cursor-pointer whitespace-nowrap self-start sm:self-auto"
+          >
+            <span>Xem Tất Cả Gương Sáng</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* Lưới 4 gương sáng tiêu biểu đại diện */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {EXEMPLARY_PEOPLE_LIST.slice(0, 4).map((person) => (
+            <div
+              key={person.id}
+              onClick={() => onSelectTab('EXEMPLARY_PEOPLE')}
+              className="bg-white rounded-2xl border border-rose-200/80 hover:border-rose-400 p-4 shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group transform hover:-translate-y-1"
+            >
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-100 to-amber-100 border border-rose-300 flex items-center justify-center font-serif font-black text-rose-800 text-sm shadow-xs shrink-0">
+                    {person.fullName.split(' ').slice(-1)[0][0]}
+                  </div>
+                  <div>
+                    <h4 className="font-serif font-bold text-sm text-slate-900 group-hover:text-rose-700 transition-colors leading-snug">
+                      {person.fullName}
+                    </h4>
+                    <span className="text-[11px] font-semibold text-rose-800">{person.khuPho}</span>
+                  </div>
+                </div>
+
+                <div className="px-2 py-1 rounded-lg bg-rose-50 text-[11px] font-bold text-rose-900 line-clamp-1 border border-rose-200/60">
+                  🏆 {person.honorTitle}
+                </div>
+
+                <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                  {person.goodDeedSummary}
+                </p>
+
+                <div className="p-2 rounded-xl bg-amber-50/50 border-l-2 border-amber-400 text-[11px] italic font-serif text-slate-700 line-clamp-2">
+                  “{person.quoteOrMotto}”
+                </div>
+              </div>
+
+              <div className="pt-2.5 mt-2.5 border-t border-rose-100 flex items-center justify-between text-xs text-rose-800 font-bold">
+                <span className="text-[10.5px] text-slate-500 font-normal">{person.periodLabel}</span>
+                <span className="flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                  Chi tiết <ChevronRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </div>
