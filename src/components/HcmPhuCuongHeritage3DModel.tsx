@@ -41,7 +41,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   const isDraggingRef = useRef(false);
   const previousMousePositionRef = useRef({ x: 0, y: 0 });
   const sphericalRef = useRef({
-    radius: 12.0,
+    radius: 13.6,
     theta: Math.PI / 4.2, // Horizontal angle (around Y)
     phi: Math.PI / 3.1, // Vertical angle (from zenith)
   });
@@ -54,14 +54,17 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     if (view === 'ISOMETRIC') {
       sphericalRef.current.phi = Math.PI / 3.1;
       sphericalRef.current.theta = Math.PI / 4.2;
-      sphericalRef.current.radius = 12.0;
+      sphericalRef.current.radius = 13.6;
     } else if (view === 'FRONT') {
       sphericalRef.current.phi = Math.PI / 2.25;
       sphericalRef.current.theta = 0;
-      sphericalRef.current.radius = 10.5;
+      sphericalRef.current.radius = 12.2;
+      if (modelGroupRef.current) {
+        modelGroupRef.current.rotation.y = 0;
+      }
     } else if (view === 'TOP') {
       sphericalRef.current.phi = Math.PI / 5.5;
-      sphericalRef.current.radius = 13.5;
+      sphericalRef.current.radius = 14.8;
     }
     updateCameraPosition();
   }, []);
@@ -74,8 +77,8 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.cos(theta);
 
-    cameraRef.current.position.set(x, y + 1.25, z);
-    cameraRef.current.lookAt(0, 1.85, 0);
+    cameraRef.current.position.set(x, y + 1.45, z);
+    cameraRef.current.lookAt(0, 2.1, 0);
   };
 
   useEffect(() => {
