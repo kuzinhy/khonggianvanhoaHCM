@@ -3,16 +3,9 @@ import * as THREE from 'three';
 import {
   RotateCw,
   Maximize2,
-  Minimize2,
   Sparkles,
   Sun,
   Moon,
-  Compass,
-  Eye,
-  Info,
-  Layers,
-  Volume2,
-  ExternalLink,
   ChevronRight,
 } from 'lucide-react';
 import { hcmSfx } from '../services/hcmSoundEffects';
@@ -23,40 +16,6 @@ interface HcmPhuCuongHeritage3DModelProps {
   isCompact?: boolean;
 }
 
-interface HotspotInfo {
-  id: string;
-  title: string;
-  subtitle: string;
-  position: [number, number, number]; // 3D coordinates in world space
-}
-
-const HOTSPOTS: HotspotInfo[] = [
-  {
-    id: 'arch_veranda',
-    title: 'Hành Lang Vòm Cuốn & Gốm Sứ',
-    subtitle: 'Kiến trúc vòm cuốn Đông Dương thế kỷ XX, lan can ốp gạch gốm xanh Đất Thủ đặc trưng.',
-    position: [0, 1.2, 3.7],
-  },
-  {
-    id: 'tiled_roof',
-    title: 'Mái Ngói Âm Dương 2 Tầng',
-    subtitle: 'Hệ mái ngói đỏ 2 cấp dốc thoải, đầu đao uốn cong thanh thoát thích ứng khí hậu nhiệt đới.',
-    position: [0, 5.0, 0],
-  },
-  {
-    id: 'upper_windows',
-    title: 'Cửa Sổ Vòm & Nan Chớp Gỗ',
-    subtitle: 'Tầng 2 bố trí 3 vòm cửa lớn với nan hoa gỗ đón gió sông Bạch Đằng và ánh sáng tự nhiên.',
-    position: [0, 3.4, 2.7],
-  },
-  {
-    id: 'stone_base',
-    title: 'Bậc Tam Cấp & Chân Móng Đá',
-    subtitle: 'Nơi tập hợp nhân dân và thanh niên Tiền phong sáng 25/8/1945 giành chính quyền cách mạng.',
-    position: [0, 0.4, 4.3],
-  },
-];
-
 export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProps> = ({
   onOpenHeritage3D,
   className = '',
@@ -64,7 +23,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   // Animation & Rendering state refs
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -72,10 +31,9 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   const modelGroupRef = useRef<THREE.Group | null>(null);
   const requestRef = useRef<number | null>(null);
 
-  // Interaction controls state
+  // Controls state
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [isNightMode, setIsNightMode] = useState(false);
-  const [activeHotspot, setActiveHotspot] = useState<HotspotInfo | null>(null);
   const [cameraView, setCameraView] = useState<'ISOMETRIC' | 'FRONT' | 'TOP'>('ISOMETRIC');
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -83,26 +41,27 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   const isDraggingRef = useRef(false);
   const previousMousePositionRef = useRef({ x: 0, y: 0 });
   const sphericalRef = useRef({
-    radius: 12.5,
-    theta: Math.PI / 4, // Horizontal angle (around Y)
-    phi: Math.PI / 3.2, // Vertical angle (from zenith)
+    radius: 12.0,
+    theta: Math.PI / 4.2, // Horizontal angle (around Y)
+    phi: Math.PI / 3.1, // Vertical angle (from zenith)
   });
-  const targetRotationYRef = useRef(0);
-  const autoRotateSpeedRef = useRef(0.0075);
+  
+  // Tốc độ tự xoay: Giảm 50% theo yêu cầu (từ 0.0075 xuống 0.00375) để chuyển động cực kỳ êm dịu, trang nghiêm
+  const autoRotateSpeedRef = useRef(0.00375);
 
-  // Camera view angle targets
   const applyCameraView = useCallback((view: 'ISOMETRIC' | 'FRONT' | 'TOP') => {
     setCameraView(view);
     if (view === 'ISOMETRIC') {
-      sphericalRef.current.phi = Math.PI / 3.4;
-      sphericalRef.current.radius = 12.5;
+      sphericalRef.current.phi = Math.PI / 3.1;
+      sphericalRef.current.theta = Math.PI / 4.2;
+      sphericalRef.current.radius = 12.0;
     } else if (view === 'FRONT') {
-      sphericalRef.current.phi = Math.PI / 2.3;
+      sphericalRef.current.phi = Math.PI / 2.25;
       sphericalRef.current.theta = 0;
-      sphericalRef.current.radius = 11.0;
+      sphericalRef.current.radius = 10.5;
     } else if (view === 'TOP') {
-      sphericalRef.current.phi = Math.PI / 6.0;
-      sphericalRef.current.radius = 14.0;
+      sphericalRef.current.phi = Math.PI / 5.5;
+      sphericalRef.current.radius = 13.5;
     }
     updateCameraPosition();
   }, []);
@@ -110,14 +69,13 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   const updateCameraPosition = () => {
     if (!cameraRef.current) return;
     const { radius, theta, phi } = sphericalRef.current;
-    
-    // Convert spherical coordinates to Cartesian
+
     const x = radius * Math.sin(phi) * Math.sin(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.cos(theta);
 
-    cameraRef.current.position.set(x, y + 1.2, z);
-    cameraRef.current.lookAt(0, 1.8, 0);
+    cameraRef.current.position.set(x, y + 1.25, z);
+    cameraRef.current.lookAt(0, 1.85, 0);
   };
 
   useEffect(() => {
@@ -130,9 +88,9 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     sceneRef.current = scene;
 
     // 2. CAMERA SETUP
-    const width = container.clientWidth || 400;
-    const height = container.clientHeight || 300;
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+    const width = container.clientWidth || 480;
+    const height = container.clientHeight || 360;
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
     cameraRef.current = camera;
     updateCameraPosition();
 
@@ -148,66 +106,113 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.2;
     rendererRef.current = renderer;
 
-    // 4. PROCEDURAL TEXTURES GENERATION
-    // 4.1 Ngói đỏ đất nung texture
-    const createRoofCanvas = () => {
+    // 4. PROCEDURAL TEXTURES (VẬT LIỆU CHUẨN THỰC ĐỊA NHÀ TRUYỀN THỐNG ĐẤT THỦ)
+    // 4.1 Bảng hiệu "NHÀ TRUYỀN THỐNG THÀNH PHỐ THỦ DẦU MỘT"
+    const createSignboardTexture = () => {
       const c = document.createElement('canvas');
-      c.width = 128;
+      c.width = 512;
       c.height = 128;
       const ctx = c.getContext('2d')!;
-      ctx.fillStyle = '#A3331C';
-      ctx.fillRect(0, 0, 128, 128);
-      // Gân ngói
-      ctx.strokeStyle = '#7A2210';
-      ctx.lineWidth = 4;
-      for (let y = 0; y < 128; y += 16) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(128, y);
-        ctx.stroke();
+      // Nền trắng ngà
+      ctx.fillStyle = '#FFFDF7';
+      ctx.fillRect(0, 0, 512, 128);
+      // Viền kép chỉ vàng đồng
+      ctx.strokeStyle = '#B45309';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(6, 6, 500, 116);
+      ctx.strokeStyle = '#D97706';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(12, 12, 488, 104);
+      // Chữ "NHÀ TRUYỀN THỐNG" màu vàng đồng đậm có bóng đổ
+      ctx.fillStyle = '#92400E';
+      ctx.font = 'bold 42px "Times New Roman", serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('NHÀ TRUYỀN THỐNG', 256, 48);
+      // Dòng phụ "THÀNH PHỐ THỦ DẦU MỘT"
+      ctx.fillStyle = '#1F2937';
+      ctx.font = 'bold 22px "Segoe UI", sans-serif';
+      ctx.fillText('THÀNH PHỐ THỦ DẦU MỘT', 256, 92);
+      return new THREE.CanvasTexture(c);
+    };
+    const signboardTexture = createSignboardTexture();
+
+    // 4.2 Mái ngói đỏ nung âm dương (Terracotta Roof Tile)
+    const createRoofTexture = () => {
+      const c = document.createElement('canvas');
+      c.width = 256;
+      c.height = 256;
+      const ctx = c.getContext('2d')!;
+      ctx.fillStyle = '#B43E23'; // Đỏ cam đất nung cổ kính
+      ctx.fillRect(0, 0, 256, 256);
+      // Gân ngói máng âm dương
+      for (let y = 0; y < 256; y += 16) {
+        ctx.fillStyle = '#8C2B14';
+        ctx.fillRect(0, y, 256, 4);
+        ctx.fillStyle = '#CD5536';
+        ctx.fillRect(0, y + 4, 256, 3);
       }
-      ctx.strokeStyle = '#C94B2E';
-      ctx.lineWidth = 1.5;
-      for (let x = 0; x < 128; x += 16) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, 128);
-        ctx.stroke();
+      for (let x = 0; x < 256; x += 16) {
+        ctx.fillStyle = 'rgba(0,0,0,0.15)';
+        ctx.fillRect(x, 0, 2, 256);
+        ctx.fillStyle = 'rgba(255,255,255,0.12)';
+        ctx.fillRect(x + 2, 0, 1.5, 256);
       }
       return new THREE.CanvasTexture(c);
     };
-    const roofTexture = createRoofCanvas();
+    const roofTexture = createRoofTexture();
     roofTexture.wrapS = THREE.RepeatWrapping;
     roofTexture.wrapT = THREE.RepeatWrapping;
-    roofTexture.repeat.set(4, 4);
+    roofTexture.repeat.set(6, 6);
 
-    // 4.2 Gạch gốm xanh Đất Thủ (lan can)
-    const createCeramicCanvas = () => {
+    // 4.3 Nan chớp gỗ nâu sẫm (Wooden Louvers for Side Windows)
+    const createLouverTexture = () => {
+      const c = document.createElement('canvas');
+      c.width = 64;
+      c.height = 128;
+      const ctx = c.getContext('2d')!;
+      ctx.fillStyle = '#451A03';
+      ctx.fillRect(0, 0, 64, 128);
+      for (let y = 0; y < 128; y += 8) {
+        ctx.fillStyle = '#290D01';
+        ctx.fillRect(0, y, 64, 2);
+        ctx.fillStyle = '#5A2609';
+        ctx.fillRect(0, y + 2, 64, 4);
+      }
+      return new THREE.CanvasTexture(c);
+    };
+    const louverTexture = createLouverTexture();
+
+    // 4.4 Hoa văn gốm xanh men ngọc Đất Thủ (Ceramic Balustrades)
+    const createCeramicTexture = () => {
       const c = document.createElement('canvas');
       c.width = 64;
       c.height = 64;
       const ctx = c.getContext('2d')!;
-      ctx.fillStyle = '#065F46'; // Xanh men ngọc Đất Thủ
+      ctx.fillStyle = '#065F46'; // Xanh ngọc lục
       ctx.fillRect(0, 0, 64, 64);
       ctx.strokeStyle = '#047857';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 4;
       ctx.strokeRect(4, 4, 56, 56);
       ctx.fillStyle = '#34D399';
       ctx.beginPath();
-      ctx.arc(32, 32, 10, 0, Math.PI * 2);
+      ctx.arc(32, 32, 12, 0, Math.PI * 2);
       ctx.fill();
+      ctx.strokeStyle = '#064E3B';
+      ctx.lineWidth = 2;
+      ctx.stroke();
       return new THREE.CanvasTexture(c);
     };
-    const ceramicTexture = createCeramicCanvas();
+    const ceramicTexture = createCeramicTexture();
     ceramicTexture.wrapS = THREE.RepeatWrapping;
     ceramicTexture.wrapT = THREE.RepeatWrapping;
     ceramicTexture.repeat.set(8, 2);
 
-    // 4.3 Đá granite chân móng
-    const createStoneCanvas = () => {
+    // 4.5 Đá Granite chân móng chẻ xám
+    const createStoneTexture = () => {
       const c = document.createElement('canvas');
       c.width = 128;
       c.height = 128;
@@ -215,10 +220,8 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       ctx.fillStyle = '#374151';
       ctx.fillRect(0, 0, 128, 128);
       ctx.fillStyle = '#4B5563';
-      for (let i = 0; i < 400; i++) {
-        const rx = Math.random() * 128;
-        const ry = Math.random() * 128;
-        ctx.fillRect(rx, ry, Math.random() * 4, Math.random() * 4);
+      for (let i = 0; i < 500; i++) {
+        ctx.fillRect(Math.random() * 128, Math.random() * 128, Math.random() * 3 + 1, Math.random() * 3 + 1);
       }
       ctx.strokeStyle = '#1F2937';
       ctx.lineWidth = 2;
@@ -227,33 +230,36 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       }
       return new THREE.CanvasTexture(c);
     };
-    const stoneTexture = createStoneCanvas();
+    const stoneTexture = createStoneTexture();
     stoneTexture.wrapS = THREE.RepeatWrapping;
     stoneTexture.wrapT = THREE.RepeatWrapping;
     stoneTexture.repeat.set(4, 2);
 
     // 5. MATERIALS
-    const wallMaterial = new THREE.MeshStandardMaterial({
-      color: 0xF7E3AF, // Màu vàng kem di sản Nhà Việc Phú Cường
-      roughness: 0.75,
+    // Màu vàng mật ong ấm / kem di sản Pháp - Đông Dương
+    const wallOchreMat = new THREE.MeshStandardMaterial({
+      color: 0xF3CD84,
+      roughness: 0.72,
+      metalness: 0.04,
+    });
+
+    const wallTrimMat = new THREE.MeshStandardMaterial({
+      color: 0xE8BE6A, // Phào chỉ đắp nổi hơi đậm hơn
+      roughness: 0.7,
       metalness: 0.05,
     });
 
-    const darkWallMaterial = new THREE.MeshStandardMaterial({
-      color: 0xE8CA8C,
-      roughness: 0.8,
-    });
-
-    const roofMaterial = new THREE.MeshStandardMaterial({
+    const roofMat = new THREE.MeshStandardMaterial({
       map: roofTexture,
-      color: 0xB9381E, // Đỏ ngói nung
-      roughness: 0.5,
-      metalness: 0.1,
+      color: 0xB9381E,
+      roughness: 0.48,
+      metalness: 0.08,
     });
 
-    const stoneMaterial = new THREE.MeshStandardMaterial({
-      map: stoneTexture,
-      roughness: 0.9,
+    const corbelWoodMat = new THREE.MeshStandardMaterial({
+      color: 0x3E1805, // Gỗ gụ sẫm cho con sơn đỡ mái
+      roughness: 0.55,
+      metalness: 0.1,
     });
 
     const ceramicBalustradeMat = new THREE.MeshStandardMaterial({
@@ -262,216 +268,44 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
       metalness: 0.25,
     });
 
-    const woodDoorMat = new THREE.MeshStandardMaterial({
-      color: 0x451A03, // Gỗ gõ đỏ sậm
-      roughness: 0.6,
+    const stoneMat = new THREE.MeshStandardMaterial({
+      map: stoneTexture,
+      roughness: 0.9,
+    });
+
+    const doorDarkWoodMat = new THREE.MeshStandardMaterial({
+      color: 0x2A1205, // Cửa gỗ 4 cánh màu nâu đen
+      roughness: 0.5,
       metalness: 0.1,
     });
 
-    const windowGlassMat = new THREE.MeshStandardMaterial({
+    const louverWindowMat = new THREE.MeshStandardMaterial({
+      map: louverTexture,
+      roughness: 0.55,
+      metalness: 0.1,
+    });
+
+    const glassWindowMat = new THREE.MeshStandardMaterial({
       color: 0x1E293B,
-      roughness: 0.2,
-      metalness: 0.8,
+      roughness: 0.15,
+      metalness: 0.85,
     });
 
-    const goldOrnamentMat = new THREE.MeshStandardMaterial({
+    const goldTrimMat = new THREE.MeshStandardMaterial({
       color: 0xF59E0B,
-      roughness: 0.3,
-      metalness: 0.7,
+      roughness: 0.35,
+      metalness: 0.65,
     });
 
-    // 6. BUILD 3D ARCHITECTURAL MODEL (NHÀ VIỆC PHÚ CƯỜNG)
+    // 6. BUILD 3D ARCHITECTURAL MODEL (NHÀ TRUYỀN THỐNG THÀNH PHỐ THỦ DẦU MỘT)
     const modelGroup = new THREE.Group();
     modelGroupRef.current = modelGroup;
 
-    // --- A. PLINTH & COURTYARD (CHÂN ĐẾ & SÂN LÁT ĐÁ) ---
-    const groundGeo = new THREE.CylinderGeometry(6.6, 6.8, 0.3, 36);
-    const groundMat = new THREE.MeshStandardMaterial({
-      color: 0x1E242B,
-      roughness: 0.9,
-    });
-    const ground = new THREE.Mesh(groundGeo, groundMat);
-    ground.position.y = -0.15;
-    ground.receiveShadow = true;
-    modelGroup.add(ground);
-
-    // Vành cỏ & chậu cây xanh xung quanh
-    const lawnGeo = new THREE.RingGeometry(5.2, 6.5, 32);
-    const lawnMat = new THREE.MeshStandardMaterial({
-      color: 0x14532D,
-      roughness: 0.95,
-      side: THREE.DoubleSide,
-    });
-    const lawn = new THREE.Mesh(lawnGeo, lawnMat);
-    lawn.rotation.x = -Math.PI / 2;
-    lawn.position.y = 0.01;
-    lawn.receiveShadow = true;
-    modelGroup.add(lawn);
-
-    // Bệ móng đá chính của Nhà Việc Phú Cường (hình khối 2 tầng vuông chữ nhật)
-    const plinthGeo = new THREE.BoxGeometry(6.8, 0.45, 5.6);
-    const plinth = new THREE.Mesh(plinthGeo, stoneMaterial);
-    plinth.position.y = 0.225;
-    plinth.castShadow = true;
-    plinth.receiveShadow = true;
-    modelGroup.add(plinth);
-
-    // Bậc tam cấp phía trước
-    const stepsGroup = new THREE.Group();
-    for (let s = 0; s < 3; s++) {
-      const stepGeo = new THREE.BoxGeometry(2.4 - s * 0.2, 0.15, 0.4);
-      const step = new THREE.Mesh(stepGeo, stoneMaterial);
-      step.position.set(0, 0.075 + s * 0.15, 2.8 + (2 - s) * 0.3);
-      step.castShadow = true;
-      step.receiveShadow = true;
-      stepsGroup.add(step);
-    }
-    modelGroup.add(stepsGroup);
-
-    // --- B. TẦNG TRỆT (GROUND FLOOR VERANDA ARCADE) ---
-    // Khối tường trung tâm phía trong tầng 1
-    const core1Geo = new THREE.BoxGeometry(4.8, 1.8, 3.6);
-    const core1 = new THREE.Mesh(core1Geo, wallMaterial);
-    core1.position.set(0, 1.35, 0);
-    core1.castShadow = true;
-    core1.receiveShadow = true;
-    modelGroup.add(core1);
-
-    // Cửa chính ra vào bằng gỗ ở mặt trước
-    const mainDoorGeo = new THREE.BoxGeometry(1.2, 1.4, 0.08);
-    const mainDoor = new THREE.Mesh(mainDoorGeo, woodDoorMat);
-    mainDoor.position.set(0, 1.15, 1.82);
-    modelGroup.add(mainDoor);
-
-    // 2 Cửa sổ tầng trệt hai bên cửa chính
-    [-1.6, 1.6].forEach((xPos) => {
-      const gWindow = new THREE.Mesh(
-        new THREE.BoxGeometry(0.7, 1.1, 0.06),
-        windowGlassMat
-      );
-      gWindow.position.set(xPos, 1.3, 1.82);
-      modelGroup.add(gWindow);
-    });
-
-    // Hệ thống Cột vuông hành lang vòm cuốn (Arcade Pillars)
-    const pillarPositions: [number, number, number][] = [
-      // Mặt trước (Front)
-      [-2.8, 1.35, 2.3],
-      [-1.85, 1.35, 2.3],
-      [-0.9, 1.35, 2.3],
-      [0.9, 1.35, 2.3],
-      [1.85, 1.35, 2.3],
-      [2.8, 1.35, 2.3],
-      // Mặt sau (Back)
-      [-2.8, 1.35, -2.3],
-      [-1.85, 1.35, -2.3],
-      [-0.9, 1.35, -2.3],
-      [0.9, 1.35, -2.3],
-      [1.85, 1.35, -2.3],
-      [2.8, 1.35, -2.3],
-      // Hai cạnh bên (Sides)
-      [-2.8, 1.35, 0.76],
-      [-2.8, 1.35, -0.76],
-      [2.8, 1.35, 0.76],
-      [2.8, 1.35, -0.76],
-    ];
-
-    pillarPositions.forEach(([x, y, z]) => {
-      const pillarGeo = new THREE.BoxGeometry(0.32, 1.8, 0.32);
-      const pillar = new THREE.Mesh(pillarGeo, wallMaterial);
-      pillar.position.set(x, y, z);
-      pillar.castShadow = true;
-      pillar.receiveShadow = true;
-      modelGroup.add(pillar);
-
-      // Đầu cột / đôn cột trang trí
-      const capGeo = new THREE.BoxGeometry(0.4, 0.08, 0.4);
-      const capTop = new THREE.Mesh(capGeo, darkWallMaterial);
-      capTop.position.set(x, y + 0.88, z);
-      modelGroup.add(capTop);
-
-      const capBottom = new THREE.Mesh(capGeo, darkWallMaterial);
-      capBottom.position.set(x, y - 0.88, z);
-      modelGroup.add(capBottom);
-    });
-
-    // Các nhịp vòm cuốn (Arches) kết nối các đầu cột
-    const archGroup = new THREE.Group();
-    // Vòm mặt trước
-    const frontArchSpans = [
-      [-2.32, 2.3],
-      [-1.37, 2.3],
-      [0, 2.3], // Vòm sảnh chính
-      [1.37, 2.3],
-      [2.32, 2.3],
-    ];
-    frontArchSpans.forEach(([xPos, zPos]) => {
-      const archBeam = new THREE.Mesh(
-        new THREE.BoxGeometry(0.95, 0.22, 0.3),
-        wallMaterial
-      );
-      archBeam.position.set(xPos, 2.22, zPos);
-      archBeam.castShadow = true;
-      archGroup.add(archBeam);
-    });
-    modelGroup.add(archGroup);
-
-    // Lan can gốm xanh Đất Thủ dọc hành lang tầng 1
-    const balustradeGroup = new THREE.Group();
-    const frontBalustrades = [-2.32, -1.37, 1.37, 2.32]; // Chừa lối vào chính giữa
-    frontBalustrades.forEach((xPos) => {
-      const balustrade = new THREE.Mesh(
-        new THREE.BoxGeometry(0.65, 0.45, 0.1),
-        ceramicBalustradeMat
-      );
-      balustrade.position.set(xPos, 0.68, 2.3);
-      balustrade.castShadow = true;
-      balustradeGroup.add(balustrade);
-    });
-    // Lan can 2 bên sườn
-    [-2.8, 2.8].forEach((xPos) => {
-      [1.53, 0, -1.53].forEach((zPos) => {
-        const sideBal = new THREE.Mesh(
-          new THREE.BoxGeometry(0.1, 0.45, 1.2),
-          ceramicBalustradeMat
-        );
-        sideBal.position.set(xPos, 0.68, zPos);
-        balustradeGroup.add(sideBal);
-      });
-    });
-    modelGroup.add(balustradeGroup);
-
-    // --- C. MÁI HIÊN TẦNG 1 (LOWER HI-ROOF / PENT ROOF) ---
-    // Khối mái ngói đỏ bao quanh tầng 1
-    const lowerRoofGroup = new THREE.Group();
-    const lowerRoofSlopeGeo = new THREE.BoxGeometry(6.6, 0.2, 5.4);
-    const lowerRoof = new THREE.Mesh(lowerRoofSlopeGeo, roofMaterial);
-    lowerRoof.position.set(0, 2.36, 0);
-    lowerRoof.castShadow = true;
-    lowerRoof.receiveShadow = true;
-    lowerRoofGroup.add(lowerRoof);
-
-    // Diềm mái ngói uốn nhẹ
-    const eaveGeo = new THREE.BoxGeometry(6.8, 0.08, 5.6);
-    const eave = new THREE.Mesh(eaveGeo, goldOrnamentMat);
-    eave.position.set(0, 2.27, 0);
-    lowerRoofGroup.add(eave);
-    modelGroup.add(lowerRoofGroup);
-
-    // --- D. TẦNG 2 (UPPER STOREY & GRAND ARCHED WINDOWS) ---
-    // Khối phòng tầng 2
-    const floor2Geo = new THREE.BoxGeometry(4.6, 1.5, 3.4);
-    const floor2 = new THREE.Mesh(floor2Geo, wallMaterial);
-    floor2.position.set(0, 3.2, 0);
-    floor2.castShadow = true;
-    floor2.receiveShadow = true;
-    modelGroup.add(floor2);
-
-    // Helper tạo cửa sổ vòm cuốn bán nguyệt chuẩn xác (Indochina Arched Window)
-    const createArchedWindowGeo = (w: number, h: number, d: number) => {
+    // Helper tạo khối cửa sổ vòm cuốn hình bán nguyệt chuẩn (Extruded Arch Window)
+    const createArchedShapeGeo = (w: number, h: number, depth: number) => {
       const shape = new THREE.Shape();
       const r = w / 2;
-      const rectH = Math.max(0.1, h - r);
+      const rectH = Math.max(0.05, h - r);
       shape.moveTo(-r, 0);
       shape.lineTo(-r, rectH);
       shape.absarc(0, rectH, r, Math.PI, 0, true);
@@ -480,203 +314,419 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
 
       const geo = new THREE.ExtrudeGeometry(shape, {
         steps: 1,
-        depth: d,
+        depth,
         bevelEnabled: false,
       });
       geo.center();
       return geo;
     };
 
-    // 03 Cửa sổ vòm lớn mặt trước tầng 2 (Nhà Việc Phú Cường)
-    // Cửa vòm trung tâm (Center Grand Arched Window)
-    const centerWinGeo = createArchedWindowGeo(1.0, 1.25, 0.08);
-    const centerWin = new THREE.Mesh(centerWinGeo, windowGlassMat);
-    centerWin.position.set(0, 3.25, 1.72);
+    // --- A. CHÂN MÓNG ĐÁ & SÂN QUẢNG TRƯỜNG ---
+    const groundGeo = new THREE.CylinderGeometry(7.0, 7.2, 0.3, 40);
+    const ground = new THREE.Mesh(
+      groundGeo,
+      new THREE.MeshStandardMaterial({ color: 0x1F2937, roughness: 0.95 })
+    );
+    ground.position.y = -0.15;
+    ground.receiveShadow = true;
+    modelGroup.add(ground);
+
+    // Bồn cây & hàng rào hoa quanh chân móng
+    const lawnGeo = new THREE.RingGeometry(5.4, 6.9, 36);
+    const lawn = new THREE.Mesh(
+      lawnGeo,
+      new THREE.MeshStandardMaterial({ color: 0x14532D, roughness: 0.9, side: THREE.DoubleSide })
+    );
+    lawn.rotation.x = -Math.PI / 2;
+    lawn.position.y = 0.01;
+    lawn.receiveShadow = true;
+    modelGroup.add(lawn);
+
+    // Chân bệ móng đá khối chính của Nhà Việc Phú Cường
+    const plinth = new THREE.Mesh(new THREE.BoxGeometry(6.9, 0.45, 5.7), stoneMat);
+    plinth.position.y = 0.225;
+    plinth.castShadow = true;
+    plinth.receiveShadow = true;
+    modelGroup.add(plinth);
+
+    // Bậc tam cấp bằng đá xám rộng phía trước (Front Steps)
+    for (let s = 0; s < 4; s++) {
+      const step = new THREE.Mesh(
+        new THREE.BoxGeometry(2.6 - s * 0.15, 0.12, 0.45),
+        stoneMat
+      );
+      step.position.set(0, 0.06 + s * 0.12, 2.85 + (3 - s) * 0.28);
+      step.castShadow = true;
+      step.receiveShadow = true;
+      modelGroup.add(step);
+    }
+
+    // --- B. TẦNG TRỆT: HÀNH LANG VÒM CUỐN & 5 NHỊP VÒM MẶT TIỀN ---
+    // Khối tường bên trong tầng 1
+    const core1 = new THREE.Mesh(new THREE.BoxGeometry(4.8, 1.85, 3.6), wallOchreMat);
+    core1.position.set(0, 1.38, 0);
+    core1.castShadow = true;
+    core1.receiveShadow = true;
+    modelGroup.add(core1);
+
+    // Cửa chính 4 cánh gỗ nâu sậm ở giữa (Double Folding Doors)
+    const mainDoor = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.5, 0.08), doorDarkWoodMat);
+    mainDoor.position.set(0, 1.2, 1.82);
+    modelGroup.add(mainDoor);
+
+    // 2 Cửa sổ tầng trệt hai bên
+    [-1.6, 1.6].forEach((xPos) => {
+      const gWindow = new THREE.Mesh(new THREE.BoxGeometry(0.75, 1.15, 0.06), louverWindowMat);
+      gWindow.position.set(xPos, 1.35, 1.82);
+      modelGroup.add(gWindow);
+    });
+
+    // 16 Cột vuông hành lang vòm cuốn (Arcade Pillars)
+    const pillarPositions: [number, number, number][] = [
+      // Mặt trước (Front 6 cột tạo 5 nhịp vòm)
+      [-2.85, 1.38, 2.35],
+      [-1.9, 1.38, 2.35],
+      [-0.95, 1.38, 2.35],
+      [0.95, 1.38, 2.35],
+      [1.9, 1.38, 2.35],
+      [2.85, 1.38, 2.35],
+      // Mặt sau (Back)
+      [-2.85, 1.38, -2.35],
+      [-1.9, 1.38, -2.35],
+      [-0.95, 1.38, -2.35],
+      [0.95, 1.38, -2.35],
+      [1.9, 1.38, -2.35],
+      [2.85, 1.38, -2.35],
+      // Hai bên sườn (Sides)
+      [-2.85, 1.38, 0.78],
+      [-2.85, 1.38, -0.78],
+      [2.85, 1.38, 0.78],
+      [2.85, 1.38, -0.78],
+    ];
+
+    pillarPositions.forEach(([x, y, z]) => {
+      // Thân cột
+      const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.34, 1.85, 0.34), wallOchreMat);
+      pillar.position.set(x, y, z);
+      pillar.castShadow = true;
+      pillar.receiveShadow = true;
+      modelGroup.add(pillar);
+
+      // Đôn chân cột và đầu cột đắp chỉ nổi
+      const capTop = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.08, 0.42), wallTrimMat);
+      capTop.position.set(x, y + 0.9, z);
+      modelGroup.add(capTop);
+
+      const capBottom = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.08, 0.42), wallTrimMat);
+      capBottom.position.set(x, y - 0.9, z);
+      modelGroup.add(capBottom);
+    });
+
+    // 5 Nhịp vòm cuốn bán nguyệt mặt trước (Ground Floor Front Arches)
+    const archFrontSpans = [-2.375, -1.425, 0, 1.425, 2.375];
+    archFrontSpans.forEach((xPos) => {
+      // Vòm cong đắp nổi
+      const archTop = new THREE.Mesh(
+        new THREE.BoxGeometry(xPos === 0 ? 1.6 : 0.85, 0.24, 0.35),
+        wallTrimMat
+      );
+      archTop.position.set(xPos, 2.25, 2.35);
+      archTop.castShadow = true;
+      modelGroup.add(archTop);
+
+      // Khối đá khóa vòm ở đỉnh (Keystone)
+      const keystone = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.28, 0.38), goldTrimMat);
+      keystone.position.set(xPos, 2.26, 2.35);
+      modelGroup.add(keystone);
+    });
+
+    // Lan can con tiện gốm xanh Đất Thủ (Ground Balustrade)
+    [-2.375, -1.425, 1.425, 2.375].forEach((xPos) => {
+      const bal = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.45, 0.1), ceramicBalustradeMat);
+      bal.position.set(xPos, 0.68, 2.35);
+      bal.castShadow = true;
+      modelGroup.add(bal);
+    });
+    // Lan can 2 bên sườn
+    [-2.85, 2.85].forEach((xPos) => {
+      [1.56, 0, -1.56].forEach((zPos) => {
+        const sideBal = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.45, 1.25), ceramicBalustradeMat);
+        sideBal.position.set(xPos, 0.68, zPos);
+        sideBal.castShadow = true;
+        modelGroup.add(sideBal);
+      });
+    });
+
+    // --- C. HỆ MÁI HIÊN TẦNG 1 & CON SƠN GỖ (CORBELS) ---
+    // Mái ngói đỏ hiên tầng 1
+    const lowerRoof = new THREE.Mesh(new THREE.BoxGeometry(6.7, 0.18, 5.5), roofMat);
+    lowerRoof.position.set(0, 2.42, 0);
+    lowerRoof.castShadow = true;
+    lowerRoof.receiveShadow = true;
+    modelGroup.add(lowerRoof);
+
+    // Diềm mái vàng
+    const lowerEave = new THREE.Mesh(new THREE.BoxGeometry(6.9, 0.08, 5.7), goldTrimMat);
+    lowerEave.position.set(0, 2.33, 0);
+    modelGroup.add(lowerEave);
+
+    // Hàng Con Sơn Gỗ Đỡ Mái Hiên (Wooden Corbels under lower roof)
+    for (let c = -3.2; c <= 3.2; c += 0.45) {
+      const corbelFront = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.16, 0.3), corbelWoodMat);
+      corbelFront.position.set(c, 2.26, 2.65);
+      corbelFront.castShadow = true;
+      modelGroup.add(corbelFront);
+
+      const corbelBack = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.16, 0.3), corbelWoodMat);
+      corbelBack.position.set(c, 2.26, -2.65);
+      corbelBack.castShadow = true;
+      modelGroup.add(corbelBack);
+    }
+
+    // --- D. BẢNG HIỆU DI TÍCH: "NHÀ TRUYỀN THỐNG THÀNH PHỐ THỦ DẦU MỘT" ---
+    // Nằm ngay chính diện, phía trên mái hiên tầng 1, dưới chân cửa sổ vòm lớn
+    const signboardPlate = new THREE.Mesh(
+      new THREE.BoxGeometry(2.1, 0.52, 0.06),
+      new THREE.MeshStandardMaterial({
+        map: signboardTexture,
+        roughness: 0.3,
+        metalness: 0.1,
+      })
+    );
+    signboardPlate.position.set(0, 2.76, 2.05);
+    signboardPlate.castShadow = true;
+    modelGroup.add(signboardPlate);
+
+    // Khung gỗ viền đồng quanh biển hiệu
+    const signFrame = new THREE.Mesh(
+      new THREE.BoxGeometry(2.18, 0.6, 0.04),
+      goldTrimMat
+    );
+    signFrame.position.set(0, 2.76, 2.03);
+    modelGroup.add(signFrame);
+
+    // --- E. TẦNG 2: 3 VÒM CỬA SỔ LỚN & PHÀO CHỈ ĐÔNG DƯƠNG ---
+    const floor2 = new THREE.Mesh(new THREE.BoxGeometry(4.6, 1.5, 3.4), wallOchreMat);
+    floor2.position.set(0, 3.28, 0);
+    floor2.castShadow = true;
+    floor2.receiveShadow = true;
+    modelGroup.add(floor2);
+
+    // 1. Cửa sổ vòm lớn trung tâm (French Grand Arched Multi-pane Window)
+    const centerWinGeo = createArchedShapeGeo(1.05, 1.25, 0.06);
+    const centerWin = new THREE.Mesh(centerWinGeo, glassWindowMat);
+    centerWin.position.set(0, 3.52, 1.72);
     modelGroup.add(centerWin);
 
-    // Phào chỉ vòm đắp nổi quanh cửa sổ giữa (Molded Architrave)
-    const centerMouldingGeo = createArchedWindowGeo(1.14, 1.34, 0.05);
-    const centerMoulding = new THREE.Mesh(centerMouldingGeo, darkWallMaterial);
-    centerMoulding.position.set(0, 3.25, 1.71);
-    modelGroup.add(centerMoulding);
+    // Khung phào chỉ vòm đắp nổi quanh cửa sổ giữa
+    const centerArchMoulding = new THREE.Mesh(
+      createArchedShapeGeo(1.22, 1.35, 0.04),
+      wallTrimMat
+    );
+    centerArchMoulding.position.set(0, 3.52, 1.71);
+    modelGroup.add(centerArchMoulding);
 
-    // 2 Cửa sổ vòm hai bên (Side Arched Windows)
-    [-1.4, 1.4].forEach((xPos) => {
-      const sideWinGeo = createArchedWindowGeo(0.72, 1.05, 0.08);
-      const sideWin = new THREE.Mesh(sideWinGeo, windowGlassMat);
-      sideWin.position.set(xPos, 3.25, 1.72);
+    // Nan hoa sắt / ô kính chia nhỏ (Mullions & Sunburst Arch)
+    const centerGridMat = new THREE.MeshStandardMaterial({ color: 0xFDE68A, roughness: 0.3 });
+    // Thanh nan dọc giữa
+    const vertMullion = new THREE.Mesh(new THREE.BoxGeometry(0.04, 1.15, 0.07), centerGridMat);
+    vertMullion.position.set(0, 3.52, 1.73);
+    modelGroup.add(vertMullion);
+    // Thanh nan ngang
+    [-0.2, 0.15].forEach((yOff) => {
+      const horizMullion = new THREE.Mesh(new THREE.BoxGeometry(0.96, 0.035, 0.07), centerGridMat);
+      horizMullion.position.set(0, 3.35 + yOff, 1.73);
+      modelGroup.add(horizMullion);
+    });
+
+    // 2. Cửa sổ vòm hai bên (Side Arched Louver Windows)
+    [-1.45, 1.45].forEach((xPos) => {
+      const sideWinGeo = createArchedShapeGeo(0.76, 1.05, 0.06);
+      const sideWin = new THREE.Mesh(sideWinGeo, louverWindowMat);
+      sideWin.position.set(xPos, 3.45, 1.72);
       modelGroup.add(sideWin);
 
-      const sideMouldingGeo = createArchedWindowGeo(0.84, 1.13, 0.05);
-      const sideMoulding = new THREE.Mesh(sideMouldingGeo, darkWallMaterial);
-      sideMoulding.position.set(xPos, 3.25, 1.71);
+      const sideMoulding = new THREE.Mesh(createArchedShapeGeo(0.9, 1.15, 0.04), wallTrimMat);
+      sideMoulding.position.set(xPos, 3.45, 1.71);
       modelGroup.add(sideMoulding);
     });
 
-    // Cửa sổ các mặt bên tầng 2
+    // 3. Ô gió gốm hoa sen / ô thông gió dưới mỗi cửa sổ tầng 2
+    [-1.45, 0, 1.45].forEach((xPos) => {
+      const ventBox = new THREE.Mesh(
+        new THREE.BoxGeometry(xPos === 0 ? 0.75 : 0.55, 0.16, 0.08),
+        ceramicBalustradeMat
+      );
+      ventBox.position.set(xPos, 2.76, 1.72);
+      modelGroup.add(ventBox);
+    });
+
+    // Cửa sổ 2 mặt bên tầng 2
     [-2.32, 2.32].forEach((xPos) => {
-      [-0.7, 0.7].forEach((zPos) => {
+      [-0.72, 0.72].forEach((zPos) => {
         const sideWindow = new THREE.Mesh(
-          new THREE.BoxGeometry(0.06, 0.75, 0.65),
-          windowGlassMat
+          new THREE.BoxGeometry(0.06, 0.85, 0.65),
+          louverWindowMat
         );
-        sideWindow.position.set(xPos, 3.2, zPos);
+        sideWindow.position.set(xPos, 3.35, zPos);
         modelGroup.add(sideWindow);
       });
     });
 
-    // --- E. MÁI CHÍNH TẦNG 2 (MAIN INDOCHINA ROOF PYRAMID/HIPPED) ---
-    // Khối mái dốc 4 phía
-    const roofMainGeo = new THREE.ConeGeometry(3.6, 1.25, 4);
-    const roofMain = new THREE.Mesh(roofMainGeo, roofMaterial);
-    roofMain.position.set(0, 4.58, 0);
+    // --- F. HỆ MÁI CHÍNH TẦNG 2 & CON SƠN ĐỠ MÁI (MAIN ROOF SYSTEM) ---
+    // Hàng con sơn gỗ đỡ mái chính
+    for (let c = -2.2; c <= 2.2; c += 0.4) {
+      const corbelUpperFront = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.14, 0.28), corbelWoodMat);
+      corbelUpperFront.position.set(c, 4.02, 1.82);
+      corbelUpperFront.castShadow = true;
+      modelGroup.add(corbelUpperFront);
+
+      const corbelUpperBack = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.14, 0.28), corbelWoodMat);
+      corbelUpperBack.position.set(c, 4.02, -1.82);
+      corbelUpperBack.castShadow = true;
+      modelGroup.add(corbelUpperBack);
+    }
+
+    // Diềm mái ngói chính
+    const upperEave = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.08, 3.9), goldTrimMat);
+    upperEave.position.set(0, 4.08, 0);
+    modelGroup.add(upperEave);
+
+    // Khối Mái dốc tứ diện (4-Hipped Terracotta Roof)
+    const roofMainGeo = new THREE.ConeGeometry(3.6, 1.35, 4);
+    const roofMain = new THREE.Mesh(roofMainGeo, roofMat);
+    roofMain.position.set(0, 4.75, 0);
     roofMain.rotation.y = Math.PI / 4;
     roofMain.scale.set(1.15, 1, 0.95);
     roofMain.castShadow = true;
     roofMain.receiveShadow = true;
     modelGroup.add(roofMain);
 
-    // Đỉnh nóc tháp nhọn (ornamental apex pinnacle)
-    const pinnacleGeo = new THREE.ConeGeometry(0.2, 0.6, 8);
-    const pinnacle = new THREE.Mesh(pinnacleGeo, goldOrnamentMat);
-    pinnacle.position.set(0, 5.45, 0);
-    pinnacle.castShadow = true;
-    modelGroup.add(pinnacle);
-
-    // Quả cầu vàng dưới tháp đỉnh
-    const spherePinnacle = new THREE.Mesh(
-      new THREE.SphereGeometry(0.18, 16, 16),
-      goldOrnamentMat
-    );
-    spherePinnacle.position.set(0, 5.18, 0);
-    modelGroup.add(spherePinnacle);
-
-    // Bờ nóc & sống mái ngói nổi bật
-    const ridgeGroup = new THREE.Group();
-    const ridgeMat = new THREE.MeshStandardMaterial({
-      color: 0xF59E0B,
-      roughness: 0.4,
-    });
+    // 4 Đường bờ nóc đắp chỉ uốn cong (Hip Ridges)
     for (let r = 0; r < 4; r++) {
       const angle = (r * Math.PI) / 2 + Math.PI / 4;
       const ridgeBeam = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.04, 0.05, 2.3, 6),
-        ridgeMat
+        new THREE.CylinderGeometry(0.045, 0.055, 2.4, 8),
+        goldTrimMat
       );
-      ridgeBeam.position.set(
-        Math.cos(angle) * 1.3,
-        4.6,
-        Math.sin(angle) * 1.3
-      );
+      ridgeBeam.position.set(Math.cos(angle) * 1.32, 4.78, Math.sin(angle) * 1.32);
       ridgeBeam.rotation.y = -angle;
       ridgeBeam.rotation.z = 0.62;
-      ridgeGroup.add(ridgeBeam);
+      ridgeBeam.castShadow = true;
+      modelGroup.add(ridgeBeam);
     }
-    modelGroup.add(ridgeGroup);
 
-    // --- F. CẢNH QUAN XUNG QUANH (CÂY HOA SỨ & BIA CHỨNG TÍCH) ---
-    // Cây hoa sứ cổ thụ bên hông (như trong ảnh thực tế người dùng gửi)
-    const treeGroup = new THREE.Group();
-    // Thân cây cong uốn lượn
-    const trunkMat = new THREE.MeshStandardMaterial({
-      color: 0x4B382A,
-      roughness: 0.9,
+    // ĐỈNH NÓC ĐẶC TRƯNG: 3 GỜ TƯỜNG BỜ NÓC TRANG TRÍ (DECORATIVE PARAPET MERLONS)
+    // Như trong ảnh thực tế người dùng cung cấp: Đỉnh nóc có 3 gờ tường hoa đắp chỉ vàng
+    [-0.8, 0, 0.8].forEach((xPos, idx) => {
+      const h = idx === 1 ? 0.38 : 0.28;
+      const merlon = new THREE.Mesh(
+        new THREE.BoxGeometry(0.42, h, 0.12),
+        wallTrimMat
+      );
+      merlon.position.set(xPos, 5.48, 0);
+      merlon.castShadow = true;
+      modelGroup.add(merlon);
+
+      // Chóp tháp nhọn trên mỗi gờ
+      const cap = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.22, 6), goldTrimMat);
+      cap.position.set(xPos, 5.48 + h / 2 + 0.1, 0);
+      modelGroup.add(cap);
     });
-    const trunk1 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.18, 1.6, 8), trunkMat);
-    trunk1.position.set(-4.4, 0.8, 2.2);
-    trunk1.rotation.z = -0.25;
+
+    // Tháp nhọn đỉnh trung tâm cao nhất
+    const apexFinial = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.45, 8), goldTrimMat);
+    apexFinial.position.set(0, 5.82, 0);
+    apexFinial.castShadow = true;
+    modelGroup.add(apexFinial);
+
+    // --- G. CẢNH QUAN & CÂY CỐI THỰC ĐỊA ---
+    // Cây hoa sứ cổ thụ bên hông (như trong ảnh thực tế áo dài)
+    const treeGroup = new THREE.Group();
+    const trunkMat = new THREE.MeshStandardMaterial({ color: 0x4B382A, roughness: 0.9 });
+    const trunk1 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.2, 1.8, 8), trunkMat);
+    trunk1.position.set(-4.5, 0.9, 2.3);
+    trunk1.rotation.z = -0.28;
     trunk1.castShadow = true;
     treeGroup.add(trunk1);
 
-    const trunk2 = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 1.2, 8), trunkMat);
-    trunk2.position.set(-4.1, 1.8, 2.1);
-    trunk2.rotation.z = 0.35;
+    const trunk2 = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 1.3, 8), trunkMat);
+    trunk2.position.set(-4.1, 2.0, 2.2);
+    trunk2.rotation.z = 0.38;
     trunk2.castShadow = true;
     treeGroup.add(trunk2);
 
-    // Tán lá xanh hoa sứ
-    const foliageMat = new THREE.MeshStandardMaterial({
-      color: 0x166534,
-      roughness: 0.8,
-    });
-    const foliage1 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 1), foliageMat);
-    foliage1.position.set(-4.2, 2.5, 2.0);
+    const foliageMat = new THREE.MeshStandardMaterial({ color: 0x166534, roughness: 0.8 });
+    const foliage1 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.9, 1), foliageMat);
+    foliage1.position.set(-4.2, 2.7, 2.1);
     foliage1.castShadow = true;
     treeGroup.add(foliage1);
 
-    const foliage2 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.65, 1), foliageMat);
-    foliage2.position.set(-3.6, 2.2, 1.6);
+    const foliage2 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.7, 1), foliageMat);
+    foliage2.position.set(-3.5, 2.4, 1.7);
     foliage2.castShadow = true;
     treeGroup.add(foliage2);
 
+    // Điểm xuyết hoa sứ trắng nhụy vàng
+    const blossomMat = new THREE.MeshBasicMaterial({ color: 0xFFFBEB });
+    for (let b = 0; b < 10; b++) {
+      const blossom = new THREE.Mesh(new THREE.SphereGeometry(0.05, 6, 6), blossomMat);
+      blossom.position.set(
+        -4.2 + (Math.random() - 0.5) * 1.4,
+        2.5 + Math.random() * 0.7,
+        2.0 + (Math.random() - 0.5) * 1.4
+      );
+      treeGroup.add(blossom);
+    }
     modelGroup.add(treeGroup);
 
     // Cột cờ Tổ quốc trang trọng bên sảnh
     const flagpoleGroup = new THREE.Group();
-    const pole = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.025, 0.04, 3.8, 8),
-      goldOrnamentMat
-    );
-    pole.position.set(4.2, 1.9, 2.4);
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.04, 3.8, 8), goldTrimMat);
+    pole.position.set(4.3, 1.9, 2.4);
     pole.castShadow = true;
     flagpoleGroup.add(pole);
 
-    // Lá cờ đỏ sao vàng
-    const flagGeo = new THREE.PlaneGeometry(0.8, 0.52);
-    const flagMat = new THREE.MeshStandardMaterial({
-      color: 0xDC2626, // Đỏ cờ
-      side: THREE.DoubleSide,
-    });
-    const flag = new THREE.Mesh(flagGeo, flagMat);
-    flag.position.set(4.65, 3.5, 2.4);
+    const flag = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.85, 0.55),
+      new THREE.MeshStandardMaterial({ color: 0xDC2626, side: THREE.DoubleSide })
+    );
+    flag.position.set(4.75, 3.48, 2.4);
     flagpoleGroup.add(flag);
 
-    // Ngôi sao vàng trên cờ
-    const starGeo = new THREE.CircleGeometry(0.12, 5);
-    const starMat = new THREE.MeshBasicMaterial({ color: 0xFBBF24 });
-    const star = new THREE.Mesh(starGeo, starMat);
-    star.position.set(4.65, 3.5, 2.405);
+    const star = new THREE.Mesh(new THREE.CircleGeometry(0.13, 5), new THREE.MeshBasicMaterial({ color: 0xFBBF24 }));
+    star.position.set(4.75, 3.48, 2.405);
     flagpoleGroup.add(star);
     modelGroup.add(flagpoleGroup);
 
     scene.add(modelGroup);
 
-    // 7. LIGHTING SETUP
-    // Ambient light
+    // 7. LIGHTING SETUP (CHIẾU SÁNG NGOẠI CẢNH & ĐÈN KIẾN TRÚC BAN ĐÊM)
     const ambientLight = new THREE.AmbientLight(0xFFF7ED, 0.85);
     scene.add(ambientLight);
 
-    // Main sunlight (Directional)
-    const dirLight = new THREE.DirectionalLight(0xFFFBEB, 1.7);
-    dirLight.position.set(8, 14, 10);
+    const dirLight = new THREE.DirectionalLight(0xFFFBEB, 1.75);
+    dirLight.position.set(9, 15, 11);
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 1024;
     dirLight.shadow.mapSize.height = 1024;
-    dirLight.shadow.camera.near = 0.5;
-    dirLight.shadow.camera.far = 30;
-    dirLight.shadow.camera.left = -7;
-    dirLight.shadow.camera.right = 7;
-    dirLight.shadow.camera.top = 7;
-    dirLight.shadow.camera.bottom = -7;
     dirLight.shadow.bias = -0.0005;
     scene.add(dirLight);
 
-    // Fill light từ phía đối diện
     const fillLight = new THREE.DirectionalLight(0x93C5FD, 0.5);
     fillLight.position.set(-8, 6, -8);
     scene.add(fillLight);
 
-    // Ground bounce light
-    const hemiLight = new THREE.HemisphereLight(0xFEF3C7, 0x1E293B, 0.6);
+    const hemiLight = new THREE.HemisphereLight(0xFEF3C7, 0x1E293B, 0.65);
     scene.add(hemiLight);
 
-    // Architectural Night Uplights (điểm sáng hắt ban đêm)
+    // Dàn đèn chiếu hắt kiến trúc ban đêm (Architectural Uplights)
     const nightSpotGroup = new THREE.Group();
     const spotColors = [0xF59E0B, 0xFEF08A, 0xF59E0B];
     [-2.2, 0, 2.2].forEach((xPos, idx) => {
-      const spot = new THREE.SpotLight(spotColors[idx], 0, 8, Math.PI / 4, 0.5, 1);
-      spot.position.set(xPos, 0.3, 3.2);
-      spot.target.position.set(xPos, 2.0, 2.0);
+      const spot = new THREE.SpotLight(spotColors[idx], 0, 9, Math.PI / 4, 0.5, 1);
+      spot.position.set(xPos, 0.3, 3.3);
+      spot.target.position.set(xPos, 2.2, 2.1);
       scene.add(spot.target);
       nightSpotGroup.add(spot);
     });
@@ -684,29 +734,27 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
 
     setIsLoaded(true);
 
-    // 8. RENDER & AUTO-ROTATION LOOP
+    // 8. RENDER LOOP VỚI TỐC ĐỘ XOAY GIẢM 50%
     const animate = () => {
       requestRef.current = requestAnimationFrame(animate);
 
-      // Auto-rotation around Y axis
+      // Tự xoay tròn 360 độ (tốc độ chậm êm ái: 0.00375)
       if (isAutoRotating && !isDraggingRef.current && modelGroupRef.current) {
         modelGroupRef.current.rotation.y += autoRotateSpeedRef.current;
-        targetRotationYRef.current = modelGroupRef.current.rotation.y;
       }
 
-      // Smooth camera position
       updateCameraPosition();
 
-      // Adjust night mode lights
+      // Cập nhật chế độ ánh sáng Ngày / Đêm
       if (isNightMode) {
         ambientLight.intensity = 0.25;
-        dirLight.intensity = 0.35;
+        dirLight.intensity = 0.3;
         nightSpotGroup.children.forEach((c) => {
           if (c instanceof THREE.SpotLight) c.intensity = 2.8;
         });
       } else {
         ambientLight.intensity = 0.85;
-        dirLight.intensity = 1.7;
+        dirLight.intensity = 1.75;
         nightSpotGroup.children.forEach((c) => {
           if (c instanceof THREE.SpotLight) c.intensity = 0;
         });
@@ -736,7 +784,7 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     };
   }, [isAutoRotating, isNightMode]);
 
-  // 10. MOUSE & TOUCH ORBIT INTERACTION HANDLERS
+  // 10. DRAG & TOUCH HANDLERS
   const handlePointerDown = (clientX: number, clientY: number) => {
     isDraggingRef.current = true;
     previousMousePositionRef.current = { x: clientX, y: clientY };
@@ -748,13 +796,10 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
     const deltaX = clientX - previousMousePositionRef.current.x;
     const deltaY = clientY - previousMousePositionRef.current.y;
 
-    // Rotate horizontal (theta)
-    sphericalRef.current.theta -= deltaX * 0.007;
-
-    // Pitch vertical (phi, clamped between 15° and 85° to prevent flipping)
+    sphericalRef.current.theta -= deltaX * 0.006;
     sphericalRef.current.phi = Math.max(
       0.25,
-      Math.min(Math.PI / 2.05, sphericalRef.current.phi - deltaY * 0.006)
+      Math.min(Math.PI / 2.05, sphericalRef.current.phi - deltaY * 0.005)
     );
 
     previousMousePositionRef.current = { x: clientX, y: clientY };
@@ -768,8 +813,8 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
     sphericalRef.current.radius = Math.max(
-      7.5,
-      Math.min(18.0, sphericalRef.current.radius + e.deltaY * 0.01)
+      7.0,
+      Math.min(17.0, sphericalRef.current.radius + e.deltaY * 0.01)
     );
     updateCameraPosition();
   };
@@ -777,9 +822,9 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full min-h-[340px] rounded-2xl overflow-hidden select-none bg-gradient-to-b from-[#0F172A] via-[#1E1119] to-[#090D16] border border-amber-400/40 shadow-2xl group ${className}`}
+      className={`relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden select-none bg-gradient-to-b from-[#0B132B] via-[#1C0D17] to-[#070B14] border border-amber-400/40 shadow-2xl group ${className}`}
     >
-      {/* Three.js Canvas */}
+      {/* 3D Canvas */}
       <canvas
         ref={canvasRef}
         className="w-full h-full block cursor-grab active:cursor-grabbing"
@@ -797,20 +842,19 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
         onWheel={handleWheel}
       />
 
-      {/* Top Floating Badge: Thông tin công trình 3D Realtime */}
+      {/* Top Floating Badge */}
       <div className="absolute top-3 left-3 flex flex-col gap-1 pointer-events-none z-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-400/60 text-amber-300 text-xs font-bold shadow-lg">
-          <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
-          <span>Mô Hình 3D Nhà Việc Phú Cường</span>
+          <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '10s' }} />
+          <span>Mô Hình 3D Nhà Truyền Thống Đất Thủ</span>
         </div>
         <span className="text-[10px] text-slate-300 font-medium px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm self-start">
-          Kéo chuột để xoay 360° · Cuộn để phóng to/thu nhỏ
+          Tốc độ xoay chậm êm · Kéo chuột để xoay 360°
         </span>
       </div>
 
-      {/* Top Right Controls: Tự xoay, Chế độ Ngày/Đêm, Góc nhìn */}
+      {/* Top Right Controls */}
       <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
-        {/* Toggle Auto-Rotate */}
         <button
           type="button"
           onClick={() => {
@@ -827,7 +871,6 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
           <RotateCw className="w-3.5 h-3.5" />
         </button>
 
-        {/* Toggle Night / Day Lighting */}
         <button
           type="button"
           onClick={() => {
@@ -844,7 +887,6 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
           {isNightMode ? <Moon className="w-3.5 h-3.5" /> : <Sun className="w-3.5 h-3.5" />}
         </button>
 
-        {/* Fullscreen / Open detailed VR tour */}
         {onOpenHeritage3D && (
           <button
             type="button"
@@ -860,12 +902,12 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
         )}
       </div>
 
-      {/* Preset Camera Views: Phối Cảnh, Chính Diện, Từ Trên Xuống */}
+      {/* Preset Camera Views */}
       <div className="absolute left-3 bottom-14 flex items-center gap-1.5 z-10">
         {[
           { key: 'ISOMETRIC' as const, label: '3/4 Phối Cảnh' },
           { key: 'FRONT' as const, label: 'Chính Diện' },
-          { key: 'TOP' as const, label: 'Mái & Đỉnh' },
+          { key: 'TOP' as const, label: 'Mái & Bờ Nóc' },
         ].map((view) => (
           <button
             key={view.key}
@@ -885,16 +927,16 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
         ))}
       </div>
 
-      {/* Bottom Bar: Điểm nhấn di tích & Nút Khám Phá */}
+      {/* Bottom Bar: Chi tiết kiến trúc & Nút Khám Phá */}
       <div className="absolute bottom-2.5 left-3 right-3 p-2.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 text-white flex items-center justify-between gap-2 z-10">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
           <div className="min-w-0">
             <span className="text-xs font-bold text-amber-300 block truncate">
-              Di Tích Lịch Sử Nhà Việc Phú Cường
+              Nhà Truyền Thống Thành Phố Thủ Dầu Một
             </span>
             <span className="text-[10px] text-slate-300 block truncate">
-              Phục dựng 3D chuẩn xác kiến trúc Đông Dương 1945 ven sông Sài Gòn
+              Biển hiệu chuẩn · Con sơn gỗ đỡ mái · Vòm cuốn Đông Dương &amp; Gốm xanh Đất Thủ
             </span>
           </div>
         </div>
@@ -914,11 +956,10 @@ export const HcmPhuCuongHeritage3DModel: React.FC<HcmPhuCuongHeritage3DModelProp
         )}
       </div>
 
-      {/* Loading state indicator */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center gap-3 text-white z-20">
           <RotateCw className="w-6 h-6 text-amber-400 animate-spin" />
-          <span className="text-xs font-bold text-amber-200">Đang khởi tạo không gian 3D WebGL...</span>
+          <span className="text-xs font-bold text-amber-200">Đang khởi tạo không gian 3D chi tiết...</span>
         </div>
       )}
     </div>
