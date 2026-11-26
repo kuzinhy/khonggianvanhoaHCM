@@ -1,0 +1,358 @@
+/* Lucian UX/UI Prompt #354 · MIT License (c) 2026 Seokwoooo · https://lucianlabs.dev/uxui-prompt/#354 */
+
+:root {
+  --ux-surface: #ffffff;
+  --ux-surface-2: #fff1f2;
+  --ux-surface-3: #ffe4e6;
+  --ux-ink: #0f172a;
+  --ux-ink-2: #475569;
+  --ux-ink-3: #94a3b8;
+  --ux-line: rgba(136, 19, 55, 0.12);
+  --ux-line-2: rgba(136, 19, 55, 0.22);
+  --ux-accent: #881337;
+  --ux-accent-2: #be123c;
+  --ux-accent-soft: rgba(136, 19, 55, 0.08);
+  --ux-accent-ink: #ffffff;
+  --ux-shadow: rgba(136, 19, 55, 0.08);
+  --ux-shadow-strong: rgba(136, 19, 55, 0.18);
+  --ux-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ux-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --ux-morph: cubic-bezier(0.3, 1.1, 0.4, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ux-surface: #1e1115;
+    --ux-surface-2: #2b141d;
+    --ux-surface-3: #3b1725;
+    --ux-ink: #fff1f2;
+    --ux-ink-2: rgba(255, 241, 242, 0.72);
+    --ux-ink-3: rgba(255, 241, 242, 0.45);
+    --ux-line: rgba(255, 205, 211, 0.16);
+    --ux-line-2: rgba(255, 205, 211, 0.25);
+    --ux-accent: #fb7185;
+    --ux-accent-2: #f43f5e;
+    --ux-accent-soft: rgba(251, 113, 133, 0.15);
+    --ux-accent-ink: #0f172a;
+    --ux-shadow: rgba(0, 0, 0, 0.45);
+    --ux-shadow-strong: rgba(0, 0, 0, 0.65);
+  }
+}
+
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --ux-surface: #1e1115;
+  --ux-surface-2: #2b141d;
+  --ux-surface-3: #3b1725;
+  --ux-ink: #fff1f2;
+  --ux-ink-2: rgba(255, 241, 242, 0.72);
+  --ux-ink-3: rgba(255, 241, 242, 0.45);
+  --ux-line: rgba(255, 205, 211, 0.16);
+  --ux-line-2: rgba(255, 205, 211, 0.25);
+  --ux-accent: #fb7185;
+  --ux-accent-2: #f43f5e;
+  --ux-accent-soft: rgba(251, 113, 133, 0.15);
+  --ux-accent-ink: #0f172a;
+  --ux-shadow: rgba(0, 0, 0, 0.45);
+  --ux-shadow-strong: rgba(0, 0, 0, 0.65);
+}
+
+/* =========================================================================
+   MORPHING MEGA MENU (354) · CORE STYLES
+   ========================================================================= */
+.u354 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.u354-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 10;
+}
+
+.u354-tab {
+  position: relative;
+  height: 36px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ux-ink-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+@media (min-width: 1280px) {
+  .u354-tab {
+    padding: 0 11px;
+    font-size: 13px;
+    gap: 6px;
+  }
+}
+
+.u354-tab:hover {
+  color: var(--ux-accent);
+  background: var(--ux-surface-2);
+}
+
+.u354-tab[aria-expanded="true"],
+.u354-tab[data-active="true"] {
+  color: var(--ux-accent);
+  background: var(--ux-surface-2);
+}
+
+.u354-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 65%;
+  height: 2px;
+  background: linear-gradient(90deg, #be123c, #fb7185);
+  border-radius: 9999px;
+  transition: transform 0.22s var(--ux-ease), opacity 0.18s ease;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.u354-tab:hover::after,
+.u354-tab[aria-expanded="true"]::after,
+.u354-tab[data-active="true"]::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Caret chóp tam giác đi theo panel */
+.u354-car {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background: var(--ux-surface);
+  box-shadow: -1px -1px 0 var(--ux-line);
+  transform: translateX(var(--cx, 100px)) rotate(45deg);
+  border-radius: 3px 0 0 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s var(--ux-morph), opacity 0.25s ease;
+  z-index: 52;
+}
+
+.u354.is-open .u354-car {
+  opacity: 1;
+}
+
+.u354.no-t .u354-car {
+  transition: opacity 0.25s ease;
+}
+
+/* Panel trượt & biến hình morphing */
+.u354-pn {
+  position: absolute;
+  left: 0;
+  top: 46px;
+  width: var(--w, 390px);
+  height: var(--h, 300px);
+  border-radius: 20px;
+  background: var(--ux-surface);
+  box-shadow: 0 0 0 1px var(--ux-line), 0 20px 48px -12px var(--ux-shadow-strong);
+  transform: translateX(var(--x, 0px));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s var(--ux-morph), width 0.45s var(--ux-morph), height 0.45s var(--ux-morph), opacity 0.25s ease;
+  z-index: 50;
+  will-change: transform, width, height, opacity;
+}
+
+/* Vùng đệm vô hình nối liền từ tab xuống dropdown chống rớt chuột */
+.u354-pn::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.u354.is-open .u354-pn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.u354.no-t .u354-pn {
+  transition: opacity 0.25s ease;
+}
+
+/* Khung nội dung có overflow:hidden để các trang con trượt ngang mượt mà */
+.u354-ct {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* Trang nội dung của từng tab */
+.u354-pg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.45s var(--ux-morph), opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.u354-pg.l {
+  transform: translateX(-40px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.u354-pg.r {
+  transform: translateX(40px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Dòng mục con trong panel */
+.u354-it {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.16s ease, transform 0.16s ease, border-color 0.16s ease;
+}
+
+.u354-it:hover {
+  background: var(--ux-surface-2);
+  border-color: rgba(244, 63, 94, 0.2);
+  transform: translateX(3px);
+}
+
+.u354-it i {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.12);
+  transition: transform 0.18s ease;
+}
+
+.u354-it:hover i {
+  transform: scale(1.05);
+}
+
+.u354-it b {
+  display: block;
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--ux-ink);
+  line-height: 1.3;
+  transition: color 0.16s ease;
+}
+
+.u354-it:hover b {
+  color: var(--ux-accent);
+}
+
+.u354-it span.desc {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ux-ink-3);
+  margin-top: 1px;
+}
+
+.u354-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--ux-surface-2);
+  color: var(--ux-accent);
+  border: 1px solid var(--ux-line);
+  white-space: nowrap;
+}
+
+.u354-meta {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--ux-surface-2);
+  color: var(--ux-accent);
+  border: 1px solid var(--ux-line);
+  white-space: nowrap;
+}
+
+/* Header phân khu bên trong dropdown */
+.u354-pg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px 8px 6px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--ux-line);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ux-accent);
+  letter-spacing: 0.04em;
+}
+
+.u354-pg-header span.tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  background: var(--ux-surface-2);
+  color: var(--ux-accent);
+  padding: 1px 7px;
+  border-radius: 9999px;
+  border: 1px solid var(--ux-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .u354,
+  .u354 *,
+  .u354 *::before,
+  .u354 *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
