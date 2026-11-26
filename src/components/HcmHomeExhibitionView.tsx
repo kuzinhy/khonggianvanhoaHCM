@@ -116,6 +116,34 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
   const { currentUser, setCurrentUser, logout, visitorStats } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openNavCluster, setOpenNavCluster] = useState<string | null>(null);
+  const navTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastHoverTimeRef = React.useRef<number>(0);
+
+  const handleNavMouseEnter = (clusterId: string) => {
+    if (navTimerRef.current) {
+      clearTimeout(navTimerRef.current);
+      navTimerRef.current = null;
+    }
+    lastHoverTimeRef.current = Date.now();
+    setOpenNavCluster(clusterId);
+  };
+
+  const handleNavMouseLeave = () => {
+    if (navTimerRef.current) {
+      clearTimeout(navTimerRef.current);
+    }
+    navTimerRef.current = setTimeout(() => {
+      setOpenNavCluster(null);
+    }, 220);
+  };
+
+  const handleClusterToggle = (clusterId: string) => {
+    hcmSfx.playClick(600);
+    if (Date.now() - lastHoverTimeRef.current < 300 && openNavCluster === clusterId) {
+      return;
+    }
+    setOpenNavCluster((prev) => (prev === clusterId ? null : clusterId));
+  };
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [isPlayingQuote, setIsPlayingQuote] = useState(false);
   const [fanpageSyncStatus, setFanpageSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle');
@@ -452,14 +480,16 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </a>
 
             {/* 2. Nhà Truyền Thống Số 3D */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('VR_HERITAGE')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'VR_HERITAGE' ? null : 'VR_HERITAGE');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('VR_HERITAGE')}
+                data-active={openNavCluster === 'VR_HERITAGE' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   ['TDM_HOUSE', 'EXHIBIT'].includes(activeTab) || openNavCluster === 'VR_HERITAGE'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -467,15 +497,15 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <Box className="w-3.5 h-3.5 text-rose-700" />
                 <span>Nhà Truyền Thống 3D</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
+                <span className="text-[8.5px] xl:text-[9px] px-1.5 py-0.5 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
                   VR 360°
                 </span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'VR_HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'VR_HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'VR_HERITAGE' && (
-                <div className="absolute top-full left-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Box className="w-3.5 h-3.5 text-rose-700" />
@@ -493,18 +523,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('EXHIBIT');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #BE123C)' }}
                           >
                             <Box className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Không Gian Văn Hóa HCM (3D VR)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -528,18 +558,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('TDM_HOUSE');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #C59A55, #B28236)' }}
                           >
                             <Building2 className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Nhà Việc Phú Cường &amp; 05 Gian Số
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -564,18 +594,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           else onSelectTab('TDM_HOUSE');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #047857, #10B981)' }}
                           >
                             <MapPin className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Bản Đồ 12 Địa Chỉ Đỏ &amp; Di Tích
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -599,18 +629,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('TDM_HOUSE');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #1E3A8A, #3B82F6)' }}
                           >
                             <Sparkles className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tư Vấn Kỹ Thuật Số Hóa 3D Thực Địa
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -633,14 +663,16 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 3. Không Gian Thiếu Nhi */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('KIDS_SPACE')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'KIDS_SPACE' ? null : 'KIDS_SPACE');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('KIDS_SPACE')}
+                data-active={openNavCluster === 'KIDS_SPACE' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   activeTab === 'KIDS' || openNavCluster === 'KIDS_SPACE'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -648,15 +680,15 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <Smile className="w-3.5 h-3.5 text-amber-600 fill-current" />
                 <span>Không Gian Thiếu Nhi</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
+                <span className="text-[8.5px] xl:text-[9px] px-1.5 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
                   5 Điều Bác
                 </span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'KIDS_SPACE' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'KIDS_SPACE' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'KIDS_SPACE' && (
-                <div className="absolute top-full left-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Smile className="w-3.5 h-3.5 text-amber-600 fill-current" />
@@ -674,18 +706,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('KIDS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #D97706, #F59E0B)' }}
                           >
                             <Smile className="w-4 h-4 fill-current" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Không Gian Thiếu Nhi Đất Thủ
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -709,18 +741,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('KIDS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #E11D48)' }}
                           >
                             <BookOpen className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 15 Mẩu Chuyện Bác Hồ Có Giọng Đọc
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -744,18 +776,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('KIDS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #047857, #059669)' }}
                           >
                             <Award className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Hội Thi Búp Sen Vàng (Đố Vui)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -779,18 +811,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('KIDS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #4338CA, #6366F1)' }}
                           >
                             <Heart className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Hòm Thư Báo Công &amp; Rèn Luyện 5 Điều
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -813,14 +845,16 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 4. Chuyện Kể Học Bác */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('STORIES_LEARNING')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'STORIES_LEARNING' ? null : 'STORIES_LEARNING');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('STORIES_LEARNING')}
+                data-active={openNavCluster === 'STORIES_LEARNING' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   activeTab === 'STORIES_LEARNING' || openNavCluster === 'STORIES_LEARNING'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -828,15 +862,15 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <BookOpen className="w-3.5 h-3.5 text-rose-700" />
                 <span>Chuyện Kể Học Bác</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
+                <span className="text-[8.5px] xl:text-[9px] px-1.5 py-0.5 rounded-md bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-2xs">
                   120 Chuyện
                 </span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'STORIES_LEARNING' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'STORIES_LEARNING' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'STORIES_LEARNING' && (
-                <div className="absolute top-full left-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 sm:left-[-20px] pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <BookOpen className="w-3.5 h-3.5 text-rose-700" />
@@ -854,18 +888,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('STORIES_LEARNING');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #9F1239)' }}
                           >
                             <BookOpen className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Toàn Bộ 120 Mẩu Chuyện Về Bác
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -889,18 +923,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('STORIES_LEARNING');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #B45309, #D97706)' }}
                           >
                             <ShieldCheck className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Cán Bộ, Đảng Viên (Quy Định 144)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -924,18 +958,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('STORIES_LEARNING');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #0284C7, #0EA5E9)' }}
                           >
                             <Sparkles className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Đoàn Viên, Thanh Niên (Rèn Đức Luyện Tài)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -959,18 +993,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('STORIES_LEARNING');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #059669, #10B981)' }}
                           >
                             <Heart className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Toàn Thể Nhân Dân (Đời Sống Thường Nhật)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -993,14 +1027,16 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 5. Lịch Sử Đảng Bộ TP */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('PARTY_HISTORY')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'PARTY_HISTORY' ? null : 'PARTY_HISTORY');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1.5 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('PARTY_HISTORY')}
+                data-active={openNavCluster === 'PARTY_HISTORY' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   ['PARTY_HISTORY', 'TDM_CHRONOLOGY', 'FOOTPRINTS'].includes(activeTab) || openNavCluster === 'PARTY_HISTORY'
                     ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
@@ -1008,15 +1044,15 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               >
                 <Flag className="w-3.5 h-3.5 text-rose-700" />
                 <span>Lịch Sử Đảng Bộ TP</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
+                <span className="text-[8.5px] xl:text-[9px] px-1.5 py-0.5 rounded-md bg-amber-400 text-slate-950 font-black shadow-2xs">
                   600 Trang
                 </span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'PARTY_HISTORY' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'PARTY_HISTORY' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'PARTY_HISTORY' && (
-                <div className="absolute top-full left-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 sm:left-[-35px] xl:left-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Flag className="w-3.5 h-3.5 text-rose-700" />
@@ -1034,18 +1070,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('PARTY_HISTORY');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #BE123C)' }}
                           >
                             <Flag className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Toàn Văn Pho Sử Vàng 600 Trang
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1069,18 +1105,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('PARTY_HISTORY');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #C59A55, #D97706)' }}
                           >
                             <History className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 04 Thời Kỳ Lịch Sử Kháng Chiến
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1104,18 +1140,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('TDM_CHRONOLOGY');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #047857, #10B981)' }}
                           >
                             <Building2 className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Biên Niên Sử Phường (Từ 01/7/2025)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1139,18 +1175,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('PARTY_HISTORY');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #4338CA, #6366F1)' }}
                           >
                             <FileText className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tra Cứu Toàn Văn Dữ Liệu Lịch Sử
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1173,27 +1209,29 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 6. Di Sản Hồ Chí Minh */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('HERITAGE')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'HERITAGE' ? null : 'HERITAGE');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('HERITAGE')}
+                data-active={openNavCluster === 'HERITAGE' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   ['BIO', 'TIMELINE', 'BOOKS', 'QUOTES', 'MEDIA'].includes(activeTab) || openNavCluster === 'HERITAGE'
-                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5 text-rose-700" />
                 <span>Di Sản Hồ Chí Minh</span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'HERITAGE' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'HERITAGE' && (
-                <div className="absolute top-full right-0 xl:left-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full right-0 xl:left-[-20px] pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <BookOpen className="w-3.5 h-3.5 text-rose-700" />
@@ -1211,18 +1249,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('BIO');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #E11D48)' }}
                           >
                             <History className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Cuộc Đời &amp; Sự Nghiệp (6 Chương)
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1246,18 +1284,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('BOOKS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #B45309, #F59E0B)' }}
                           >
                             <BookOpen className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tủ Sách Kinh Điển 15 Tác Phẩm
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1281,18 +1319,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('TIMELINE');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #0284C7, #38BDF8)' }}
                           >
                             <Clock className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Dòng Thời Gian &amp; 30 Mốc Son
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1316,18 +1354,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('QUOTES');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #059669, #34D399)' }}
                           >
                             <ShieldCheck className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tư Tưởng, Đạo Đức &amp; Lời Dạy Của Bác
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1350,27 +1388,29 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 7. Rèn Luyện & Đời Sống */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('COMMUNITY')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'COMMUNITY' ? null : 'COMMUNITY');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('COMMUNITY')}
+                data-active={openNavCluster === 'COMMUNITY' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   ['EXEMPLARY_PEOPLE', 'MODELS', 'EVALUATION'].includes(activeTab) || openNavCluster === 'COMMUNITY'
-                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
                 }`}
               >
                 <Heart className="w-3.5 h-3.5 text-rose-700 fill-current" />
                 <span>Rèn Luyện &amp; Đời Sống</span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'COMMUNITY' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'COMMUNITY' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'COMMUNITY' && (
-                <div className="absolute top-full right-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full right-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Heart className="w-3.5 h-3.5 text-rose-700 fill-current" />
@@ -1388,18 +1428,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('EXEMPLARY_PEOPLE');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #881337, #BE123C)' }}
                           >
                             <Award className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Gương Người Tốt Việc Tốt Đất Thủ
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1423,18 +1463,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('TDM_CHRONOLOGY');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #047857, #10B981)' }}
                           >
                             <Landmark className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Biên Niên Sử Phường Thủ Dầu Một
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1458,18 +1498,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('NEWS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #0284C7, #06B6D4)' }}
                           >
                             <FileText className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Bản Tin &amp; Mô Hình Cơ Sở Mới Nhất
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1493,18 +1533,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('EVALUATION');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #059669, #10B981)' }}
                           >
                             <CheckCircle2 className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tự Đánh Giá Chuẩn Mực Không Gian VH
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1527,27 +1567,29 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
 
             {/* 8. Tin Tức & Tiện Ích */}
-            <div className="relative shrink-0">
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => handleNavMouseEnter('UTILITIES')}
+              onMouseLeave={handleNavMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => {
-                  hcmSfx.playClick(600);
-                  setOpenNavCluster(openNavCluster === 'UTILITIES' ? null : 'UTILITIES');
-                }}
-                className={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-colors flex items-center gap-1 cursor-pointer select-none ${
+                onClick={() => handleClusterToggle('UTILITIES')}
+                data-active={openNavCluster === 'UTILITIES' ? 'true' : 'false'}
+                className={`hcm-nav-btn px-2 xl:px-2.5 py-1.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all duration-200 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none ${
                   activeTab === 'NEWS' || openNavCluster === 'UTILITIES'
-                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold'
+                    ? 'text-[#881337] bg-rose-50 border border-rose-200 font-extrabold shadow-xs'
                     : 'text-slate-800 hover:text-[#881337] hover:bg-rose-50/70'
                 }`}
               >
                 <FileText className="w-3.5 h-3.5 text-rose-700" />
                 <span>Tin Tức &amp; Tiện Ích</span>
-                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${openNavCluster === 'UTILITIES' ? 'rotate-180 text-rose-700' : ''}`} />
+                <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform duration-250 ease-out ${openNavCluster === 'UTILITIES' ? 'rotate-180 text-rose-700' : ''}`} />
               </button>
 
               {openNavCluster === 'UTILITIES' && (
-                <div className="absolute top-full right-0 pt-2 w-[380px] sm:w-[410px] z-50 animate-in fade-in zoom-in-95 slide-in-from-top-1 duration-150">
-                  <div className="rounded-2xl bg-white border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full right-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
+                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <FileText className="w-3.5 h-3.5 text-rose-700" />
@@ -1566,18 +1608,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           onSelectTab('NEWS');
                           setOpenNavCluster(null);
                         }}
-                        className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                             style={{ background: 'linear-gradient(140deg, #BE123C, #E11D48)' }}
                           >
                             <FileText className="w-4 h-4" />
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                 Tin Tức 4 Nguồn Báo Chí
                               </span>
                               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1601,18 +1643,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                             onOpenHandwritingZoom();
                             setOpenNavCluster(null);
                           }}
-                          className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                          className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <div
-                              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                               style={{ background: 'linear-gradient(140deg, #475569, #64748B)' }}
                             >
                               <Search className="w-4 h-4" />
                             </div>
                             <div className="min-w-0">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                                <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                   Soi Bút Tích Di Chúc 3D
                                 </span>
                                 <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
@@ -1637,18 +1679,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                             onOpenHeritageAnalytics();
                             setOpenNavCluster(null);
                           }}
-                          className="w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-rose-50/90 transition-all group cursor-pointer border border-transparent hover:border-rose-200/60"
+                          className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <div
-                              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform"
+                              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
                               style={{ background: 'linear-gradient(140deg, #1D4ED8, #3B82F6)' }}
                             >
                               <Activity className="w-4 h-4" />
                             </div>
                             <div className="min-w-0">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-xs font-bold text-slate-900 group-hover:text-[#881337] transition-colors truncate">
+                                <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
                                   Thống Kê Dữ Liệu Di Sản
                                 </span>
                                 <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
