@@ -113,8 +113,6 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       label: 'Đất Thủ Anh Hùng',
       shortLabel: 'Đất Thủ',
       icon: Flag,
-      badge: 'Trọng điểm',
-      badgeCls: 'bg-rose-100 text-[#751D2C] font-bold',
       tabs: [
         {
           id: 'PARTY_HISTORY',
@@ -211,8 +209,6 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       label: 'Rèn Luyện & Thiếu Nhi',
       shortLabel: 'Rèn Luyện',
       icon: Heart,
-      badge: 'Thiếu Nhi ★',
-      badgeCls: 'bg-amber-400 text-slate-950 font-black',
       tabs: [
         {
           id: 'KIDS',
@@ -253,8 +249,6 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       label: 'Truyền Thông & Tiện Ích',
       shortLabel: 'Tiện Ích',
       icon: FileText,
-      badge: String(totalNewsCount),
-      badgeCls: 'bg-rose-100 text-rose-800 font-bold',
       tabs: [
         {
           id: 'NEWS',
@@ -327,20 +321,8 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       {/* TẦNG 1: 5 CỤM DANH MỤC LỚN (DESKTOP) & NÚT MOBILE MENU                     */}
       {/* ========================================================================= */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
-        <div className="flex items-center justify-between h-13 gap-2">
-          {/* Logo/Icon mini đại diện */}
-          <button
-            type="button"
-            onClick={() => handleSelectTabItem('FOYER')}
-            className="flex items-center gap-2 text-rose-900 font-serif font-black text-sm sm:text-base tracking-tight shrink-0 hover:text-rose-700 transition-colors cursor-pointer"
-          >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-700 to-[#751D2C] text-white flex items-center justify-center shadow-xs">
-              <Landmark className="w-4 h-4" />
-            </div>
-            <span className="hidden md:inline font-bold">Không Gian Văn Hóa HCM</span>
-          </button>
-
-          {/* 5 CỤM MENU CHÍNH (DESKTOP) */}
+        <div className="flex items-center justify-between h-11 sm:h-12 gap-2">
+          {/* 5 CỤM MENU CHÍNH (DESKTOP) - Cân đối, gọn gàng, không lặp lại logo */}
           <div className="hidden lg:flex items-center gap-1.5 flex-1 justify-center">
             {clusters.map((cluster) => {
               const ClusterIcon = cluster.icon;
@@ -363,7 +345,7 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
                     onMouseEnter={() => {
                       if (!isSingleFoyer) setOpenClusterId(cluster.id);
                     }}
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
                       isClusterActive
                         ? 'bg-gradient-to-r from-rose-50 to-amber-50 text-[#751D2C] border border-rose-300 shadow-2xs'
                         : 'text-slate-700 hover:text-rose-800 hover:bg-rose-50/60'
@@ -468,26 +450,23 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
             })}
           </div>
 
-          {/* NÚT THIẾU NHI NHANH & MOBILE MENU TOGGLE */}
-          <div className="flex items-center gap-2">
+          {/* Mobile Bar: Nút Sảnh Trung Tâm + Nút Hamburger */}
+          <div className="flex lg:hidden items-center justify-between w-full">
             <button
               type="button"
-              onClick={() => handleSelectTabItem('KIDS')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer shadow-xs ${
-                activeTab === 'KIDS'
-                  ? 'bg-amber-500 text-slate-950 ring-2 ring-amber-400'
-                  : 'bg-amber-400 hover:bg-amber-500 text-slate-950'
-              }`}
+              onClick={() => handleSelectTabItem('FOYER')}
+              className="flex items-center gap-1.5 text-rose-900 font-bold text-xs cursor-pointer hover:text-rose-700"
             >
-              <Smile className="w-4 h-4 fill-current text-slate-950" />
-              <span>Góc Thiếu Nhi</span>
+              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-rose-700 to-[#751D2C] text-white flex items-center justify-center shadow-xs">
+                <Landmark className="w-3.5 h-3.5" />
+              </div>
+              <span>Sảnh Trung Tâm</span>
             </button>
 
-            {/* Mobile Menu Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 cursor-pointer"
+              className="p-1.5 rounded-lg text-slate-700 hover:bg-slate-100 cursor-pointer"
               aria-label="Mở danh mục di sản"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -497,11 +476,10 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
       </div>
 
       {/* ========================================================================= */}
-      {/* TẦNG 2: THANH PHÂN HỆ CON TRỰC TIẾP (SUB-PILL ROW) - DỄ CHUYỂN NHANH      */}
-      {/* Hiển thị các tab con của Cụm đang chọn để người dùng bấm ngay mà không cần rê chuột */}
+      {/* TẦNG 2: THANH PHÂN HỆ CON TRỰC TIẾP (SUB-PILL ROW) - GỌN GÀNG, KHÔNG RƯỜM RÀ */}
       {/* ========================================================================= */}
       {activeCluster.tabs.length > 1 && (
-        <div className="border-t border-rose-100/80 bg-gradient-to-r from-rose-50/40 via-amber-50/30 to-rose-50/40 px-3 sm:px-6 py-1.5">
+        <div className="border-t border-rose-100/70 bg-gradient-to-r from-rose-50/40 via-amber-50/20 to-rose-50/40 px-3 sm:px-6 py-1">
           <div className="max-w-7xl mx-auto flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
             <span className="text-[11px] font-black text-rose-900 shrink-0 uppercase tracking-wide mr-1 flex items-center gap-1">
               <activeCluster.icon className="w-3.5 h-3.5 text-rose-700" />
@@ -516,25 +494,14 @@ export const ProfessionalNavbar: React.FC<ProfessionalNavbarProps> = ({
                   key={tab.id}
                   type="button"
                   onClick={() => handleSelectTabItem(tab.id)}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold shrink-0 transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold shrink-0 transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-rose-700 text-white shadow-xs'
+                      ? 'bg-rose-700 text-white shadow-xs font-bold'
                       : 'bg-white/80 hover:bg-white text-slate-700 hover:text-rose-800 border border-slate-200'
                   }`}
                 >
                   <TabIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>{tab.label}</span>
-                  {tab.badge && (
-                    <span
-                      className={`text-[9px] px-1 py-0.1 rounded font-black ${
-                        isSelected
-                          ? 'bg-white/20 text-white'
-                          : tab.badgeCls || 'bg-rose-100 text-rose-800'
-                      }`}
-                    >
-                      {tab.badge}
-                    </span>
-                  )}
                 </button>
               );
             })}
