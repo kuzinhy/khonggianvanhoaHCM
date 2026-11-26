@@ -1381,6 +1381,41 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           12 Lời
                         </span>
                       </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onSelectTab('OFFICIAL_PORTALS');
+                          setOpenNavCluster(null);
+                        }}
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
+                            style={{ background: 'linear-gradient(140deg, #991B1B, #DC2626)' }}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
+                                08 Chuyên Trang Tư Liệu Về Bác
+                              </span>
+                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
+                                Thẩm Định
+                              </span>
+                            </div>
+                            <p className="text-[10.5px] text-slate-500 truncate mt-0.5 group-hover:text-slate-700">
+                              Phủ Chủ tịch, Bảo tàng HCM, Lăng Bác, NXB Sự Thật...
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
+                          8 Cổng
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1707,6 +1742,41 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           </span>
                         </button>
                       )}
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onSelectTab('OFFICIAL_PORTALS');
+                          setOpenNavCluster(null);
+                        }}
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
+                            style={{ background: 'linear-gradient(140deg, #991B1B, #DC2626)' }}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
+                                08 Chuyên Trang Tư Liệu Trung Ương
+                              </span>
+                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
+                                8 Cổng
+                              </span>
+                            </div>
+                            <p className="text-[10.5px] text-slate-500 truncate mt-0.5 group-hover:text-slate-700">
+                              Phủ Chủ tịch, Bảo tàng HCM, Lăng Bác, NXB Sự thật...
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
+                          Tư Liệu
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1761,6 +1831,18 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               className="block w-full text-left py-2 font-medium text-slate-900 border-b border-rose-200/80/30"
             >
               Tin tức
+            </a>
+            <a
+              href="/chuyen-trang-tu-lieu"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectTab('OFFICIAL_PORTALS');
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
+            >
+              <span>🏛️ 08 Chuyên Trang Tư Liệu Về Bác</span>
+              <span className="text-[9px] bg-red-100 text-red-900 px-1.5 py-0.2 rounded font-bold">Trung Ương</span>
             </a>
             <a
               href="/thieu-nhi"

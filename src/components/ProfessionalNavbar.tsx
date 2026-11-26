@@ -46,6 +46,7 @@ export type SpaceTab =
   | 'EXHIBIT'
   | 'AI_STUDIO'
   | 'EXPLORER'
+  | 'OFFICIAL_PORTALS'
   | 'CMS';
 
 export interface TabConfig {

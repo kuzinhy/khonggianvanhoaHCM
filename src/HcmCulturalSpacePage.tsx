@@ -1031,28 +1031,54 @@ export const HcmCulturalSpacePage: React.FC = () => {
               );
             })}
           </section>
+        </div>
+      )}
+
+      {activeTab === 'OFFICIAL_PORTALS' && (
+        <div className="space-y-6 animate-in fade-in duration-300">
+          {/* Header & Breadcrumb */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-rose-200/60">
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+              <button
+                type="button"
+                onClick={() => handleSelectTab('FOYER')}
+                className="hover:text-[#881337] transition-colors cursor-pointer"
+              >
+                Trang chủ
+              </button>
+              <span>/</span>
+              <span className="text-[#881337] font-bold">Hệ thống chuyên trang tư liệu chính thống</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => handleSelectTab('FOYER')}
+              className="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-[#881337] font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              ← Về Sảnh Trung Tâm
+            </button>
+          </div>
 
           {/* CỔNG LIÊN KẾT 08 CHUYÊN TRANG TƯ LIỆU CHÍNH THỐNG VỀ CHỦ TỊCH HỒ CHÍ MINH */}
-          <section className="rounded-3xl border border-[#E5D3B2] bg-white p-6 shadow-xs space-y-5 scroll-reveal">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#751D2C] uppercase tracking-wider">
+          <section className="rounded-3xl border-2 border-[#E5D3B2] bg-white p-6 sm:p-8 shadow-md space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#751D2C] uppercase tracking-wider bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200/60">
                   <ShieldCheck className="w-4 h-4 text-[#C59A55]" />
                   <span>Dữ Liệu Được Ban Tuyên Giáo &amp; Các Cơ Quan Trung Ương Thẩm Định</span>
                 </div>
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#751D2C]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#751D2C]">
                   Hệ Thống Chuyên Trang Tư Liệu Chính Thống Về Bác Hồ
-                </h3>
-                <p className="text-xs text-[#67615B]">
+                </h2>
+                <p className="text-sm text-[#67615B]">
                   Kết nối trực tiếp đến 08 cổng thông tin di sản, bảo tàng và nhà xuất bản quốc gia phục vụ học tập, tra cứu và nghiên cứu.
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => setIsGoldenBookOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#C59A55] to-[#b08745] text-white font-bold text-xs shadow-xs hover:brightness-105 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#C59A55] to-[#b08745] text-white font-bold text-xs shadow-xs hover:brightness-105 transition-all cursor-pointer"
                 >
                   <BookMarked className="w-4 h-4" />
                   <span>Sổ vàng truyền thống</span>
@@ -1061,7 +1087,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsRedMapOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#751D2C] hover:bg-[#5B1522] text-white font-bold text-xs shadow-xs transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#751D2C] hover:bg-[#5B1522] text-white font-bold text-xs shadow-xs transition-all cursor-pointer"
                 >
                   <Compass className="w-4 h-4" />
                   <span>Bản đồ địa chỉ đỏ</span>
@@ -1069,33 +1095,33 @@ export const HcmCulturalSpacePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {OFFICIAL_ATTRIBUTION_SOURCES.map((src) => (
                 <a
                   key={src.label}
                   href={src.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-2xl border border-[#E5D3B2] bg-[#FAF7F0]/60 hover:bg-white hover:border-[#751D2C] hover:shadow-md transition-all flex flex-col justify-between group space-y-3"
+                  className="p-5 rounded-2xl border-2 border-[#E5D3B2] bg-[#FAF7F0]/60 hover:bg-white hover:border-[#751D2C] hover:shadow-lg transition-all flex flex-col justify-between group space-y-3"
                 >
-                  <div className="space-y-1.5">
-                    <span className="px-2 py-0.5 rounded-md bg-[#751D2C]/10 text-[#751D2C] font-bold text-[10.5px]">
+                  <div className="space-y-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#751D2C]/10 text-[#751D2C] font-bold text-xs">
                       {src.badge}
                     </span>
-                    <h4 className="font-serif font-bold text-sm text-[#262321] group-hover:text-[#751D2C] transition-colors leading-snug">
+                    <h3 className="font-serif font-bold text-base text-[#262321] group-hover:text-[#751D2C] transition-colors leading-snug">
                       {src.label}
-                    </h4>
-                    <p className="text-[11.5px] text-[#751D2C] font-semibold">
+                    </h3>
+                    <p className="text-xs text-[#751D2C] font-semibold">
                       {src.agency}
                     </p>
-                    <p className="text-xs text-[#67615B] leading-relaxed line-clamp-3">
+                    <p className="text-xs text-[#67615B] leading-relaxed">
                       {src.description}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-[#E5D3B2]/40 flex items-center justify-between text-xs text-[#751D2C] font-bold">
+                  <div className="pt-3 border-t border-[#E5D3B2]/60 flex items-center justify-between text-xs text-[#751D2C] font-bold">
                     <span>Truy cập chuyên trang</span>
-                    <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </a>
               ))}
