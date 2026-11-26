@@ -51,6 +51,7 @@ import {
   addManualDatThuItem,
   triggerFanpageSync,
   getFanpageConnectionStatus,
+  verifyAndSaveFacebookFanpageConfig,
   likeDatThuItem,
   type ExemplaryTheme,
 } from './datThuFanpageConnector';
@@ -1229,13 +1230,42 @@ export function createHcmSpaceRouter(dbPath?: string): Router {
     }
   });
 
-  // 4. Lấy trạng thái kết nối Fanpage
+  // 4. Lấy trạng thái & cấu hình kết nối Fanpage
   router.get('/fanpage-dat-thu/status', (_req, res) => {
     try {
       const status = getFanpageConnectionStatus();
       res.json({ success: true, data: status });
     } catch (err: any) {
       res.status(500).json({ success: false, error: err?.message || 'Không thể lấy trạng thái Fanpage.' });
+    }
+  });
+
+  // 4b. Lấy chi tiết cấu hình Fanpage Đất Thủ Quê Hương Tôi (Page ID, Page Name, Token đã che)
+  router.get('/fanpage-dat-thu/config', (_req, res) => {
+    try {
+      const status = getFanpageConnectionStatus();
+      res.json({ success: true, data: status.pageConfig });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể lấy cấu hình Fanpage.' });
+    }
+  });
+
+  // 4c. Lưu và xác thực thông tin ID & Token Fanpage qua Facebook Graph API
+  router.post('/fanpage-dat-thu/config', async (req, res) => {
+    try {
+      const { pageId, accessToken, pageName, pageUrl } = req.body || {};
+      const result = await verifyAndSaveFacebookFanpageConfig({
+        pageId,
+        accessToken,
+        pageName,
+        pageUrl,
+      });
+      if (!result.success) {
+        return res.status(400).json(result);
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err?.message || 'Không thể lưu và kết nối Fanpage.' });
     }
   });
 

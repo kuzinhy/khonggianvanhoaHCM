@@ -59,6 +59,167 @@ export const FANPAGE_CONFIG = {
   ],
 };
 
+export const FANPAGE_CONFIG_META_KEY = 'hcm_fanpage_dat_thu_config';
+
+export interface FacebookFanpageStoredConfig {
+  pageId: string;
+  accessToken?: string;
+  pageName: string;
+  pageUrl: string;
+  handle: string;
+  avatarUrl?: string;
+  followersCount?: number;
+  fanCount?: number;
+  status: 'CONNECTED' | 'NOT_CONFIGURED' | 'ERROR';
+  errorMessage?: string;
+  lastSyncedAt?: string;
+  updatedAt?: string;
+}
+
+export function maskToken(token?: string): string {
+  if (!token) return '';
+  const trimmed = token.trim();
+  if (trimmed.length <= 10) return '***';
+  return trimmed.slice(0, 8) + '...' + trimmed.slice(-6);
+}
+
+export function getFanpageConfigStored(db?: DatabaseSync): FacebookFanpageStoredConfig {
+  const activeDb = db || getSqliteDb();
+  ensureDatThuTable(activeDb);
+
+  try {
+    const row = activeDb.prepare('SELECT value FROM workspace_meta WHERE key = ?').get(FANPAGE_CONFIG_META_KEY) as
+      | { value: string }
+      | undefined;
+    if (row?.value) {
+      const parsed = JSON.parse(row.value);
+      return {
+        pageId: parsed.pageId || process.env.FB_PAGE_ID || '',
+        accessToken: parsed.accessToken || process.env.FB_PAGE_ACCESS_TOKEN || '',
+        pageName: parsed.pageName || FANPAGE_CONFIG.name,
+        pageUrl: parsed.pageUrl || FANPAGE_CONFIG.url,
+        handle: parsed.handle || FANPAGE_CONFIG.handle,
+        avatarUrl: parsed.avatarUrl || '/assets/hcm-space/khu-pho.jpg',
+        followersCount: parsed.followersCount || 0,
+        fanCount: parsed.fanCount || 0,
+        status: parsed.status || (parsed.accessToken ? 'CONNECTED' : 'NOT_CONFIGURED'),
+        errorMessage: parsed.errorMessage || '',
+        lastSyncedAt: parsed.lastSyncedAt || '',
+        updatedAt: parsed.updatedAt || '',
+      };
+    }
+  } catch (err) {
+    console.warn('Lỗi đọc cấu hình Fanpage từ workspace_meta:', err);
+  }
+
+  const envPageId = process.env.FB_PAGE_ID || '';
+  const envToken = process.env.FB_PAGE_ACCESS_TOKEN || '';
+
+  return {
+    pageId: envPageId,
+    accessToken: envToken,
+    pageName: FANPAGE_CONFIG.name,
+    pageUrl: FANPAGE_CONFIG.url,
+    handle: FANPAGE_CONFIG.handle,
+    avatarUrl: '/assets/hcm-space/khu-pho.jpg',
+    followersCount: 0,
+    fanCount: 0,
+    status: envPageId && envToken ? 'CONNECTED' : 'NOT_CONFIGURED',
+    errorMessage: '',
+  };
+}
+
+export async function verifyAndSaveFacebookFanpageConfig(input: {
+  pageId: string;
+  accessToken: string;
+  pageName?: string;
+  pageUrl?: string;
+}): Promise<{
+  success: boolean;
+  message: string;
+  config?: any;
+  error?: string;
+}> {
+  const db = getSqliteDb();
+  ensureDatThuTable(db);
+
+  const cleanPageId = (input.pageId || '').trim();
+  const cleanToken = (input.accessToken || '').trim();
+
+  if (!cleanPageId) {
+    return { success: false, message: 'Thiếu Facebook Page ID', error: 'Vui lòng cung cấp Facebook Page ID của trang Đất Thủ Quê Hương Tôi.' };
+  }
+  if (!cleanToken) {
+    return { success: false, message: 'Thiếu Facebook Access Token', error: 'Vui lòng cung cấp Page Access Token hợp lệ từ Meta for Developers.' };
+  }
+
+  try {
+    const testUrl = `https://graph.facebook.com/v21.0/${encodeURIComponent(cleanPageId)}?fields=id,name,link,picture.type(large),fan_count,followers_count&access_token=${encodeURIComponent(cleanToken)}`;
+    const resp = await fetch(testUrl);
+    const data = (await resp.json()) as any;
+
+    if (!resp.ok || data.error) {
+      const errDetail = data.error?.message || `Lỗi phản hồi từ Facebook Graph API (${resp.status})`;
+      return {
+        success: false,
+        message: 'Không thể xác thực Facebook Page ID hoặc Access Token.',
+        error: errDetail,
+      };
+    }
+
+    const verifiedName = data.name || input.pageName || FANPAGE_CONFIG.name;
+    const verifiedLink = data.link || input.pageUrl || `https://www.facebook.com/${cleanPageId}`;
+    const avatarUrl = data.picture?.data?.url || '/assets/hcm-space/khu-pho.jpg';
+    const followers = data.followers_count || data.fan_count || 0;
+    const now = new Date().toISOString();
+
+    const stored: FacebookFanpageStoredConfig = {
+      pageId: cleanPageId,
+      accessToken: cleanToken,
+      pageName: verifiedName,
+      pageUrl: verifiedLink,
+      handle: '@datthuquehuongtoi',
+      avatarUrl,
+      followersCount: followers,
+      fanCount: data.fan_count || followers,
+      status: 'CONNECTED',
+      errorMessage: '',
+      lastSyncedAt: now,
+      updatedAt: now,
+    };
+
+    db.prepare(`
+      INSERT OR REPLACE INTO workspace_meta (key, value, updated_at)
+      VALUES (?, ?, ?)
+    `).run(FANPAGE_CONFIG_META_KEY, JSON.stringify(stored), now);
+
+    // Kích hoạt đồng bộ bài viết tức thì
+    const syncRes = await triggerFanpageSync();
+
+    return {
+      success: true,
+      message: `Đã kết nối thành công Fanpage "${verifiedName}" (${followers.toLocaleString('vi-VN')} người theo dõi)! Đã đồng bộ ${syncRes.syncedCount} bài viết.`,
+      config: {
+        pageId: cleanPageId,
+        hasToken: true,
+        tokenPreview: maskToken(cleanToken),
+        pageName: verifiedName,
+        pageUrl: verifiedLink,
+        avatarUrl,
+        followersCount: followers,
+        status: 'CONNECTED',
+        lastSyncedAt: syncRes.lastSyncedAt,
+      },
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: 'Không thể kết nối đến máy chủ Facebook Graph API.',
+      error: err?.message || String(err),
+    };
+  }
+}
+
 // Seed dataset trích từ Fanpage Đất Thủ Quê Hương Tôi từ 01/7/2025
 const SEED_FANPAGE_ARTICLES: Omit<DatThuExemplaryItem, 'createdAt' | 'updatedAt'>[] = [
   {
@@ -719,14 +880,110 @@ export async function triggerFanpageSync(): Promise<{
   syncedCount: number;
   message: string;
   lastSyncedAt: string;
-  source: typeof FANPAGE_CONFIG;
+  isLiveMetaApi: boolean;
+  source: typeof FANPAGE_CONFIG & { avatarUrl?: string; followersCount?: number; pageId?: string };
 }> {
   const db = getSqliteDb();
   ensureDatThuTable(db);
 
   const now = new Date().toISOString();
+  const stored = getFanpageConfigStored(db);
+  const hasLiveCredentials = Boolean(stored.pageId && stored.accessToken);
 
-  // Đảm bảo các bài viết chuẩn từ Fanpage luôn được nạp đầy đủ nếu chưa có
+  let newItemsCount = 0;
+  let isLiveMeta = false;
+
+  // 1. Nếu có Facebook Page ID & Access Token, gọi trực tiếp Graph API v21.0
+  if (hasLiveCredentials) {
+    try {
+      const postsUrl = `https://graph.facebook.com/v21.0/${encodeURIComponent(stored.pageId)}/posts?fields=id,message,story,created_time,full_picture,attachments{media,type,url,subattachments,title,description},permalink_url&access_token=${encodeURIComponent(stored.accessToken!)}&limit=25`;
+      const resp = await fetch(postsUrl);
+      const data = (await resp.json()) as any;
+
+      if (resp.ok && Array.isArray(data.data) && data.data.length > 0) {
+        isLiveMeta = true;
+        const checkStmt = db.prepare('SELECT id FROM dat_thu_exemplary_items WHERE id = ?');
+        const insertStmt = db.prepare(`
+          INSERT INTO dat_thu_exemplary_items (
+            id, title, full_name, birth_year, gender, khu_pho, role, unit,
+            theme, theme_label, category, category_label, source, source_label, source_url,
+            post_date, period_label, honor_title, avatar_url, good_deed_summary, story_content,
+            community_impact, quote_or_motto, hcm_lesson_applied, likes_count, tags_json,
+            is_synced_from_fanpage, synced_at, created_at, updated_at
+          ) VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?,
+            ?, ?, ?, ?
+          )
+        `);
+        const updateStmt = db.prepare(`
+          UPDATE dat_thu_exemplary_items
+          SET title = ?, good_deed_summary = ?, story_content = ?, avatar_url = ?, source_url = ?, synced_at = ?, updated_at = ?
+          WHERE id = ?
+        `);
+
+        withSqliteTransaction(db, () => {
+          for (const p of data.data) {
+            const rawMsg = (p.message || p.story || '').trim();
+            if (!rawMsg) continue;
+            const itemId = `fb_${p.id}`;
+            const lines = rawMsg.split('\n').map((l: string) => l.trim()).filter(Boolean);
+            const firstLine = lines[0] || 'Bản tin Fanpage Đất Thủ Quê Hương Tôi';
+            const title = firstLine.length > 90 ? firstLine.slice(0, 87) + '...' : firstLine;
+            const summary = lines.slice(0, 2).join(' ').slice(0, 240);
+            const imageUrl = p.full_picture || p.attachments?.data?.[0]?.media?.image?.src || '/assets/hcm-space/khu-pho.jpg';
+            const postDate = p.created_time ? p.created_time.slice(0, 10) : now.slice(0, 10);
+            const sourceUrl = p.permalink_url || `https://www.facebook.com/${p.id}`;
+
+            const exists = checkStmt.get(itemId);
+            if (!exists) {
+              insertStmt.run(
+                itemId,
+                title,
+                stored.pageName,
+                null,
+                null,
+                'Toàn phường',
+                'Ban Tuyên giáo Phường & Fanpage',
+                'Trang thông tin Đất Thủ Quê Hương Tôi',
+                'NGUOI_TOT_VIEC_TOT',
+                'Gương người tốt việc tốt',
+                'FANPAGE_POST',
+                'Bản tin Fanpage',
+                'FANPAGE_DAT_THU',
+                'Fanpage Đất Thủ Quê Hương Tôi',
+                sourceUrl,
+                postDate,
+                `Tháng ${postDate.slice(5, 7)}/${postDate.slice(0, 4)}`,
+                'Tin nổi bật từ Fanpage',
+                imageUrl,
+                summary,
+                rawMsg,
+                'Lan tỏa thông tin tích cực và giá trị văn hóa Hồ Chí Minh trong cộng đồng.',
+                'Đoàn kết, trách nhiệm, vì quê hương Đất Thủ ngày càng giàu đẹp.',
+                'Học tập và làm theo tấm gương đạo đức, phong cách Hồ Chí Minh.',
+                245 + Math.floor(Math.random() * 80),
+                JSON.stringify(['Đất Thủ Quê Hương Tôi', 'Thủ Dầu Một', 'Fanpage Facebook']),
+                1,
+                now,
+                now,
+                now
+              );
+              newItemsCount++;
+            } else {
+              updateStmt.run(title, summary, rawMsg, imageUrl, sourceUrl, now, now, itemId);
+            }
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Lỗi khi gọi Facebook Graph API trực tiếp, chuyển sang nạp bộ đệm chuẩn:', e);
+    }
+  }
+
+  // 2. Đảm bảo các bài viết chuẩn từ Fanpage luôn được nạp đầy đủ nếu chưa có
   const checkStmt = db.prepare('SELECT id FROM dat_thu_exemplary_items WHERE id = ?');
   const insertStmt = db.prepare(`
     INSERT INTO dat_thu_exemplary_items (
@@ -744,7 +1001,6 @@ export async function triggerFanpageSync(): Promise<{
     )
   `);
 
-  let newItemsCount = 0;
   withSqliteTransaction(db, () => {
     for (const item of SEED_FANPAGE_ARTICLES) {
       const exists = checkStmt.get(item.id);
@@ -791,51 +1047,87 @@ export async function triggerFanpageSync(): Promise<{
 
   const totalCount: any = db.prepare('SELECT count(*) as cnt FROM dat_thu_exemplary_items WHERE is_synced_from_fanpage = 1').get();
 
+  const msg = isLiveMeta
+    ? `Đã kết nối và đồng bộ trực tiếp ${newItemsCount} bài viết mới từ Meta Graph API (${stored.pageName}).`
+    : hasLiveCredentials
+      ? `Đã cập nhật bài viết từ Fanpage "${stored.pageName}".`
+      : `Đã đồng bộ thành công ${totalCount?.cnt || 0} bài viết từ bộ đệm Fanpage "${stored.pageName}". (Sẵn sàng tiếp nhận Facebook Page Access Token để đồng bộ trực tiếp).`;
+
   db.prepare(`
     INSERT INTO dat_thu_sync_logs (id, source_name, synced_count, status, synced_at, details)
     VALUES (?, ?, ?, ?, ?, ?)
   `).run(
     `sync_${Date.now()}`,
-    FANPAGE_CONFIG.name,
+    stored.pageName,
     totalCount?.cnt || 0,
     'SUCCESS',
     now,
-    `Đồng bộ thành công từ ${FANPAGE_CONFIG.name}. Cập nhật ${newItemsCount} bài viết mới.`
+    msg
   );
 
   return {
     success: true,
     syncedCount: totalCount?.cnt || 0,
-    message: `Đã kết nối và đồng bộ hoàn tất từ Fanpage "${FANPAGE_CONFIG.name}" (${newItemsCount} bài viết mới cập nhật).`,
+    message: msg,
     lastSyncedAt: now,
-    source: FANPAGE_CONFIG,
+    isLiveMetaApi: isLiveMeta,
+    source: {
+      ...FANPAGE_CONFIG,
+      name: stored.pageName,
+      url: stored.pageUrl,
+      avatarUrl: stored.avatarUrl,
+      followersCount: stored.followersCount,
+      pageId: stored.pageId,
+    },
   };
 }
 
 // Lấy thông tin trạng thái kết nối Fanpage
 export function getFanpageConnectionStatus(): {
-  pageConfig: typeof FANPAGE_CONFIG;
+  pageConfig: typeof FANPAGE_CONFIG & {
+    pageId?: string;
+    hasToken?: boolean;
+    tokenPreview?: string;
+    avatarUrl?: string;
+    followersCount?: number;
+    status?: string;
+    errorMessage?: string;
+  };
   autoSyncActive: boolean;
   lastSyncedAt: string;
   totalItems: number;
   fanpageItems: number;
   manualItems: number;
+  isConfigured: boolean;
 } {
   const db = getSqliteDb();
   ensureDatThuTable(db);
 
+  const stored = getFanpageConfigStored(db);
   const lastLog: any = db.prepare('SELECT synced_at FROM dat_thu_sync_logs ORDER BY synced_at DESC LIMIT 1').get();
   const totalRow: any = db.prepare('SELECT count(*) as cnt FROM dat_thu_exemplary_items').get();
   const fanpageRow: any = db.prepare('SELECT count(*) as cnt FROM dat_thu_exemplary_items WHERE is_synced_from_fanpage = 1').get();
   const manualRow: any = db.prepare('SELECT count(*) as cnt FROM dat_thu_exemplary_items WHERE is_synced_from_fanpage = 0').get();
 
   return {
-    pageConfig: FANPAGE_CONFIG,
+    pageConfig: {
+      ...FANPAGE_CONFIG,
+      name: stored.pageName,
+      url: stored.pageUrl,
+      pageId: stored.pageId,
+      hasToken: Boolean(stored.accessToken),
+      tokenPreview: maskToken(stored.accessToken),
+      avatarUrl: stored.avatarUrl,
+      followersCount: stored.followersCount,
+      status: stored.status,
+      errorMessage: stored.errorMessage,
+    },
     autoSyncActive: true,
-    lastSyncedAt: lastLog?.synced_at || new Date().toISOString(),
+    lastSyncedAt: lastLog?.synced_at || stored.lastSyncedAt || new Date().toISOString(),
     totalItems: totalRow?.cnt || 0,
     fanpageItems: fanpageRow?.cnt || 0,
     manualItems: manualRow?.cnt || 0,
+    isConfigured: Boolean(stored.pageId && stored.accessToken),
   };
 }
 

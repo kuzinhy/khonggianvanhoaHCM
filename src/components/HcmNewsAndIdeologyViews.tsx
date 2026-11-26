@@ -19,6 +19,7 @@ import {
   Globe,
   HelpCircle,
   Image as ImageIcon,
+  Key,
   Plus,
   Printer,
   RefreshCw,
@@ -36,6 +37,7 @@ import {
 } from 'lucide-react';
 import { CertificateModal } from './CertificateModal';
 import { ChiBoBulletinPrintModal, type BulletinData } from './ChiBoBulletinPrintModal';
+import { HcmFanpageConfigModal } from './HcmFanpageConfigModal';
 import {
   HCM_ADVANCED_QUIZ_4,
   HCM_COMMITMENT_TEMPLATES,
@@ -48,8 +50,12 @@ import {
   VIDEO_DOCUMENTARIES_11,
 } from '../hcmCoreDataset';
 import {
+  fetchFanpageArticles,
+  fetchFanpageStatus,
   fetchHcmPortalArticle,
   fetchHcmPortalFeed,
+  syncFanpageFeed,
+  type FanpageConnectionStatusDto,
   type HcmCulturalEntryDto,
   type PortalArticleDetailDto,
   type PortalChannelKey,
@@ -71,14 +77,15 @@ interface CombinedNewsItem {
   articlePath?: string;
   articleUrl?: string;
   customEntry?: HcmCulturalEntryDto;
-  sourceOrigin?: 'CT07_TPHCM' | 'THU_VIEN_KHTH' | 'CONG_NHAN_CEP' | 'DOAN_UBND' | 'LOCAL';
+  sourceOrigin?: 'CT07_TPHCM' | 'THU_VIEN_KHTH' | 'CONG_NHAN_CEP' | 'DOAN_UBND' | 'LOCAL' | 'FANPAGE_DAT_THU';
   externalUrl?: string;
 }
 
-type NewsSourceScope = 'ALL' | 'CT07_TPHCM' | 'THU_VIEN_KHTH' | 'CONG_NHAN_CEP' | 'DOAN_UBND' | 'PORTAL' | 'WARD';
+type NewsSourceScope = 'ALL' | 'FANPAGE_DAT_THU' | 'CT07_TPHCM' | 'THU_VIEN_KHTH' | 'CONG_NHAN_CEP' | 'DOAN_UBND' | 'PORTAL' | 'WARD';
 
 const SOURCE_SCOPE_BUTTONS: Array<{ id: NewsSourceScope; label: string; badge?: string; desc: string }> = [
   { id: 'ALL', label: 'Tất cả nguồn (15+)', desc: 'Tổng hợp đa chiều từ các cơ quan' },
+  { id: 'FANPAGE_DAT_THU', label: 'Fanpage Đất Thủ', badge: 'FB Live', desc: 'Đất Thủ Quê Hương Tôi' },
   { id: 'CT07_TPHCM', label: 'Chỉ thị 07 (TP.HCM)', badge: 'Mới 2026', desc: 'hochiminhcity.gov.vn' },
   { id: 'THU_VIEN_KHTH', label: 'Thư viện KHTH', badge: 'Ebook & Di sản', desc: 'khonggianvanhoahochiminh.thuvientphcm.gov.vn' },
   { id: 'CONG_NHAN_CEP', label: 'Tổ chức CEP', badge: 'Người lao động', desc: 'khonggianvanhoahochiminh.cep.org.vn' },
@@ -115,6 +122,13 @@ export const HcmNewsEventsView: React.FC<{
   const [carouselIdx, setCarouselIdx] = useState<number>(0);
   const [printBulletinData, setPrintBulletinData] = useState<BulletinData | null>(null);
 
+  // Trạng thái kết nối & bài viết Fanpage Đất Thủ Quê Hương Tôi
+  const [fanpageStatus, setFanpageStatus] = useState<FanpageConnectionStatusDto | null>(null);
+  const [fanpageArticles, setFanpageArticles] = useState<any[]>([]);
+  const [loadingFanpage, setLoadingFanpage] = useState<boolean>(false);
+  const [isFanpageModalOpen, setIsFanpageModalOpen] = useState<boolean>(false);
+  const [fanpageNotice, setFanpageNotice] = useState<string | null>(null);
+
   const carouselSlides = useMemo(() => HCM_PHOTO_GALLERY.slice(0, 3), []);
 
   const syncPortalFeed = useCallback(async (ch: PortalChannelKey, refresh = false) => {
@@ -127,9 +141,36 @@ export const HcmNewsEventsView: React.FC<{
     }
   }, []);
 
+  const loadFanpageData = useCallback(async () => {
+    try {
+      const [st, arts] = await Promise.all([fetchFanpageStatus(), fetchFanpageArticles()]);
+      if (st) setFanpageStatus(st);
+      if (arts) setFanpageArticles(arts);
+    } catch {}
+  }, []);
+
   useEffect(() => {
     void syncPortalFeed(portalChannel, false);
   }, [portalChannel, syncPortalFeed]);
+
+  useEffect(() => {
+    void loadFanpageData();
+  }, [loadFanpageData]);
+
+  const handleSyncFanpage = async () => {
+    setLoadingFanpage(true);
+    setFanpageNotice('Đang kết nối API và đồng bộ bài viết mới nhất từ Fanpage Đất Thủ Quê Hương Tôi...');
+    try {
+      const res = await syncFanpageFeed();
+      setFanpageNotice(res.message || 'Đồng bộ hoàn tất!');
+      await loadFanpageData();
+      setTimeout(() => setFanpageNotice(null), 6000);
+    } catch (err: any) {
+      setFanpageNotice(err?.message || 'Không thể đồng bộ bài viết từ Fanpage.');
+    } finally {
+      setLoadingFanpage(false);
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -181,12 +222,28 @@ export const HcmNewsEventsView: React.FC<{
       articleUrl: p.articleUrl,
       sourceOrigin: 'CT07_TPHCM',
     }));
+    const fanpageMapped: CombinedNewsItem[] = fanpageArticles.map((fa, idx) => ({
+      id: fa.id,
+      category: fa.themeLabel || fa.categoryLabel || 'Fanpage Đất Thủ',
+      date: fa.postDate || 'Mới cập nhật',
+      title: fa.title,
+      snippet: fa.goodDeedSummary || fa.storyContent?.slice(0, 220) || 'Bản tin từ Fanpage Đất Thủ Quê Hương Tôi.',
+      content: fa.storyContent || fa.goodDeedSummary || '',
+      source: fa.sourceLabel || 'Fanpage Đất Thủ Quê Hương Tôi',
+      imageUrl: fa.avatarUrl || '/assets/hcm-space/khu-pho.jpg',
+      views: fa.likesCount || 340 + idx * 15,
+      sourceOrigin: 'FANPAGE_DAT_THU',
+      externalUrl: fa.sourceUrl || 'https://www.facebook.com/datthuquehuongtoi',
+    }));
     const baseMapped: CombinedNewsItem[] = HCM_NEWS_ARTICLES_6.map((n) => ({
       ...n,
       views: n.views ?? 180,
     }));
-    const all = [...customMapped, ...livePortalMapped, ...baseMapped];
+    const all = [...customMapped, ...livePortalMapped, ...fanpageMapped, ...baseMapped];
 
+    if (sourceScope === 'FANPAGE_DAT_THU') {
+      return all.filter((item) => item.sourceOrigin === 'FANPAGE_DAT_THU');
+    }
     if (sourceScope === 'WARD') {
       return all.filter((item) => item.sourceOrigin === 'LOCAL' || item.customEntry);
     }
@@ -206,7 +263,7 @@ export const HcmNewsEventsView: React.FC<{
       return all.filter((item) => item.sourceOrigin === 'DOAN_UBND');
     }
     return all;
-  }, [customNews, portalState, sourceScope]);
+  }, [customNews, portalState, fanpageArticles, sourceScope]);
 
   const categories = useMemo(() => {
     const set = new Set<string>([
@@ -347,6 +404,84 @@ export const HcmNewsEventsView: React.FC<{
         </div>
       </section>
 
+      {/* Fanpage "Đất Thủ Quê Hương Tôi" Live Connection Block */}
+      <section className="rounded-2xl border border-indigo-200 bg-gradient-to-r from-[#EEF4FF] via-white to-[#FDF8F6] p-4 shadow-2xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#1877F2] text-white font-black text-lg shadow-xs">
+              f
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-bold text-slate-900">
+                  {fanpageStatus?.pageConfig?.name || 'Fanpage Đất Thủ Quê Hương Tôi'}
+                </span>
+                <span
+                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10.5px] font-bold border ${
+                    fanpageStatus?.isConfigured
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                      : 'border-amber-200 bg-amber-50 text-amber-800'
+                  }`}
+                >
+                  {fanpageStatus?.isConfigured ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
+                  <span>
+                    {fanpageStatus?.isConfigured
+                      ? `Đã kết nối Meta Graph API (ID: ${fanpageStatus.pageConfig.pageId}) • ${fanpageArticles.length} bài viết`
+                      : `Kho bài viết Fanpage (${fanpageArticles.length} bài) • Sẵn sàng nạp Token & ID`}
+                  </span>
+                </span>
+                {fanpageStatus?.lastSyncedAt && (
+                  <span className="text-[11px] font-medium text-slate-500">
+                    Cập nhật: {new Date(fanpageStatus.lastSyncedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                )}
+              </div>
+              <p className="text-[11px] text-slate-600 mt-0.5">
+                Kênh mạng xã hội chính thống lan tỏa gương Người tốt việc tốt, Mô hình an sinh & hoạt động Phường Thủ Dầu Một
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsFanpageModalOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-300 bg-white hover:bg-indigo-50 px-3.5 py-1.5 text-xs font-bold text-indigo-700 cursor-pointer shadow-2xs"
+            >
+              <Key className="h-3.5 w-3.5 text-indigo-600" />
+              <span>Cấu hình Fanpage (ID & Token)</span>
+            </button>
+            <button
+              type="button"
+              disabled={loadingFanpage}
+              onClick={handleSyncFanpage}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-[#1877F2] hover:bg-blue-700 disabled:opacity-50 px-3.5 py-1.5 text-xs font-bold text-white cursor-pointer shadow-2xs"
+            >
+              <RefreshCw className={`h-3.5 w-3.5 ${loadingFanpage ? 'animate-spin' : ''}`} />
+              <span>{loadingFanpage ? 'Đang đồng bộ...' : 'Đồng bộ tin Fanpage'}</span>
+            </button>
+            <a
+              href={fanpageStatus?.pageConfig?.url || 'https://www.facebook.com/datthuquehuongtoi'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-2xs"
+            >
+              <ExternalLink className="h-3.5 w-3.5 text-[#1877F2]" />
+              <span>Mở Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        {fanpageNotice && (
+          <div className="rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-xs font-medium text-blue-900 flex items-center justify-between">
+            <span>{fanpageNotice}</span>
+            <button type="button" onClick={() => setFanpageNotice(null)} className="text-blue-500 hover:text-blue-700 cursor-pointer">
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+      </section>
+
       {/* Top Search & Ward Action Toolbar */}
       <div className="rounded-2xl border border-slate-200 bg-white p-3.5 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -407,7 +542,11 @@ export const HcmNewsEventsView: React.FC<{
                 />
                 <div className="absolute left-4 top-4 flex flex-wrap items-center gap-1.5">
                   <span className="rounded-md bg-rose-700 px-2.5 py-0.5 text-[10.5px] font-bold text-white uppercase">
-                    {leadArticle.isLivePortal ? 'Tin trực tuyến Cổng TTĐT' : 'Tiêu điểm Thủ Dầu Một'}
+                    {leadArticle.sourceOrigin === 'FANPAGE_DAT_THU'
+                      ? 'Fanpage Đất Thủ Quê Hương Tôi'
+                      : leadArticle.isLivePortal
+                      ? 'Tin trực tuyến Cổng TTĐT'
+                      : 'Tiêu điểm Thủ Dầu Một'}
                   </span>
                   <span className="rounded-md bg-white/95 px-2.5 py-0.5 text-[10.5px] font-bold text-blue-800">
                     {leadArticle.category}
@@ -512,6 +651,11 @@ export const HcmNewsEventsView: React.FC<{
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
                       <span className="rounded-md bg-blue-50 px-2 py-0.5 font-bold text-blue-700">{art.category}</span>
+                      {art.sourceOrigin === 'FANPAGE_DAT_THU' && (
+                        <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-1.5 py-0.5 text-[10px] font-bold text-blue-800">
+                          <span className="font-black text-[#1877F2]">f</span> Fanpage Đất Thủ
+                        </span>
+                      )}
                       {art.isLivePortal && (
                         <span className="rounded-md bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700">
                           Cổng TTĐT Trực tiếp
@@ -816,7 +960,16 @@ export const HcmNewsEventsView: React.FC<{
 
             <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
               <div className="flex flex-wrap items-center gap-2">
-                {readingItem.articleUrl ? (
+                {readingItem.sourceOrigin === 'FANPAGE_DAT_THU' ? (
+                  <a
+                    href={readingItem.externalUrl || 'https://www.facebook.com/datthuquehuongtoi'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-bold text-[#1877F2] hover:underline"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" /> Xem bài viết gốc trên Fanpage Facebook
+                  </a>
+                ) : readingItem.articleUrl ? (
                   <a
                     href={readingItem.articleUrl}
                     target="_blank"
@@ -893,6 +1046,13 @@ export const HcmNewsEventsView: React.FC<{
           data={printBulletinData}
         />
       )}
+
+      {/* Facebook Fanpage Credentials & Sync Modal */}
+      <HcmFanpageConfigModal
+        isOpen={isFanpageModalOpen}
+        onClose={() => setIsFanpageModalOpen(false)}
+        onSuccess={() => void loadFanpageData()}
+      />
     </div>
   );
 };

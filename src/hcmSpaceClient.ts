@@ -724,6 +724,95 @@ export async function fetchHcmPortalArticle(articlePath: string): Promise<Portal
 }
 
 // =========================================================================
+// FANPAGE "ĐẤT THỦ QUÊ HƯƠNG TÔI" (FACEBOOK GRAPH API & FEED CLIENT)
+// =========================================================================
+export interface FanpageConfigDto {
+  name: string;
+  handle: string;
+  url: string;
+  description: string;
+  pageId?: string;
+  hasToken?: boolean;
+  tokenPreview?: string;
+  avatarUrl?: string;
+  followersCount?: number;
+  status?: 'CONNECTED' | 'NOT_CONFIGURED' | 'ERROR';
+  errorMessage?: string;
+}
+
+export interface FanpageConnectionStatusDto {
+  pageConfig: FanpageConfigDto;
+  autoSyncActive: boolean;
+  lastSyncedAt: string;
+  totalItems: number;
+  fanpageItems: number;
+  manualItems: number;
+  isConfigured: boolean;
+}
+
+export async function fetchFanpageStatus(): Promise<FanpageConnectionStatusDto | null> {
+  try {
+    const res = await fetch('/api/hcm-space/fanpage-dat-thu/status');
+    if (res.ok) {
+      const json = await res.json();
+      if (json?.success && json.data) return json.data;
+    }
+  } catch {}
+  return null;
+}
+
+export async function saveFanpageCredentials(payload: {
+  pageId: string;
+  accessToken: string;
+  pageName?: string;
+  pageUrl?: string;
+}): Promise<{ success: boolean; message: string; config?: any; error?: string }> {
+  try {
+    const res = await fetch('/api/hcm-space/fanpage-dat-thu/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const json = await res.json();
+    return json;
+  } catch (err: any) {
+    return { success: false, message: 'Lỗi mạng khi kết nối máy chủ', error: err?.message || String(err) };
+  }
+}
+
+export async function syncFanpageFeed(): Promise<{
+  success: boolean;
+  syncedCount: number;
+  message: string;
+  lastSyncedAt: string;
+  isLiveMetaApi?: boolean;
+}> {
+  try {
+    const res = await fetch('/api/hcm-space/fanpage-dat-thu/sync', { method: 'POST' });
+    const json = await res.json();
+    return json;
+  } catch (err: any) {
+    return {
+      success: false,
+      syncedCount: 0,
+      message: err?.message || 'Không thể đồng bộ từ Fanpage lúc này',
+      lastSyncedAt: new Date().toISOString(),
+    };
+  }
+}
+
+export async function fetchFanpageArticles(): Promise<any[]> {
+  try {
+    const res = await fetch('/api/hcm-space/fanpage-dat-thu/items');
+    if (res.ok) {
+      const json = await res.json();
+      if (json?.success && Array.isArray(json.data)) return json.data;
+    }
+  } catch {}
+  return [];
+}
+
+// =========================================================================
 // V2 — 3-TIER ARCHIVE & 10-MODULE CMS CLIENT
 // =========================================================================
 export type HcmDossierType =
