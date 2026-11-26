@@ -89,124 +89,21 @@
   scrollbar-width: none;
 }
 
+@media (max-width: 1023px) {
+  .heritage-desktop-actions {
+    display: none !important;
+  }
+  .heritage-desktop-nav {
+    display: none !important;
+  }
+  .heritage-brand-row {
+    min-height: 64px;
+    gap: 12px;
+  }
+}
+
 .heritage-desktop-nav::-webkit-scrollbar {
   display: none;
-}
-
-/* =========================================================================
-   HIỆU ỨNG RÊ CHUỘT & TRƯỢT SIÊU NHẸ, MƯỢT MÀ NHƯ LỤA (Silky Feather-Light Menu)
-   - Bỏ scale để font chữ không bị rung mờ / giựt điểm ảnh (subpixel jitter)
-   - Bỏ animation trượt ngược chiều của các dòng con bên trong
-   - Bỏ backdrop-blur khi chuyển động để không gây tụt khung hình GPU
-   - Chuyển động fade-in + trượt nhẹ 4px chuẩn mực cực kỳ êm ái
-   ========================================================================= */
-.hcm-nav-btn {
-  position: relative;
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.hcm-nav-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 1px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 70%;
-  height: 2.5px;
-  background: linear-gradient(90deg, #be123c 0%, #e11d48 50%, #fb7185 100%);
-  border-radius: 9999px;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-  transform-origin: center;
-  opacity: 0;
-}
-
-.hcm-nav-btn:hover::after,
-.hcm-nav-btn[data-active="true"]::after {
-  transform: translateX(-50%) scaleX(1);
-  opacity: 1;
-}
-
-@keyframes hcmNavDropdownIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hcm-nav-dropdown-menu {
-  animation: hcmNavDropdownIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 16px 36px -4px rgba(136, 19, 55, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(244, 63, 94, 0.12);
-  will-change: opacity, transform;
-  transform: translateZ(0);
-  background-color: #ffffff;
-}
-
-.hcm-nav-dropdown-menu.origin-top-right {
-  transform-origin: top right;
-}
-
-.hcm-dropdown-row {
-  transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
-}
-
-.nav-hover-item {
-  position: relative;
-  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-}
-
-.nav-hover-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, #881337 0%, #be123c 50%, #f43f5e 100%);
-  border-radius: 9999px;
-  transition: width 0.2s ease, opacity 0.18s ease;
-  opacity: 0;
-}
-
-.nav-hover-item:hover {
-  color: #881337;
-  background: rgba(255, 241, 243, 0.85);
-}
-
-.nav-hover-item:hover::after {
-  width: 75%;
-  opacity: 1;
-}
-
-.nav-hover-item.after\:w-4\/5::after {
-  width: 80% !important;
-  opacity: 1 !important;
-}
-
-.heritage-desktop-nav > button {
-  min-height: 38px;
-  padding: 0 12px;
-  border-radius: 8px;
-  font-weight: 500;
-  color: #475569;
-  transition: all 0.18s ease;
-}
-
-.heritage-desktop-nav > button:first-child,
-.heritage-desktop-nav > button.active {
-  color: #881337;
-  font-weight: 700;
-  background: #fff1f3;
-  border-bottom: 2px solid #be123c;
-}
-
-.heritage-desktop-nav button:hover {
-  color: #be123c;
-  background: #fff1f3;
 }
 
 .heritage-mobile-navigation {

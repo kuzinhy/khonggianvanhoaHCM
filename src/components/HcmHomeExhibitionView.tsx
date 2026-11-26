@@ -116,35 +116,6 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
 }) => {
   const { currentUser, setCurrentUser, logout, visitorStats } = useApp();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openNavCluster, setOpenNavCluster] = useState<string | null>(null);
-  const navTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastHoverTimeRef = React.useRef<number>(0);
-
-  const handleNavMouseEnter = (clusterId: string) => {
-    if (navTimerRef.current) {
-      clearTimeout(navTimerRef.current);
-      navTimerRef.current = null;
-    }
-    lastHoverTimeRef.current = Date.now();
-    setOpenNavCluster(clusterId);
-  };
-
-  const handleNavMouseLeave = () => {
-    if (navTimerRef.current) {
-      clearTimeout(navTimerRef.current);
-    }
-    navTimerRef.current = setTimeout(() => {
-      setOpenNavCluster(null);
-    }, 220);
-  };
-
-  const handleClusterToggle = (clusterId: string) => {
-    hcmSfx.playClick(600);
-    if (Date.now() - lastHoverTimeRef.current < 300 && openNavCluster === clusterId) {
-      return;
-    }
-    setOpenNavCluster((prev) => (prev === clusterId ? null : clusterId));
-  };
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [isPlayingQuote, setIsPlayingQuote] = useState(false);
   const [fanpageSyncStatus, setFanpageSyncStatus] = useState<'idle' | 'syncing' | 'synced'>('idle');
@@ -300,7 +271,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </div>
           </a>
 
-            <div className="heritage-desktop-actions">
+            <div className="heritage-desktop-actions hidden lg:flex">
             {/* Nút Tìm kiếm kính lúp */}
             <button
               type="button"
@@ -451,15 +422,7 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
             </button>
           </div>
           </div>
-          {/* Backdrop đóng menu dropdown khi click ra ngoài */}
-          {openNavCluster && (
-            <div
-              className="fixed inset-0 z-40 bg-transparent"
-              onClick={() => setOpenNavCluster(null)}
-              aria-hidden="true"
-            />
-          )}
-          <nav className="heritage-desktop-nav relative z-50" aria-label="Điều hướng chính">
+          <nav className="heritage-desktop-nav relative z-50 hidden lg:flex" aria-label="Điều hướng chính">
             <HcmMorphingMegaMenu354
               activeTab={activeTab}
               onSelectTab={onSelectTab}
@@ -477,241 +440,259 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
         </div>
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div id="heritage-mobile-navigation" className="heritage-mobile-navigation lg:hidden border-t border-rose-200/80 bg-white px-5 py-4 space-y-3 shadow-lg animate-in fade-in slide-in-from-top-2">
-            <a
-              href="/gioi-thieu"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                onSelectTab('FOYER');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-2 font-semibold text-[#881337] border-b border-rose-200/80/30"
-            >
-              Giới thiệu
-            </a>
-            <a
-              href="/kham-pha-di-san"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('EXHIBIT');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-2 font-medium text-slate-900 border-b border-rose-200/80/30"
-            >
-              Khám phá di sản
-            </a>
-            <a
-              href="/thu-vien-so"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('BOOKS');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-2 font-medium text-slate-900 border-b border-rose-200/80/30"
-            >
-              Thư viện số
-            </a>
-            <a
-              href="/tin-tuc"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('NEWS');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-2 font-medium text-slate-900 border-b border-rose-200/80/30"
-            >
-              Tin tức
-            </a>
-            <a
-              href="/chuyen-trang-tu-lieu"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('OFFICIAL_PORTALS');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>🏛️ 08 Chuyên Trang Tư Liệu Về Bác</span>
-              <span className="text-[9px] bg-red-100 text-red-900 px-1.5 py-0.2 rounded font-bold">Trung Ương</span>
-            </a>
-            <a
-              href="/thieu-nhi"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('KIDS');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-bold text-amber-700 border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>🎒 Không Gian Thiếu Nhi Đất Thủ</span>
-              <span className="text-[9px] bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black">5 Điều Bác</span>
-            </a>
-            <a
-              href="/chuyen-ke-hoc-bac"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('STORIES_LEARNING');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>📖 120 Mẩu Chuyện Học Bác</span>
-              <span className="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">Mọi Đối Tượng</span>
-            </a>
-            <a
-              href="/lich-su-dang-bo"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('PARTY_HISTORY');
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left py-2 font-semibold text-[#881337] border-b border-rose-200/80/30"
-            >
-              Lịch sử Đảng bộ
-            </a>
-            <a
-              href="/di-tich-dat-thu"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('TDM_HOUSE');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-semibold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>🏛️ Di tích Đất Thủ</span>
-            </a>
-            <a
-              href="/bien-nien-su-phuong"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('TDM_CHRONOLOGY');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>📜 Biên niên sử phường</span>
-            </a>
-            <a
-              href="/guong-sang-tieu-bieu"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectTab('EXEMPLARY_PEOPLE');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left py-2 font-bold text-[#881337] border-b border-rose-200/80/30 flex items-center justify-between"
-            >
-              <span>🌟 Gương sáng tiêu biểu</span>
-            </a>
-            {onOpenGoldenBook && (
-              <a
-                href="/so-vang"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenGoldenBook();
+          <div id="heritage-mobile-navigation" className="heritage-mobile-navigation lg:hidden border-t border-rose-200/80 bg-white px-4 py-4 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2">
+            {/* 1. Sảnh Trung Tâm */}
+            <div className="pb-2 border-b border-rose-100">
+              <button
+                type="button"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  onSelectTab('FOYER');
                   setMobileMenuOpen(false);
                 }}
-                className="block w-full text-left py-2 font-medium text-[#881337] border-b border-rose-200/80/30"
+                className={`w-full text-left py-2 px-3 rounded-xl flex items-center gap-2.5 font-bold text-sm ${activeTab === 'FOYER' ? 'bg-rose-50 text-[#881337]' : 'text-slate-800 hover:bg-slate-50'}`}
               >
-                📜 Sổ vàng truyền thống số
-              </a>
-            )}
-            {onOpenRedMap && (
-              <a
-                href="/dia-chi-do"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenRedMap();
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full text-left py-2 font-medium text-[#881337] border-b border-rose-200/80/30"
+                <Landmark className="w-4 h-4 text-[#881337]" />
+                <span>Sảnh Trung Tâm</span>
+              </button>
+            </div>
+
+            {/* 2. Di Sản Hồ Chí Minh */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-rose-800 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Di Sản Hồ Chí Minh</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('BIO'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
               >
-                📍 Bản đồ địa chỉ đỏ
-              </a>
-            )}
-            <div className="pt-2 flex flex-wrap gap-2 text-xs">
+                <span>Cuộc Đời &amp; Sự Nghiệp (6 Chương)</span>
+                <span className="text-[10px] text-slate-400">Tiểu Sử</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('BOOKS'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Tủ Sách Kinh Điển 15 Tác Phẩm</span>
+                <span className="text-[10px] text-amber-600 font-bold">15 Tập</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('TIMELINE'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Dòng Thời Gian &amp; 30 Mốc Son</span>
+                <span className="text-[10px] text-blue-600 font-bold">Biên Niên</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('QUOTES'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Tư Tưởng, Đạo Đức &amp; Lời Dạy Của Bác</span>
+                <span className="text-[10px] text-emerald-600 font-bold">12 Lời</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('OFFICIAL_PORTALS'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-bold text-[#881337] hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>🏛️ 08 Chuyên Trang Tư Liệu Về Bác</span>
+                <span className="text-[9px] bg-red-100 text-red-900 px-1.5 py-0.5 rounded font-bold">Trung Ương</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('MEDIA'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Kho Tư Liệu Âm Thanh &amp; Video Di Sản</span>
+                <span className="text-[10px] text-rose-600 font-bold">Media</span>
+              </button>
+            </div>
+
+            {/* 3. Chuyện Kể Học Bác */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Chuyện Kể Học Bác</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('STORIES_LEARNING'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-bold text-amber-900 hover:bg-amber-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>📖 Toàn Bộ 120 Mẩu Chuyện Về Bác</span>
+                <span className="text-[10px] bg-amber-100 text-amber-950 px-1.5 py-0.5 rounded font-bold">120 Bài</span>
+              </button>
               {onOpenTwentyOneDayChallenge && (
                 <button
                   type="button"
-                  onClick={() => {
-                    onOpenTwentyOneDayChallenge();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-2.5 py-1.5 rounded-md bg-rose-700 text-white font-medium"
+                  onClick={() => { onOpenTwentyOneDayChallenge(); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-amber-50 flex items-center justify-between cursor-pointer"
                 >
-                  🎯 21 Ngày Học Bác
+                  <span>🎯 Thử Thách 21 Ngày Học &amp; Làm Theo Bác</span>
+                  <span className="text-[10px] text-amber-700 font-bold">Rèn Luyện</span>
                 </button>
               )}
+            </div>
+
+            {/* 4. Lịch Sử Đảng Bộ TP */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#881337] flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Lịch Sử Đảng Bộ TP</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('PARTY_HISTORY'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Toàn Văn Pho Sử Vàng 600 Trang</span>
+                <span className="text-[10px] text-rose-700 font-bold">600 Trang</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('TDM_CHRONOLOGY'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Biên Niên Sử Phường (Từ 01/7/2025)</span>
+                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">Mới Nhất</span>
+              </button>
+            </div>
+
+            {/* 5. Nhà Truyền Thống 3D (VR 360°) */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-rose-800 flex items-center gap-1.5">
+                <Box className="w-3.5 h-3.5" />
+                <span>Nhà Truyền Thống 3D (VR 360°)</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (onOpenHeritage3D) onOpenHeritage3D();
+                  else onSelectTab('TDM_HOUSE');
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-bold text-[#881337] hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>👓 Trải Nghiệm VR 360° Nhà Việc Phú Cường</span>
+                <span className="text-[10px] bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded font-bold">VR 360°</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('TDM_HOUSE'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Bản Đồ 8 Điểm Di Tích Lịch Sử Đất Thủ</span>
+                <span className="text-[10px] text-amber-700 font-bold">8 Điểm</span>
+              </button>
+              {onOpenRedMap && (
+                <button
+                  type="button"
+                  onClick={() => { onOpenRedMap(); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-rose-50 flex items-center justify-between cursor-pointer"
+                >
+                  <span>📍 Bản Đồ Địa Chỉ Đỏ Tương Tác</span>
+                  <span className="text-[10px] text-rose-700 font-bold">Bản Đồ</span>
+                </button>
+              )}
+            </div>
+
+            {/* 6. Không Gian Thiếu Nhi */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
+                <Smile className="w-3.5 h-3.5" />
+                <span>Không Gian Thiếu Nhi</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('KIDS'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-bold text-amber-900 hover:bg-amber-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>🎒 Không Gian Thiếu Nhi Đất Thủ (5 Điều Bác Dạy)</span>
+                <span className="text-[10px] bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded font-black">5 Điều Bác</span>
+              </button>
+              {setIsMiniQuizOpen && (
+                <button
+                  type="button"
+                  onClick={() => { setIsMiniQuizOpen(true); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-amber-50 flex items-center justify-between cursor-pointer"
+                >
+                  <span>🎯 Đố Vui Tìm Hiểu Cuộc Đời Bác Hồ</span>
+                  <span className="text-[10px] text-amber-800 font-bold">Mini Quiz</span>
+                </button>
+              )}
+            </div>
+
+            {/* 7. Rèn Luyện & Đời Sống */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5" />
+                <span>Rèn Luyện &amp; Đời Sống</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('EXEMPLARY_PEOPLE'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-bold text-emerald-900 hover:bg-emerald-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>🌟 Gương Sáng Tiêu Biểu Học Theo Bác</span>
+                <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">Tuyên Dương</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('MODELS'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-emerald-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Mô Hình Tiêu Biểu &amp; Không Gian Cơ Sở</span>
+                <span className="text-[10px] text-emerald-700 font-bold">Mô Hình</span>
+              </button>
               {onOpenChiBoPocket && (
                 <button
                   type="button"
-                  onClick={() => {
-                    onOpenChiBoPocket();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-2.5 py-1.5 rounded-md bg-amber-700 text-white font-medium"
+                  onClick={() => { onOpenChiBoPocket(); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-emerald-50 flex items-center justify-between cursor-pointer"
                 >
-                  📱 Sổ tay Chi bộ 2026
+                  <span>📱 Sổ Tay Chi Bộ Điện Tử 2026</span>
+                  <span className="text-[10px] text-emerald-700 font-bold">Chi Bộ</span>
                 </button>
               )}
-              {onOpenHandwritingZoom && (
+            </div>
+
+            {/* 8. Tin Tức & Tiện Ích */}
+            <div className="pb-2 border-b border-rose-100 space-y-1">
+              <div className="px-3 py-1 text-[11px] font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5" />
+                <span>Tin Tức &amp; Tiện Ích</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { onSelectTab('NEWS'); setMobileMenuOpen(false); }}
+                className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
+              >
+                <span>Tin Tức &amp; Hoạt Động Di Sản Phường</span>
+                <span className="text-[10px] text-blue-700 font-bold">Bản Tin</span>
+              </button>
+              {onOpenGoldenBook && (
                 <button
                   type="button"
-                  onClick={() => {
-                    onOpenHandwritingZoom();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-2.5 py-1.5 rounded-md bg-stone-700 text-white font-medium"
+                  onClick={() => { onOpenGoldenBook(); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
                 >
-                  🔍 Soi Bút tích Di chúc
-                </button>
-              )}
-              {onOpenRedTour && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onOpenRedTour();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-2.5 py-1.5 rounded-md bg-[#751D2C] text-amber-200 font-medium"
-                >
-                  🚩 Tuyến Đỏ Thủ Dầu Một
+                  <span>📜 Sổ Vàng Truyền Thống Số</span>
+                  <span className="text-[10px] text-amber-700 font-bold">Sổ Vàng</span>
                 </button>
               )}
               {onOpenHeritageAnalytics && (
                 <button
                   type="button"
-                  onClick={() => {
-                    onOpenHeritageAnalytics();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-2.5 py-1.5 rounded-md border border-[#751D2C] text-[#881337] font-medium"
+                  onClick={() => { onOpenHeritageAnalytics(); setMobileMenuOpen(false); }}
+                  className="w-full text-left py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between cursor-pointer"
                 >
-                  📊 Thống kê Di sản
-                </button>
-              )}
-              {onOpenToanTap && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onOpenToanTap();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-3 py-1.5 rounded-md bg-[#751D2C] text-white font-medium"
-                >
-                  Hồ Chí Minh Toàn tập
-                </button>
-              )}
-              {onOpenChiBoWorkspace && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onOpenChiBoWorkspace();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="px-3 py-1.5 rounded-md border border-[#751D2C] text-[#881337] font-medium"
-                >
-                  Chi bộ số
+                  <span>📊 Thống Kê &amp; Giám Sát Di Sản Số</span>
+                  <span className="text-[10px] text-slate-600 font-bold">Dữ Liệu</span>
                 </button>
               )}
             </div>
@@ -838,22 +819,6 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
           </div>
         )}
       </header>
-
-      {/* =========================================================================
-          LỚP PHỦ CHÌM NỀN (Backdrop Dimmer Overlay)
-          Khi chọn/mở bất kỳ menu chính nào sổ xuống, toàn bộ nội dung trang bên dưới bị chìm tối,
-          tôn vinh thanh điều hướng và menu phụ. Nhấp ra ngoài để đóng.
-          ========================================================================= */}
-      {openNavCluster && (
-        <div
-          className="fixed inset-0 bg-slate-950/50 backdrop-blur-[2px] z-40 transition-opacity duration-200 animate-in fade-in cursor-pointer"
-          onClick={() => {
-            hcmSfx.playClick(500);
-            setOpenNavCluster(null);
-          }}
-          aria-hidden="true"
-        />
-      )}
 
       {/* Banner Tự Động Gợi Nhớ Tiến Trình & Gợi Ý Chặng Tiếp Theo Cho Người Dân */}
       {onOpenGuidedJourney && (

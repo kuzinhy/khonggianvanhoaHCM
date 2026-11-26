@@ -853,10 +853,8 @@ export const HcmCulturalSpacePage: React.FC = () => {
               />
             </div>
 
-
-
-          {/* Highlight New Points ("Điểm mới" tại Phường Thủ Dầu Một) & Spatial Exhibition Showcase */}
-          <section className="rounded-3xl border border-blue-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4 scroll-reveal">
+            {/* Highlight New Points ("Điểm mới" tại Phường Thủ Dầu Một) & Spatial Exhibition Showcase */}
+            <section className="rounded-3xl border border-blue-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4 scroll-reveal">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
                 <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 border border-rose-200 px-2.5 py-0.5 text-[11px] font-bold text-rose-800">
