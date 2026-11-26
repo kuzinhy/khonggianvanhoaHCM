@@ -94,11 +94,15 @@
 }
 
 /* =========================================================================
-   HIỆU ỨNG RÊ CHUỘT & TRƯỢT MƯỢT MÀ THANH MENU NGANG (Silky Smooth Menu)
+   HIỆU ỨNG RÊ CHUỘT & TRƯỢT SIÊU NHẸ, MƯỢT MÀ NHƯ LỤA (Silky Feather-Light Menu)
+   - Bỏ scale để font chữ không bị rung mờ / giựt điểm ảnh (subpixel jitter)
+   - Bỏ animation trượt ngược chiều của các dòng con bên trong
+   - Bỏ backdrop-blur khi chuyển động để không gây tụt khung hình GPU
+   - Chuyển động fade-in + trượt nhẹ 4px chuẩn mực cực kỳ êm ái
    ========================================================================= */
 .hcm-nav-btn {
   position: relative;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .hcm-nav-btn::after {
@@ -111,7 +115,7 @@
   height: 2.5px;
   background: linear-gradient(90deg, #be123c 0%, #e11d48 50%, #fb7185 100%);
   border-radius: 9999px;
-  transition: transform 0.25s cubic-bezier(0.34, 1.45, 0.64, 1), opacity 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
   transform-origin: center;
   opacity: 0;
 }
@@ -125,29 +129,7 @@
 @keyframes hcmNavDropdownIn {
   from {
     opacity: 0;
-    transform: translateY(-8px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hcm-nav-dropdown-menu {
-  animation: hcmNavDropdownIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transform-origin: top left;
-  box-shadow: 0 20px 45px -10px rgba(136, 19, 55, 0.18), 0 0 0 1px rgba(244, 63, 94, 0.15);
-  will-change: transform, opacity;
-}
-
-.hcm-nav-dropdown-menu.origin-top-right {
-  transform-origin: top right;
-}
-
-@keyframes hcmNavRowSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
@@ -155,15 +137,21 @@
   }
 }
 
-.hcm-dropdown-row {
-  animation: hcmNavRowSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: transform, opacity;
+.hcm-nav-dropdown-menu {
+  animation: hcmNavDropdownIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 16px 36px -4px rgba(136, 19, 55, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(244, 63, 94, 0.12);
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  background-color: #ffffff;
 }
 
-.hcm-dropdown-row:nth-child(1) { animation-delay: 15ms; }
-.hcm-dropdown-row:nth-child(2) { animation-delay: 50ms; }
-.hcm-dropdown-row:nth-child(3) { animation-delay: 85ms; }
-.hcm-dropdown-row:nth-child(4) { animation-delay: 120ms; }
+.hcm-nav-dropdown-menu.origin-top-right {
+  transform-origin: top right;
+}
+
+.hcm-dropdown-row {
+  transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
 
 .nav-hover-item {
   position: relative;

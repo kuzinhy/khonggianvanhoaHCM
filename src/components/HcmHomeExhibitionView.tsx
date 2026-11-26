@@ -501,8 +501,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'HERITAGE' && (
-                <div className="absolute top-full left-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <BookOpen className="w-3.5 h-3.5 text-rose-700" />
@@ -718,8 +718,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'STORIES_LEARNING' && (
-                <div className="absolute top-full left-0 sm:left-[-20px] pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 sm:left-[-20px] pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <BookOpen className="w-3.5 h-3.5 text-rose-700" />
@@ -900,8 +900,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'PARTY_HISTORY' && (
-                <div className="absolute top-full left-0 sm:left-[-35px] xl:left-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-[-40px] sm:left-[-100px] xl:left-[-50px] pt-2 w-[380px] sm:w-[410px] max-w-[calc(100vw-32px)] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Flag className="w-3.5 h-3.5 text-rose-700" />
@@ -1082,8 +1082,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'VR_HERITAGE' && (
-                <div className="absolute top-full left-0 sm:left-[-40px] xl:left-[-20px] pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 sm:left-[-40px] xl:left-[-20px] pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Box className="w-3.5 h-3.5 text-rose-700" />
@@ -1265,8 +1265,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'KIDS_SPACE' && (
-                <div className="absolute top-full left-0 sm:left-[-60px] xl:left-[-30px] pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full left-0 sm:left-[-60px] xl:left-[-30px] pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Smile className="w-3.5 h-3.5 text-amber-600 fill-current" />
@@ -1444,8 +1444,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'COMMUNITY' && (
-                <div className="absolute top-full right-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full right-0 pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <Heart className="w-3.5 h-3.5 text-rose-700 fill-current" />
@@ -1623,8 +1623,8 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
               </button>
 
               {openNavCluster === 'UTILITIES' && (
-                <div className="absolute top-full right-0 pt-1.5 w-[380px] sm:w-[410px] z-50">
-                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white/95 border-2 border-rose-200/90 shadow-2xl p-2.5 space-y-1.5 backdrop-blur-md">
+                <div className="absolute top-full right-0 pt-2 w-[380px] sm:w-[410px] z-50 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4">
+                  <div className="hcm-nav-dropdown-menu origin-top-right rounded-2xl bg-white border-2 border-rose-200/90 shadow-xl p-2.5 space-y-1.5">
                     <div className="px-2.5 py-1 text-[11px] font-black uppercase text-[#881337] flex items-center justify-between border-b border-rose-100 pb-1.5 mb-1">
                       <span className="flex items-center gap-1.5">
                         <FileText className="w-3.5 h-3.5 text-rose-700" />
