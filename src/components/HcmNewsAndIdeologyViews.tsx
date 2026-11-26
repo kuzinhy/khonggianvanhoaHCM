@@ -15,6 +15,7 @@ import {
   Eye,
   FileText,
   Film,
+  Filter,
   Flame,
   Globe,
   HelpCircle,
@@ -293,182 +294,236 @@ export const HcmNewsEventsView: React.FC<{
 
   return (
     <div className="space-y-4">
-      {/* Live Portal Connection Bar (hochiminhcity.gov.vn) */}
-      <section className="rounded-2xl border border-blue-200 bg-gradient-to-r from-[#EFF6FF] via-white to-[#FFFDF9] p-4 shadow-2xs space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      {/* KHỐI ĐIỀU HÀNH NGUỒN TIN & BỘ LỌC KHOA HỌC DÙNG DROPLISTS */}
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs space-y-3">
+        {/* Hàng 1: Trạng thái 2 nguồn tin & Tác vụ nhanh */}
+        <div className="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100">
           <div className="flex flex-wrap items-center gap-2">
+            {/* Cổng TTĐT TP.HCM status */}
             <span
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold border ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold border ${
                 portalState?.connected
                   ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
                   : 'border-amber-200 bg-amber-50 text-amber-800'
               }`}
             >
-              {portalState?.connected ? <Wifi className="h-3.5 w-3.5" /> : <WifiOff className="h-3.5 w-3.5" />}
+              {portalState?.connected ? <Wifi className="h-3.5 w-3.5 text-emerald-600" /> : <WifiOff className="h-3.5 w-3.5 text-amber-600" />}
               <span>
                 {portalState?.connected
-                  ? `Đã kết nối trực tiếp hochiminhcity.gov.vn (${portalState.articles.length} bài)`
-                  : 'Đang dùng kho bài biên tập cục bộ'}
+                  ? `Cổng TTĐT TP.HCM: Trực tiếp (${portalState.articles.length} bài)`
+                  : 'Cổng TTĐT TP.HCM: Bộ đệm'}
               </span>
             </span>
-            {portalState?.fetchedAt && (
-              <span className="text-[11px] font-medium text-slate-500">
-                Cập nhật: {new Date(portalState.fetchedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
-                {portalState.fromCache ? ' (cache)' : ''}
+
+            {/* Fanpage Đất Thủ status */}
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold border ${
+                fanpageStatus?.isConfigured
+                  ? 'border-blue-200 bg-blue-50 text-blue-800'
+                  : 'border-indigo-100 bg-indigo-50/70 text-indigo-800'
+              }`}
+            >
+              <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#1877F2] text-white text-[9px] font-black">f</span>
+              <span>
+                Fanpage Đất Thủ ({fanpageArticles.length} bài)
+                {fanpageStatus?.isConfigured ? ' • Live API' : ''}
               </span>
-            )}
+            </span>
           </div>
 
+          {/* Nhóm nút tác vụ nhanh bên phải */}
           <div className="flex flex-wrap items-center gap-2">
-            <a
-              href={portalState?.channel?.url || 'https://hochiminhcity.gov.vn/tin-tuc-khong-gian-van-hoa'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-[11px] font-bold text-slate-700"
-            >
-              <Globe className="h-3.5 w-3.5 text-blue-600" /> Mở trang gốc
-            </a>
             <button
               type="button"
-              disabled={loadingPortal}
-              onClick={() => void syncPortalFeed(portalChannel, true)}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 px-3 py-1.5 text-xs font-bold text-white cursor-pointer"
+              disabled={loadingPortal || loadingFanpage}
+              onClick={async () => {
+                await Promise.all([
+                  syncPortalFeed(portalChannel, true),
+                  handleSyncFanpage(),
+                ]);
+              }}
+              title="Đồng bộ lại tin tức từ Cổng TTĐT và Fanpage Đất Thủ"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 px-3 py-1.5 text-xs font-bold text-white cursor-pointer shadow-2xs"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${loadingPortal ? 'animate-spin' : ''}`} />
-              <span>{loadingPortal ? 'Đang đồng bộ...' : 'Đồng bộ tin mới'}</span>
+              <RefreshCw className={`h-3.5 w-3.5 ${(loadingPortal || loadingFanpage) ? 'animate-spin' : ''}`} />
+              <span>{(loadingPortal || loadingFanpage) ? 'Đang cập nhật...' : 'Đồng bộ tin tức'}</span>
             </button>
-          </div>
-        </div>
 
-        {/* 4 Live Portal Channels & Multi-Source Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-blue-100">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[11px] font-bold text-slate-600 mr-1">Chuyên mục Cổng TTĐT:</span>
-            {PORTAL_CHANNEL_BUTTONS.map((ch) => (
-              <button
-                key={ch.key}
-                type="button"
-                onClick={() => {
-                  setPortalChannel(ch.key);
-                  setCatFilter('Tất cả');
-                }}
-                className={`rounded-xl px-2.5 py-1 text-[11px] font-bold cursor-pointer transition-colors ${
-                  portalChannel === ch.key
-                    ? 'bg-rose-700 text-white'
-                    : 'bg-white border border-slate-200 text-slate-700 hover:border-rose-300'
-                }`}
-              >
-                {ch.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* 4 Official Sources + Ward Selector */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-blue-100">
-          <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-700 shrink-0">
-            <Globe className="h-3.5 w-3.5 text-blue-700" />
-            <span>Nguồn thông tin & tư liệu:</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            {SOURCE_SCOPE_BUTTONS.map((sc) => (
-              <button
-                key={sc.id}
-                type="button"
-                onClick={() => {
-                  setSourceScope(sc.id);
-                  setCatFilter('Tất cả');
-                }}
-                title={sc.desc}
-                className={`inline-flex items-center gap-1 rounded-xl px-2.5 py-1 text-[11px] font-bold cursor-pointer transition-all border ${
-                  sourceScope === sc.id
-                    ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
-                    : 'bg-white text-slate-700 border-slate-200 hover:bg-blue-50'
-                }`}
-              >
-                <span>{sc.label}</span>
-                {sc.badge && (
-                  <span
-                    className={`text-[9.5px] px-1 py-0.2 rounded font-extrabold ${
-                      sourceScope === sc.id
-                        ? 'bg-white/20 text-white'
-                        : 'bg-rose-100 text-rose-800'
-                    }`}
-                  >
-                    {sc.badge}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Fanpage "Đất Thủ Quê Hương Tôi" Live Connection Block */}
-      <section className="rounded-2xl border border-indigo-200 bg-gradient-to-r from-[#EEF4FF] via-white to-[#FDF8F6] p-4 shadow-2xs space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2.5">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#1877F2] text-white font-black text-lg shadow-xs">
-              f
-            </div>
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold text-slate-900">
-                  {fanpageStatus?.pageConfig?.name || 'Fanpage Đất Thủ Quê Hương Tôi'}
-                </span>
-                <span
-                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10.5px] font-bold border ${
-                    fanpageStatus?.isConfigured
-                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                      : 'border-amber-200 bg-amber-50 text-amber-800'
-                  }`}
-                >
-                  {fanpageStatus?.isConfigured ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
-                  <span>
-                    {fanpageStatus?.isConfigured
-                      ? `Đã kết nối Meta Graph API (ID: ${fanpageStatus.pageConfig.pageId}) • ${fanpageArticles.length} bài viết`
-                      : `Kho bài viết Fanpage (${fanpageArticles.length} bài) • Sẵn sàng nạp Token & ID`}
-                  </span>
-                </span>
-                {fanpageStatus?.lastSyncedAt && (
-                  <span className="text-[11px] font-medium text-slate-500">
-                    Cập nhật: {new Date(fanpageStatus.lastSyncedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
-                  </span>
-                )}
-              </div>
-              <p className="text-[11px] text-slate-600 mt-0.5">
-                Kênh mạng xã hội chính thống lan tỏa gương Người tốt việc tốt, Mô hình an sinh & hoạt động Phường Thủ Dầu Một
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={() => setIsFanpageModalOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-300 bg-white hover:bg-indigo-50 px-3.5 py-1.5 text-xs font-bold text-indigo-700 cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-200 bg-indigo-50/60 hover:bg-indigo-100 px-3 py-1.5 text-xs font-bold text-indigo-800 cursor-pointer shadow-2xs"
             >
               <Key className="h-3.5 w-3.5 text-indigo-600" />
-              <span>Cấu hình Fanpage (ID & Token)</span>
+              <span>Cấu hình Fanpage</span>
             </button>
+
+            {/* Menu mở nhanh trang gốc */}
+            <div className="relative group">
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-2xs cursor-pointer"
+              >
+                <ExternalLink className="h-3.5 w-3.5 text-slate-500" />
+                <span>Mở trang gốc ▾</span>
+              </button>
+              <div className="absolute right-0 top-full mt-1 hidden group-hover:block z-20 w-56 rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg space-y-1 text-xs">
+                <a
+                  href={portalState?.channel?.url || 'https://hochiminhcity.gov.vn/tin-tuc-khong-gian-van-hoa'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                >
+                  <Globe className="h-3.5 w-3.5 text-blue-600 shrink-0" />
+                  <span>Cổng TTĐT TP.HCM</span>
+                </a>
+                <a
+                  href={fanpageStatus?.pageConfig?.url || 'https://www.facebook.com/datthuquehuongtoi'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                >
+                  <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#1877F2] text-white text-[9px] font-black shrink-0">f</span>
+                  <span>Fanpage Đất Thủ Quê Hương Tôi</span>
+                </a>
+                <a
+                  href="https://khonggianvanhoahochiminh.thuvientphcm.gov.vn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-slate-700 hover:bg-blue-50 hover:text-blue-700 font-medium"
+                >
+                  <BookOpen className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                  <span>Thư viện KHTH TP.HCM</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hàng 2: THANH LỌC BẰNG DROPLISTS & SEARCH BOX */}
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex flex-wrap items-center gap-2 flex-1 min-w-[280px]">
+            {/* Ô tìm kiếm từ khóa */}
+            <div className="relative flex-1 min-w-[170px] max-w-xs">
+              <Search className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Tìm tin tức, sự kiện..."
+                className="w-full rounded-xl border border-slate-200 bg-[#F8FBFF] pl-9 pr-3 py-1.5 text-xs focus:bg-white focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            {/* DROPLIST 1: Chọn Nguồn thông tin & tư liệu */}
+            <div className="relative min-w-[190px]">
+              <div className="flex items-center rounded-xl border border-blue-200 bg-[#F0F6FF]/60 px-2.5 py-1.5 shadow-2xs hover:border-blue-400">
+                <Globe className="h-3.5 w-3.5 text-blue-600 mr-1.5 shrink-0" />
+                <select
+                  value={sourceScope}
+                  onChange={(e) => {
+                    setSourceScope(e.target.value as NewsSourceScope);
+                    setCatFilter('Tất cả');
+                  }}
+                  className="w-full bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer"
+                >
+                  <option value="ALL">🌐 Tất cả nguồn tin (15+ cơ quan)</option>
+                  <option value="FANPAGE_DAT_THU">📱 Fanpage Đất Thủ Quê Hương Tôi</option>
+                  <option value="CT07_TPHCM">🏛️ Chỉ thị 07 (TP.HCM)</option>
+                  <option value="PORTAL">⚡ Cổng TTĐT TP.HCM (Trực tiếp)</option>
+                  <option value="THU_VIEN_KHTH">📚 Thư viện KHTH TP.HCM</option>
+                  <option value="CONG_NHAN_CEP">🤝 Tổ chức CEP (Người lao động)</option>
+                  <option value="DOAN_UBND">🚩 Tuổi trẻ UBND TP (Chuẩn mực 144)</option>
+                  <option value="WARD">📍 Phường Thủ Dầu Một (Chi bộ & Khu phố)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* DROPLIST 2: Chuyên mục / Chủ đề bài viết */}
+            <div className="relative min-w-[170px]">
+              <div className="flex items-center rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 shadow-2xs hover:border-slate-400">
+                <Filter className="h-3.5 w-3.5 text-slate-500 mr-1.5 shrink-0" />
+                <select
+                  value={catFilter}
+                  onChange={(e) => setCatFilter(e.target.value)}
+                  className="w-full bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer"
+                >
+                  {categories.map((c) => (
+                    <option key={c} value={c}>
+                      {c === 'Tất cả' ? '📑 Tất cả chủ đề' : c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Nếu đang chọn Cổng TTĐT hoặc Tất cả, hiện thêm Droplist Chuyên mục Cổng TTĐT */}
+            {(sourceScope === 'ALL' || sourceScope === 'PORTAL' || sourceScope === 'CT07_TPHCM') && (
+              <div className="relative min-w-[160px]">
+                <div className="flex items-center rounded-xl border border-rose-200 bg-rose-50/50 px-2.5 py-1.5 shadow-2xs hover:border-rose-300">
+                  <span className="text-[11px] font-bold text-rose-800 mr-1.5 shrink-0">Cổng:</span>
+                  <select
+                    value={portalChannel}
+                    onChange={(e) => setPortalChannel(e.target.value as PortalChannelKey)}
+                    className="w-full bg-transparent text-xs font-bold text-rose-900 focus:outline-none cursor-pointer"
+                  >
+                    {PORTAL_CHANNEL_BUTTONS.map((ch) => (
+                      <option key={ch.key} value={ch.key}>
+                        {ch.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {canEdit && (
             <button
               type="button"
-              disabled={loadingFanpage}
-              onClick={handleSyncFanpage}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-[#1877F2] hover:bg-blue-700 disabled:opacity-50 px-3.5 py-1.5 text-xs font-bold text-white cursor-pointer shadow-2xs"
+              onClick={onAddNews}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 px-3.5 py-2 text-xs font-bold text-white shadow-2xs cursor-pointer shrink-0"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${loadingFanpage ? 'animate-spin' : ''}`} />
-              <span>{loadingFanpage ? 'Đang đồng bộ...' : 'Đồng bộ tin Fanpage'}</span>
+              <Plus className="h-3.5 w-3.5" /> Đăng tin Thủ Dầu Một
             </button>
-            <a
-              href={fanpageStatus?.pageConfig?.url || 'https://www.facebook.com/datthuquehuongtoi'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-2xs"
-            >
-              <ExternalLink className="h-3.5 w-3.5 text-[#1877F2]" />
-              <span>Mở Facebook</span>
-            </a>
+          )}
+        </div>
+
+        {/* Hàng 3: 5 Nút Lọc Nhanh Gọn Gàng (1 Hàng) */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-[11px]">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="text-slate-500 font-semibold mr-1">Lọc nhanh:</span>
+            {[
+              { label: 'Tất cả', scope: 'ALL', cat: 'Tất cả' },
+              { label: '📱 Fanpage Đất Thủ', scope: 'FANPAGE_DAT_THU', cat: 'Tất cả' },
+              { label: '📍 Phường Thủ Dầu Một', scope: 'WARD', cat: 'Tất cả' },
+              { label: '🏛️ Cổng TTĐT TP.HCM', scope: 'PORTAL', cat: 'Tất cả' },
+              { label: '🤝 Dân vận khéo', scope: 'ALL', cat: 'Dân vận khéo' },
+              { label: '📜 Nghị quyết & Chỉ thị', scope: 'ALL', cat: 'Nghị quyết & Chỉ thị' },
+            ].map((chip) => {
+              const isActive = (sourceScope === chip.scope && (chip.cat === 'Tất cả' || catFilter === chip.cat));
+              return (
+                <button
+                  key={chip.label}
+                  type="button"
+                  onClick={() => {
+                    setSourceScope(chip.scope as NewsSourceScope);
+                    setCatFilter(chip.cat);
+                  }}
+                  className={`rounded-lg px-2.5 py-0.5 font-bold cursor-pointer transition-all border ${
+                    isActive
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-blue-50 hover:border-blue-200'
+                  }`}
+                >
+                  {chip.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="text-[11.5px] text-slate-500 font-medium">
+            Hiển thị: <strong className="text-slate-800">{filteredNews.length}</strong> bài viết
           </div>
         </div>
 
@@ -481,48 +536,6 @@ export const HcmNewsEventsView: React.FC<{
           </div>
         )}
       </section>
-
-      {/* Top Search & Ward Action Toolbar */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-3.5 space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="relative flex-1 min-w-[220px] max-w-md">
-            <Search className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Tìm tin tức, sự kiện, gương Dân vận khéo..."
-              className="w-full rounded-xl border border-slate-200 bg-[#F8FBFF] pl-9 pr-3 py-1.5 text-xs"
-            />
-          </div>
-          {canEdit && (
-            <button
-              type="button"
-              onClick={onAddNews}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-rose-700 hover:bg-rose-800 px-3.5 py-2 text-xs font-bold text-white shadow-2xs cursor-pointer"
-            >
-              <Plus className="h-3.5 w-3.5" /> Đăng tin / Sự kiện Thủ Dầu Một
-            </button>
-          )}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1.5">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setCatFilter(cat)}
-              className={`rounded-xl px-3 py-1 text-[11px] font-bold cursor-pointer transition-colors ${
-                catFilter === cat
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-[#F5F9FF] text-slate-700 hover:bg-blue-50 border border-blue-100'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* 2-Column Editorial Layout matching Portal Structure (8 / 4 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
