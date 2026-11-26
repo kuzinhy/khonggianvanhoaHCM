@@ -853,50 +853,7 @@ export const HcmCulturalSpacePage: React.FC = () => {
               />
             </div>
 
-            {/* MÔ HÌNH 3D & SA BÀN TƯƠNG TÁC CHUYÊN ĐỀ */}
-            <div className="rounded-3xl border-2 border-[#C59A55] bg-gradient-to-r from-[#2A050A] via-[#4A0E17] to-[#2A050A] p-5 sm:p-6 text-white shadow-xl relative overflow-hidden scroll-reveal-scale">
-              <div className="pointer-events-none absolute -right-10 -bottom-10 opacity-20">
-                <DongSonDrumIcon className="h-72 w-72 animate-spin-slow" />
-              </div>
-              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="space-y-1.5 max-w-2xl">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-amber-500/20 border border-amber-400/60 px-3 py-0.5 text-xs font-black text-amber-300">
-                      MÔ HÌNH 3D TƯƠNG TÁC
-                    </span>
-                    <span className="text-xs text-amber-200 font-bold">
-                      08 Gian Chủ Đề &amp; Bảo Vật 360°
-                    </span>
-                  </div>
-                  <h3 className="text-base sm:text-xl font-extrabold text-white">
-                    Tham Quan Không Gian Văn Hóa Hồ Chí Minh 3D &amp; Sa Bàn Phối Cảnh
-                  </h3>
-                  <p className="text-xs sm:text-sm text-amber-100/90 leading-relaxed">
-                    Khám phá toàn cảnh 08 gian trưng bày theo dòng lịch sử, xoay 360 độ các hiện vật di sản quý giá và trải nghiệm tour tự động có thuyết minh tiếng Việt chuẩn Cấp A.
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('EXHIBIT')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#C59A55] to-[#B28236] hover:brightness-110 px-4 py-2.5 text-xs font-bold text-slate-950 shadow-lg transition-all hover:scale-105 cursor-pointer"
-                  >
-                    <Box className="h-4 w-4" />
-                    <span>Vào Phòng 3D (360°)</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('EXHIBIT')}
-                    className="inline-flex items-center gap-2 rounded-xl border border-amber-400/60 bg-white/10 hover:bg-white/20 px-3.5 py-2.5 text-xs font-bold text-amber-200 transition-colors cursor-pointer"
-                  >
-                    <Sparkles className="h-4 w-4 text-amber-300" />
-                    <span>Hiện Vật 3D 360°</span>
-                  </button>
-                </div>
-              </div>
-            </div>
 
           {/* Highlight New Points ("Điểm mới" tại Phường Thủ Dầu Một) & Spatial Exhibition Showcase */}
           <section className="rounded-3xl border border-blue-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4 scroll-reveal">

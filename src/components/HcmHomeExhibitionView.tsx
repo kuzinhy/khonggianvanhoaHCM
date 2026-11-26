@@ -535,19 +535,54 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5">
                               <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
-                                Không Gian Văn Hóa HCM (3D VR)
+                                Không Gian Văn Hóa HCM (3D VR) &amp; Sa Bàn
                               </span>
-                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
-                                MỚI
+                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 border border-amber-300/60 shrink-0">
+                                08 Gian Số
                               </span>
                             </div>
                             <p className="text-[10.5px] text-slate-500 truncate mt-0.5 group-hover:text-slate-700">
-                              Sảnh tưởng niệm Bác, avatar 3D &amp; 4 cánh lịch sử
+                              08 gian chủ đề lịch sử, avatar 3D &amp; thuyết minh Cấp A
                             </p>
                           </div>
                         </div>
                         <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
-                          VR 3D
+                          VR 360°
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hcmSfx.playClick(600);
+                          onSelectTab('EXHIBIT');
+                          setOpenNavCluster(null);
+                        }}
+                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
+                            style={{ background: 'linear-gradient(140deg, #B45309, #F59E0B)' }}
+                          >
+                            <Sparkles className="w-4 h-4 text-amber-100" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
+                                Bộ Sưu Tập Hiện Vật &amp; Bảo Vật 3D
+                              </span>
+                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
+                                Hiện Vật
+                              </span>
+                            </div>
+                            <p className="text-[10.5px] text-slate-500 truncate mt-0.5 group-hover:text-slate-700">
+                              Xoay 360 độ hiện vật di sản quý giá &amp; thuyết minh tương tác
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
+                          Bảo Vật 3D
                         </span>
                       </button>
 
@@ -619,41 +654,6 @@ export const HcmHomeExhibitionView: React.FC<HcmHomeExhibitionViewProps> = ({
                         </div>
                         <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
                           12 Điểm
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          hcmSfx.playClick(600);
-                          onSelectTab('TDM_HOUSE');
-                          setOpenNavCluster(null);
-                        }}
-                        className="hcm-dropdown-row w-full p-2 rounded-xl text-left flex items-center justify-between gap-2.5 hover:bg-gradient-to-r hover:from-rose-50 hover:to-white hover:translate-x-1 transition-all duration-200 group cursor-pointer border border-transparent hover:border-rose-200/60"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-xs group-hover:scale-105 transition-transform duration-200"
-                            style={{ background: 'linear-gradient(140deg, #1E3A8A, #3B82F6)' }}
-                          >
-                            <Sparkles className="w-4 h-4" />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-xs sm:text-[13px] font-bold text-slate-900 group-hover:text-[#881337] transition-colors leading-snug">
-                                Tư Vấn Kỹ Thuật Số Hóa 3D Thực Địa
-                              </span>
-                              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 shrink-0">
-                                Công Nghệ
-                              </span>
-                            </div>
-                            <p className="text-[10.5px] text-slate-500 truncate mt-0.5 group-hover:text-slate-700">
-                              Quy trình chuẩn chụp 360° 8K và nhúng WebGL
-                            </p>
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200/60 shrink-0 whitespace-nowrap">
-                          WebGL
                         </span>
                       </button>
                     </div>
