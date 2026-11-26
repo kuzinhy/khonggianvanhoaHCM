@@ -35,6 +35,9 @@ export interface ToanTapVolume {
   period: string;
   highlights: string;
   citation: string;
+  fileId: string;
+  driveUrl: string;
+  previewUrl: string;
 }
 
 export interface ClassicWorkItem {
@@ -369,21 +372,141 @@ export const HISTORICAL_EVENTS_30: HistoricalEvent30[] = [
 ];
 
 export const TOAN_TAP_VOLUMES: ToanTapVolume[] = [
-  { volume: 1, period: '1912–1924', highlights: 'Yêu sách của nhân dân An Nam (1919), báo Người cùng khổ, diễn văn tại Quốc tế V', citation: 'Hồ Chí Minh Toàn tập, Tập 1, NXB CTQG Sự thật (2011)' },
-  { volume: 2, period: '1924–1929', highlights: 'Bản án chế độ thực dân Pháp (1925), Đường Kách mệnh (1927), báo Thanh niên', citation: 'Hồ Chí Minh Toàn tập, Tập 2, NXB CTQG Sự thật (2011)' },
-  { volume: 3, period: '1930–1945', highlights: 'Chánh cương & Sách lược vắn tắt (1930), Nhật ký trong tù (1942–1943)', citation: 'Hồ Chí Minh Toàn tập, Tập 3, NXB CTQG Sự thật (2011)' },
-  { volume: 4, period: '1945–1946', highlights: 'Tuyên ngôn Độc lập (1945), Thư gửi UBND các cấp, Lời kêu gọi toàn quốc kháng chiến', citation: 'Hồ Chí Minh Toàn tập, Tập 4, NXB CTQG Sự thật (2011)' },
-  { volume: 5, period: '1947–1949', highlights: 'Đời sống mới (1947), Sửa đổi lối làm việc (1947), Lời kêu gọi Thi đua ái quốc (1948)', citation: 'Hồ Chí Minh Toàn tập, Tập 5, NXB CTQG Sự thật (2011)' },
-  { volume: 6, period: '1949–1950', highlights: 'Bài báo Dân vận (15/10/1949), Thư gửi Hội nghị cán bộ, chiến dịch Biên giới', citation: 'Hồ Chí Minh Toàn tập, Tập 6, NXB CTQG Sự thật (2011)' },
-  { volume: 7, period: '1951–1952', highlights: 'Báo cáo chính trị tại Đại hội II của Đảng, thực hành tiết kiệm chống tham ô lãng phí', citation: 'Hồ Chí Minh Toàn tập, Tập 7, NXB CTQG Sự thật (2011)' },
-  { volume: 8, period: '1953–1954', highlights: 'Chiến dịch Điện Biên Phủ, thư gửi đồng bào và chiến sĩ tiếp quản Thủ đô', citation: 'Hồ Chí Minh Toàn tập, Tập 8, NXB CTQG Sự thật (2011)' },
-  { volume: 9, period: '1954–1955', highlights: 'Khôi phục kinh tế miền Bắc, củng cố chính quyền dân chủ nhân dân', citation: 'Hồ Chí Minh Toàn tập, Tập 9, NXB CTQG Sự thật (2011)' },
-  { volume: 10, period: '1955–1957', highlights: 'Xây dựng khối đại đoàn kết, nâng cao văn hóa giáo dục quần chúng', citation: 'Hồ Chí Minh Toàn tập, Tập 10, NXB CTQG Sự thật (2011)' },
-  { volume: 11, period: '1958–1959', highlights: 'Đạo đức cách mạng (1958), Thường thức chính trị và đào tạo cán bộ cơ sở', citation: 'Hồ Chí Minh Toàn tập, Tập 11, NXB CTQG Sự thật (2011)' },
-  { volume: 12, period: '1959–1960', highlights: 'Đại hội đại biểu toàn quốc lần thứ III, Tết trồng cây đầu tiên (1959)', citation: 'Hồ Chí Minh Toàn tập, Tập 12, NXB CTQG Sự thật (2011)' },
-  { volume: 13, period: '1961–1962', highlights: 'Phong trào Người tốt Việc tốt, giáo dục thiếu niên nhi đồng và công tác Mặt trận', citation: 'Hồ Chí Minh Toàn tập, Tập 13, NXB CTQG Sự thật (2011)' },
-  { volume: 14, period: '1963–1965', highlights: 'Hội nghị Chính trị đặc biệt (1964), chi viện miền Nam ruột thịt', citation: 'Hồ Chí Minh Toàn tập, Tập 14, NXB CTQG Sự thật (2011)' },
-  { volume: 15, period: '1965–1969', highlights: 'Lời kêu gọi 17/7/1966, Nâng cao đạo đức cách mạng (1969) và Bản Di chúc (1969)', citation: 'Hồ Chí Minh Toàn tập, Tập 15, NXB CTQG Sự thật (2011)' },
+  {
+    volume: 1,
+    period: '1912–1924',
+    highlights: 'Yêu sách của nhân dân An Nam (1919), báo Người cùng khổ, diễn văn tại Quốc tế V',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 1, NXB CTQG Sự thật (2011)',
+    fileId: '1w7m65gYU-LK5akU9VBuXHwdijJnZIMND',
+    driveUrl: 'https://drive.google.com/file/d/1w7m65gYU-LK5akU9VBuXHwdijJnZIMND/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1w7m65gYU-LK5akU9VBuXHwdijJnZIMND/preview'
+  },
+  {
+    volume: 2,
+    period: '1924–1929',
+    highlights: 'Bản án chế độ thực dân Pháp (1925), Đường Kách mệnh (1927), báo Thanh niên',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 2, NXB CTQG Sự thật (2011)',
+    fileId: '1uuRIRwaGQWVUTboOeChNjElURLRbjOZj',
+    driveUrl: 'https://drive.google.com/file/d/1uuRIRwaGQWVUTboOeChNjElURLRbjOZj/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1uuRIRwaGQWVUTboOeChNjElURLRbjOZj/preview'
+  },
+  {
+    volume: 3,
+    period: '1930–1945',
+    highlights: 'Chánh cương & Sách lược vắn tắt (1930), Nhật ký trong tù (1942–1943)',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 3, NXB CTQG Sự thật (2011)',
+    fileId: '1MqcjrjlQWLdaPORGRhQgsfU99HTdtpgL',
+    driveUrl: 'https://drive.google.com/file/d/1MqcjrjlQWLdaPORGRhQgsfU99HTdtpgL/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1MqcjrjlQWLdaPORGRhQgsfU99HTdtpgL/preview'
+  },
+  {
+    volume: 4,
+    period: '1945–1946',
+    highlights: 'Tuyên ngôn Độc lập (1945), Thư gửi UBND các cấp, Lời kêu gọi toàn quốc kháng chiến',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 4, NXB CTQG Sự thật (2011)',
+    fileId: '1fg7tp2on1gTZIu2KZmC_NDY-At3wFmnr',
+    driveUrl: 'https://drive.google.com/file/d/1fg7tp2on1gTZIu2KZmC_NDY-At3wFmnr/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1fg7tp2on1gTZIu2KZmC_NDY-At3wFmnr/preview'
+  },
+  {
+    volume: 5,
+    period: '1947–1949',
+    highlights: 'Đời sống mới (1947), Sửa đổi lối làm việc (1947), Lời kêu gọi Thi đua ái quốc (1948)',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 5, NXB CTQG Sự thật (2011)',
+    fileId: '12WICWZfBmFJi3uAt24vXvmEHcELNc09Q',
+    driveUrl: 'https://drive.google.com/file/d/12WICWZfBmFJi3uAt24vXvmEHcELNc09Q/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/12WICWZfBmFJi3uAt24vXvmEHcELNc09Q/preview'
+  },
+  {
+    volume: 6,
+    period: '1949–1950',
+    highlights: 'Bài báo Dân vận (15/10/1949), Thư gửi Hội nghị cán bộ, chiến dịch Biên giới',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 6, NXB CTQG Sự thật (2011)',
+    fileId: '13foXhM_WG7VOWtnEAvnBHdDbT_HxsApI',
+    driveUrl: 'https://drive.google.com/file/d/13foXhM_WG7VOWtnEAvnBHdDbT_HxsApI/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/13foXhM_WG7VOWtnEAvnBHdDbT_HxsApI/preview'
+  },
+  {
+    volume: 7,
+    period: '1951–1952',
+    highlights: 'Báo cáo chính trị tại Đại hội II của Đảng, thực hành tiết kiệm chống tham ô lãng phí',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 7, NXB CTQG Sự thật (2011)',
+    fileId: '15FznVYXOoW2bX1isjt12ZnJ_mujBMvOL',
+    driveUrl: 'https://drive.google.com/file/d/15FznVYXOoW2bX1isjt12ZnJ_mujBMvOL/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/15FznVYXOoW2bX1isjt12ZnJ_mujBMvOL/preview'
+  },
+  {
+    volume: 8,
+    period: '1953–1954',
+    highlights: 'Chiến dịch Điện Biên Phủ, thư gửi đồng bào và chiến sĩ tiếp quản Thủ đô',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 8, NXB CTQG Sự thật (2011)',
+    fileId: '1_gEk3EU4uSJ-1g8wFLM3k7ptQTBTWwvY',
+    driveUrl: 'https://drive.google.com/file/d/1_gEk3EU4uSJ-1g8wFLM3k7ptQTBTWwvY/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1_gEk3EU4uSJ-1g8wFLM3k7ptQTBTWwvY/preview'
+  },
+  {
+    volume: 9,
+    period: '1954–1955',
+    highlights: 'Khôi phục kinh tế miền Bắc, củng cố chính quyền dân chủ nhân dân',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 9, NXB CTQG Sự thật (2011)',
+    fileId: '11Ji6y4XnMn4K1__N2k6NgirN-MQJDVzK',
+    driveUrl: 'https://drive.google.com/file/d/11Ji6y4XnMn4K1__N2k6NgirN-MQJDVzK/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/11Ji6y4XnMn4K1__N2k6NgirN-MQJDVzK/preview'
+  },
+  {
+    volume: 10,
+    period: '1955–1957',
+    highlights: 'Xây dựng khối đại đoàn kết, nâng cao văn hóa giáo dục quần chúng',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 10, NXB CTQG Sự thật (2011)',
+    fileId: '1lRM4K_99K5NmxlbQjozvkMT6trjsIelk',
+    driveUrl: 'https://drive.google.com/file/d/1lRM4K_99K5NmxlbQjozvkMT6trjsIelk/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1lRM4K_99K5NmxlbQjozvkMT6trjsIelk/preview'
+  },
+  {
+    volume: 11,
+    period: '1958–1959',
+    highlights: 'Đạo đức cách mạng (1958), Thường thức chính trị và đào tạo cán bộ cơ sở',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 11, NXB CTQG Sự thật (2011)',
+    fileId: '15Cl5f171aABaefn0E_OB-9tkEEtebruK',
+    driveUrl: 'https://drive.google.com/file/d/15Cl5f171aABaefn0E_OB-9tkEEtebruK/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/15Cl5f171aABaefn0E_OB-9tkEEtebruK/preview'
+  },
+  {
+    volume: 12,
+    period: '1959–1960',
+    highlights: 'Đại hội đại biểu toàn quốc lần thứ III, Tết trồng cây đầu tiên (1959)',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 12, NXB CTQG Sự thật (2011)',
+    fileId: '16hw-Z3hnUy6Pg_r2z7bmHa-boZct9rvE',
+    driveUrl: 'https://drive.google.com/file/d/16hw-Z3hnUy6Pg_r2z7bmHa-boZct9rvE/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/16hw-Z3hnUy6Pg_r2z7bmHa-boZct9rvE/preview'
+  },
+  {
+    volume: 13,
+    period: '1961–1962',
+    highlights: 'Phong trào Người tốt Việc tốt, giáo dục thiếu niên nhi đồng và công tác Mặt trận',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 13, NXB CTQG Sự thật (2011)',
+    fileId: '1dvO77DopUiZwAnrLCY2y43WMNWK99F9K',
+    driveUrl: 'https://drive.google.com/file/d/1dvO77DopUiZwAnrLCY2y43WMNWK99F9K/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1dvO77DopUiZwAnrLCY2y43WMNWK99F9K/preview'
+  },
+  {
+    volume: 14,
+    period: '1963–1965',
+    highlights: 'Hội nghị Chính trị đặc biệt (1964), chi viện miền Nam ruột thịt',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 14, NXB CTQG Sự thật (2011)',
+    fileId: '16KOlNtgRAj1CHSf1VenKvouR1oMGsDRt',
+    driveUrl: 'https://drive.google.com/file/d/16KOlNtgRAj1CHSf1VenKvouR1oMGsDRt/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/16KOlNtgRAj1CHSf1VenKvouR1oMGsDRt/preview'
+  },
+  {
+    volume: 15,
+    period: '1965–1969',
+    highlights: 'Lời kêu gọi 17/7/1966, Nâng cao đạo đức cách mạng (1969) và Bản Di chúc (1969)',
+    citation: 'Hồ Chí Minh Toàn tập, Tập 15, NXB CTQG Sự thật (2011)',
+    fileId: '1P_p_nX8pxvrOFk1X_1MSBF4A8AcFbE_s',
+    driveUrl: 'https://drive.google.com/file/d/1P_p_nX8pxvrOFk1X_1MSBF4A8AcFbE_s/view?usp=sharing',
+    previewUrl: 'https://drive.google.com/file/d/1P_p_nX8pxvrOFk1X_1MSBF4A8AcFbE_s/preview'
+  },
 ];
 
 export const CLASSIC_WORKS_15: ClassicWorkItem[] = [

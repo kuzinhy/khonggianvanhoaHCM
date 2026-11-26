@@ -3,11 +3,14 @@ import {
   Award,
   BookOpen,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Copy,
   Edit3,
   ExternalLink,
   Film,
+  FolderOpen,
   Headphones,
   History,
   Image as ImageIcon,
@@ -352,6 +355,7 @@ export const HcmBookshelfView: React.FC<{
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [copiedExcerpt, setCopiedExcerpt] = useState(false);
   const [treasureFilter, setTreasureFilter] = useState<string>('ALL');
+  const [readingVolume, setReadingVolume] = useState<(typeof TOAN_TAP_VOLUMES)[0] | null>(null);
 
   useEffect(() => {
     return () => {
@@ -1050,30 +1054,51 @@ export const HcmBookshelfView: React.FC<{
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {TOAN_TAP_VOLUMES.filter((v) => !q || `${v.volume} ${v.period} ${v.highlights}`.toLowerCase().includes(q)).map((v) => (
-              <article key={v.volume} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs space-y-2 hover:border-blue-300 transition-all flex flex-col justify-between">
-                <div className="space-y-2">
+              <article
+                key={v.volume}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs space-y-2 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between group"
+              >
+                <div
+                  className="space-y-2 cursor-pointer"
+                  onClick={() => setReadingVolume(v)}
+                  title={`Bấm để mở đọc trực tiếp Tập ${v.volume}`}
+                >
                   <div className="flex items-center justify-between">
-                    <span className="rounded-lg bg-blue-600 px-2.5 py-0.5 text-xs font-black text-white">
+                    <span className="rounded-lg bg-blue-600 group-hover:bg-blue-700 px-2.5 py-0.5 text-xs font-black text-white transition-colors">
                       TẬP {String(v.volume).padStart(2, '0')}
                     </span>
                     <span className="text-xs font-bold text-rose-700">{v.period}</span>
                   </div>
-                  <p className="text-xs text-slate-700 leading-relaxed">{v.highlights}</p>
+                  <p className="text-xs text-slate-700 leading-relaxed group-hover:text-blue-900 transition-colors">
+                    {v.highlights}
+                  </p>
                 </div>
 
                 <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <a
-                    href="https://drive.google.com/drive/folders/1KrvSjp_Y1RIFsZC56wWqQG1wvx_S9uOs?hl=vi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50/80 hover:bg-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 transition-colors"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5 text-blue-600" />
-                    <span>Đọc Tập {v.volume} trên Google Drive</span>
-                  </a>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setReadingVolume(v)}
+                      className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-700 hover:bg-blue-800 px-2.5 py-2 text-xs font-bold text-white transition-all shadow-xs cursor-pointer"
+                    >
+                      <BookOpen className="h-3.5 w-3.5 text-blue-200" />
+                      <span>Đọc Tập {v.volume}</span>
+                    </button>
+                    <a
+                      href={v.driveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-1 rounded-xl border border-blue-200 bg-blue-50/80 hover:bg-blue-100 px-2 py-2 text-xs font-bold text-blue-800 transition-colors"
+                      title={`Mở riêng Tập ${v.volume} trên Google Drive (tab mới)`}
+                    >
+                      <FolderOpen className="h-3.5 w-3.5 text-blue-600" />
+                      <span>Mở Drive</span>
+                      <ExternalLink className="h-3 w-3 text-blue-500" />
+                    </a>
+                  </div>
 
                   <div className="flex items-center justify-between gap-2 text-[11px]">
-                    <span className="text-slate-500 truncate">{v.citation}</span>
+                    <span className="text-slate-500 truncate" title={v.citation}>{v.citation}</span>
                     <button
                       type="button"
                       onClick={() => copyCitation(`vol_${v.volume}`, v.citation)}
@@ -1086,6 +1111,119 @@ export const HcmBookshelfView: React.FC<{
               </article>
             ))}
           </div>
+
+          {/* Modal Đọc Trực Tiếp Đúng Tập Đã Chọn */}
+          {readingVolume && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 backdrop-blur-xs p-2 sm:p-4 animate-in fade-in duration-200"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) setReadingVolume(null);
+              }}
+            >
+              <div className="relative w-full max-w-5xl h-[92vh] flex flex-col rounded-2xl bg-white shadow-2xl border border-slate-200 overflow-hidden">
+                {/* Modal Header */}
+                <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-950 text-white shrink-0">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <span className="rounded-lg bg-amber-400 text-slate-950 text-xs font-black px-2.5 py-1 shrink-0 font-mono">
+                      TẬP {String(readingVolume.volume).padStart(2, '0')}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-sm sm:text-base font-bold truncate leading-tight">
+                        Hồ Chí Minh Toàn Tập — Tập {readingVolume.volume} ({readingVolume.period})
+                      </h3>
+                      <p className="text-[11px] text-blue-200 truncate mt-0.5">
+                        NXB Chính trị quốc gia Sự thật (2011) · Văn kiện nguồn chuẩn Cấp A
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    {/* Navigation between volumes */}
+                    <div className="hidden sm:flex items-center gap-1 bg-white/10 p-0.5 rounded-xl border border-white/10 mr-1">
+                      <button
+                        type="button"
+                        disabled={readingVolume.volume <= 1}
+                        onClick={() => {
+                          const prev = TOAN_TAP_VOLUMES.find((item) => item.volume === readingVolume.volume - 1);
+                          if (prev) setReadingVolume(prev);
+                        }}
+                        className="px-2 py-1 rounded-lg text-xs font-bold hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed flex items-center gap-0.5"
+                        title="Xem Tập trước"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span>Tập trước</span>
+                      </button>
+                      <span className="text-[11px] text-blue-200 px-1 font-mono">
+                        {readingVolume.volume}/15
+                      </span>
+                      <button
+                        type="button"
+                        disabled={readingVolume.volume >= 15}
+                        onClick={() => {
+                          const next = TOAN_TAP_VOLUMES.find((item) => item.volume === readingVolume.volume + 1);
+                          if (next) setReadingVolume(next);
+                        }}
+                        className="px-2 py-1 rounded-lg text-xs font-bold hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed flex items-center gap-0.5"
+                        title="Xem Tập tiếp theo"
+                      >
+                        <span>Tập sau</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <a
+                      href={readingVolume.driveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold border border-white/20 transition-all cursor-pointer"
+                      title="Mở toàn màn hình trong tab mới trên Google Drive"
+                    >
+                      <FolderOpen className="w-3.5 h-3.5 text-amber-300" />
+                      <span>Mở trên Drive</span>
+                      <ExternalLink className="w-3 h-3 opacity-80" />
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={() => setReadingVolume(null)}
+                      className="p-1.5 rounded-xl bg-white/15 hover:bg-rose-600 text-white transition-all cursor-pointer"
+                      aria-label="Đóng bảng đọc"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Sub-bar with Highlights & Citation */}
+                <div className="px-4 py-2 bg-blue-50/90 border-b border-blue-200 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-700 shrink-0">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="font-bold text-blue-900 shrink-0">Văn kiện then chốt:</span>
+                    <span className="text-slate-800 truncate">{readingVolume.highlights}</span>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => copyCitation(`vol_${readingVolume.volume}`, readingVolume.citation)}
+                      className="text-xs font-bold text-blue-800 hover:text-blue-950 underline cursor-pointer"
+                    >
+                      {copiedId === `vol_${readingVolume.volume}` ? '✓ Đã chép trích dẫn' : 'Sao chép trích dẫn chuẩn'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* PDF Viewer Iframe */}
+                <div className="flex-1 bg-slate-100 relative">
+                  <iframe
+                    key={readingVolume.fileId}
+                    src={readingVolume.previewUrl}
+                    title={`Hồ Chí Minh Toàn Tập - Tập ${readingVolume.volume}`}
+                    className="w-full h-full border-0"
+                    allow="autoplay"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : subTab === 'EBOOKS' ? (
         <div className="space-y-4">
